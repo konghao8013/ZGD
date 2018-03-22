@@ -9,11 +9,11 @@
     <title></title>
     <link href="../skin/default/style.css" rel="stylesheet" type="text/css" />
     <link href="../skin/pagination/pagination.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../../scripts/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
     <script type="text/javascript" src="../../Js/layer/layer.js"></script>
-    <script type="text/javascript" src="../../scripts/swfupload/swfupload.js"></script>
-    <script type="text/javascript" src="../../scripts/swfupload/swfupload.handlers.js"></script>
+    <script type="text/javascript" src="../js/swfupload/swfupload.js"></script>
+    <script type="text/javascript" src="../js/swfupload/swfupload.handlers.js"></script>
     <style type="text/css">
         .red { color: red; }
     </style>
@@ -57,7 +57,7 @@
 
                             //初始化上传控件
                             $(".upload-img").each(function () {
-                                $(this).InitSWFUpload({ sendurl: "../../tools/upload_ajax.ashx", flashurl: "../../scripts/swfupload/swfupload.swf" });
+                                $(this).InitSWFUpload({ sendurl: "../../tools/upload_ajax.ashx", flashurl: "../js/swfupload/swfupload.swf" });
                             });
 
                             $("#btnSave").click(function () {
@@ -108,7 +108,7 @@
                     $(".msgtable input[type='text']").val("");
                     //初始化上传控件
                     $(".upload-img").each(function () {
-                        $(this).InitSWFUpload({ sendurl: "../../tools/upload_ajax.ashx", flashurl: "../../scripts/swfupload/swfupload.swf" });
+                        $(this).InitSWFUpload({ sendurl: "../../tools/upload_ajax.ashx", flashurl: "../js/swfupload/swfupload.swf" });
                     });
 
                     $("#btnSave").click(function () {

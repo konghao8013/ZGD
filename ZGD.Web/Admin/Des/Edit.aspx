@@ -5,10 +5,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>编辑设计师</title>
-    <script type="text/javascript" src="../../scripts/jquery/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="../../scripts/jquery/Validform_v5.3.2_min.js"></script>
-    <script type="text/javascript" src="../../scripts/swfupload/swfupload.js"></script>
-    <script type="text/javascript" src="../../scripts/swfupload/swfupload.handlers.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/Validform_v5.3.2_min.js"></script>
+    <script type="text/javascript" src="../js/swfupload/swfupload.js"></script>
+    <script type="text/javascript" src="../js/swfupload/swfupload.handlers.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
     <link href="../skin/default/style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/js/kindeditor-4.1.7/themes/default/default.css" />
@@ -33,7 +33,7 @@
             $("#form1").initValidform();
             //初始化上传控件
             $(".upload-img").each(function () {
-                $(this).InitSWFUpload({ sendurl: "../../tools/upload_ajax.ashx", flashurl: "../../scripts/swfupload/swfupload.swf" });
+                $(this).InitSWFUpload({ sendurl: "../../tools/upload_ajax.ashx", flashurl: "../js/swfupload/swfupload.swf" });
             });
         });
         var editor;

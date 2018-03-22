@@ -6,8 +6,8 @@
 <head runat="server">
     <title>回复留言</title>
     <link href="../skin/default/style.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../../scripts/jquery/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="../../scripts/jquery/Validform_v5.3.2_min.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/Validform_v5.3.2_min.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
     <script type="text/javascript">
         $(function () {

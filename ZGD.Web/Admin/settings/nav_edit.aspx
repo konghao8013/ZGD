@@ -6,9 +6,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>编辑后台导航</title>
-<script type="text/javascript" src="../../scripts/jquery/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="../../scripts/jquery/Validform_v5.3.2_min.js"></script>
-<script type="text/javascript" src="../../scripts/lhgdialog/lhgdialog.js?skin=idialog"></script>
+<script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery/Validform_v5.3.2_min.js"></script>
+<script type="text/javascript" src="../js/lhgdialog/lhgdialog.js?skin=idialog"></script>
 <script type="text/javascript" src="../js/layout.js"></script>
 <link href="../skin/default/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">

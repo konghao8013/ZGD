@@ -5,14 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>发布活动</title>
-    <script type="text/javascript" src="../../scripts/jquery/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="../../scripts/jquery/Validform_v5.3.2_min.js"></script>
-    <script type="text/javascript" src="../../scripts/swfupload/swfupload.js"></script>
-    <script type="text/javascript" src="../../scripts/swfupload/swfupload.handlers.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/Validform_v5.3.2_min.js"></script>
+    <script type="text/javascript" src="../js/swfupload/swfupload.js"></script>
+    <script type="text/javascript" src="../js/swfupload/swfupload.handlers.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
-    <script src="../../scripts/datepicker/WdatePicker.js"></script>
+    <script src="../js/datepicker/WdatePicker.js"></script>
     <link href="../skin/default/style.css" rel="stylesheet" type="text/css" />
-    <link href="../../scripts/datepicker/skin/WdatePicker.css" rel="stylesheet" />
+    <link href="../js/datepicker/skin/WdatePicker.css" rel="stylesheet" />
     <link rel="stylesheet" href="/js/kindeditor-4.1.7/themes/default/default.css" />
     <link rel="stylesheet" href="/js/kindeditor-4.1.7/plugins/code/prettify.css" />
 
@@ -26,7 +26,7 @@
             $("#form1").initValidform();
             //初始化上传控件
             $(".upload-img").each(function () {
-                $(this).InitSWFUpload({ sendurl: "../../tools/upload_ajax.ashx", flashurl: "../../scripts/swfupload/swfupload.swf" });
+                $(this).InitSWFUpload({ sendurl: "../../tools/upload_ajax.ashx", flashurl: "../js/swfupload/swfupload.swf" });
             });
         });
         KindEditor.ready(function (K) {
