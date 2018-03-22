@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "在线支付";
+    ViewBag.Keywords = "";
+    ViewBag.Description = "";
+}
+@model YJ.Model.PayOrder
+@section Head
+{
+    <style type="text/css">
+        #payMsg { text-align: center; padding: 100px 0 150px 0; }
+        #payMsg h1 { font-size: 48px; font-weight: 500; padding: 10px 0 20px 0; }
+        #payMsg p { }
+        #payMsg p a { width: 140px; height: 45px; line-height: 45px; display: inline-block; text-align: center; color: #fff; border-radius: 5px; font-size: 18px; margin: 0 10px; }
+        #payMsg p a.yellow { background-color: #F5AB00; }
+        #payMsg p a.blue { background-color: #6191C9; }
+    </style>
+}
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 0 });}
+<!--content begin-->
+<div id="content" style="padding-top:0;background-color:#E1EFFF;">
+    <div class="main" id="payMsg">
+        <img src="/Content/Images/right.png" />
+        <h1>@(ViewBag.Message)</h1>
+        <p>
+            <a href="/activity/@(ViewBag.ActID)" class="yellow">点击返回</a>
+            <a href="/" class="blue">首页</a>
+        </p>
+    </div>
+</div>
+<!--content end-->

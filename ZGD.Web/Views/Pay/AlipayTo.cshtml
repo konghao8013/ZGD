@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "正在为您跳转到支付宝收银台，请稍等...";
+    ViewBag.Keywords = "";
+    ViewBag.Description = "";
+    Layout = null;
+}
+@model YJ.Model.PayOrder
+
+<style type="text/css">
+    .msg { font-size: 24px; font-weight: 400; text-align: center; padding-top: 100px; font-family: 'Microsoft YaHei'; }
+</style>
+
+<div class="msg">
+    正在为您跳转到支付宝收银台，请稍等 ......
+</div>
+<div>
+    @Html.Raw(Model.HtmlText)
+</div>

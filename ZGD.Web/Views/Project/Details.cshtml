@@ -1,0 +1,86 @@
+﻿@model ZGD.Model.NewsInfo
+@using System.Data
+@using ZGD.Common
+
+@{
+    ViewBag.Title = (Model != null ? Model.Title : "装修工地") +"-港宏宜家装饰";
+    ViewBag.Keywords = Model.Keyword;
+    ViewBag.Description = Model.Description;
+}
+
+@section Head
+{
+    <style type="text/css">
+        .gd_top { padding: 10px; }
+        .gd_top img { height: 280px; width: 375px; float: left; margin-right: 15px; }
+        .gd_top .gd_right { width: 750px; height: 280px; font-size: 14px; float: right; position: relative; }
+        .gd_top .gd_right h3 { font-size: 30px; padding-bottom: 10px; }
+        .gd_top .gd_right p { width: 100%; }
+        .gd_top .gd_right .gd_info { border-top: 1px dashed #ccc; padding: 10px 0; }
+        .gd_top .gd_right .gd_info span { padding-right: 20px; }
+        .gd_top .gd_right .gd_btn { position: absolute; left: 0; bottom: 10px; }
+        .gd_s i { width: 106px; }
+        .gd_top .gd_right .gd_btn .btn_join { padding: 10px 40px; font-size: 20px; background-color: #AC0902; color: #fff; }
+        .gd_imgs { border: 1px solid #ccc; width: 100%; display: inline-block; }
+        .gd_imgs .gd_img_list { width: 1100px; position: relative; float: right; border-left: 1px solid #ccc; border-bottom: 1px dashed #ccc; }
+        .gd_imgs .gd_img_list i { width: 110px; height: 110px; line-height: 110px; background-color: #AC0902; color: #fff; position: absolute; left: -55px; top: 45%; text-align: center; font-size: 18px; border-radius: 100%; }
+        .gd_imgs .gd_img_list p { text-align: center; padding: 20px 0; }
+        .gd_imgs .gd_img_list p img { max-width: 700px; }
+    </style>
+}
+
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 4 });}
+<div id="content" style="padding-top:0;">
+    <div class="main">
+        <div class="nav_title">当前位置：<a href="/">首页</a>&gt;<a href="/project">装修工地</a>&gt;@(Model.Title)</div>
+    </div>
+    <div class="space10"></div>
+    <div class="main">
+        <div class="gd_top">
+            <img src="@(Model.ImgUrl)" />
+            <div class="gd_right">
+                <h3>@(Model.Title)</h3>
+                <p class="gd_info"><span>面积：@(Model.Area)</span><span>总价：@(Model.Price)</span></p>
+                <p class="gd_word">@(Model.Description)</p>
+                <p class="gd_s">
+                    @foreach (DataRow item in ViewBag.DataJD.Rows)
+                    {
+                        <i class="@(item["Id"].ToString() == Model.gdStatus.ToString() ? "hover" : "")">@(item["Title"].ToString())</i>
+                    }
+                </p>
+                <div class="space1"></div>
+                <p class="gd_btn"><a href="/join?type=3" class="btn_join">免费预约参观</a></p>
+            </div>
+        </div>
+        <div class="space30"></div>
+        <div class="gd_imgs">
+            @foreach (DataRow item in ViewBag.Imgs_S.Rows)
+            {
+                <div class="gd_img_list">
+                    @foreach (DataRow item2 in ViewBag.DataJD.Rows)
+                    {
+                        if (item2["Id"].ToString() == item["DesignerId"].ToString())
+                        {
+                            <i>@(item2["Title"].ToString())</i>
+                            break;
+                        }
+                    }
+                    @foreach (DataRow item3 in ViewBag.Imgs.Rows)
+                    {
+                        if (item3["DesignerId"].ToString() == item["DesignerId"].ToString())
+                        {
+                            <p><img src="@(item3["ImgUrl"].ToString())" alt="@(item3["Title"].ToString())" /></p>
+                        }
+                    }
+                </div>
+            }
+        </div>
+        <script>
+            $(function () {
+                $(".gd_s i.hover").prevAll().addClass("hover");
+            });
+        </script>
+    </div>
+    <div class="space20"></div>
+</div>
+<div class="space10"></div>

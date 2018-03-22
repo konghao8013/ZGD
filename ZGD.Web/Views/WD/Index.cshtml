@@ -1,0 +1,454 @@
+﻿@{
+    ViewBag.Title = "装修问答 家庭装修问答 室内装修问题解决平台-港宏宜家官网";
+    ViewBag.Keywords = "装修问答,家庭装修,室内装修";
+    ViewBag.Description = "港宏宜家装饰装修问答专区旨在与大家讨论装修中所遇到了一些问题，这里有专业家装设计师、家装工程经理、家装施工师傅为您实实在在的解答疑问。";
+}
+@model System.Data.DataTable
+@using System.Data
+@using ZGD.Common
+@section Head
+{
+    <link href="/Content/Scripts/webuploader/webuploader.css" rel="stylesheet" />
+    <style type="text/css">
+        .n_search .left { width: 500px; }
+        .n_search .left div { width: 470px; }
+        .n_search .right { width: 400px; }
+    </style>
+}
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 0 });}
+
+@{
+    ZGD.BLL.Banner bBll = new ZGD.BLL.Banner();
+    var jh_ad = bBll.GetModel(18);
+}
+
+<div class="main">
+    <div class="qa_top" id="qa_top">
+        <div class="info">
+            <div class="bg">
+                <h3>一切关于装修的事儿，我们都知道</h3>
+                <h4>已解决<em>@(ViewBag.QaCount)</em>个问题</h4>
+                <div class="info_bom">
+                    <div class="left">
+                        <a href="/wd#tw"><img src="/Content/Images/edit.png" />我要提问</a>
+                    </div>
+                    <div class="right">
+                        <a href="/wd/page"><img src="/Content/Images/qa.png" />我来回答</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="space20"></div>
+<div id="content" class="main">
+    <div class="con_left">
+        @RenderPage("../Ctrl/_ZxCalc.cshtml")
+        <div class="space20"></div>
+        @RenderPage("../Ctrl/_HotQa.cshtml")
+        <div class="space20"></div>
+        @RenderPage("../Ctrl/_HotHouse.cshtml")
+    </div>
+    <div class="con_right">
+        <script type="text/javascript">
+            function searchKey() {
+                var key = $("#txtSearch").val();
+                if ($.trim(key) == "") {
+                    layer.alert("请输入搜索的关键词");
+                    return false;
+                }
+                window.location.href = "/wd/page?key=" + encodeURI(key);
+            }
+        </script>
+        <div class="n_search">
+            <div class="left">
+                <div>
+                    <span></span>
+                    <input type="text" id="txtSearch" placeholder="请输入搜索的关键词" />
+                    <a href="javascript:;" onclick="searchKey();">搜 索</a>
+                </div>
+            </div>
+            <div class="right">
+                您可能要找：@foreach (DataRow item in ViewBag.Tags.Rows)
+            { <a href="@(item["WebUrl"].ToString())">@(item["Title"].ToString())</a> }
+            </div>
+        </div>
+        <div class="space20"></div>
+        <div class="a_panel">
+            <div class="title"><strong>精华问答</strong></div>
+            <div class="n_panel_con">
+                <div class="ad">
+                    <a href="@(jh_ad.Url)"><img src="@(jh_ad.ImgUrl)" /></a>
+                </div>
+                <div class="jh_list">
+                    @{
+                        int idx = 1;
+                    }
+                    @foreach (DataRow item in ViewBag.JH.Rows)
+                    {
+                        if (idx == 1)
+                        {
+                            <div class="top">
+                                <h3><a href="/wd/@(item["ID"].ToString())">@(item["Title"].ToString())</a></h3>
+                                <p>答：@(string.IsNullOrWhiteSpace(item["AnCon"].ToString()) ? "暂无回答..." : item["AnCon"].ToString().ToSubString(70))</p>
+                            </div>
+                        }
+                        idx++;
+                    }
+                    <ul class="top_list">
+                        @{
+                            idx = 1;
+                        }
+                        @foreach (DataRow item in ViewBag.JH.Rows)
+                        {
+                            if (idx > 1)
+                            {
+                                <li><span>@(Convert.ToDateTime(item["PubTime"]).ToString("yyyy-MM-dd"))</span><a href="/wd/@(item["ID"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(22))</a></li>
+                            }
+                            idx++;
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="space20"></div>
+        <div class="a_panel">
+            <div class="title"><a href="/wd/page">更多&gt;&gt;</a><strong>精华问答</strong></div>
+            <div class="n_panel_con">
+                <div class="qa_list">
+                    <div class="left">
+                        <ul>
+                            @{
+                                idx = 1;
+                            }
+                            @foreach (DataRow item in ViewBag.JJ.Rows)
+                            {
+                                if (idx < 4)
+                                {
+                                    <li>
+                                        <h3><span>@(item["aCount"].ToString())回答</span><a href="/wd/@(item["ID"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(22))</a></h3>
+                                        <p>回答：@(string.IsNullOrWhiteSpace(item["AnCon"].ToString()) ? "暂无回答..." : item["AnCon"].ToString().ToSubString(70))</p>
+                                    </li>
+                                    idx++;
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <div class="right">
+                        <ul>
+                            @{
+                                idx = 1;
+                            }
+                            @foreach (DataRow item in ViewBag.JJ.Rows)
+                            {
+                                if (idx > 3)
+                                {
+                                    <li>
+                                        <h3><span>@(item["aCount"].ToString())回答</span><a href="/wd/@(item["ID"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(22))</a></h3>
+                                        <p>回答：@(string.IsNullOrWhiteSpace(item["AnCon"].ToString()) ? "暂无回答..." : item["AnCon"].ToString().ToSubString(70))</p>
+                                    </li>
+                                    idx++;
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="space20"></div>
+        <div class="a_panel">
+            <div class="title"><a href="/wd/page">更多&gt;&gt;</a><strong>等你来抢答</strong></div>
+            <div class="n_panel_con">
+                <div class="qa_list2">
+                    <div class="left">
+                        <ul>
+                            @{
+                                idx = 1;
+                            }
+                            @foreach (DataRow item in ViewBag.QD.Rows)
+                            {
+                                if (idx < 9)
+                                {
+                                    <li>
+                                        <a href="/wd/@(item["ID"].ToString())" title="@(item["Title"].ToString())">去抢答</a>@(item["Title"].ToString().ToSubString(22))
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <div class="right">
+                        <ul>
+                            @{
+                                idx = 1;
+                            }
+                            @foreach (DataRow item in ViewBag.QD.Rows)
+                            {
+                                if (idx > 8)
+                                {
+                                    <li>
+                                        <a href="/wd/@(item["ID"].ToString())" title="@(item["Title"].ToString())">去抢答</a>@(item["Title"].ToString().ToSubString(22))
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="space20"></div>
+        <div class="a_panel">
+            <a name="tw"></a>
+            <div class="title"><strong>我要提问</strong></div>
+            <div class="n_panel_con">
+                <div class="qa_form">
+                    <form id="qa_form">
+                        <h3>一句话描述你的问题</h3>
+                        <div>
+                            <input type="text" id="txtTitle" name="Title" placeholder="完整的说出你遇到的问题：例如局部改造是不是装修公司都不接" />
+                            <p><span>还可以输入<i id="txtTitle_c">80</i>个字</span></p>
+                        </div>
+                        <h3>问题补充（选填）</h3>
+                        <div>
+                            <textarea id="txtCon" name="Contents" placeholder="您可以继续补充问题细节，有利于更好的解答"></textarea>
+                            <p><a href="javascript:;" class="upload" id="filePicker@(ZGD.Web.Controllers.DTO.OperSession.LoginUser != null ? "" : "_no")">图片上传</a><span>还可以输入<i id="txtCon_c">200</i>个字</span></p>
+                            <div class="img_list" id="fileList"></div>
+                            <input type="hidden" id="ImgJson" name="ImgUrl" />
+                        </div>
+                        <div class="space1"></div>
+                        <div>
+                            <button type="button" id="btnSave" onclick="Submit();" class="btn">提交问题</button>
+                        </div>
+                    </form>
+                    <script src="https://cdn.staticfile.org/webuploader/0.1.0/webuploader.withoutimage.min.js"></script>
+                    <script type="text/javascript">
+                        var _lg = "@(ZGD.Web.Controllers.DTO.OperSession.LoginUser != null ? "yes" : "no")";
+                        $(function () {
+                            $("#txtTitle").keyup(function () {
+                                wordCheck("txtTitle", 80);
+                            });
+                            $("#txtCon").keyup(function () {
+                                wordCheck("txtCon", 200);
+                            });
+                            if (_lg == "yes") {
+                                initUpload("");
+                            }
+                            else {
+                                $("#filePicker_no").click(function () {
+                                    layer.alert("请先登录！");
+                                })
+                            }
+                        })
+
+                        function Submit() {
+                            var title = $("#txtTitle").val();
+                            var con = $("#txtCon").val();
+                            if ($.trim(title) == "") {
+                                layer.alert("问题标题不能为空！");
+                                return false;
+                            }
+                            //if ($.trim(con) == "") {
+                            //    layer.alert("请输入问题的细节！");
+                            //    return false;
+                            //}
+                            $("#qa_form").ajaxSubmit({
+                                url: "/wd/add",
+                                type: "post",
+                                dataType: "json",
+                                beforeSubmit: function () {
+                                    layer.load(1, { shade: [0.1, '#000'] });
+                                },
+                                error: function () {
+                                    layer.closeAll();
+                                    layer.alert("请求失败");
+                                },
+                                success: function (data) {
+                                    layer.closeAll();
+                                    if (data != null) {
+                                        if (data.Success) {
+                                            layer.alert(data.Msg, function () {
+                                                window.location.href = data.Source;
+                                            });
+                                        }
+                                        else
+                                            layer.alert(data.Msg);
+                                    }
+                                    else
+                                        layer.alert("提交失败");
+                                }
+                            });
+                            return false;
+                        }
+
+                        function initUpload(imgJson) {
+                            $('#fileList').html("");
+                            var $list = $('#fileList'),
+                                // 优化retina, 在retina下这个值是2
+                                ratio = window.devicePixelRatio || 1,
+
+                                // 缩略图大小
+                                thumbnailWidth = 100 * ratio,
+                                thumbnailHeight = 100 * ratio,
+
+                                // Web Uploader实例
+                                uploader;
+
+                            if (imgJson != null && imgJson != "") {
+                                var img_list = [];
+                                var $li;
+                                //console.log(imgJson);
+                                $.each(imgJson.split(','), function (i, n) {
+                                    img_list.push(n);
+                                    $li = $(
+                                        '<div id="WU_FILE_' + i + '" class="file-item thumbnail upload-state-done" name="existsOldPicure">' +
+                                        '<img id="img_WU_FILE_' + i + '" src="' + n + '" data-src="' + n + '" />' +
+                                        '<a class="a-btn-delete" href="javascript:;" onclick="delPicture(this)">X</a>' +
+                                        //'<div class="info">' + n.img + '</div>' +
+                                        '</div>'
+                                    );
+                                    $list.append($li);
+                                });
+                                $("#ImgJson").val(img_list.join(','));
+                            }
+                            else {
+                                $("#ImgJson").val("");
+                            }
+
+                            // 初始化Web Uploader
+                            uploader = WebUploader.create({
+                                // 自动上传。
+                                auto: true,
+                                fileNumLimit: 3,
+                                // swf文件路径
+                                swf: 'https://cdn.staticfile.org/webuploader/0.1.0/Uploader.swf',
+                                // 文件接收服务端。
+                                server: '/wd/upload',
+                                // 选择文件的按钮。可选。
+                                // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                                pick: '#filePicker',
+                                // 只允许选择文件，可选。
+                                accept: {
+                                    title: 'Images',
+                                    extensions: 'gif,jpg,jpeg,bmp,png',
+                                    mimeTypes: 'image/jpg,image/jpeg,image/png'
+                                }
+                            });
+
+                            // 当有文件添加进来的时候
+                            uploader.on('fileQueued', function (file) {
+                                if ($('#fileList').children("div .file-item").length > 6) {
+                                    layer.msg("最多只能添加6张图片", "error");
+                                    return;
+                                }
+                                var $li = $(
+                                    '<div id="' + file.id + '" class="file-item thumbnail">' +
+                                    '<img id="img_' + file.id + '" />' +
+                                    '<a class="a-btn-delete" href="javascript:;">X</a>' +
+                                    //'<div class="info">' + file.name + '</div>' +
+                                    '</div>'
+                                ),
+                                    $img = $li.find('img');
+                                $list.append($li);
+                                $li.children("a.a-btn-delete").unbind('click');
+                                $li.children("a.a-btn-delete").bind('click', function () {
+                                    //debugger;
+                                    var imgs = $("#ImgJson").val();
+                                    if ($.trim(imgs) != "") {
+                                        var img_list = imgs.split(',');
+                                        var del_img = $("#img_" + file.id);
+                                        $.each(img_list, function (i, m) {
+                                            if (m == del_img.attr("data-src")) {
+                                                $("#" + file.id).remove();
+                                                img_list.splice(i, 1);
+                                                uploader.removeFile(file.id, true);
+                                                $("#ImgJson").val(img_list.join(','));
+                                                return;
+                                            }
+                                        });
+                                    }
+                                });
+
+                                // 创建缩略图
+                                uploader.makeThumb(file, function (error, src) {
+                                    if (error) {
+                                        $img.replaceWith('<span>不能预览</span>');
+                                        return;
+                                    }
+                                    $img.attr('src', src);
+                                }, thumbnailWidth, thumbnailHeight);
+                            });
+
+                            // 文件上传过程中创建进度条实时显示。
+                            uploader.on('uploadProgress', function (file, percentage) {
+                                var $li = $('#' + file.id),
+                                    $percent = $li.find('.progress span');
+
+                                // 避免重复创建
+                                if (!$percent.length) {
+                                    $percent = $('<p class="progress"><span></span></p>')
+                                        .appendTo($li)
+                                        .find('span');
+                                }
+                                $percent.css('width', percentage * 100 + '%');
+                            });
+
+                            // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+                            uploader.on('uploadSuccess', function (file, response) {
+                                $('#' + file.id).addClass('upload-state-done');
+                                var imgCount = $('#fileList').children("div .file-item").length;
+                                console.log(response);
+                                if (response != null && response.Success) {
+                                    $('#' + file.id + " img").attr('src', response.Source);
+                                    $('#' + file.id + " img").attr('data-src', response.Source);
+                                    var imgs = $("#ImgJson").val();
+
+                                    if ($.trim(imgs) == "") {
+                                        $("#ImgJson").val(response.Source);
+                                    }
+                                    else {
+                                        $("#ImgJson").val(imgs + "," + response.Source);
+                                    }
+                                }
+                            });
+
+                            // 文件上传失败，现实上传出错。
+                            uploader.on('uploadError', function (file) {
+                                var $li = $('#' + file.id),
+                                    $error = $li.find('div.error');
+
+                                // 避免重复创建
+                                if (!$error.length) {
+                                    $error = $('<div class="error"></div>').appendTo($li);
+                                }
+                                layer.msg('上传失败');
+                            });
+
+                            // 完成上传完了，成功或者失败，先删除进度条。
+                            uploader.on('uploadComplete', function (file) {
+                                $('#' + file.id).find('.progress').remove();
+                            });
+                        }
+                        //删除图片
+                        function delPicture(obj) {
+                            //console.log(obj);
+                            var imgs = $("#ImgJson").val();
+                            if ($.trim(imgs) != "") {
+                                var img_list = imgs.split(',');
+                                var del_img = $(obj).parents("div").children("img");
+                                $.each(img_list, function (i, m) {
+                                    if (m == del_img.attr("data-src")) {
+                                        $(obj).parents("div[name=existsOldPicure]").remove();
+                                        img_list.splice(i, 1);
+                                        $("#ImgJson").val(img_list.join(','));
+                                        return;
+                                    }
+                                });
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="space40"></div>

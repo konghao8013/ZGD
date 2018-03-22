@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "港宏金牌设计师 房屋装修设计师 室内设计师";
+    ViewBag.Keywords = "房屋设计师,装修设计师,室内设计师,港宏,宜家装饰";
+    ViewBag.Description = "港宏宜家装饰是一家重庆本地优秀的整体家装公司，之所以优秀，是因为不仅有丰富的装修经验，率先推出“超国标”工艺标准，150余道验收细节，还有超强的房屋装修设计、室内金牌设计师团队。";
+}
+
+@section Head
+{
+    <style type="text/css">
+        #content { border-top: solid 1px #8E8E8E; }
+    </style>
+}
+@using System.Data
+@using YJ.Common
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 4 });}
+
+<div id="content" style="padding-top: 0;">
+    <div class="main">
+        <div class="nav_title">当前位置：<a href="/">首页</a>&gt;<a href="/designer">金牌设计</a></div>
+    </div>
+    <div class="des_panel">
+        <div class="main">
+            <div id="main_con">
+                <div class="panel_title"><div><span>金牌设计</span></div></div>
+                <ul class="des_list">
+                    @{
+                        int idx = 1;
+                    }
+                    @foreach (DataRow item in Model.Rows)
+                    {
+                        <li @if (idx % 4 == 0) { @Html.Raw("style=\"margin-right:0;\"")                  ; }>
+                            <div class="photo"><a href="/designer/@(item["ID"].ToString())"><img src="@(item["Photo"].ToString())" /></a></div>
+                            <div class="info">
+                                <p class="name"><span class="star star@(item["Star"].ToString())"></span><strong>@(item["Name"].ToString())</strong><i>@(item["cName"].ToString())</i></p>
+                                <p class="des"><span>人气（@(item["Clicks"].ToString())）</span>工作年限：@(item["cyDate"].ToString())年</p>
+                                <p class="btn_panel"><a href="http://p.qiao.baidu.com//im/index?siteid=8316243&ucid=19605673" target="_blank" class="black">在线咨询</a><a href="/designer/@(item["ID"].ToString())" class="red">查看详情</a></p>
+                            </div>
+                        </li>
+idx++;
+                    }
+                </ul>
+                <div class="space20"></div>
+                @Html.Raw(ViewBag.Pager)
+            </div>
+        </div>
+    </div>
+</div>

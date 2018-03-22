@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "装修攻略";
+    ViewBag.Keywords = "";
+    ViewBag.Description = "";
+}
+@model System.Data.DataTable
+@using System.Data
+@using YJ.Common
+@section Head
+{
+    <style type="text/css">
+        #content { border-top: solid 1px #8E8E8E; }
+        #main_con { background-color: transparent; padding: 0; }
+    </style>
+}
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 0 });}
+<div id="content">
+    <div class="main">
+        <div class="nav_title">当前位置：<a href="/">首页</a>&gt;<a href="/news?t=@ViewBag.TypeID">@(ViewBag.Type)</a></div>
+    </div>
+    <div class="main">
+        <div id="main_con">
+            <div id="con_left" style="width:880px;padding:20px;background-color:#fff;">
+                <div class="tl_ad">
+                    @foreach (DataRow item in ViewBag.AdList.Rows)
+                    {
+                        if (item["ID"].ToString() == "4")
+                        {
+                            <a href="@(item["Url"].ToString())"><img src="@(item["ImgUrl"].ToString())" /></a>
+                            break;
+                        }
+                    }
+                </div>
+                <div class="space10"></div>
+                <div class="art_tab">
+                    <ul>
+                        @*@{
+                            int idx = 1;
+                        }
+                        @foreach (DataRow item in ViewBag.ClassType.Rows)
+                        {
+                            <li>
+                                <a href="/news?t=@(item["Id"].ToString())" @if (ViewBag.TypeID == item["Id"].ToString()) { @Html.Raw("class=\"hover\"")         ; } @if (idx == 1) { @Html.Raw("style=\"width:233px;\"")        ; }>@(item["Title"].ToString())</a>
+                            </li>
+idx++;
+                        }*@
+                        <li>
+                            <a href="/news?t=2" @if (ViewBag.TypeID == "2") { @Html.Raw("class=\"hover\"")          ; } style="width:233px;">家装攻略</a>
+                        </li>
+                        <li>
+                            <a href="/news?t=3" @if (ViewBag.TypeID == "3") { @Html.Raw("class=\"hover\"")          ; }>材料知识</a>
+                        </li>
+                        <li>
+                            <a href="/news?t=5" @if (ViewBag.TypeID == "5") { @Html.Raw("class=\"hover\"")          ; }>设计知识</a>
+                        </li>
+                        <li>
+                            <a href="/news?t=6" @if (ViewBag.TypeID == "6") { @Html.Raw("class=\"hover\"")          ; }>家居风水</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="space20"></div>
+                <div class="ty_list">
+                    <ul>
+                        @{
+                            int n_idx = 0;
+                        }
+                        @foreach (DataRow item in Model.Rows)
+                        {
+                            <li @if (n_idx % 2 == 0) { @Html.Raw("class=\"ty_bg_1\"")       ; }>
+                                <div class="ty_item">
+                                    <a href="/news/@(item["Id"].ToString())"><img src="@(item["ImgUrl"].ToString())" /></a>
+                                    <div class="word_mid">
+                                        <div>
+                                            <h3><a href="/news/@(item["Id"].ToString())">@(item["Title"].ToString())</a></h3>
+                                            <p class="date">@(Convert.ToDateTime(item["PubTime"]).ToString("yyyy-MM-dd HH:mm"))</p>
+                                        </div>
+                                        <p class="des">@(item["Description"].ToString().ToSubString(100))</p>
+                                        @if (!string.IsNullOrWhiteSpace(item["Tags"].ToString()))
+                                        {
+                                            <p class="tags">相关标签：@Html.Raw(item["Tags"].ToString().ToTags())</p>
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                                        n_idx++;
+                        }
+                    </ul>
+                    @Html.Raw(ViewBag.Pager)
+                </div>
+                <script type="text/javascript">
+                    $(".ty_list li").hover(function () {
+                        $(this).addClass("hover");
+                    }, function () {
+                        $(this).removeClass("hover");
+                    })
+                </script>
+            </div>
+            <div id="con_right">
+                @RenderPage("../Ctrl/_ZxCalc.cshtml")
+                <div class="space20"></div>
+                @RenderPage("../Ctrl/_HotHouse.cshtml")
+                <div class="space20"></div>
+                @RenderPage("../Ctrl/_HotCase.cshtml")
+            </div>
+        </div>
+    </div>
+</div>
+<div class="space40"></div>

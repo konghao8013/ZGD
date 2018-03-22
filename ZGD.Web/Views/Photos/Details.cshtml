@@ -1,0 +1,106 @@
+﻿@using System.Data
+@using ZGD.Common
+
+@{
+    string title = "工程工艺";
+    if (ViewBag.PhotoType == 2)
+    {
+        title = "材料介绍";
+    }
+    ViewBag.Title = title;
+    ViewBag.Keywords = "";
+    ViewBag.Description = "";
+}
+
+@section Head
+{
+    <style type="text/css">
+        #content { border-top: solid 1px #8E8E8E; }
+        #main_con { background-color: transparent; }
+        #con_left { background-color: #fff; padding-top: 15px; }
+        .art_tab { height: 57px; padding: 0 10px; border-bottom: 0; }
+        .art_tab ul { height: 55px; border-bottom: solid 3px #DCDCDC; }
+        .art_tab ul li a { color: #000; font-size: 22px; }
+        #listBox { width: 800px; }
+        #prev { left: 0; }
+        #next { right: 0; }
+        .photos .listBox li { margin-left: 4px; margin-right: 4px; }
+        .photos .btn.prev, .photos .btn.next { width: 17px; height: 85px; background-color: #C6C6C6; border-radius: 4px; top: 570px; background-image: url(/Content/Images/s_sj.png); }
+        .photos .prev { background-position: 3px 35px; }
+        .photos .next { background-position: -61px 35px; }
+    </style>
+}
+
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 5, Title = title });}
+<div id="content">
+    <div class="main">
+        <div class="nav_title">当前位置：<a href="/">首页</a>&gt;<a href="/photos/@(ViewBag.PhotoType)">@(title)</a></div>
+    </div>
+    <div class="main">
+        <div id="main_con">
+            <div id="con_left" style="width:920px;">
+                <div class="art_tab">
+                    <ul>
+                        <li>
+                            <a href="/photos/1" @if (ViewBag.PhotoType == 1) { @Html.Raw("class=\"hover\"")                      ; }>工程工艺</a>
+                        </li>
+                        @*<li>
+                                <a href="/photos/2" @if (ViewBag.PhotoType == 2) { @Html.Raw("class=\"hover\"")                      ; }>验收体系</a>
+                            </li>*@
+                    </ul>
+                </div>
+                <div class="space20"></div>
+                <div id="nl_panel">
+                    <div class="photos">
+                        <span id="prev" class="btn prev"></span>
+                        <span id="next" class="btn next"></span>
+                        <span id="prevTop" class="btn prev_t" style="display:none;"></span>
+                        <span id="nextTop" class="btn next_t" style="display:none;"></span>
+                        <div id="picBox" class="picBox">
+                            <ul class="cf">
+                                @foreach (DataRow item in Model.Rows)
+                                {
+                                    <li><a href="javascript:;"><img src="@(item["ImgUrl"].ToString())" alt="@(item["PhotoName"].ToString())" /></a></li>
+                                }
+                            </ul>
+                        </div>
+                        <div id="listBox" class="listBox">
+                            <ul>
+                                @{
+                                    int idx = 1;
+                                }
+                                @foreach (DataRow item in Model.Rows)
+                                {
+                                    <li @if (idx == 1) { @Html.Raw("class=\"on\"")                              ; }>
+                                        <a href="javascript:;"><span></span><img src="@(item["ImgUrl"].ToString())" alt="@(item["PhotoName"].ToString())" /></a>
+                                    </li>
+idx++;
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <script src="/Content/Scripts/ppt.js"></script>
+                    <script type="text/javascript">
+                        $("#picBox").hover(function () {
+                            $("#prevTop,#nextTop").show();
+                        },
+                        function () {
+                            $("#prevTop,#nextTop").hide();
+                        })
+                        $("#prevTop,#nextTop").hover(function () {
+                            $("#prevTop,#nextTop").show();
+                        })
+                    </script>
+                    <div class="bdsharebuttonbox bdshare-button-style0-16" style="padding-top:20px;" data-bd-bind="1449036825828"></div>
+                    <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {}, "image": { "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"], "viewText": "分享到：", "viewSize": "16" } }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+                </div>
+            </div>
+            <div id="con_right">
+                @RenderPage("../Ctrl/_ZxCalc.cshtml")
+                <div class="space20"></div>
+                @RenderPage("../Ctrl/_HotHouse.cshtml")
+            </div>
+        </div>
+    </div>
+</div>
+<div class="space40"></div>

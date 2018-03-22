@@ -1,0 +1,81 @@
+﻿@{
+    string pageName = "关于我们";
+    string pKey = ViewBag.PageKey;
+    switch (pKey)
+    {
+        case "RongYu":
+            pageName = "公司荣誉";
+            break;
+        case "WenHua":
+            pageName = "公司文化";
+            break;
+        case "JiaGou":
+            pageName = "公司架构";
+            break;
+        case "LiuCheng":
+            pageName = "服务流程";
+            break;
+        case "CaiLiao":
+            pageName = "材料展示";
+            break;
+        case "BaoXiu":
+            pageName = "我要保修";
+            break;
+        case "HuoBan":
+            pageName = "合作伙伴";
+            break;
+        case "Job":
+            pageName = "人才招聘";
+            break;
+        case "Contact":
+            pageName = "联系我们";
+            break;
+    } 
+    ViewBag.Title = pageName;
+    ViewBag.Keywords = "";
+    ViewBag.Description = "";
+}
+@section Head
+{
+    <style type="text/css">
+        #content { border-top: solid 1px #8E8E8E; }
+    </style>
+}
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 1 });}
+<!--content begin-->
+<div id="content" style="padding-top: 0;">
+    <div class="main">
+        <div class="nav_title">当前位置：<a href="/">首页</a>&gt;<a href="/page?type=@(ViewBag.PageKey)">@pageName</a></div>
+    </div>
+    <div class="main">
+        <div id="main_con">
+            <div id="a_panel_l">
+                <ul>
+                    <li class="title">港宏宜家</li>
+                    <li @if (ViewBag.PageKey == "About") { @Html.Raw("class=\"hover\"")   ; }><a href="/Page?type=About">集团介绍</a></li>
+                    <li @if (ViewBag.PageKey == "RongYu") { @Html.Raw("class=\"hover\"")    ; }><a href="/Page?type=Rongyu">公司荣誉</a></li>
+                    <li @if (ViewBag.PageKey == "WenHua") { @Html.Raw("class=\"hover\"")    ; }><a href="/Page?type=WenHua">公司文化</a></li>
+                    <li @if (ViewBag.PageKey == "JiaGou") { @Html.Raw("class=\"hover\"")    ; }><a href="/Page?type=JiaGou">公司架构</a></li>
+                </ul>
+                <ul>
+                    <li class="title">客户服务</li>
+                    <li @if (ViewBag.PageKey == "LiuCheng") { @Html.Raw("class=\"hover\"")    ; }><a href="/Page?type=LiuCheng">服务流程</a></li>
+                    <li @if (ViewBag.PageKey == "CaiLiao") { @Html.Raw("class=\"hover\"")    ; }><a href="/Page?type=CaiLiao">材料展示</a></li>
+                    <li @if (ViewBag.PageKey == "Contact") { @Html.Raw("class=\"hover\"")     ; }><a href="/Page?type=Contact">联系我们</a></li>
+                    <li @if (ViewBag.PageKey == "Repair") { @Html.Raw("class=\"hover\"")       ; }><a href="/Page/repair">我要保修</a></li>
+                    <li @if (ViewBag.PageKey == "BaoXiu") { @Html.Raw("class=\"hover\"")      ; }><a href="/Page/complain">在线投诉</a></li>
+                </ul>
+                <ul>
+                    <li class="title">加入我们</li>
+                    <li @if (ViewBag.PageKey == "HuoBan") { @Html.Raw("class=\"hover\"")    ; }><a href="/Page?type=HuoBan">合作伙伴</a></li>
+                    <li @if (ViewBag.PageKey == "Job") { @Html.Raw("class=\"hover\"")    ; }><a href="/Page?type=Job">人才招聘</a></li>
+                </ul>
+            </div>
+            <div id="a_panel_r">
+                @Html.Raw(Server.HtmlDecode(ViewBag.PageData))
+            </div>
+        </div>
+    </div>
+    <div class="space40"></div>
+</div>
+<!--content end-->

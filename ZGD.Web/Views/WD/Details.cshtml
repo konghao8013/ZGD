@@ -1,0 +1,370 @@
+﻿@{
+    ViewBag.Title = (Model.Title) + "-港宏宜家装饰";
+    ViewBag.Keywords = "";
+    ViewBag.Description = "";
+}
+
+@model ZGD.Model.Question
+@using System.Data
+@using ZGD.Common
+
+@section Head
+{
+    <link href="/Content/Scripts/webuploader/webuploader.css" rel="stylesheet" />
+}
+
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 0 });}
+
+<div id="content" style="padding-top:0;">
+    <div class="main">
+        <div class="nav_title">
+            <a href="/">首页</a> &gt; <a href="/wd">装修问答</a> &gt; <a href="/wd/page">问答列表</a> &gt; @(Model.Title)
+        </div>
+    </div>
+    <div class="space10"></div>
+    <div class="main">
+        <div class="con_left">
+            @RenderPage("../Ctrl/_ZxCalc.cshtml")
+            <div class="space20"></div>
+            @RenderPage("../Ctrl/_HotQa.cshtml")
+            <div class="space20"></div>
+            @RenderPage("../Ctrl/_HotHouse.cshtml")
+        </div>
+        <div class="con_right">
+            <div class="qa_panel">
+                <div class="qa_panel_t">
+                    <h3>@(Model.Title)@(Model.Status == 2 ? Html.Raw("<i>【已解决】</i>") : Html.Raw(""))</h3>
+                    <p class="info">
+                        @(Model.Contents)
+                    </p>
+                    <p class="imgs">
+                        @{
+                            string[] imgs = string.IsNullOrWhiteSpace(Model.ImgUrl) ? null : Model.ImgUrl.Split(',');
+                        }
+                        @if (imgs != null && imgs.Count() > 0)
+                        {
+                            foreach (var item in imgs)
+                            {
+                                <a href="@(item)" target="_blank"><img src="@(item)" /></a>
+                            }
+                        }
+                    </p>
+                    <p class="date"><span>提问者：@(Model.Nickname)</span><span>浏览：@(Model.Click)</span><span>时间：@(Model.PubTime.ToString("yyyy-MM-dd"))</span></p>
+                </div>
+                <div class="space20"></div>
+                <div class="qa_panel_m">
+                    <div class="qa_form">
+                        <form id="qa_form">
+                            <h3>我要来回答</h3>
+                            <div>
+                                <textarea id="txtCon" name="Contents" placeholder="请输入回答内容"></textarea>
+                                <p><a href="javascript:;" class="upload" id="filePicker@(ZGD.Web.Controllers.DTO.OperSession.LoginUser != null ? "" : "_no")">图片上传</a><span>还可以输入<i id="txtCon_c">2000</i>个字</span></p>
+                                <div class="img_list" id="fileList"></div>
+                                <input type="hidden" id="ImgJson" name="ImgUrl" />
+                            </div>
+                            <div class="space1"></div>
+                            <div style="text-align:right;">
+                                <input type="hidden" name="QuestionId" value="@(Model.ID)" />
+                                <button type="button" onclick="Submit()" id="btnSave" class="btn">提交回答</button>
+                            </div>
+                        </form>
+                        <script src="https://cdn.staticfile.org/webuploader/0.1.0/webuploader.withoutimage.min.js"></script>
+                        <script type="text/javascript">
+                        var _lg = "@(ZGD.Web.Controllers.DTO.OperSession.LoginUser != null ? "yes" : "no")";
+                            $(function () {
+                                $("#txtCon").keyup(function () {
+                                    wordCheck("txtCon", 2000);
+                                });
+                                if (_lg == "yes") {
+                                    initUpload("");
+                                }
+                                else {
+                                    $("#filePicker_no").click(function () {
+                                        layer.alert("请先登录！");
+                                    })
+                                }
+                            })
+
+                            function Submit() {
+                                var con = $("#txtCon").val();
+                                if ($.trim(con) == "") {
+                                    layer.alert("请输入问题的细节！");
+                                    return false;
+                                }
+                                $("#qa_form").ajaxSubmit({
+                                    url: "/wd/answer",
+                                    type: "post",
+                                    dataType: "json",
+                                    beforeSubmit: function () {
+                                        layer.load(1, { shade: [0.1, '#000'] });
+                                    },
+                                    error: function () {
+                                        layer.closeAll();
+                                        layer.alert("请求失败");
+                                    },
+                                    success: function (data) {
+                                        layer.closeAll();
+                                        if (data != null) {
+                                            if (data.Success) {
+                                                layer.alert(data.Msg, function () {
+                                                    window.location.href = window.location.href;
+                                                });
+                                            }
+                                            else
+                                                layer.alert(data.Msg);
+                                        }
+                                        else
+                                            layer.alert("提交失败");
+                                    }
+                                });
+                                return false;
+                            }
+
+                            function initUpload(imgJson) {
+                                $('#fileList').html("");
+                                var $list = $('#fileList'),
+                                    // 优化retina, 在retina下这个值是2
+                                    ratio = window.devicePixelRatio || 1,
+
+                                    // 缩略图大小
+                                    thumbnailWidth = 100 * ratio,
+                                    thumbnailHeight = 100 * ratio,
+
+                                    // Web Uploader实例
+                                    uploader;
+
+                                if (imgJson != null && imgJson != "") {
+                                    var img_list = [];
+                                    var $li;
+                                    //console.log(imgJson);
+                                    $.each(imgJson.split(','), function (i, n) {
+                                        img_list.push(n);
+                                        $li = $(
+                                            '<div id="WU_FILE_' + i + '" class="file-item thumbnail upload-state-done" name="existsOldPicure">' +
+                                            '<img id="img_WU_FILE_' + i + '" src="' + n + '" data-src="' + n + '" />' +
+                                            '<a class="a-btn-delete" href="javascript:;" onclick="delPicture(this)">X</a>' +
+                                            //'<div class="info">' + n.img + '</div>' +
+                                            '</div>'
+                                        );
+                                        $list.append($li);
+                                    });
+                                    $("#ImgJson").val(img_list.join(','));
+                                }
+                                else {
+                                    $("#ImgJson").val("");
+                                }
+
+                                // 初始化Web Uploader
+                                uploader = WebUploader.create({
+                                    // 自动上传。
+                                    auto: true,
+                                    fileNumLimit: 3,
+                                    // swf文件路径
+                                    swf: 'https://cdn.staticfile.org/webuploader/0.1.0/Uploader.swf',
+                                    // 文件接收服务端。
+                                    server: '/wd/upload',
+                                    // 选择文件的按钮。可选。
+                                    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                                    pick: '#filePicker',
+                                    // 只允许选择文件，可选。
+                                    accept: {
+                                        title: 'Images',
+                                        extensions: 'gif,jpg,jpeg,bmp,png',
+                                        mimeTypes: 'image/jpg,image/jpeg,image/png'
+                                    }
+                                });
+
+                                // 当有文件添加进来的时候
+                                uploader.on('fileQueued', function (file) {
+                                    if ($('#fileList').children("div .file-item").length > 6) {
+                                        layer.msg("最多只能添加6张图片", "error");
+                                        return;
+                                    }
+                                    var $li = $(
+                                        '<div id="' + file.id + '" class="file-item thumbnail">' +
+                                        '<img id="img_' + file.id + '" />' +
+                                        '<a class="a-btn-delete" href="javascript:;">X</a>' +
+                                        //'<div class="info">' + file.name + '</div>' +
+                                        '</div>'
+                                    ),
+                                        $img = $li.find('img');
+                                    $list.append($li);
+                                    $li.children("a.a-btn-delete").unbind('click');
+                                    $li.children("a.a-btn-delete").bind('click', function () {
+                                        //debugger;
+                                        var imgs = $("#ImgJson").val();
+                                        if ($.trim(imgs) != "") {
+                                            var img_list = imgs.split(',');
+                                            var del_img = $("#img_" + file.id);
+                                            $.each(img_list, function (i, m) {
+                                                if (m == del_img.attr("data-src")) {
+                                                    $("#" + file.id).remove();
+                                                    img_list.splice(i, 1);
+                                                    uploader.removeFile(file.id, true);
+                                                    $("#ImgJson").val(img_list.join(','));
+                                                    return;
+                                                }
+                                            });
+                                        }
+                                    });
+
+                                    // 创建缩略图
+                                    uploader.makeThumb(file, function (error, src) {
+                                        if (error) {
+                                            $img.replaceWith('<span>不能预览</span>');
+                                            return;
+                                        }
+                                        $img.attr('src', src);
+                                    }, thumbnailWidth, thumbnailHeight);
+                                });
+
+                                // 文件上传过程中创建进度条实时显示。
+                                uploader.on('uploadProgress', function (file, percentage) {
+                                    var $li = $('#' + file.id),
+                                        $percent = $li.find('.progress span');
+
+                                    // 避免重复创建
+                                    if (!$percent.length) {
+                                        $percent = $('<p class="progress"><span></span></p>')
+                                            .appendTo($li)
+                                            .find('span');
+                                    }
+                                    $percent.css('width', percentage * 100 + '%');
+                                });
+
+                                // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+                                uploader.on('uploadSuccess', function (file, response) {
+                                    $('#' + file.id).addClass('upload-state-done');
+                                    var imgCount = $('#fileList').children("div .file-item").length;
+                                    console.log(response);
+                                    if (response != null && response.Success) {
+                                        $('#' + file.id + " img").attr('src', response.Source);
+                                        $('#' + file.id + " img").attr('data-src', response.Source);
+                                        var imgs = $("#ImgJson").val();
+
+                                        if ($.trim(imgs) == "") {
+                                            $("#ImgJson").val(response.Source);
+                                        }
+                                        else {
+                                            $("#ImgJson").val(imgs + "," + response.Source);
+                                        }
+                                    }
+                                });
+
+                                // 文件上传失败，现实上传出错。
+                                uploader.on('uploadError', function (file) {
+                                    var $li = $('#' + file.id),
+                                        $error = $li.find('div.error');
+
+                                    // 避免重复创建
+                                    if (!$error.length) {
+                                        $error = $('<div class="error"></div>').appendTo($li);
+                                    }
+                                    layer.msg('上传失败');
+                                });
+
+                                // 完成上传完了，成功或者失败，先删除进度条。
+                                uploader.on('uploadComplete', function (file) {
+                                    $('#' + file.id).find('.progress').remove();
+                                });
+                            }
+                            //删除图片
+                            function delPicture(obj) {
+                                //console.log(obj);
+                                var imgs = $("#ImgJson").val();
+                                if ($.trim(imgs) != "") {
+                                    var img_list = imgs.split(',');
+                                    var del_img = $(obj).parents("div").children("img");
+                                    $.each(img_list, function (i, m) {
+                                        if (m == del_img.attr("data-src")) {
+                                            $(obj).parents("div[name=existsOldPicure]").remove();
+                                            img_list.splice(i, 1);
+                                            $("#ImgJson").val(img_list.join(','));
+                                            return;
+                                        }
+                                    });
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+                <div class="space20"></div>
+                <div class="qa_panel_b">
+                    <h3>@(ViewBag.AnList.Rows.Count)条回答</h3>
+                    <ul>
+                        @foreach (var item in ViewBag.AnList.Rows)
+                        {
+                            <li>
+                                <h3>
+                                    @if (ZGD.Web.Controllers.DTO.OperSession.LoginUser != null && Model.UserId == ZGD.Web.Controllers.DTO.OperSession.LoginUser.ID && Model.Status == 1)
+                                    { <a href="javascript:;" onclick="accept('@(item["ID"].ToString())')">[采纳]</a> } @(item["Nickname"].ToString())
+                                </h3>
+                                <p class="date"><i>@(Convert.ToDateTime(item["PubTime"]).ToString("yyyy-MM-dd"))</i><span>回答数：@(item["aCount"].ToString())</span><span>被采纳数：@(item["cnCount"].ToString())</span></p>
+                                <p class="info">@(item["IsAccept"].ToString() == "1" ? Html.Raw("<i>【已采纳】</i>") : Html.Raw(""))@Html.Raw(ExtensionMethods.ToBR(item["Contents"].ToString()))</p>
+                                <p class="imgs">
+                                    @if (!string.IsNullOrWhiteSpace(item["ImgUrl"].ToString()))
+                                    {
+                                        foreach (var img in item["ImgUrl"].ToString().Split(','))
+                                        {
+                                            <a href="@(img)" target="_blank"><img src="@(img)" /></a>
+                                        }
+                                    }
+                                </p>
+                            </li>
+                        }
+                    </ul>
+                    <script type="text/javascript">
+                            function accept(id) {
+                                $.ajax({
+                                    url: "/wd/accept",
+                                    type: "post",
+                                    dataType: "json",
+                                    data: { id: id },
+                                    beforeSend: function () {
+                                        layer.load(1, { shade: [0.1, '#000'] });
+                                    },
+                                    error: function () {
+                                        layer.closeAll();
+                                        layer.alert("请求失败");
+                                    },
+                                    success: function (data) {
+                                        layer.closeAll();
+                                        if (data != null) {
+                                            if (data.Success) {
+                                                layer.alert(data.Msg, function () {
+                                                    window.location.href = window.location.href;
+                                                });
+                                            }
+                                            else {
+                                                layer.alert(data.Msg);
+                                            }
+                                        }
+                                        else {
+                                            layer.alert("提交失败");
+                                        }
+                                    }
+                                })
+                            }
+                    </script>
+
+                </div>
+                @if (ViewBag.AnList != null && ViewBag.AnList.Rows.Count > 0)
+                {
+                    <div class="space20"></div>
+                    <div class="qa_panel_about">
+                        <h3>相关问题</h3>
+                        <ul>
+                            @foreach (var item in ViewBag.AboutQA.Rows)
+                            {
+                                <li>
+                                    <span>已有<i>@(item["aCount"].ToString())</i>个回答</span><a href="">@(item["Title"].ToString())</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="space40"></div>

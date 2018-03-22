@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "双十一嘉年华";
+    ViewBag.Keywords = "港宏,宜家装饰,重庆装修公司,重庆装饰公司,重庆家装公司,整体家装,装修报价,环保家装";
+    ViewBag.Description = "重庆港宏宜家装饰公司是港宏装饰集团旗下品牌，是一个集整体配送、整体设计、整体售后、整体环保、整体软装、一站式购齐的整体家装企业，重庆港宏宜家装饰公司在重庆装修公司、重庆装饰公司、重庆家装公司行、重庆环保装修等同行中有丰富的家装经验优势。重庆港宏宜家装饰公司承诺:质量不合格：“砸”、材料不环保：“赔”、服务不满意：“罚”。网络预约尽享实惠咨询热线:023-68526912。";
+}
+
+@section Head
+{
+    <style type="text/css">
+        .top { height: 670px; background: url(/Content/Images/zt/jnh/top.jpg) center no-repeat; }
+        .b1 { height: 295px; background: url(/Content/Images/zt/jnh/ad1.jpg) center no-repeat; }
+        .b2 { height: 782px; background: url(/Content/Images/zt/jnh/ad2.jpg) center no-repeat; }
+        .b3 { height: 1637px; background: url(/Content/Images/zt/jnh/ad3.jpg) center no-repeat; }
+        .b4 { height: 276px; background: url(/Content/Images/zt/jnh/ad4.jpg) center no-repeat; }
+        .b5 { height: 874px; background: url(/Content/Images/zt/jnh/ad5.jpg) center no-repeat; }
+        .b6 { height: 1162px; background: url(/Content/Images/zt/jnh/ad6.jpg) center no-repeat; }
+        .b7 { height: 550px; background: #362C2B url(/Content/Images/zt/jnh/ad7.jpg) top center no-repeat; }
+        .index_bm { background: #292728; font-size: 14px; }
+        .index_bm .main td { color: #fff; }
+        .index_bm .main td .btn { background: #ECFE46; color: #630019; border-radius: 10px; font-weight:bold;font-size:16px;}
+    </style>
+}
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 0 });}
+<!--content begin-->
+<div id="content">
+    <div class="top"></div>
+    <div class="b1"></div>
+    <div class="b2"></div>
+    <div class="b3"></div>
+    <div class="b4"></div>
+    <div class="b5"></div>
+    <div class="b6"></div>
+    <div class="b7"></div>
+</div>
+<!--content end-->
+
+<div class="index_bm">
+    <div class="main">
+        <form method="post" id="form_join2" class="form">
+            <table>
+                <tr>
+                    <td>姓名：<input type="text" class="txt" name="UserName" id="join_UserName2" /></td>
+                    <td>电话：<input type="text" class="txt" name="Phone" id="join_Phone2" /></td>
+                    <td>楼盘：<input type="text" class="txt" name="House" id="join_House2" /></td>
+                    <td><label>验证码：</label><input type="text" class="txt" name="vCode" id="join_vCode2" style="width:70px;" /> <img src="/Tools/verify_code.ashx" onclick="ChangeCode('nl_join_code2');" id="nl_join_code2" style="height:35px;margin-left:2px;" /></td>
+                    <td>
+                        <input type="submit" class="btn" value="立即报名" id="btnSubmit2" />
+                        <input type="hidden" value="3" name="aID" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        $('#form_join2').submit(function () {
+            var name = $("#join_UserName2").val();
+            var tel = $("#join_Phone2").val();
+            var house = $("#join_House2").val();
+            var code = $("#join_vCode2").val();
+            if ($.trim(name) == "") {
+                layer.alert("请输入您的称呼!");
+                return false;
+            }
+            if ($.trim(tel) == "") {
+                layer.alert("请输入您的电话!");
+                return false;
+            }
+            if ($.trim(house) == "") {
+                layer.alert("请输入您的楼盘名称!");
+                return false;
+            }
+            if ($.trim(code) == "") {
+                layer.alert("请输入您的验证码!");
+                return false;
+            }
+            $(this).ajaxSubmit({
+                url: "/home/ajoin",
+                type: "post",
+                dataType: "json",
+                beforeSubmit: function () {
+                    layer.load(1, { shade: [0.1, '#000'] });
+                },
+                error: function () {
+                    layer.closeAll('loading');
+                    layer.alert("请求失败");
+                },
+                success: function (data) {
+                    layer.closeAll('loading');
+                    if (data != null) {
+                        if (data.Success) {
+                            layer.alert(data.Msg, function () {
+                                window.location.href = window.location.href;
+                            });
+                        }
+                        else
+                            layer.alert(data.Msg);
+                    }
+                    else
+                        layer.alert("提交失败");
+                }
+            });
+            return false;
+        });
+    </script>
+
+</div>

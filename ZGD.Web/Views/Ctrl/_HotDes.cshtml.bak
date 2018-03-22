@@ -1,0 +1,27 @@
+﻿@{Layout = null;}
+@using System.Data
+
+@{
+    DataSet ds = new YJ.BLL.Designer().GetList(5, "", " Clicks desc");
+    DataTable dt = ds != null && ds.Tables[0].Rows.Count > 0 ? ds.Tables[0] : null;
+}
+
+@if (dt != null)
+{
+    <div class="r_panel">
+        <div class="r_panel_top"><a href="/case" class="more">查看更多</a><strong>人气设计师</strong></div>
+        <div class="r_panel_con">
+            <ul class="r_des_list">
+                @foreach (DataRow item in dt.Rows)
+                {
+                    <li>
+                        <a href="/designer/@(item["ID"].ToString())" title="@(item["Name"].ToString())" class="photo"><img src="@(item["Photo"].ToString())" /></a>
+                        <p><span>人气（@(item["Clicks"].ToString())）</span><strong>@(item["Name"].ToString())</strong></p>
+                        <p><a href="/case?d=@(item["ID"].ToString())" class="red">查看案例</a></p>
+                        <p><a href="/case?d=@(item["ID"].ToString())" class="gray">预约设计</a></p>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}

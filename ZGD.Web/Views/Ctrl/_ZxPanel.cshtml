@@ -1,0 +1,81 @@
+﻿@{Layout = null;}
+@{
+    int jCount = new ZGD.BLL.Feedback().GetCount("");
+}
+<div class="zx_panel_bg">
+    <div class="xl_main">
+        <div class="zx_panel">
+            <div></div>
+            <form method="post" id="form_join" class="form">
+                <table>
+                    <tr>
+                        <td>您的称呼：<input type="text" class="txt" name="UserName" id="join_UserName" /></td>
+                        <td>联系电话：<input type="text" class="txt" name="UserTel" id="join_UserTel" /></td>
+                        <td><label>验证码：</label><input type="text" class="txt" name="vCode" id="join_vCode" style="width:70px;float:left;" /> <img src="/Tools/verify_code.ashx" onclick="ChangeCode('nl_join_code');" id="nl_join_code" style="height:28px;margin-left:2px;" /></td>
+                        <td rowspan="2">
+                            <input type="submit" class="btn" value="立即申请" id="btnSubmit" />
+                            <input type="hidden" value="1" name="fType" id="join_fType" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>楼盘名称：<input type="text" class="txt" name="House" id="join_House" /></td>
+                        <td>房屋面积：<input type="text" class="txt mj" name="Area" id="join_Area" /></td>
+                        <td><p>已有<strong id="join_count">@(jCount)</strong>位业主申请此服务</p></td>
+                    </tr>
+                </table>
+            </form>
+
+            <script type="text/javascript">
+                $('#form_join').submit(function () {
+                    var name = $("#join_UserName").val();
+                    var tel = $("#join_UserTel").val();
+                    var house = $("#join_House").val();
+                    var code = $("#join_vCode").val();
+                    if ($.trim(name) == "") {
+                        layer.alert("请输入您的称呼!");
+                        return false;
+                    }
+                    if ($.trim(tel) == "") {
+                        layer.alert("请输入您的电话!");
+                        return false;
+                    }
+                    if ($.trim(house) == "") {
+                        layer.alert("请输入您的楼盘名称!");
+                        return false;
+                    }
+                    if ($.trim(code) == "") {
+                        layer.alert("请输入您的验证码!");
+                        return false;
+                    }
+                    $(this).ajaxSubmit({
+                        url: "/home/fjoin",
+                        type: "post",
+                        dataType: "json",
+                        beforeSubmit: function () {
+                            layer.load(1, { shade: [0.1, '#000'] });
+                        },
+                        error: function () {
+                            layer.closeAll('loading');
+                            layer.alert("请求失败");
+                        },
+                        success: function (data) {
+                            layer.closeAll('loading');
+                            if (data != null) {
+                                if (data.Success) {
+                                    layer.alert(data.Msg, function () {
+                                        window.location.href = window.location.href;
+                                    });
+                                }
+                                else
+                                    layer.alert(data.Msg);
+                            }
+                            else
+                                layer.alert("提交失败");
+                        }
+                    });
+                    return false;
+                });
+            </script>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,147 @@
+﻿@{
+    ViewBag.Title = "在线投诉";
+    ViewBag.Keywords = "港宏,宜家装饰,重庆装修公司,重庆装饰公司,重庆家装公司,整体家装,装修报价,环保家装";
+    ViewBag.Description = "重庆港宏宜家装饰公司是港宏装饰集团旗下品牌，是一个集整体配送、整体设计、整体售后、整体环保、整体软装、一站式购齐的整体家装企业，重庆港宏宜家装饰公司在重庆装修公司、重庆装饰公司、重庆家装公司行、重庆环保装修等同行中有丰富的家装经验优势。重庆港宏宜家装饰公司承诺:质量不合格：“砸”、材料不环保：“赔”、服务不满意：“罚”。网络预约尽享实惠咨询热线:023-68526912。";
+}
+
+@section Head
+{
+    <script src="/Js/My97DatePicker/WdatePicker.js"></script>
+    <style type="text/css">
+        #content { border-top: solid 1px #8E8E8E; }
+    </style>
+}
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 1 });}
+<!--content begin-->
+<div id="content" style="padding-top: 0;">
+    <div class="main">
+        <div class="nav_title">当前位置：<a href="/">首页</a>&gt;<a href="/page/complain">在线投诉</a></div>
+    </div>
+    <div class="main">
+        <div id="main_con">
+            <div id="a_panel_l">
+                <ul>
+                    <li class="title">港宏宜家</li>
+                    <li><a href="/Page?type=About">集团介绍</a></li>
+                    <li><a href="/Page?type=Rongyu">公司荣誉</a></li>
+                    <li><a href="/Page?type=WenHua">公司文化</a></li>
+                    <li><a href="/Page?type=JiaGou">公司架构</a></li>
+                </ul>
+                <ul>
+                    <li class="title">客户服务</li>
+                    <li><a href="/Page?type=LiuCheng">服务流程</a></li>
+                    <li><a href="/Page?type=CaiLiao">材料展示</a></li>
+                    <li><a href="/Page?type=Contact">联系我们</a></li>
+                    <li><a href="/Page/repair">我要保修</a></li>
+                    <li class="hover"><a href="/Page/complain">在线投诉</a></li>
+                </ul>
+                <ul>
+                    <li class="title">加入我们</li>
+                    <li><a href="/Page?type=HuoBan">合作伙伴</a></li>
+                    <li><a href="/Page?type=Job">人才招聘</a></li>
+                </ul>
+            </div>
+            <div id="a_panel_r">
+                <div class="des_panel">
+                    <div class="panel_form">
+                        <form method="post" id="form_complain">
+                            <table cellpadding="0" cellspacing="0">
+                                <tbody>
+                                    <tr><th colspan="2" class="title">在线投诉</th></tr>
+                                    <tr>
+                                        <td width="20%" align="right"><strong class="req">*</strong>您的姓名：</td>
+                                        <td><input type="text" name="uName" id="name" class="txt_l"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right"><strong class="req">*</strong>联系手机：</td>
+                                        <td><input type="text" name="Phone" id="phone" class="txt_l"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right"><strong class="req">*</strong>小区名称：</td>
+                                        <td><input type="text" name="Area" id="area" class="txt_l"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right">投诉类型：</td>
+                                        <td><select name="Type"><option value="1">设计投诉</option><option value="2">施工投诉</option><option value="3">其他投诉</option></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right" valign="top"><strong class="req">*</strong>投诉理由：</td>
+                                        <td><textarea class="txt_m" name="mCon" id="con"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right"><strong class="req">*</strong>验证码：</td>
+                                        <td>
+                                            <input type="text" class="txt_s" name="vCode" id="vcode">
+                                            <img src="/Tools/verify_code.ashx" id="nl_join_code" style="height:26px;margin-left:2px;" />
+                                            <a href="javascript:;" style="text-decoration:underline;" onclick="ChangeCode('nl_join_code');">看不清楚</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><input type="submit" value="提交投诉" id="btnSubmit" class="btn"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                        <script type="text/javascript">
+                            $('#form_complain').submit(function () {
+                                var name = $("#name").val();
+                                var con = $("#con").val();
+                                var vcode = $("#vcode").val();
+                                if ($.trim(vcode) == "") {
+                                    layer.alert("请输入验证码!");
+                                    return false;
+                                }
+                                if ($.trim(name) == "") {
+                                    layer.alert("请输入您的姓名!");
+                                    return false;
+                                }
+                                if ($.trim(phone) == "") {
+                                    layer.alert("请输入您的联系手机!");
+                                    return false;
+                                }
+                                if ($.trim(area) == "") {
+                                    layer.alert("请输入您的小区名称!");
+                                    return false;
+                                }
+                                if ($.trim(con) == "") {
+                                    layer.alert("请输入投诉内容!");
+                                    return false;
+                                }
+                                $(this).ajaxSubmit({
+                                    url: "/page/complainjoin",
+                                    type: "post",
+                                    beforeSubmit: function () {
+                                        layer.load(1, { shade: [0.1, '#000'] });
+                                    },
+                                    error: function () {
+                                        layer.closeAll('loading');
+                                        layer.layer("请求失败");
+                                    },
+                                    success: function (data) {
+                                        layer.closeAll('loading');
+                                        if (data != null) {
+                                            if (data.Success) {
+                                                layer.alert(data.Msg, function () {
+                                                    window.location.href = window.location.href;
+                                                });
+                                            }
+                                            else {
+                                                layer.alert(data.Msg);
+                                            }
+                                        }
+                                        else
+                                            layer.alert("提交失败");
+                                    }
+                                });
+                                return false;
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space40"></div>
+</div>
+<!--content end-->

@@ -1,0 +1,80 @@
+﻿
+@using ZGD.Common
+
+@{
+    ViewBag.Title = "找回密码";
+    ViewBag.Keywords = "找回密码";
+    ViewBag.Description = "找回密码";
+}
+
+@section Head
+{
+    <style type="text/css">
+        #content { background: url(/Content/Images/reg_bg.jpg) no-repeat center; padding: 80px 0 100px 0; }
+    </style>
+}
+
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 0 });}
+<div id="content">
+    <div class="main">
+        <div class="reg_panel">
+            <h3>找回密码</h3>
+            <form id="data_form">
+                <div>
+                    <p><input type="text" class="txt" name="Phone" id="Phone" placeholder="请输入您的手机号" /></p>
+                    <p class="vcode"><input type="text" class="txt" name="SmsCode" id="SmsCode" placeholder="请输入手机验证码" /><button type="button" id="getcode" onclick="SmsMethod.postSms('Phone', 'getcode');" class="btn">获取手机验证码</button></p>
+                    <p class="vcode"><input type="text" class="txt" name="ImgCode" id="ImgCode" placeholder="请输入图片验证码" /><img src="/Tools/verify_code.ashx" id="nl_cacl_code" title="点击切换验证码" onclick="ChangeCode('nl_cacl_code');" /></p>
+                    <p class="btn_p"><button type="submit" class="btn">找回密码</button></p>
+                    <p class="txt_p">已经想起密码？<a href="/user/login">立即登录&gt;</a></p>
+                </div>
+            </form>
+            <script type="text/javascript">
+                $('#data_form').submit(function () {
+                    var name = $("#Phone").val();
+                    var smsCode = $("#SmsCode").val();
+                    var imgCode = $("#ImgCode").val();
+                    if ($.trim(name) == "" || name.length != 11) {
+                        layer.alert("请输入正确的手机号!");
+                        return false;
+                    }
+                    if ($.trim(smsCode) == "") {
+                        layer.alert("请输入您的短信验证码!");
+                        return false;
+                    }
+                    if ($.trim(imgCode) == "") {
+                        layer.alert("请输入您的图片验证码!");
+                        return false;
+                    }
+                    $(this).ajaxSubmit({
+                        url: "/user/find",
+                        type: "post",
+                        dataType: "json",
+                        beforeSubmit: function () {
+                            layer.load(1, { shade: [0.1, '#000'] });
+                        },
+                        error: function () {
+                            layer.closeAll();
+                            layer.alert("请求失败");
+                        },
+                        success: function (data) {
+                            layer.closeAll();
+                            ChangeCode('nl_cacl_code');
+                            if (data != null) {
+                                if (data.Success) {
+                                    layer.alert(data.Msg, function () {
+                                        window.location.href = data.Source;
+                                    });
+                                }
+                                else
+                                    layer.alert(data.Msg);
+                            }
+                            else
+                                layer.alert("提交失败");
+                        }
+                    });
+                    return false;
+                });
+            </script>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+﻿@model YJ.Model.Designer
+@using System.Data
+@using YJ.Common
+
+@{
+    ViewBag.Title = Model != null ? Model.Name : "设计师详细";
+    ViewBag.Keywords = Model.GoodAt;
+    ViewBag.Description = Model.Title;
+}
+
+@section Head
+{
+    <style type="text/css">
+        #content { border-top: solid 1px #8E8E8E; }
+        #main_con { background-color: transparent; }
+    </style>
+
+}
+
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 4 });}
+<div id="content">
+    <div class="main">
+        <div class="nav_title">当前位置：<a href="/">首页</a>&gt;<a href="/designer">金牌设计</a>&gt;<a href="/designer/@Model.ID">@Model.Name</a></div>
+    </div>
+    <div class="main">
+        <div id="main_con">
+            <div id="con_left" style="width:880px;background-color:#fff;padding:20px;padding-bottom:0;">
+                <div class="des_info">
+                    <div class="des_photo"><img src="@(Model.Photo)" /></div>
+                    <div class="des_intro">
+                        <h3>@(Model.Name)<i>@(Model.cName)</i><span>人气（@(Model.Clicks)）</span><a href="http://p3.qiao.baidu.com//im/index?siteid=6092294&ucid=6801410&lastsubid=&from=%E9%87%8D%E5%BA%86%E5%8D%97%E5%B2%B8&bid=afd7a1abaec3650448a00528&chattype=1&groupid=&groupname=&subid=&subname=&ref=http%3A%2F%2Fwww.ghjia.com%2F" target="_blank">预约设计</a></h3>
+                        <p><span class="star star@(Model.Star)"></span></p>
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <th>从业时间：</th>
+                                <td>@(Model.cyDate)年</td>
+                            </tr>
+                            <tr>
+                                <th width="80">毕业学校：</th>
+                                <td>@(Model.School)</td>
+                            </tr>
+                            <tr>
+                                <th>现任职务：</th>
+                                <td>@(Model.cName)</td>
+                            </tr>
+                            <tr>
+                                <th valign="top">设计理念：</th>
+                                <td>@(Model.Title)</td>
+                            </tr>
+                            <tr>
+                                <th>设计风格：</th>
+                                <td>@(Model.GoodAt)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="space30"></div>
+                <div class="panel_title"><div><a href="/case" class="more">查看全部</a><span>代表作品</span></div></div>
+                <div class="des_nl_list">
+                    @if (ViewBag.AboutCase != null && ViewBag.AboutCase.Rows.Count > 0)
+                    {
+                        <ul>
+                            @{
+                        int idx = 1;
+                            }
+                            @foreach (DataRow item in ViewBag.AboutCase.Rows)
+                            {
+                                <li @if (idx % 3 == 0) { @Html.Raw("style=\"margin-right:0;\"")                              ; }>
+                                    <a href="/case/@(item["Id"].ToString())" target="_blank">
+                                        <img src="@(item["ImageSmall"].ToString())" alt="@(item["Title"].ToString())">
+                                    </a>
+                                    <div>
+                                        <span><b>设计师：</b><a href="/designer/@(item["DesignerId"].ToString())">@(item["Name"].ToString())</a></span>
+                                        <span><b>造&nbsp;&nbsp;&nbsp;价：</b>@(item["Price"].ToString())万</span>
+                                        <span><b>风&nbsp;&nbsp;&nbsp;格：</b>@(item["fg"].ToString())</span>
+                                        <span><b>户&nbsp;&nbsp;&nbsp;型：</b>@(item["hx"].ToString())</span>
+                                    </div>
+                                    <p><a href="#" class="black">在线咨询</a><a href="/case/@(item["Id"].ToString())" class="red">了解详情</a></p>
+                                </li>
+idx++;
+                            }
+                        </ul>
+                    }
+            </div>
+            <div class="space20"></div>
+        </div>
+        <div id="con_right">
+            @RenderPage("../Ctrl/_ZxCalc.cshtml")
+            <div class="space20"></div>
+            @*@{Html.RenderAction("HotHouse", "Ctrl", new { top = 4 });}*@
+            @RenderPage("../Ctrl/_HotDes.cshtml")
+            <div class="space20"></div>            
+            @RenderPage("../Ctrl/_HotAct.cshtml")
+        </div>
+    </div>
+</div>
+</div>
+<div class="space40"></div>

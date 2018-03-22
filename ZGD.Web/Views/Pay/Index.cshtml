@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "在线支付";
+    ViewBag.Keywords = "";
+    ViewBag.Description = "";
+}
+@section Head
+{
+
+}
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 0 });}
+<!--content begin-->
+<div id="content" style="padding-top:0;">
+    <div class="pay_bg">
+        <div class="main">
+            <div class="pay_form">
+                <form method="post" id="pay_form">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tr><td><p class="title">支付金额：@(ViewBag.PayMoney)元</p></td></tr>
+                        <tr>
+                            <td>
+                                <div class="txt">
+                                    <label class="user"></label>
+                                    <input type="text" id="pay_UserName" placeholder="您的称呼" name="UserName" /><strong>*</strong>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="txt">
+                                    <label class="phone"></label>
+                                    <input type="text" id="pay_Phone" placeholder="您的手机" name="Phone" /><strong>*</strong>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="txt">
+                                    <label class="code"></label>
+                                    <input type="text" id="pay_Code" placeholder="输入验证码" name="vCode" style="width:160px;float:left;" /><img style="height:30px;margin-top:-5px;cursor:pointer;" src="/Tools/verify_code.ashx" id="pay_codeimg" onclick="ChangeCode('pay_codeimg');" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="hidden" id="PayMethod" name="PayMethod" value="alipay" />
+                                <input type="hidden" id="AssType" name="AssType" value="@ViewBag.AssType" />
+                                <input type="hidden" id="PayMoney" name="PayMoney" value="@ViewBag.PayMoney" />
+                                <input type="hidden" id="AssID" name="AssID" value="@ViewBag.AssId" />
+                                <a href="javascipr:;" class="btn" onclick="Submit();">确认提交</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/Js/jquery.form.js"></script>
+<script type="text/javascript">
+    function Submit() {
+        var name = $("#pay_UserName").val();
+        var phone = $("#pay_Phone").val();
+        var code = $("#pay_Code").val();
+        if ($.trim(name) == "" || $.trim(phone) == "" || $.trim(code) == "") {
+            layer.alert("请仔细填写，您还有未填的必填项！");
+            return false;
+        }
+        if (phone.length != 11) {
+            layer.alert("请输入正确的手机号码！");
+            return false;
+        }
+        $("#pay_form").ajaxSubmit({
+            url: "/pay/add",
+            type: "post",
+            dataType: "json",
+            beforeSubmit: function () {
+                layer.load(1, { shade: [0.1, '#000'] });
+            },
+            error: function () {
+                layer.closeAll('loading');
+                layer.alert("请求失败");
+            },
+            success: function (data) {
+                layer.closeAll('loading');
+                if (data != null) {
+                    if (data.Success) {
+                        layer.alert(data.Msg, function () {
+                            window.location.href = data.Source;
+                        });
+                    }
+                    else
+                        layer.alert(data.Msg);
+                }
+                else
+                    layer.alert("提交失败");
+            }
+        });
+        return false;
+    }
+</script>
+<!--content end-->

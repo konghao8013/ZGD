@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{441F272E-F67A-46AA-9B26-AA079A0988DC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ZGD.BLL</RootNamespace>
+    <AssemblyName>ZGD.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LitJSON">
+      <HintPath>..\YJ.Web\Ref\LitJSON.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activity.cs" />
+    <Compile Include="ActivityJoin.cs" />
+    <Compile Include="AD.cs" />
+    <Compile Include="Admin.cs" />
+    <Compile Include="Answer.cs" />
+    <Compile Include="Banner.cs" />
+    <Compile Include="Channel.cs" />
+    <Compile Include="Complain.cs" />
+    <Compile Include="Designer.cs" />
+    <Compile Include="Feedback.cs" />
+    <Compile Include="FileManager.cs" />
+    <Compile Include="House.cs" />
+    <Compile Include="Links.cs" />
+    <Compile Include="manager\manager.cs" />
+    <Compile Include="manager\manager_log.cs" />
+    <Compile Include="manager\manager_role.cs" />
+    <Compile Include="Member.cs" />
+    <Compile Include="manager\navigation.cs" />
+    <Compile Include="NewsInfo.cs" />
+    <Compile Include="PayOrder.cs" />
+    <Compile Include="Photos.cs" />
+    <Compile Include="Project.cs" />
+    <Compile Include="ProjectImg.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Question.cs" />
+    <Compile Include="Repair.cs" />
+    <Compile Include="ServiceTools.cs" />
+    <Compile Include="SystemLog.cs" />
+    <Compile Include="siteconfig.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="VipCard.cs" />
+    <Compile Include="wechat\wechat.cs" />
+    <Compile Include="wechat\wechat_api.cs" />
+    <Compile Include="Words.cs" />
+    <Compile Include="WXCard.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YJ.Common\ZGD.Common.csproj">
+      <Project>{0dab1e8e-8251-454a-8fc5-58c2d99b6895}</Project>
+      <Name>ZGD.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YJ.DAL\ZGD.DAL.csproj">
+      <Project>{5c6ebbe6-1198-4a22-b0e4-3907f1914fc0}</Project>
+      <Name>ZGD.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YJ.Model\ZGD.Model.csproj">
+      <Project>{108e1863-1e37-49f8-b62e-a9489f90a454}</Project>
+      <Name>ZGD.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

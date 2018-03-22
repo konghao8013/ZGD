@@ -1,0 +1,158 @@
+﻿@{
+    ViewBag.Title = "港宏宜家“整装体验店”盛大试营业";
+    ViewBag.Keywords = "港宏,宜家装饰,重庆装修公司,重庆装饰公司,重庆家装公司,整体家装,装修报价,环保家装";
+    ViewBag.Description = "重庆港宏宜家装饰公司是港宏装饰集团旗下品牌，是一个集整体配送、整体设计、整体售后、整体环保、整体软装、一站式购齐的整体家装企业，重庆港宏宜家装饰公司在重庆装修公司、重庆装饰公司、重庆家装公司行、重庆环保装修等同行中有丰富的家装经验优势。重庆港宏宜家装饰公司承诺:质量不合格：“砸”、材料不环保：“赔”、服务不满意：“罚”。网络预约尽享实惠咨询热线:023-68526912。";
+}
+
+@section Head
+{
+    <style type="text/css">
+        .space60 { border: 0px; padding: 0px; margin: 0px; width: 100%; clear: both; height: 60px; }
+        #content { border-top: solid 1px #8E8E8E; }
+        .szt_top { height: 614px; background: url(/Content/Images/zt/zt/top.jpg) top center no-repeat; }
+        .szt_mid { height: 326px; background: url(/Content/Images/zt/zt/mid.jpg) top center no-repeat; }
+        .szt_ad1 { height: 1278px; }
+        .szt_ad1 .szt_ad1_top { height: 250px; background: url(/Content/Images/zt/zt/bg1.jpg) top center no-repeat; }
+        .szt_ad1 .szt_ad1_con { height: 1030px; background: url(/Content/Images/zt/zt/ad.jpg) top center no-repeat; }
+        .szt_ad2 { height: 1495px; background: url(/Content/Images/zt/zt/h_bg.png) bottom center no-repeat; }
+        .szt_ad2 .szt_ad2_top { height: 180px; background: url(/Content/Images/zt/zt/bg2.jpg) top center no-repeat; }
+        .szt_ad2 .szt_ad2_con { height: 765px; background: url(/Content/Images/zt/zt/ad2.jpg) top center no-repeat; }
+        .szt_ad2 .szt_form_panel { height: 500px; background: url(/Content/Images/zt/zt/h_p.png) bottom repeat-x; padding-top: 50px; }
+        .szt_form { height: 300px; background: #9E00B1; color: #fff; }
+        .szt_form h1 { font-size: 36px; color: #fff; font-weight: 500; text-align: center; padding-top: 25px; padding-bottom: 25px; }
+        .szt_form h1 span { color: #FFFC00; padding-left: 20px; }
+        .szt_form table { margin: 0 auto; }
+        .szt_form table tr td { padding: 5px 0; }
+        .szt_form .txt { width: 210px; border: solid 1px #9A8E9C; height: 32px; }
+        .szt_form .txt.mj { background: #fff url(/Content/Images/m2.png) 190px center no-repeat; }
+        .szt_form .btn { width: 205px; border: solid 1px #C24070; height: 57px; background: #FFAD01; font-size: 20px; color: #fff; cursor: pointer; }
+        .szt_ad3 { height: 2370px; }
+        .szt_ad3 .szt_ad3_top { height: 200px; background: url(/Content/Images/zt/zt/bg3.jpg) top center no-repeat; }
+        .szt_ad3 .szt_ad3_tab { height: 650px; }
+        .szt_ad3 .szt_ad3_tab .szt_ad3_tab_panel { height: 70px; }
+        .szt_ad3 .szt_ad3_tab .szt_ad3_tab_panel span { width: 595px; height: 70px; line-height: 70px; text-align: center; font-size: 28px; display: inline-block; background-color: #fff; margin-right: 10px; cursor: default; }
+        .szt_ad3 .szt_ad3_tab .szt_ad3_tab_panel span.hover { background-color: #FFAD01; color: #fff; }
+        .szt_ad3 .szt_ad3_tab .szt_ad3_tab_panel_con { height: 505px; background-color: #fff; padding: 10px; margin-top: 10px; }
+        .szt_ad3 .szt_ad3_tab .szt_ad3_tab_panel_con img { width: 100%; height: 100%; }
+        .szt_ad3 .szt_ad3_bom { height: 1126px; background: url(/Content/Images/zt/zt/ad3.jpg) top center no-repeat; }
+        .szt_ad4 { height: 203px; background: url(/Content/Images/zt/zt/f_bg.jpg) bottom center no-repeat; }
+    </style>
+}
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 3 });}
+<!--content begin-->
+<div id="content" style="padding: 0;background-color:#FF352B;">
+    <div class="szt_top"></div>
+    <div class="szt_mid"></div>
+    <div class="szt_ad1">
+        <div class="szt_ad1_top"></div>
+        <div class="szt_ad1_con main"></div>
+    </div>
+    <div class="szt_ad2">
+        <div class="szt_ad2_top"></div>
+        <div class="szt_ad2_con main"></div>
+        <div class="szt_form_panel">
+            <div class="szt_form main">
+                <h1>抢定试营业优惠<span>每小区仅限3套</span></h1>
+                <form method="post" id="form_join_t">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tr><td>姓名：</td><td><input type="text" name="UserName" class="txt" id="t_UserName" /></td><td style="padding-left:30px;">小区：</td><td><input type="text" class="txt" name="House" id="t_House" /></td><td style="padding-left:30px;"><label>验证码：</label><input type="text" class="txt" name="vCode" id="t_vCode" style="width:70px;" /> <img src="/Tools/verify_code.ashx" onclick="ChangeCode('t_join_code');" id="t_join_code" style="height:28px;margin-left:2px;" /></td></tr>
+                        <tr><td>电话：</td><td><input type="text" name="UserTel" class="txt" id="t_UserTel" /></td><td style="padding-left:30px;">面积：</td><td><input type="text" name="Area" class="txt mj" id="t_Area" /></td><td></td></tr>
+                        <tr><td colspan="5" style="padding-top:22px;" align="center"><input type="button" class="btn" onclick="zt_submit('form_join_t', 't');" value="立即报名" id="t_btnSubmit" /><input type="hidden" value="1" name="fType" /></td></tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="szt_ad3">
+        <div class="szt_ad3_top"></div>
+        <div class="szt_ad3_tab main">
+            <div class="szt_ad3_tab_panel"><span class="hover" data="1">风尚系列</span><span data="2" style="margin-right:0;">世家系列</span></div>
+            <div class="szt_ad3_tab_panel_con">
+                <div id="szt_ad3_tab_panel_con_1" style="display:block"><a href="/page/xd" target="_blank"><img src="/Content/Images/zt/zt/nl1.jpg" /></a></div>
+                @*<div id="szt_ad3_tab_panel_con_2" style="display:none"><img src="/Content/Images/zt/zt/nl2.jpg" /></div>*@
+                <div id="szt_ad3_tab_panel_con_2" style="display:none"><a href="/page/sj" target="_blank"><img src="/Content/Images/zt/zt/nl3.jpg" /></a></div>
+            </div>
+        </div>
+        <div class="szt_ad3_bom main"></div>
+        <div class="space60"></div>
+        <div class="szt_form_panel">
+            <div class="szt_form main">
+                <h1>抢定试营业优惠<span>每小区仅限3套</span></h1>
+                <form method="post" id="form_join_b">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tr><td>姓名：</td><td><input type="text" name="UserName" class="txt" id="b_UserName" /></td><td style="padding-left:30px;">小区：</td><td><input type="text" class="txt" name="House" id="b_House" /></td><td style="padding-left:30px;"><label>验证码：</label><input type="text" class="txt" name="vCode" id="b_vCode" style="width:70px;" /> <img src="/Tools/verify_code.ashx" onclick="ChangeCode('b_join_code');" id="b_join_code" style="height:28px;margin-left:2px;" /></td></tr>
+                        <tr><td>电话：</td><td><input type="text" name="UserTel" class="txt" id="b_UserTel" /></td><td style="padding-left:30px;">面积：</td><td><input type="text" name="Area" class="txt mj" id="b_Area" /></td><td></td></tr>
+                        <tr><td colspan="5" style="padding-top:22px;" align="center"><input type="button" onclick="zt_submit('form_join_b', 'b');" class="btn" value="立即报名" id="b_btnSubmit" />
+                                <input type="hidden" value="1" name="fType" /></td></tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="szt_ad4">
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(".szt_ad3_tab_panel span").hover(function () {
+        var data = $(this).attr("data");
+        $(".szt_ad3_tab_panel span").removeClass("hover");
+        $(this).addClass("hover");
+        $(".szt_ad3_tab_panel_con div").hide();
+        $("#szt_ad3_tab_panel_con_" + data).show();
+    })
+</script>
+
+<script type="text/javascript">
+    function zt_submit(id, type) {
+        var name = $("#" + type + "_UserName").val();
+        var tel = $("#" + type + "_UserTel").val();
+        var house = $("#" + type + "_House").val();
+        var code = $("#" + type + "_vCode").val();
+        if ($.trim(name) == "") {
+            layer.alert("请输入您的称呼!");
+            return false;
+        }
+        if ($.trim(tel) == "") {
+            layer.alert("请输入您的电话!");
+            return false;
+        }
+        if ($.trim(house) == "") {
+            layer.alert("请输入您的楼盘名称!");
+            return false;
+        }
+        if ($.trim(code) == "") {
+            layer.alert("请输入您的验证码!");
+            return false;
+        }
+        $("#" + id).ajaxSubmit({
+            url: "/home/fjoin",
+            type: "post",
+            dataType: "json",
+            beforeSubmit: function () {
+                layer.load(1, { shade: [0.1, '#000'] });
+            },
+            error: function () {
+                layer.closeAll('loading');
+                layer.alert("请求失败");
+            },
+            success: function (data) {
+                layer.closeAll('loading');
+                if (data != null) {
+                    if (data.Success) {
+                        layer.alert(data.Msg, function () {
+                            window.location.href = window.location.href;
+                        });
+                    }
+                    else
+                        layer.alert(data.Msg);
+                }
+                else
+                    layer.alert("提交失败");
+            }
+        });
+        return false;
+    }
+</script>
+
+<!--content end-->

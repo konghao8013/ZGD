@@ -1,0 +1,88 @@
+﻿@model ZGD.Model.Activity
+@using System.Data
+@using ZGD.Common
+
+@{
+    ViewBag.Title = (Model != null ? Model.Title : "活动详细") +"-港宏宜家装饰";
+    ViewBag.Keywords = Model.Keyword;
+    ViewBag.Description = Model.Description;
+}
+
+@section Head
+{
+    <style type="text/css">
+        #main_con { background-color: transparent; padding: 0; }
+        .newslist { }
+        .newslist li { width: 48% !important; }
+    </style>
+}
+
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 2 });}
+<div id="content" style="padding-top:0;">
+    <div class="main">
+        <div class="nav_title">当前位置：<a href="/">首页</a>&gt;<a href="/sqzx">省钱装修</a>&gt;@(Model.Title)</div>
+    </div>
+    <div class="space10"></div>
+    <div class="main">
+        <div id="main_con">
+            <div class="con_left">
+                @RenderPage("../Ctrl/_ZxCalc.cshtml")
+                <div class="space20"></div>
+                @RenderPage("../Ctrl/_HotHouse.cshtml")
+                <div class="space20"></div>
+                @RenderPage("../Ctrl/_HotCase.cshtml")
+            </div>
+            <div id="con_right" style="width:880px;padding:20px;padding-top:0;">
+                @*<div class="tl_ad">
+                        @foreach (DataRow item in ViewBag.AdList.Rows)
+                        {
+                            if (item["ID"].ToString() == "4")
+                            {
+                                <a href="@(item["Url"].ToString())"><img src="@(item["ImgUrl"].ToString())" /></a>
+                                break;
+                            }
+                        }
+                    </div>*@
+                <div class="news_con" style="padding-top:10px;">
+                    <div class="news_top">
+                        <h1 class="title" style="height:auto;">@Model.Title</h1>
+                        <div class="info">
+                            活动时间：@(Model.sDate) ~ @(Model.eDate)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;浏览数：<strong>@(Model.Click)</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em class="bdsharebuttonbox" style="display:inline;font-style:normal;font-size:14px;"><a href="javascript:;" class="bds_more" data-cmd="more" style="background:url(/Content/Images/sj_share.png) right center no-repeat;padding-right: 13px; padding-left:0;float:none; color: #9F9F9F; display:inline;font-size:14px;">我要分享</a></em>
+                            <script>
+                                window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": { "bdSize": 16 } }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+                            </script>
+                        </div>
+                    </div>
+                    <div class="con">
+                        @Html.Raw(Server.HtmlDecode(Model.aCon))
+                    </div>
+                </div>
+                @if (ViewBag.AboutAct != null && ViewBag.AboutAct.Rows.Count > 0)
+                {
+                    <div class="space10"></div>
+                    <div id="same_diary" class="tab_panel2">
+                        <div class="panel_top"><span class="hover">其他活动</span></div>
+                        <div class="panel_con" style="display:block;">
+                            <ul class="newslist">
+                                @if (ViewBag.AboutAct != null)
+                                {
+                                    int idx_a = 1;
+                                    foreach (DataRow item in ViewBag.AboutAct.Rows)
+                                    {
+                                        <li @if (idx_a % 2 == 0)
+                                        { @Html.Raw("style=\"margin-right:0;\"")              ;
+                                        }>
+                                            <a href="/news/@(item["Id"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(25))</a>
+                                        </li>
+                                        idx_a++;
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="space10"></div>

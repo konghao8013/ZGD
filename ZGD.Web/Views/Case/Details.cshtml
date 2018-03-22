@@ -1,0 +1,119 @@
+﻿@model ZGD.Web.Controllers.CaseDTO
+@using System.Data
+@using ZGD.Common
+
+@{
+    ViewBag.Title = (Model != null ? Model.CaseModel.Title : "案例详细") + "-港宏宜家装饰";
+    ViewBag.Keywords = Model.CaseModel.Keyword;
+    ViewBag.Description = Model.CaseModel.Description;
+}
+
+@section Head
+{
+    <style type="text/css">
+        #content { border-top: solid 1px #8E8E8E; }
+        #main_con { background-color: transparent; }
+        .case_con { padding: 20px 0; font-size: 14px; }
+    </style>
+}
+
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 3 });}
+<div id="content">
+    <div class="main">
+        <div class="nav_title">当前位置：<a href="/">首页</a>&gt;<a href="/case">家装案例</a>&gt;@Model.CaseModel.Title</div>
+    </div>
+    <div class="main">
+        <div id="main_con" style="width:1200px;padding:0;">
+            <div id="con_left" style="width:920px;">
+                <div id="nl_panel">
+                    <div class="photos">
+                        <span id="prevTop" class="btn prev_t"></span>
+                        <span id="nextTop" class="btn next_t"></span>
+                        <div id="picBox" class="picBox">
+                            <ul class="cf">
+                                @foreach (DataRow item in Model.ProjectImgs.Rows)
+                                {
+                                    <li><a href="javascript:;"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" /><span>@(item["Title"].ToString())</span></a></li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="case_con">
+                            @(Model.CaseModel.Description)
+                        </div>
+                        <div class="listBox">
+                            <div class="pro_img left_img">
+                                <a href="/case/@(Model.PrevCase.Id)" title="@(Model.PrevCase.Title)">
+                                    <img src="@(Model.PrevCase.ImageSmall)" alt="@(Model.PrevCase.Title)" /><br />
+                                    &lt;&lt; 上个图集
+                                </a>
+                            </div>
+                            <div class="pro_img right_img">
+                                <a href="/case/@(Model.NextCase.Id)" title="@(Model.NextCase.Title)">
+                                    <img src="@(Model.NextCase.ImageSmall)" alt="@(Model.NextCase.Title)" /><br />
+                                    下个图集 &gt;&gt;
+                                </a>
+                            </div>
+                            <span id="prev" class="btn prev"></span>
+                            <div class="listBox_p" id="listBox">
+                                <ul>
+                                    @{
+                                        int idx = 1;
+                                    }
+                                    @foreach (DataRow item in Model.ProjectImgs.Rows)
+                                    {
+                                        <li @if (idx == 1) { @Html.Raw("class=\"on\"")                 ; }>
+                                            <a href="javascript:;"><span></span><img src="@(item["ImageSmall"].ToString())" alt="@(item["Title"].ToString())" /></a>
+                                        </li>
+                                        idx++;
+                                    }
+                                </ul>
+                            </div>
+                            <span id="next" class="btn next"></span>
+                        </div>
+                    </div>
+                    <script src="/Content/Scripts/ppt.js"></script>
+                    <div class="bdsharebuttonbox bdshare-button-style0-16" style="padding-top:20px;" data-bd-bind="1449036825828"></div>
+                    <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {}, "image": { "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"], "viewText": "分享到：", "viewSize": "16" } }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+                    @if (ViewBag.AboutCase != null)
+                    {
+                        int idx_a = 1;
+                        <div class="space30"></div>
+                        <div class="panel_title"><div><span>相关案例</span></div></div>
+                        <div class="about_case" id="about_pro">
+                            @foreach (DataRow item in ViewBag.AboutCase.Rows)
+                            {
+                                <a href="/case/@(item["Id"].ToString())" title="@(item["Title"].ToString())"><img src="@(item["ImageSmall"].ToString())" /></a>
+                                idx_a++;
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+            <div id="con_right" style="width:260px">
+                @if (Model.Designer != null)
+                {
+                    <div class="r_panel">
+                        <div class="r_panel_top"><strong>设计师</strong></div>
+                        <div class="r_panel_con">
+                            <div class="r_des_info">
+                                <div class="photo">
+                                    <a href="/designer/@(Model.Designer.ID)"><img src="@(Model.Designer.Photo)" /></a>
+                                </div>
+                                <div class="info">
+                                    <p><span></span><strong>@(Model.Designer.Name)</strong>@(Model.Designer.cName)</p>
+                                    <p><span>人气（@(Model.Designer.Clicks)）</span>工作年限：@(Model.Designer.cyDate)年</p>
+                                    <p class="btn_panel"><a href="http://p.qiao.baidu.com//im/index?siteid=8316243&ucid=19605673" target="_blank" class="black">在线咨询</a><a href="/designer/@(Model.Designer.ID)" class="red">查看详情</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space20"></div>
+                }
+                @RenderPage("../Ctrl/_ZxCalc.cshtml")
+                <div class="space20"></div>
+                @RenderPage("../Ctrl/_HotAct.cshtml")
+            </div>
+        </div>
+    </div>
+</div>
+<div class="space40"></div>

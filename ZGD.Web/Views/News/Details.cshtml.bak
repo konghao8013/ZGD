@@ -1,0 +1,125 @@
+﻿@model YJ.Model.NewsInfo
+@using System.Data
+@using YJ.Common
+
+@{
+    ViewBag.Title = Model != null ? Model.Title : "文章详细";
+    ViewBag.Keywords = Model.Keyword;
+    ViewBag.Description = Model.Description;
+}
+
+@section Head
+{
+    <style type="text/css">
+        #content { border-top: solid 1px #8E8E8E; }
+        #main_con { background-color: transparent; padding: 0; }
+    </style>
+}
+
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 0 });}
+<div id="content">
+    <div class="main">
+        <div class="nav_title">当前位置：<a href="/">首页</a>&gt;<a href="/news?t=@Model.ClassId">@(Model.ClassName)</a>&gt;<a href="/news/@Model.Id">@(Model.Title)</a></div>
+    </div>
+    <div class="main">
+        <div id="main_con">
+            <div id="con_left" style="width:880px;padding:20px;background-color:#fff;">
+                <div class="news_con">
+                    <div class="news_top">
+                        <h1 class="title">@Model.Title</h1>
+                        <div class="info">
+                            作者：@(Model.Author)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;浏览数：<strong>@(Model.Click)</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布时间：@(Model.PubTime.ToString("yyyy-MM-dd HH:mm"))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em class="bdsharebuttonbox" style="display:inline;font-style:normal;font-size:14px;"><a href="javascript:;" class="bds_more" data-cmd="more" style="background:url(/Content/Images/sj_share.png) right center no-repeat;padding-right: 13px; padding-left:0;float:none; color: #9F9F9F; display:inline;font-size:14px;">我要分享</a></em>
+                            <script>
+                                window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": { "bdSize": 16 } }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+                            </script>
+                            @if (!string.IsNullOrWhiteSpace(Model.Tags))
+                            {
+                                <span class="a_tags">相关标签：@Html.Raw(Model.Tags.ToTags())</span>
+                            }
+                        </div>
+                        <p class="desc">
+                            <strong>摘要：</strong>
+                            @(Model.Description)
+                        </p>
+                    </div>
+                    <div class="con">
+                        @Html.Raw(Server.HtmlDecode(Model.Content))
+                    </div>
+                    <div class="next_news">
+                        <a href="/news/@(ViewBag.NextNews.Id)" class="right"><i>下一篇：</i>@(ViewBag.NextNews.Title)</a>
+                        <a href="/news/@(ViewBag.PrevNews.Id)"><i>上一篇：</i>@(ViewBag.PrevNews.Title)</a>
+                    </div>
+                </div>
+                <div class="space10"></div>
+                <div id="same_diary" class="tab_panel2">
+                    <div class="panel_top"><span class="hover" idx="1">相关推荐</span><span idx="2">热门图集</span><span idx="3">热门资讯</span></div>
+                    <div class="panel_con" style="display:block;">
+                        <ul class="newslist">
+                            @if (ViewBag.AboutNews != null)
+                            {
+                                int idx_a = 1;
+                                foreach (DataRow item in ViewBag.AboutNews.Rows)
+                                {
+                                    <li @if (idx_a % 3 == 0) { @Html.Raw("style=\"margin-right:0;\"")          ; }>
+                                        <a href="/news/@(item["Id"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(18))</a>
+                                    </li>
+idx_a++;
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <div class="panel_con">
+                        <ul class="imglist">
+                            @if (ViewBag.HotCase != null)
+                            {
+                                int idx_pro = 1;
+                                foreach (DataRow item in ViewBag.HotCase.Rows)
+                                {
+                                    <li @if (idx_pro % 4 == 0) { @Html.Raw("style=\"margin-right:0;\"")        ; }>
+                                        <a href="/case/@(item["Id"].ToString())">
+                                            <img src="@(item["ImageSmall"].ToString())" /><br />@(item["Title"].ToString().ToSubString(12))
+                                        </a>
+                                    </li>
+idx_pro++;
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <div class="panel_con">
+                        <ul class="newslist">
+                            @if (ViewBag.HotNews2 != null)
+                            {
+                                int idx_h = 1;
+                                foreach (DataRow item in ViewBag.HotNews2.Rows)
+                                {
+                                    <li @if (idx_h % 3 == 0) { @Html.Raw("style=\"margin-right:0;\"")           ; }>
+                                        <a href="/news/@(item["Id"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(18))</a>
+                                    </li>
+idx_h++;
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="space10"></div>
+                <script type="text/javascript">
+                    $("#same_diary .panel_top span").hover(function () {
+                        $("#same_diary .panel_top span").removeClass("hover");
+                        $(this).addClass("hover");
+                        var idx = $(this).attr("idx");
+                        $("#same_diary .panel_con").hide();
+                        $("#same_diary .panel_con").eq(idx - 1).show();
+                    });
+                </script>
+            </div>
+            <div id="con_right">
+                @RenderPage("../Ctrl/_ZxCalc.cshtml")
+                <div class="space20"></div>
+                @RenderPage("../Ctrl/_HotHouse.cshtml")
+                <div class="space20"></div>
+                @RenderPage("../Ctrl/_HotCase.cshtml")
+            </div>
+        </div>
+    </div>
+</div>
+<div class="space10"></div>2016-02-26

@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "用户中心";
+}
+@model ZGD.Model.User
+@using System.Data
+@using ZGD.Common
+@section Head
+{
+}
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 0 });}
+
+<div id="content" style="padding-top:0;">
+    <div class="main">
+        <div class="nav_title">
+            <a href="">首页</a> &gt; 个人中心
+        </div>
+    </div>
+    <div class="main">
+        <div class="con_left">
+            @RenderPage("../Ctrl/_ZxCalc.cshtml")
+            <div class="space20"></div>
+            @RenderPage("../Ctrl/_HotQa.cshtml")
+        </div>
+        <div class="con_right">
+            <div class="u_top">
+                <img src="/Content/Images/Visitors.jpg" />
+                <h3>@(Model.Nickname)</h3>
+                <p>回答数：@(ViewBag.aCount)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;被采纳数：@(ViewBag.cnCount)</p>
+                <a href="/wd#tw" class="btn">我要提问</a>
+            </div>
+            <div class="space30"></div>
+
+            <div class="u_tab" id="u_tab">
+                <a class="@(ViewBag.Type == 1 ? "hover" : "")" data="1" href="/user?t=1">我提的问题</a>
+                <a class="@(ViewBag.Type == 2 ? "hover" : "")" data="2" href="/user?t=2">我的回答</a>
+            </div>
+            <div class="u_tab_con_panel" id="u_tab_con_panel">
+                <div class="u_tab_con" style="display:block;">
+                    <ul class="ask_list">
+                        @if (ViewBag.Type == 1)
+                        {
+                            foreach (DataRow item in ViewBag.MyQA.Rows)
+                            {
+                                <li>
+                                    <h3><a href="/wd/@(item["ID"].ToString())">@(item["Title"].ToString())</a></h3>
+                                    <div class="no_bg">
+                                        <p class="word">@(item["Contents"].ToString())<a href="/wd/@(item["ID"].ToString())">【详情】</a></p>
+                                        <p class="info">
+                                            <span>@(Convert.ToDateTime(item["PubTime"]).ToString("yyyy-MM-dd"))</span>
+                                            <i class="views">@(item["Click"].ToString())</i>
+                                            <i>@(item["aCount"].ToString())回答</i>
+                                        </p>
+                                    </div>
+                                </li>
+                            }
+                        }
+                        else if (ViewBag.Type == 2)
+                        {
+                            foreach (DataRow item in ViewBag.MyQA.Rows)
+                            {
+                                <li>
+                                    <h3><a href="/wd/@(item["ID"].ToString())">@(item["Title"].ToString())</a></h3>
+                                    <div>
+                                        <p class="word">@(item["Contents"].ToString())<a href="/wd/@(item["ID"].ToString())">【详情】</a></p>
+                                        <p class="info">
+                                            <span>@(Convert.ToDateTime(item["PubTime"]).ToString("yyyy-MM-dd"))</span>
+                                            <i class="views">@(item["Click"].ToString())</i>
+                                            <i>@(item["aCount"].ToString())回答</i>
+                                        </p>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    @Html.Raw(ViewBag.Pager)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="space40"></div>
