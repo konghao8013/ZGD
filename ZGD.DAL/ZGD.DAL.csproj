@@ -83,7 +83,7 @@
       <Project>{0dab1e8e-8251-454a-8fc5-58c2d99b6895}</Project>
       <Name>ZGD.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\YJ.DBUtility\ZGD.DBUtility.csproj">
+    <ProjectReference Include="..\ZGD.DBUtility\ZGD.DBUtility.csproj">
       <Project>{717754a5-d54d-4fa2-8f25-abb075274974}</Project>
       <Name>ZGD.DBUtility</Name>
     </ProjectReference>

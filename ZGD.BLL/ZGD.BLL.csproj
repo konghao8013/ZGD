@@ -84,15 +84,15 @@
     <Compile Include="WXCard.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\YJ.Common\ZGD.Common.csproj">
+    <ProjectReference Include="..\ZGD.Common\ZGD.Common.csproj">
       <Project>{0dab1e8e-8251-454a-8fc5-58c2d99b6895}</Project>
       <Name>ZGD.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\YJ.DAL\ZGD.DAL.csproj">
+    <ProjectReference Include="..\ZGD.DAL\ZGD.DAL.csproj">
       <Project>{5c6ebbe6-1198-4a22-b0e4-3907f1914fc0}</Project>
       <Name>ZGD.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\YJ.Model\ZGD.Model.csproj">
+    <ProjectReference Include="..\ZGD.Model\ZGD.Model.csproj">
       <Project>{108e1863-1e37-49f8-b62e-a9489f90a454}</Project>
       <Name>ZGD.Model</Name>
     </ProjectReference>

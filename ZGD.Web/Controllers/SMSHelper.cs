@@ -8,7 +8,7 @@ namespace ZGD.Web.Controllers
 {
     public class SMSHelper
     {
-        static string word = "【港宏宜家装饰】";
+        static string word = "【致公党装饰】";
         static string smsAccount = ConfigurationManager.AppSettings["SmsAccount"].ToString();
         static string smsPassword = ConfigurationManager.AppSettings["SmsPassword"].ToString();
 
