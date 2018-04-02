@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ZGD.Web</RootNamespace>
     <AssemblyName>ZGD.Web</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -30,6 +30,7 @@
     <SccProvider>SAK</SccProvider>
     <UseGlobalApplicationHostFile />
     <Use64BitIISExpress />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +40,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -47,57 +49,57 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AspNetPager, Version=7.3.2.0, Culture=neutral, PublicKeyToken=fb0a0fe055d40fd4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Ref\AspNetPager.dll</HintPath>
     </Reference>
-    <Reference Include="LitJSON, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Ref\LitJSON.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=9ad232b50c3e6444, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Ref\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\Activity\PayList.aspx" />
-    <Content Include="Admin\Activity\ActivityJoin.aspx" />
-    <Content Include="Admin\Activity\List.aspx" />
-    <Content Include="Admin\Activity\Add.aspx" />
-    <Content Include="Admin\Activity\Edit.aspx" />
     <Content Include="Admin\Banner\WapList.aspx" />
     <Content Include="Admin\Banner\AdList.aspx" />
     <Content Include="Admin\Banner\List.aspx" />
@@ -106,18 +108,8 @@
     <Content Include="Admin\Channel\Edit.aspx" />
     <Content Include="Admin\Channel\List.aspx" />
     <Content Include="Admin\Contents\content.aspx" />
-    <Content Include="Admin\Feedback\complain.aspx" />
-    <Content Include="Admin\Feedback\ComplainEdit.aspx" />
-    <Content Include="Admin\Feedback\repair.aspx" />
-    <Content Include="Admin\Feedback\repairEdit.aspx" />
     <Content Include="Admin\Js\mUpload\update.swf" />
     <Content Include="Admin\Js\mUpload\upload.htm" />
-    <Content Include="Admin\GongDi\Add.aspx" />
-    <Content Include="Admin\GongDi\Edit.aspx" />
-    <Content Include="Admin\GongDi\List.aspx" />
-    <Content Include="Admin\House\Add.aspx" />
-    <Content Include="Admin\House\Edit.aspx" />
-    <Content Include="Admin\House\List.aspx" />
     <Content Include="Admin\skin\default\loading.gif" />
     <Content Include="Admin\skin\default\upfilebg.gif" />
     <Content Include="Admin\skin\default\upfilebg2.gif" />
@@ -249,8 +241,6 @@
     <Content Include="Admin\manager\manager_pwd.aspx" />
     <Content Include="Admin\manager\role_edit.aspx" />
     <Content Include="Admin\manager\role_list.aspx" />
-    <Content Include="Admin\Member\VipList.aspx" />
-    <Content Include="Admin\Member\VipAdd.aspx" />
     <Content Include="Admin\News\Add.aspx" />
     <Content Include="Admin\News\Edit.aspx" />
     <Content Include="Admin\News\List.aspx" />
@@ -287,11 +277,6 @@
     <Content Include="Error\404.jpg" />
     <Content Include="Error\Error.html" />
     <Content Include="favicon.ico" />
-    <Content Include="Files\about\about.jpg" />
-    <Content Include="Files\about\lc1.jpg" />
-    <Content Include="Files\about\lc2.jpg" />
-    <Content Include="Files\about\lc3.jpg" />
-    <Content Include="Files\about\map.png" />
     <Content Include="Content\Scripts\bxCarousel.js" />
     <Content Include="Content\Scripts\DD_belatedPNG.js" />
     <Content Include="Content\Scripts\jquery-1.11.0.min.js" />
@@ -333,25 +318,10 @@
     <Content Include="Content\Scripts\swipebox-master\images\loader.gif" />
     <Content Include="Content\Scripts\swipebox-master\jquery.swipebox.js" />
     <Content Include="Content\Scripts\swipebox-master\swipebox.min.css" />
-    <Content Include="Files\ad.jpg" />
-    <Content Include="Files\Ad\gg.jpg" />
-    <Content Include="Files\Ad\tc_1.jpg" />
-    <Content Include="Files\Ad\tc_2.jpg" />
-    <Content Include="Files\Ad\tc_3.jpg" />
     <Content Include="Files\area.xml" />
-    <Content Include="Files\banner.jpg" />
     <Content Include="Files\close.gif" />
-    <Content Include="Files\kf_sj1.png" />
-    <Content Include="Files\kf_sj2.png" />
-    <Content Include="Files\kf_sj3.png" />
-    <Content Include="Files\kf_tel.png" />
-    <Content Include="Files\kf_zx.png" />
-    <Content Include="Files\left.jpg" />
-    <Content Include="Files\logo.png" />
     <Content Include="Files\noImg.jpg" />
-    <Content Include="Files\phone.jpg" />
     <Content Include="Files\qq.png" />
-    <Content Include="Files\weixin\share.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Admin\Js\kindeditor-4.1.7\kindeditor-all-min.js" />
     <Content Include="Admin\Js\kindeditor-4.1.7\kindeditor-all.js" />
@@ -553,23 +523,6 @@
     <Content Include="Admin\Js\kindeditor-4.1.7\themes\qq\editor.gif" />
     <Content Include="Admin\Js\kindeditor-4.1.7\themes\qq\qq.css" />
     <Content Include="Admin\Js\kindeditor-4.1.7\themes\simple\simple.css" />
-    <Content Include="Ref\AspNetPager.dll" />
-    <Content Include="Ref\COM.Excel.dll" />
-    <Content Include="Ref\Excel.dll" />
-    <Content Include="Ref\LitJSON.dll" />
-    <Content Include="Ref\MVC\System.Web.Helpers.dll" />
-    <Content Include="Ref\MVC\System.Web.Http.dll" />
-    <Content Include="Ref\MVC\System.Web.Http.xml" />
-    <Content Include="Ref\MVC\System.Web.Mvc.dll" />
-    <Content Include="Ref\MVC\System.Web.Razor.dll" />
-    <Content Include="Ref\MVC\System.Web.WebPages.Deployment.dll" />
-    <Content Include="Ref\MVC\System.Web.WebPages.dll" />
-    <Content Include="Ref\MVC\System.Web.WebPages.Razor.dll" />
-    <Content Include="Ref\MySql.Data.dll" />
-    <Content Include="Ref\Newtonsoft.Json.dll" />
-    <Content Include="Ref\office.dll" />
-    <Content Include="Ref\OpenSmtp.dll" />
-    <Content Include="Ref\OWC10Chart.dll" />
     <Content Include="Admin\Js\datepicker\calendar.js" />
     <Content Include="Admin\Js\datepicker\lang\en.js" />
     <Content Include="Admin\Js\datepicker\lang\zh-cn.js" />
@@ -689,6 +642,7 @@
     <Content Include="Admin\Js\swfupload\swfupload.js" />
     <Content Include="Admin\Js\swfupload\swfupload.swf" />
     <Content Include="Tools\FilesUpload.aspx" />
+    <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\sjs.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -720,41 +674,6 @@
     <None Include="Web References\SmsLinkWs\Service.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\Activity\PayList.aspx.cs">
-      <DependentUpon>PayList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Activity\PayList.aspx.designer.cs">
-      <DependentUpon>PayList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Activity\ActivityJoin.aspx.cs">
-      <DependentUpon>ActivityJoin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Activity\ActivityJoin.aspx.designer.cs">
-      <DependentUpon>ActivityJoin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Activity\List.aspx.cs">
-      <DependentUpon>List.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Activity\List.aspx.designer.cs">
-      <DependentUpon>List.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Activity\Add.aspx.cs">
-      <DependentUpon>Add.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Activity\Add.aspx.designer.cs">
-      <DependentUpon>Add.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Activity\Edit.aspx.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Activity\Edit.aspx.designer.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\Banner\WapList.aspx.cs">
       <DependentUpon>WapList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -839,20 +758,6 @@
     <Compile Include="Admin\EnCode.aspx.designer.cs">
       <DependentUpon>EnCode.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Feedback\complain.aspx.cs">
-      <DependentUpon>complain.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Feedback\complain.aspx.designer.cs">
-      <DependentUpon>complain.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Feedback\ComplainEdit.aspx.cs">
-      <DependentUpon>ComplainEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Feedback\ComplainEdit.aspx.designer.cs">
-      <DependentUpon>ComplainEdit.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\Feedback\Edit.aspx.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -867,20 +772,6 @@
     <Compile Include="Admin\Feedback\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Feedback\repair.aspx.cs">
-      <DependentUpon>repair.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Feedback\repair.aspx.designer.cs">
-      <DependentUpon>repair.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Feedback\repairEdit.aspx.cs">
-      <DependentUpon>repairEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Feedback\repairEdit.aspx.designer.cs">
-      <DependentUpon>repairEdit.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\Handler\Ad.ashx.cs">
       <DependentUpon>Ad.ashx</DependentUpon>
     </Compile>
@@ -893,48 +784,6 @@
     </Compile>
     <Compile Include="Admin\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\GongDi\Add.aspx.cs">
-      <DependentUpon>Add.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\GongDi\Add.aspx.designer.cs">
-      <DependentUpon>Add.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\GongDi\Edit.aspx.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\GongDi\Edit.aspx.designer.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\GongDi\List.aspx.cs">
-      <DependentUpon>List.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\GongDi\List.aspx.designer.cs">
-      <DependentUpon>List.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\House\Add.aspx.cs">
-      <DependentUpon>Add.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\House\Add.aspx.designer.cs">
-      <DependentUpon>Add.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\House\Edit.aspx.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\House\Edit.aspx.designer.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\House\List.aspx.cs">
-      <DependentUpon>List.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\House\List.aspx.designer.cs">
-      <DependentUpon>List.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ST\Add.aspx.cs">
       <DependentUpon>Add.aspx</DependentUpon>
@@ -1033,20 +882,6 @@
     </Compile>
     <Compile Include="Admin\manager\role_list.aspx.designer.cs">
       <DependentUpon>role_list.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Member\VipList.aspx.cs">
-      <DependentUpon>VipList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Member\VipList.aspx.designer.cs">
-      <DependentUpon>VipList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Member\VipAdd.aspx.cs">
-      <DependentUpon>VipAdd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Member\VipAdd.aspx.designer.cs">
-      <DependentUpon>VipAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\News\Add.aspx.cs">
       <DependentUpon>Add.aspx</DependentUpon>
@@ -1150,25 +985,12 @@
     <Compile Include="App_Start\GlobalActionFilter.cs" />
     <Compile Include="App_Start\ImageRouteHandler.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\SQZXController.cs" />
-    <Compile Include="Controllers\Base\UserBaseController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
-    <Compile Include="Controllers\Base\UserAuthLoginAttribute.cs" />
-    <Compile Include="Controllers\DTO\OperSession.cs" />
-    <Compile Include="Controllers\JoinController.cs" />
-    <Compile Include="Controllers\CaseController.cs" />
     <Compile Include="Controllers\CtrlController.cs" />
-    <Compile Include="Controllers\DesignerController.cs" />
     <Compile Include="Controllers\DTO\AjaxMsgResult.cs" />
     <Compile Include="Controllers\DTO\CaseDTO.cs" />
     <Compile Include="Controllers\DTO\IndexDTO.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\XZXController.cs" />
-    <Compile Include="Controllers\WDController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\PhotosController.cs" />
-    <Compile Include="Controllers\ProjectController.cs" />
-    <Compile Include="Controllers\HouseController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\SMSHelper.cs" />
@@ -1217,6 +1039,7 @@
     <Folder Include="Admin\Js\kindeditor-4.1.7\attached\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Files\act\" />
+    <Folder Include="Files\Ad\" />
     <Folder Include="Log\App_LocalResources\" />
     <Folder Include="Log\Errorlog\" />
     <Folder Include="UpLoadFiles\attached\image\" />

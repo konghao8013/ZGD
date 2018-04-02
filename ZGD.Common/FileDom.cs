@@ -23,7 +23,6 @@ namespace ZGD.Common
 {
     public class FileDom
     {
-        private static string baseConfigPath = "~/Config/SiteBase.config";
         /// <summary>
         /// 文件大小
         /// </summary>

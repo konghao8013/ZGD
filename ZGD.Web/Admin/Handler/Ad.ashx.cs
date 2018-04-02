@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ZGD.Common;
 
 namespace ZGD.Web.Admin.Handler
 {
@@ -31,7 +32,7 @@ namespace ZGD.Web.Admin.Handler
                 switch (context.Request.Form["action"])
                 {
                     case "GetAd":
-                        retMsg = ZGD.Common.JScript.JsonSerializer<Model.Banner>(model);
+                        retMsg = model.ToJson();
                         break;
                     case "SaveAd":
                         model = bll.GetModel(id);

@@ -6,7 +6,6 @@ using System.Web.SessionState;
 using System.Web;
 using System.Text.RegularExpressions;
 using ZGD.Common;
-using LitJson;
 
 namespace ZGD.Web.Tools
 {
@@ -80,7 +79,7 @@ namespace ZGD.Web.Tools
             }
             UpLoad upFiles = new UpLoad();
             string remsg = upFiles.fileSaveAs(imgFile, false, _iswater);
-            JsonData jd = JsonMapper.ToObject(remsg);
+            var jd = SerializerHelper.ParseJObject(remsg);
             string status = jd["status"].ToString();
             string msg = jd["msg"].ToString();
             if (status == "0")
@@ -93,7 +92,7 @@ namespace ZGD.Web.Tools
             hash["error"] = 0;
             hash["url"] = "http://" + ZGD.Common.DTKeys.Web + filePath;
             context.Response.AddHeader("Content-Type", "text/html; charset=UTF-8");
-            context.Response.Write(JsonMapper.ToJson(hash));
+            context.Response.Write(hash.ToJson());
             context.Response.End();
         }
         //显示错误
@@ -103,7 +102,7 @@ namespace ZGD.Web.Tools
             hash["error"] = 1;
             hash["message"] = message;
             context.Response.AddHeader("Content-Type", "text/html; charset=UTF-8");
-            context.Response.Write(JsonMapper.ToJson(hash));
+            context.Response.Write(hash.ToJson());
             context.Response.End();
         }
         #endregion
@@ -225,7 +224,7 @@ namespace ZGD.Web.Tools
                 dirFileList.Add(hash);
             }
             context.Response.AddHeader("Content-Type", "application/json; charset=UTF-8");
-            context.Response.Write(JsonMapper.ToJson(result));
+            context.Response.Write(result.ToJson());
             context.Response.End();
         }
 

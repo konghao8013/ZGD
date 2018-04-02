@@ -10,7 +10,6 @@ using System.Collections;
 using System.Web;
 using System.IO;
 using System.Globalization;
-using LitJson;
 using ZGD.Common;
 
 namespace ZGD.Web.Tools
@@ -103,7 +102,7 @@ namespace ZGD.Web.Tools
             hash["error"] = 0;
             hash["url"] = "http://" + ZGD.Common.DTKeys.Web + fileUrl;
             context.Response.AddHeader("Content-Type", "text/html; charset=UTF-8");
-            context.Response.Write(JsonMapper.ToJson(hash));
+            context.Response.Write(hash.ToJson());
             context.Response.End();
         }
 
@@ -113,7 +112,7 @@ namespace ZGD.Web.Tools
             hash["error"] = 1;
             hash["message"] = message;
             context.Response.AddHeader("Content-Type", "text/html; charset=UTF-8");
-            context.Response.Write(JsonMapper.ToJson(hash));
+            context.Response.Write(hash.ToJson());
             context.Response.End();
         }
 

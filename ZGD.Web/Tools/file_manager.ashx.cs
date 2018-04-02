@@ -10,8 +10,8 @@ using System.Collections;
 using System.Web;
 using System.IO;
 using System.Text.RegularExpressions;
-using LitJson;
 using System.Collections.Generic;
+using ZGD.Common;
 
 namespace ZGD.Web.Tools
 {
@@ -150,7 +150,7 @@ namespace ZGD.Web.Tools
                 dirFileList.Add(hash);
             }
             context.Response.AddHeader("Content-Type", "application/json; charset=UTF-8");
-            context.Response.Write(JsonMapper.ToJson(result));
+            context.Response.Write(result.ToJson());
             context.Response.End();
         }
 

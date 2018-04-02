@@ -161,8 +161,7 @@ namespace ZGD.Common
             var data = source.Select(selector);
             if (data.Count() == 0)
                 return "[]";
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
-            return json;
+            return SerializerHelper.JsonSerialize(data);
         }
 
         /// <summary>
@@ -174,7 +173,7 @@ namespace ZGD.Common
         {
             if (source == null)
                 return "{}";
-            return Newtonsoft.Json.JsonConvert.SerializeObject(source);
+            return SerializerHelper.JsonSerialize(source);
         }
 
         public static string ToSubString(this string value, int length, string character = "...")
