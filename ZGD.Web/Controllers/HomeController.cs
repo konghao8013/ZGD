@@ -23,32 +23,7 @@ namespace ZGD.Web.Controllers
             DataTable dt_news4 = nBll.GetList(10, " IsLock=0 and ZxType=1 and ClassId=6 ", " IsTop desc,PubTime desc");
             //港宏动态
             DataTable dt_news5 = nBll.GetList(6, " IsLock=0 and ZxType=1 and ClassId=71 ", " IsTop desc,PubTime desc");
-
-            //案例
-            BLL.Project pro = new BLL.Project();
-            DataSet ds_ca = pro.GetList(7, " p.IsTop=1 and p.IsLock=0 ", " p.PubTime desc");
-            if (ds_ca == null || ds_ca.Tables[0].Rows.Count <= 0)
-            {
-                ds_ca = pro.GetList(7, " p.IsLock=0 ", " p.PubTime desc");
-            }
-            DataTable dt_ca = ds_ca != null ? ds_ca.Tables[0] : null;
-
-            //设计师
-            DataSet ds = new ZGD.BLL.Designer().GetList(40, " IsTop=1 ", " d.Sort desc,d.AddDate desc");
-            string ids = "";
-            if (ds != null && ds.Tables[0] != null && ds.Tables[0].Rows.Count > 0)
-            {
-                foreach (DataRow dr in ds.Tables[0].Rows)
-                {
-                    ids += dr["ID"].ToString() + ",";
-                }
-            }
-            ids = string.IsNullOrWhiteSpace(ids) ? "0" : ids.TrimEnd(',');
-            //获取设计师案例集合
-            DataSet ds_case = pro.GetList(0, "DesignerId in (" + ids + ")", "PubTime desc");
-            DataTable dt_case = ds_case != null ? ds_case.Tables[0] : null;
-            ViewBag.DataDesCase = dt_case;
-
+            
             //首页轮播图
             DataSet ds_slider = new ZGD.BLL.Banner().GetList(0, " aType=1 and IsLock=0", " Sort asc");
             DataTable adList = ds_slider != null ? ds_slider.Tables[0] : null;
@@ -56,19 +31,7 @@ namespace ZGD.Web.Controllers
             //首页广告
             DataSet ds_ad = new ZGD.BLL.Banner().GetList(0, " aType=2 and IsLock=0", " Sort asc");
             DataTable adIndex = ds_ad != null ? ds_ad.Tables[0] : null;
-
-            //活动
-            DataSet ds_act = new ZGD.BLL.Activity().GetList(4, " Status<>-1", " PubTime desc");
-            DataTable dt_act = ds_act != null ? ds_act.Tables[0] : null;
-
-            //楼盘
-            DataSet ds_house = new ZGD.BLL.House().GetList(4, " IsLock=0 and IsTop=1", " PubTime desc");
-            DataTable dt_house = ds_house != null ? ds_house.Tables[0] : null;
-
-            //在建工地
-            DataSet ds_gongdi = nBll.GetGongDiList(6, " n.IsLock=0 and n.ZxType=2 ", " n.IsTop desc");
-            DataTable dt_gongdi = ds_gongdi != null ? ds_gongdi.Tables[0] : null;
-
+            
             //风格 户型
             BLL.Channel cBll = new BLL.Channel();
             ViewBag.DataFG = cBll.GetList(" kindId=3 and IsDelete=0 and ParentId>0").Tables[0];
@@ -82,10 +45,7 @@ namespace ZGD.Web.Controllers
             //热门标签
             DataTable dt_tag = new ZGD.BLL.Links().GetList(0, " IsLock=0 and ClassId=70 ", " SortId asc");
             ViewBag.Tags = dt_tag;
-
-            ZGD.BLL.Question bll = new BLL.Question();
-            ViewBag.QA = bll.GetList(8, " q.IsLock=0 ", " q.ID asc");
-
+            
             //报价数量
             int bj_count = new ZGD.BLL.Feedback().GetCount("");
             ViewBag.BjCount = bj_count;
@@ -94,16 +54,11 @@ namespace ZGD.Web.Controllers
             {
                 AdList = adList,
                 AdList2 = adIndex,
-                Cases = dt_ca,
-                ActList = dt_act,
-                House = dt_house,
-                Des = ds != null ? ds.Tables[0] : null,
                 News1 = dt_news1,
                 News2 = dt_news2,
                 News3 = dt_news3,
                 News4 = dt_news4,
-                News5 = dt_news5,
-                GongDi = dt_gongdi
+                News5 = dt_news5
             });
         }
 
@@ -116,25 +71,7 @@ namespace ZGD.Web.Controllers
         {
             return View();
         }
-
-        /// <summary>
-        /// 获取设计师信息
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public JsonResult GetDesInfo(int id)
-        {
-            ZGD.BLL.Designer bll = new BLL.Designer();
-            ZGD.Model.Designer model = bll.GetModel(id);
-            if (model != null)
-            {
-                model.DesCase = new ZGD.BLL.Project().GetModelList(" DesignerId=" + model.ID);
-                return Json(new AjaxMsgResult() { Success = true, Msg = "获取成功！", Source = model });
-            }
-            return Json(new AjaxMsgResult() { Success = false, Msg = "获取信息失败！" });
-        }
-
+        
         /// <summary>
         /// 
         /// </summary>
@@ -232,110 +169,6 @@ namespace ZGD.Web.Controllers
                     return Json(new AjaxMsgResult() { Success = false, Msg = "验证码错误！" });
                 }
                 if (fbBll.GetCount(" UserTel=" + model.UserTel + " and fType=" + model.fType) > 0)
-                {
-                    return Json(new AjaxMsgResult() { Success = false, Msg = "您已经报名，请勿重复提交！" });
-                }
-                int join_id = fbBll.Add(model);
-                if (join_id > 0)
-                {
-                    return Json(new AjaxMsgResult() { Success = true, Msg = "提交成功！" });
-                }
-            }
-            return Json(new AjaxMsgResult() { Success = false, Msg = "提交失败！" });
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public JsonResult aJoin(Model.ActivityJoin model)
-        {
-            if (model != null)
-            {
-                if (!new BLL.Activity().Exists(model.aID))
-                {
-                    return Json(new AjaxMsgResult() { Success = false, Msg = "错误的活动信息！" });
-                }
-                if (string.IsNullOrWhiteSpace(model.UserName))
-                {
-                    return Json(new AjaxMsgResult() { Success = false, Msg = "名字不能为空！" });
-                }
-                if (string.IsNullOrWhiteSpace(model.Phone))
-                {
-                    return Json(new AjaxMsgResult() { Success = false, Msg = "联系方式不能为空！" });
-                }
-                if (!RegexHandler.IsMobile(model.Phone))
-                {
-                    return Json(new AjaxMsgResult() { Success = false, Msg = "请输入正确的手机号！" });
-                }
-                //if (string.IsNullOrWhiteSpace(model.House))
-                //{
-                //    return Json(new AjaxMsgResult() { Success = false, Msg = "请输入小区名称！" });
-                //}
-                if (string.IsNullOrWhiteSpace(model.vCode))
-                {
-                    return Json(new AjaxMsgResult() { Success = false, Msg = "验证码不能为空！" });
-                }
-                if (model.vCode.ToLower() != Session[DTKeys.SESSION_CODE].ToString().ToLower())
-                {
-                    return Json(new AjaxMsgResult() { Success = false, Msg = "验证码错误！" });
-                }
-                model.PubTime = DateTime.Now;
-                BLL.ActivityJoin fbBll = new BLL.ActivityJoin();
-                if (fbBll.GetCount(" aID=" + model.aID + " and Phone=" + model.Phone) > 0)
-                {
-                    return Json(new AjaxMsgResult() { Success = false, Msg = "您已经报名，请勿重复提交！" });
-                }
-                int join_id = fbBll.Add(model);
-                if (join_id > 0)
-                {
-                    return Json(new AjaxMsgResult() { Success = true, Msg = "提交成功！" });
-                }
-            }
-            return Json(new AjaxMsgResult() { Success = false, Msg = "提交失败！" });
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public JsonResult aJoinw(Model.ActivityJoin model)
-        {
-            if (model != null)
-            {
-                if (!new BLL.Activity().Exists(model.aID))
-                {
-                    return Json(new AjaxMsgResult() { Success = false, Msg = "错误的活动信息！" });
-                }
-                if (string.IsNullOrWhiteSpace(model.UserName))
-                {
-                    return Json(new AjaxMsgResult() { Success = false, Msg = "名字不能为空！" });
-                }
-                if (string.IsNullOrWhiteSpace(model.Phone))
-                {
-                    return Json(new AjaxMsgResult() { Success = false, Msg = "联系方式不能为空！" });
-                }
-                if (!RegexHandler.IsMobile(model.Phone))
-                {
-                    return Json(new AjaxMsgResult() { Success = false, Msg = "请输入正确的手机号！" });
-                }
-                //if (string.IsNullOrWhiteSpace(model.House))
-                //{
-                //    return Json(new AjaxMsgResult() { Success = false, Msg = "请输入小区名称！" });
-                //}
-                //if (string.IsNullOrWhiteSpace(model.vCode))
-                //{
-                //    return Json(new AjaxMsgResult() { Success = false, Msg = "验证码不能为空！" });
-                //}
-                //if (model.vCode.ToLower() != Session[DTKeys.SESSION_CODE].ToString().ToLower())
-                //{
-                //    return Json(new AjaxMsgResult() { Success = false, Msg = "验证码错误！" });
-                //}
-                model.PubTime = DateTime.Now;
-                BLL.ActivityJoin fbBll = new BLL.ActivityJoin();
-                if (fbBll.GetCount(" aID=" + model.aID + " and Phone=" + model.Phone) > 0)
                 {
                     return Json(new AjaxMsgResult() { Success = false, Msg = "您已经报名，请勿重复提交！" });
                 }

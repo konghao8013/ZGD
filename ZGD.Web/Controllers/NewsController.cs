@@ -54,7 +54,6 @@ namespace ZGD.Web.Controllers
         public ActionResult Details(int id)
         {
             ZGD.BLL.NewsInfo bll = new BLL.NewsInfo();
-            ZGD.BLL.Project pBll = new BLL.Project();
             ZGD.Model.NewsInfo news = bll.GetModel(id);
             //点击率
             bll.UpdateField(id, " Click=Click+1");
@@ -90,11 +89,7 @@ namespace ZGD.Web.Controllers
             string aboutKey = string.IsNullOrEmpty(news.Keyword) ? "" : news.Keyword.TrimStart(',').TrimEnd(',').Split(',')[0];
             DataTable dt_about = string.IsNullOrWhiteSpace(aboutKey) ? null : bll.GetList(10, " IsLock=0 and (Tags like '%" + aboutKey + "%') ", " PubTime desc");
             ViewBag.AboutNews = dt_about;
-
-            //图集
-            BLL.Project pro = new BLL.Project();
-            DataSet ds_case = pro.GetList(6, " IsLock=0 ", " PubTime desc");
-            ViewBag.HotCase = ds_case != null ? ds_case.Tables[0] : null;
+            
             //广告
             DataSet ds_ad = new ZGD.BLL.Banner().GetList(0, " aType=2 and IsLock=0", " Sort asc");
             ViewBag.AdList = ds_ad != null ? ds_ad.Tables[0] : null;

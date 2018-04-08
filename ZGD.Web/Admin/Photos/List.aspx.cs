@@ -93,7 +93,6 @@ namespace ZGD.Web.Admin.Photos
         protected void lbtnDel_Click(object sender, EventArgs e)
         {
             ZGD.BLL.Photos bll = new ZGD.BLL.Photos();
-            ZGD.BLL.ProjectImg imgBll = new ZGD.BLL.ProjectImg();
             ZGD.Model.Photos model;
             //批量删除
             for (int i = 0; i < rptList.Items.Count; i++)
@@ -107,7 +106,6 @@ namespace ZGD.Web.Admin.Photos
                     SaveLogs("[相册模块]删除相册：" + model.PhotoName);
                     //删除记录
                     bll.Delete(id);
-                    imgBll.Delete(id, 3);
                 }
             }
             JscriptMsg("删除成功");
