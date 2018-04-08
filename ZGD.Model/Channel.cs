@@ -109,6 +109,7 @@ namespace ZGD.Model
             set { _isdelete = value; }
             get { return _isdelete; }
         }
+        public int MySql_ID { get; set; }
         #endregion Model
 
     }

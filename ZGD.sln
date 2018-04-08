@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZGD.Model", "ZGD.Model\ZGD.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZGD.Web", "ZGD.Web\ZGD.Web.csproj", "{C591C1B9-2719-4AE2-A2C6-D389EF8F8826}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZGD.MySqlToMsSql", "ZGD.MySqlToMsSql\ZGD.MySqlToMsSql.csproj", "{C8C293CA-6706-4A13-9C6D-3FC2F06584AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{C591C1B9-2719-4AE2-A2C6-D389EF8F8826}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C591C1B9-2719-4AE2-A2C6-D389EF8F8826}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C591C1B9-2719-4AE2-A2C6-D389EF8F8826}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8C293CA-6706-4A13-9C6D-3FC2F06584AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8C293CA-6706-4A13-9C6D-3FC2F06584AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8C293CA-6706-4A13-9C6D-3FC2F06584AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8C293CA-6706-4A13-9C6D-3FC2F06584AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

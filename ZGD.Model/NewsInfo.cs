@@ -11,22 +11,19 @@ namespace ZGD.Model
         { }
         #region Model
         private int _id;
-        private int _zxtype;
         private string _title;
         private string _keyword;
         private string _description;
         private string _tags;
         private string _author;
-        private int _classid;
+        private string _classid;
         private string _classname;
-        private string _Address;
         private string _content;
         private string _imgurl;
         private int _isimage = 0;
         private int _click = 0;
         private int _istop = 0;
         private int _islock = 0;
-        private int _assid = 0;
         private DateTime _pubtime = DateTime.Now;
         /// <summary>
         /// 自增ID PK
@@ -37,36 +34,12 @@ namespace ZGD.Model
             get { return _id; }
         }
         /// <summary>
-        /// 1文章  2小区工地 House
-        /// </summary>
-        public int ZxType
-        {
-            set { _zxtype = value; }
-            get { return _zxtype; }
-        }
-        /// <summary>
-        /// 关联ID 对应ZxType
-        /// </summary>
-        public int AssId
-        {
-            set { _assid = value; }
-            get { return _assid; }
-        }
-        /// <summary>
         /// 新闻标题
         /// </summary>
         public string Title
         {
             set { _title = value; }
             get { return _title; }
-        }
-        /// <summary>
-        /// 地址 (在建工地)
-        /// </summary>
-        public string Address
-        {
-            set { _Address = value; }
-            get { return _Address; }
         }
         /// <summary>
         /// 
@@ -103,7 +76,7 @@ namespace ZGD.Model
         /// <summary>
         /// 所属类别
         /// </summary>
-        public int ClassId
+        public string ClassId
         {
             set { _classid = value; }
             get { return _classid; }
@@ -172,21 +145,10 @@ namespace ZGD.Model
             set { _pubtime = value; }
             get { return _pubtime; }
         }
-        public string UserName { get; set; }
-        public int DesignerId { get; set; }
-        public int fgID { get; set; }
-        public int hxID { get; set; }
-        public int ZxKind { get; set; }
-        /// <summary>
-        /// 装修进度
-        /// </summary>
-        public int gdStatus { get; set; }
-        public int Area { get; set; }
-        public decimal Price { get; set; }
-        /// <summary>
-        /// 所在区域
-        /// </summary>
-        public int AreaId { get; set; }
+        public string SubTitle { get; set; }
+        public string PubUnit { get; set; }
+        
+        public int UserId { get; set; }
         #endregion Model
 
     }
