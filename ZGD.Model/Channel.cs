@@ -91,6 +91,7 @@ namespace ZGD.Model
             set { _isdelete = value; }
             get { return _isdelete; }
         }
+        public string ImgUrl { get; set; }
         #endregion Model
 
     }

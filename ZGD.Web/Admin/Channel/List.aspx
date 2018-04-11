@@ -18,7 +18,7 @@
         <a href="List.aspx" class="back"><i></i><span>返回列表</span></a>
         <a href="../center.aspx" class="home"><i></i><span>首页</span></a>
         <i class="arrow"></i>
-        <a href="List.aspx"><span>版块列表</span></a>
+        <a href="List.aspx"><span><%=typeName %>列表</span></a>
     </div>
     <!--/导航栏-->
     <form id="form1" runat="server">
@@ -27,7 +27,7 @@
             <div id="floatHead" class="toolbar">
                 <div class="l-list">
                     <ul class="icon-list">
-                        <li><a class="add" href="Add.aspx?kindId=<%=kindId %>&pId=<%=pId %>"><i></i><span>新增</span></a></li>
+                        <li><a class="add" href="Add.aspx?kindId=<%=kindId %>&pId=<%=pId %>"><i></i><span>新增<%=typeName %></span></a></li>
                     </ul>
                 </div>
             </div>
@@ -39,10 +39,10 @@
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ltable">
                     <tr>
                         <th width="7%">编号</th>
-                        <th align="left">版块名称</th>
+                        <th align="left"><%=typeName %>名称</th>
                         <th width="90">优先级别</th>
-                        <th width="90">版块状态</th>
-                        <th width="150">管理操作</th>
+                        <th width="90">状态</th>
+                        <th width="150">操作</th>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate>

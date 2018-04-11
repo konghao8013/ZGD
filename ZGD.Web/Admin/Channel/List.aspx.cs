@@ -12,6 +12,7 @@ namespace ZGD.Web.Admin.Channel
     {
         public int kindId; //版块种类
         public int pId; //父类种类
+        public string typeName = string.Empty;
         ZGD.BLL.Channel bll = new ZGD.BLL.Channel();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,6 +21,7 @@ namespace ZGD.Web.Admin.Channel
             {
                 if (!Page.IsPostBack)
                 {
+                    typeName = TypeName(Request.Params["pId"]);
                     //数据绑定
                     BindData();
                 }

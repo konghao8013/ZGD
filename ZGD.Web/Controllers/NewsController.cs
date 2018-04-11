@@ -21,17 +21,17 @@ namespace ZGD.Web.Controllers
             {
                 url += "&key=" + key;
                 key = HttpUtility.UrlDecode(key);
-                where += " and (Title like '%" + key + "%' or Keyword like '%" + key + "%' or Tags like '%" + key + "%')";
+                where += " and (n.Title like '%" + key + "%' or n.Keyword like '%" + key + "%' or n.Tags like '%" + key + "%')";
             }
 
             int type = 0;
             if (!string.IsNullOrWhiteSpace(t) && t != "0")
             {
-                where += " and ClassId=" + t;
+                where += " and nc.ClassId=" + t;
                 url += "&t=" + t;
                 type = Convert.ToInt32(t);
             }
-            var result = new ZGD.BLL.NewsInfo().GetList(page, 10, where, " IsTop desc,PubTime desc", url, "/news", out pager);
+            var result = new ZGD.BLL.NewsInfo().GetList(page, 10, where, " n.IsTop desc,n.PubTime desc", url, "/news", out pager);
             DataSet ds = new ZGD.BLL.Channel().GetList(0, " ParentId=1 and IsDelete=0", " Id asc");
             ViewBag.ClassType = ds != null && ds.Tables[0].Rows.Count > 0 ? ds.Tables[0] : null;
             var cModel = new ZGD.BLL.Channel().GetModelById(type);
@@ -58,7 +58,7 @@ namespace ZGD.Web.Controllers
             //点击率
             bll.UpdateField(id, " Click=Click+1");
             Model.Channel cType = new BLL.Channel().GetModelById(cid);
-            news.ClassName = cType == null ? "家装攻略" : cType.Title;
+            news.ClassName = cType == null ? "" : cType.Title;
             
             //相关
             string aboutKey = string.IsNullOrEmpty(news.Keyword) ? "" : news.Keyword.TrimStart(',').TrimEnd(',').Split(',')[0];

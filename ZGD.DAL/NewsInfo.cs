@@ -414,16 +414,16 @@ namespace ZGD.DAL
             pageCount = 0;
             rowCount = 0;
             Pager pager = new Pager();
-            pager.tableName = " NewsInfo ";
-            pager.fieldsName = " * ";
+            pager.tableName = " NewsInfo n inner join NewsColumns nc on n.id=nc.NewsId ";
+            pager.fieldsName = " n.* ";
             if (!string.IsNullOrEmpty(sortName))
                 pager.orderField = sortName;
             else
-                pager.orderField = " IsTop desc,PubTime desc";
+                pager.orderField = " n.IsTop desc,n.PubTime desc";
             if (!string.IsNullOrEmpty(strWhere))
-                pager.sqlWhere = strWhere + " and IsLock=0";
+                pager.sqlWhere = strWhere + " and n.IsLock=0";
             else
-                pager.sqlWhere = " IsLock=0";
+                pager.sqlWhere = " n.IsLock=0";
             return pager.GetDataPage(pIdx, pageSize, out rowCount, out pageCount);
         }
 

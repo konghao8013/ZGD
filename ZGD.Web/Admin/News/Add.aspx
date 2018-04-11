@@ -120,7 +120,7 @@
                     <asp:TextBox ID="txtAuthor" runat="server" Text="致公党" CssClass="input normal" datatype="*2-10" nullmsg="请输入文章发布人" errormsg="发布人长度在2-10个字符间" sucmsg=" "></asp:TextBox>
                 </dd>
             </dl>
-            <dl style="display:none;">
+            <dl style="display: none;">
                 <dt>设置缩略图</dt>
                 <dd>
                     <div class="rule-single-checkbox">
@@ -133,13 +133,13 @@
                 <dd>
                     <asp:TextBox ID="txtImgUrl" runat="server" datatype="*0-250" nullmsg="请输入文章缩略图" CssClass="input normal upload-path" />
                     <div class="upload-box upload-img"></div>
-                    （图片尺寸400*273px）
+                    （图片尺寸400*280px）
                 </dd>
             </dl>
             <dl>
                 <dt>简要描述</dt>
                 <dd>
-                    <textarea id="txtDesc" runat="server" class="input normal" style="width: 400px;height: 80px"></textarea>
+                    <textarea id="txtDesc" runat="server" class="input normal" style="width: 400px; height: 80px"></textarea>
                 </dd>
             </dl>
             <dl>
@@ -151,11 +151,12 @@
             <dl>
                 <dt>文章属性</dt>
                 <dd>
-                    <asp:CheckBoxList ID="cblItem" runat="server"
-                        RepeatDirection="Horizontal" RepeatLayout="Flow">
-                        <asp:ListItem Value="1">锁定</asp:ListItem>
-                        <asp:ListItem Value="1">置顶</asp:ListItem>
-                    </asp:CheckBoxList>
+                    <div class="rule-multi-porp">
+                        <asp:CheckBoxList ID="cblItem" runat="server" RepeatLayout="Flow">
+                            <asp:ListItem Value="1">锁定</asp:ListItem>
+                            <asp:ListItem Value="1">置顶</asp:ListItem>
+                        </asp:CheckBoxList>
+                    </div>
                 </dd>
             </dl>
             <dl>

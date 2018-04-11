@@ -15,6 +15,8 @@ namespace ZGD.Web.Admin.Channel
         public int kindId; //种类
         public int pId;    //pId
         public int classId;    //ID
+        public string typeName = string.Empty;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //取得栏目传参
@@ -22,6 +24,8 @@ namespace ZGD.Web.Admin.Channel
                 && int.TryParse(Request.Params["pId"], out pId))
             {
                 model = bll.GetModelById(classId);
+                typeName = TypeName(Request.Params["pId"]);
+
                 if (!Page.IsPostBack)
                 {
                     //数据绑定
@@ -49,6 +53,15 @@ namespace ZGD.Web.Admin.Channel
             this.txtTitle.Text = model.Title;
             this.txtSortId.Text = model.SortId.ToString();
             cbIsDelete.Checked = model.IsDelete == 1 ? true : false;
+            if (Request.Params["pId"] == "21")
+            {
+                tr_img_panel.Style["display"] = "block";
+                imgPanel.InnerHtml = "<img src=\"" + model.ImgUrl + "\" />";
+            }
+            else
+            {
+                tr_img_panel.Style["display"] = "none";
+            }
         }
 
         //保存修改

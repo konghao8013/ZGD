@@ -69,9 +69,9 @@ namespace ZGD.DAL
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into Channel(");
-            strSql.Append("Title,ParentId,ClassList,ClassLayer,SortId,PageUrl,KindId,IsDelete)");
+            strSql.Append("Title,ParentId,ClassList,ClassLayer,SortId,PageUrl,KindId,IsDelete,ImgUrl)");
             strSql.Append(" values (");
-            strSql.Append("@Title,@ParentId,@ClassList,@ClassLayer,@SortId,@PageUrl,@KindId,@IsDelete)");
+            strSql.Append("@Title,@ParentId,@ClassList,@ClassLayer,@SortId,@PageUrl,@KindId,@IsDelete,@ImgUrl)");
             strSql.Append(";select @@IDENTITY");
             SqlParameter[] parameters = {
                     new SqlParameter("@Title", SqlDbType.NVarChar,50),
@@ -81,7 +81,8 @@ namespace ZGD.DAL
                     new SqlParameter("@SortId", SqlDbType.Int,4),
                     new SqlParameter("@PageUrl", SqlDbType.NVarChar,250),
                     new SqlParameter("@KindId", SqlDbType.Int,4),
-                    new SqlParameter("@IsDelete", SqlDbType.Int,4)};
+                    new SqlParameter("@IsDelete", SqlDbType.Int,4),
+                    new SqlParameter("@ImgUrl", SqlDbType.NVarChar)};
             parameters[0].Value = model.Title;
             parameters[1].Value = model.ParentId;
             parameters[2].Value = model.ClassList;
@@ -90,6 +91,7 @@ namespace ZGD.DAL
             parameters[5].Value = model.PageUrl;
             parameters[6].Value = model.KindId;
             parameters[7].Value = model.IsDelete;
+            parameters[8].Value = model.ImgUrl;
 
             object obj = DbHelperSQL.GetSingle(strSql.ToString(), parameters);
             if (obj == null)
@@ -115,7 +117,8 @@ namespace ZGD.DAL
             strSql.Append("SortId=@SortId,");
             strSql.Append("PageUrl=@PageUrl,");
             strSql.Append("KindId=@KindId,");
-            strSql.Append("IsDelete=@IsDelete");
+            strSql.Append("IsDelete=@IsDelete,");
+            strSql.Append("ImgUrl=@ImgUrl");
             strSql.Append(" where Id=@Id");
             SqlParameter[] parameters = {
                     new SqlParameter("@Title", SqlDbType.NVarChar,50),
@@ -126,7 +129,8 @@ namespace ZGD.DAL
                     new SqlParameter("@PageUrl", SqlDbType.NVarChar,250),
                     new SqlParameter("@KindId", SqlDbType.Int,4),
                     new SqlParameter("@Id", SqlDbType.Int,4),
-                    new SqlParameter("@IsDelete", SqlDbType.Int,4)};
+                    new SqlParameter("@IsDelete", SqlDbType.Int,4),
+                    new SqlParameter("@ImgUrl", SqlDbType.NVarChar)};
             parameters[0].Value = model.Title;
             parameters[1].Value = model.ParentId;
             parameters[2].Value = model.ClassList;
@@ -136,6 +140,7 @@ namespace ZGD.DAL
             parameters[6].Value = model.KindId;
             parameters[7].Value = model.Id;
             parameters[8].Value = model.IsDelete;
+            parameters[9].Value = model.ImgUrl;
 
             int rows = DbHelperSQL.ExecuteSql(strSql.ToString(), parameters);
             if (rows > 0)
@@ -196,7 +201,7 @@ namespace ZGD.DAL
         public ZGD.Model.Channel GetModelById(int Id)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select  top 1 Id,Title,ParentId,ClassList,ClassLayer,SortId,PageUrl,KindId,IsDelete from Channel ");
+            strSql.Append("select  top 1 Id,Title,ParentId,ClassList,ClassLayer,SortId,PageUrl,KindId,IsDelete,ImgUrl from Channel ");
             strSql.Append(" where Id=@Id");
             SqlParameter[] parameters = {
                     new SqlParameter("@Id", SqlDbType.Int, 4)
@@ -213,7 +218,7 @@ namespace ZGD.DAL
         public ZGD.Model.Channel GetModelByName(string name)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select  top 1 Id,Title,ParentId,ClassList,ClassLayer,SortId,PageUrl,KindId,IsDelete from Channel ");
+            strSql.Append("select  top 1 Id,Title,ParentId,ClassList,ClassLayer,SortId,PageUrl,KindId,IsDelete,ImgUrl from Channel ");
             strSql.Append(" where Title=@Title");
             SqlParameter[] parameters = {
                     new SqlParameter("@Title", SqlDbType.NVarChar, 50)
@@ -268,6 +273,10 @@ namespace ZGD.DAL
                 {
                     model.IsDelete = int.Parse(ds.Tables[0].Rows[0]["IsDelete"].ToString());
                 }
+                if (ds.Tables[0].Rows[0]["ImgUrl"] != null && ds.Tables[0].Rows[0]["ImgUrl"].ToString() != "")
+                {
+                    model.ImgUrl = ds.Tables[0].Rows[0]["ImgUrl"].ToString();
+                }
                 return model;
             }
             else
@@ -282,7 +291,7 @@ namespace ZGD.DAL
         public DataSet GetList(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select Id,Title,ParentId,ClassList,ClassLayer,SortId,PageUrl,KindId,IsDelete ");
+            strSql.Append("select Id,Title,ParentId,ClassList,ClassLayer,SortId,PageUrl,KindId,IsDelete,ImgUrl ");
             strSql.Append(" FROM Channel ");
             if (strWhere.Trim() != "")
             {
@@ -311,7 +320,7 @@ namespace ZGD.DAL
             {
                 strSql.Append(" top " + Top.ToString());
             }
-            strSql.Append(" Id,Title,ParentId,ClassList,ClassLayer,SortId,PageUrl,KindId,IsDelete ");
+            strSql.Append(" Id,Title,ParentId,ClassList,ClassLayer,SortId,PageUrl,KindId,IsDelete,ImgUrl ");
             strSql.Append(" FROM Channel ");
             if (strWhere.Trim() != "")
             {
@@ -331,7 +340,7 @@ namespace ZGD.DAL
         public DataTable GetList(int PId, int KId)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select Id,Title,ParentId,ClassList,ClassLayer,SortId,KindId,IsDelete from Channel");
+            strSql.Append("select Id,Title,ParentId,ClassList,ClassLayer,SortId,KindId,IsDelete,ImgUrl from Channel");
             strSql.Append(" where KindId=" + KId + " order by SortId asc,Id desc");
             DataSet ds = DbHelperSQL.Query(strSql.ToString());
             DataTable oldData = ds.Tables[0] as DataTable;
@@ -356,7 +365,7 @@ namespace ZGD.DAL
         public DataTable BindList(int PId, int KId)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select Id,Title,ParentId,ClassList,ClassLayer,SortId,KindId,IsDelete from Channel");
+            strSql.Append("select Id,Title,ParentId,ClassList,ClassLayer,SortId,KindId,IsDelete,ImgUrl from Channel");
             strSql.Append(" where KindId=" + KId + " and IsDelete=0 order by SortId asc,Id desc");
             DataSet ds = DbHelperSQL.Query(strSql.ToString());
             DataTable oldData = ds.Tables[0] as DataTable;
@@ -390,6 +399,7 @@ namespace ZGD.DAL
                 row["SortId"] = int.Parse(dr[i]["SortId"].ToString());
                 row["KindId"] = int.Parse(dr[i]["KindId"].ToString());
                 row["IsDelete"] = int.Parse(dr[i]["IsDelete"].ToString());
+                row["ImgUrl"] = dr[i]["ImgUrl"].ToString();
                 newData.Rows.Add(row);
                 //调用自身迭代
                 this.GetChannelChild(oldData, newData, int.Parse(dr[i]["Id"].ToString()), KId);

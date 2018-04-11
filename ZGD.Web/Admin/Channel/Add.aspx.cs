@@ -15,6 +15,7 @@ namespace ZGD.Web.Admin.Channel
         public int kindId; //栏目种类
         public int pId;    //栏目父ID
         public string pTitle = "顶级版块";
+        public string typeName = string.Empty;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,7 +24,17 @@ namespace ZGD.Web.Admin.Channel
             {
                 if (!string.IsNullOrWhiteSpace(Request.Params["pId"]))
                 {
+                    typeName = TypeName(Request.Params["pId"]);
                     pTitle = bll.GetChannelTitle(Request.Params["pId"]);
+
+                    if (Request.Params["pId"] == "21")
+                    {
+                        tr_img_panel.Style["display"] = "block";
+                    }
+                    else
+                    {
+                        tr_img_panel.Style["display"] = "none";
+                    }
                 }
                 else
                 {

@@ -313,6 +313,27 @@ namespace ZGD.BasePage
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static string TypeName(string id)
+        {
+            switch (id)
+            {
+                case "8":
+                    return "版块";
+                case "21":
+                    return "专题";
+                case "36":
+                    return "市委";
+                case "49":
+                    return "链接类型";
+            }
+            return "其他";
+        }
+
         #region
 
         //==================================以下为文件操作函数===================================
