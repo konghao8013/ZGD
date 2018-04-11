@@ -131,7 +131,7 @@
                     <asp:TextBox ID="txtAuthor" runat="server" Text="致公党" CssClass="input normal" datatype="*2-10" nullmsg="请输入文章发布人" errormsg="发布人长度在2-10个字符间" sucmsg=" "></asp:TextBox>
                 </dd>
             </dl>
-            <dl style="display: none;">
+            <dl style="display:none">
                 <dt>设置缩略图</dt>
                 <dd>
                     <div class="rule-single-checkbox">
@@ -145,7 +145,19 @@
                     <p id="imgPanel" runat="server"></p>
                     <asp:TextBox ID="txtImgUrl" runat="server" datatype="*0-250" nullmsg="请输入文章缩略图" CssClass="input normal upload-path" />
                     <div class="upload-box upload-img"></div>
-                    <span>（图片尺寸400*280px）</span>
+                    <span id="img_size">（<%=size %>）</span>
+                    <script>
+                        $(function () {
+                            $(".select-items li").click(function () {
+                                if ($(this).html() != "请选择专题") {
+                                    $("#img_size").html("图片尺寸400*100px");
+                                }
+                                else {
+                                    $("#img_size").html("图片尺寸400*280px");
+                                }
+                            })
+                        })
+                    </script>
                 </dd>
             </dl>
             <dl>

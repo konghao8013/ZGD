@@ -12,7 +12,7 @@ namespace ZGD.Web.Admin.News
     public partial class Edit : ZGD.BasePage.ManagePage
     {
         public int Id;
-        public string url = "List.aspx";
+        public string url = "List.aspx", size = "图片尺寸400*280px";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,6 +24,7 @@ namespace ZGD.Web.Admin.News
             if (!string.IsNullOrWhiteSpace(Request.Params["zt"]) && Convert.ToInt32(Request.Params["zt"]) > 0)
             {
                 url = "../Zt/List.aspx";
+                size = "图片尺寸400*100px";
             }
 
             if (!Page.IsPostBack)
@@ -49,9 +50,14 @@ namespace ZGD.Web.Admin.News
             txtTags.Text = model.Tags;
             txtDesc.Value = model.Description;
             txtAuthor.Text = model.Author;
+            txtImgUrl.Text = model.ImgUrl;
             BindChecked(ddlClassId, model.ClassId);
             BindZt(ddlZtId, model.ClassId);
-            txtImgUrl.Text = model.ImgUrl;
+
+            if (ddlZtId.SelectedIndex > 0)
+            {
+                size = "图片尺寸400*100px";
+            }
 
             if (!string.IsNullOrWhiteSpace(model.ImgUrl) && model.IsImage == 1)
             {

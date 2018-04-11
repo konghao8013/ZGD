@@ -11,13 +11,14 @@ namespace ZGD.Web.Admin.News
 {
     public partial class Add : ZGD.BasePage.ManagePage
     {
-        public string url = "List.aspx";
+        public string url = "List.aspx", size = "图片尺寸400*280px";
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(Request.Params["zt"]) && Convert.ToInt32(Request.Params["zt"]) > 0)
             {
                 url = "../Zt/List.aspx";
+                size = "图片尺寸400*100px";
             }
 
             if (!Page.IsPostBack)
