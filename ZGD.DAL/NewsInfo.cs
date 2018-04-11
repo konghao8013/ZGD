@@ -64,10 +64,25 @@ namespace ZGD.DAL
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("select count(*) as H ");
-            strSql.Append(" from NewsInfo n");
+            strSql.Append(" from NewsInfo n inner join NewsColumns nc on n.Id= nc.NewsId where nc.ClassId in (select id from Channel where ClassList like ',8,%')");
             if (strWhere.Trim() != "")
             {
-                strSql.Append(" where " + strWhere);
+                strSql.Append(strWhere);
+            }
+            return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
+        }
+
+        /// <summary>
+        /// 返回数据总数(分页用到)
+        /// </summary>
+        public int GetZtCount(string strWhere)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select count(*) as H ");
+            strSql.Append(" from NewsInfo n inner join NewsColumns nc on n.Id= nc.NewsId where nc.ClassId in (select id from Channel where ClassList like ',21,%')");
+            if (strWhere.Trim() != "")
+            {
+                strSql.Append(strWhere);
             }
             return Convert.ToInt32(DbHelperSQL.GetSingle(strSql.ToString()));
         }
@@ -375,15 +390,30 @@ namespace ZGD.DAL
         public DataSet GetList(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select * ");
-            strSql.Append(" FROM NewsInfo");
+            strSql.Append("select distinct n.id,n.Title,n.ClassId,n.Click,n.IsLock,n.PubTime,n.Author,n.ImgUrl,n.Click,n.IsTop,n.SubTitle from NewsInfo n inner join NewsColumns nc on n.Id= nc.NewsId where nc.ClassId in (select id from Channel where ClassList like ',8,%')");
             if (strWhere.Trim() != "")
             {
-                strSql.Append(" where " + strWhere);
+                strSql.Append(strWhere);
             }
-            strSql.Append(" order by Id desc");
+            strSql.Append(" order by n.Id desc");
             return DbHelperSQL.Query(strSql.ToString());
         }
+
+        /// <summary>
+        /// 获得数据列表
+        /// </summary>
+        public DataSet GetZtList(string strWhere)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select distinct n.id,n.Title,n.ClassId,n.Click,n.IsLock,n.PubTime,n.Author,n.ImgUrl,n.Click,n.IsTop,n.SubTitle from NewsInfo n inner join NewsColumns nc on n.Id= nc.NewsId where nc.ClassId in (select id from Channel where ClassList like ',21,%')");
+            if (strWhere.Trim() != "")
+            {
+                strSql.Append(strWhere);
+            }
+            strSql.Append(" order by n.Id desc");
+            return DbHelperSQL.Query(strSql.ToString());
+        }
+
 
         /// <summary>
         /// 获得前几行数据

@@ -12,6 +12,7 @@ namespace ZGD.Web.Admin.News
     public partial class Edit : ZGD.BasePage.ManagePage
     {
         public int Id;
+        public string url = "List.aspx";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,11 +21,16 @@ namespace ZGD.Web.Admin.News
                 JscriptMsg("您要修改的信息不存在或参数不正确。");
                 return;
             }
+            if (!string.IsNullOrWhiteSpace(Request.Params["zt"]) && Convert.ToInt32(Request.Params["zt"]) > 0)
+            {
+                url = "../Zt/List.aspx";
+            }
 
             if (!Page.IsPostBack)
             {
                 //绑定类别
                 ChannelTreeBind_Check(8, 1, this.ddlClassId);
+                ChannelTreeBind(21, "请选择专题", 2, this.ddlZtId);
                 //赋值
                 ShowInfo(this.Id);
             }
@@ -44,6 +50,7 @@ namespace ZGD.Web.Admin.News
             txtDesc.Value = model.Description;
             txtAuthor.Text = model.Author;
             BindChecked(ddlClassId, model.ClassId);
+            BindZt(ddlZtId, model.ClassId);
             txtImgUrl.Text = model.ImgUrl;
 
             if (!string.IsNullOrWhiteSpace(model.ImgUrl) && model.IsImage == 1)
@@ -110,6 +117,11 @@ namespace ZGD.Web.Admin.News
             model.Description = txtDesc.Value;
             model.Author = txtAuthor.Text.Trim();
             model.ClassId = GetChecked(ddlClassId);
+            if (ddlZtId.SelectedIndex > 0)
+            {
+                model.ClassId = string.IsNullOrWhiteSpace(model.ClassId) ? ddlZtId.SelectedValue : model.ClassId + "," + ddlZtId.SelectedValue;
+            }
+
             model.ImgUrl = txtImgUrl.Text.Trim();
             model.Content = ZGD.Common.StringHandler.EnCode(Request["kEditor"].ToString());
             model.Click = int.Parse(txtClick.Text.Trim());
@@ -128,14 +140,14 @@ namespace ZGD.Web.Admin.News
             bll.Update(model);
 
             //保存日志
-            SaveLogs("[新闻模块]编辑新闻：" + model.Title);
-            JscriptMsg("保存成功", "List.aspx");
+            SaveLogs("[文章模块]编辑文章：" + model.Title);
+            JscriptMsg("保存成功", url);
         }
         #endregion
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            Response.Redirect("List.aspx");
+            Response.Redirect(url);
         }
 
     }

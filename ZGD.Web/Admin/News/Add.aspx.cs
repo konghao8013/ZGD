@@ -11,12 +11,20 @@ namespace ZGD.Web.Admin.News
 {
     public partial class Add : ZGD.BasePage.ManagePage
     {
+        public string url = "List.aspx";
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!string.IsNullOrWhiteSpace(Request.Params["zt"]) && Convert.ToInt32(Request.Params["zt"]) > 0)
+            {
+                url = "../Zt/List.aspx";
+            }
+
             if (!Page.IsPostBack)
             {
                 //绑定类别
                 ChannelTreeBind_Check(8, 1, this.ddlClassId);
+                ChannelTreeBind(21, "请选择专题", 2, this.ddlZtId);
             }
         }
 
@@ -58,6 +66,11 @@ namespace ZGD.Web.Admin.News
             model.Description = txtDesc.Value;
             model.Author = this.txtAuthor.Text;
             model.ClassId = GetChecked(ddlClassId);
+            if (ddlZtId.SelectedIndex > 0)
+            {
+                model.ClassId = string.IsNullOrWhiteSpace(model.ClassId) ? ddlZtId.SelectedValue : model.ClassId + "," + ddlZtId.SelectedValue;
+            }
+
             model.UserId = Convert.ToInt32(Session["AdminNo"]);
 
             model.IsImage = 0;
@@ -87,7 +100,7 @@ namespace ZGD.Web.Admin.News
             if (ReId > 0)
             {
                 //保存日志
-                SaveLogs("[新闻模块]添加新闻：" + model.Title);
+                SaveLogs("[文章模块]添加文章：" + model.Title);
                 JscriptMsg("内容设置成功", "List.aspx");
             }
             else
@@ -108,6 +121,7 @@ namespace ZGD.Web.Admin.News
             this.txtDesc.Value = "";
             this.txtTags.Text = "";
             ddlClassId.SelectedIndex = -1;
+            ddlZtId.SelectedIndex = 0;
         }
 
     }

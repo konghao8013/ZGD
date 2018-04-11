@@ -61,10 +61,10 @@
 <body class="mainbody">
     <!--导航栏-->
     <div class="location">
-        <a href="List.aspx" class="back"><i></i><span>返回列表</span></a>
+        <a href="<%=url %>" class="back"><i></i><span>返回列表</span></a>
         <a href="../center.aspx" class="home"><i></i><span>首页</span></a>
         <i class="arrow"></i>
-        <a href="List.aspx"><span>文章列表</span></a>
+        <a href="<%=url %>"><span>文章列表</span></a>
         <i class="arrow"></i>
         <span>编辑文章</span>
     </div>
@@ -99,34 +99,29 @@
                 <dt>文章关键词</dt>
                 <dd>
                     <asp:TextBox ID="txtKeyword" runat="server" CssClass="input normal" datatype="*0-120" nullmsg="请输入文章关键词" errormsg="标签长度在2-100个字符间" sucmsg=" "></asp:TextBox>
-                    <span>多个关键词，请用英文输入法中的逗号“,”分隔。</span>
+                    <span>多关键词，请用英文输入法中的逗号“,”分隔。</span>
                 </dd>
             </dl>
             <dl>
                 <dt>文章标签</dt>
                 <dd>
                     <asp:TextBox ID="txtTags" runat="server" CssClass="input normal" datatype="*0-120" nullmsg="请输入文章标签" errormsg="标签长度在2-100个字符间" sucmsg=" "></asp:TextBox>
-                    <span>多个标签，请用英文输入法中的逗号“,”分隔。</span>
+                    <span>多标签，请用英文输入法中的逗号“,”分隔。</span>
                 </dd>
             </dl>
-            <%--<dl>
-                <dt>装修阶段</dt>
-                <dd>
-                    <div class="rule-single-select">
-                        <asp:DropDownList ID="ddlZxType" runat="server" datatype="*" nullmsg="请选择装修阶段" sucmsg=" ">
-                            <asp:ListItem Value="0">请选择装修阶段</asp:ListItem>
-                            <asp:ListItem Value="1">装修准备</asp:ListItem>
-                            <asp:ListItem Value="2">装修进行中</asp:ListItem>
-                            <asp:ListItem Value="3">装修完成</asp:ListItem>
-                        </asp:DropDownList>
-                    </div>
-                </dd>
-            </dl>--%>
             <dl>
                 <dt>所属版块</dt>
                 <dd>
                     <div class="rule-multi-porp">
                         <asp:CheckBoxList ID="ddlClassId" runat="server" Width="600" RepeatLayout="Flow"></asp:CheckBoxList>
+                    </div>
+                </dd>
+            </dl>
+            <dl>
+                <dt>所属专题</dt>
+                <dd>
+                    <div class="rule-single-select">
+                        <asp:DropDownList ID="ddlZtId" runat="server"></asp:DropDownList>
                     </div>
                 </dd>
             </dl>
@@ -150,7 +145,7 @@
                     <p id="imgPanel" runat="server"></p>
                     <asp:TextBox ID="txtImgUrl" runat="server" datatype="*0-250" nullmsg="请输入文章缩略图" CssClass="input normal upload-path" />
                     <div class="upload-box upload-img"></div>
-                    （图片尺寸400*280px）
+                    <span>（图片尺寸400*280px）</span>
                 </dd>
             </dl>
             <dl>

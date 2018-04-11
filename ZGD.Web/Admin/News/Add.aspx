@@ -58,10 +58,10 @@
 <body class="mainbody">
     <!--导航栏-->
     <div class="location">
-        <a href="List.aspx" class="back"><i></i><span>返回列表</span></a>
+        <a href="<%=url %>" class="back"><i></i><span>返回列表</span></a>
         <a href="../center.aspx" class="home"><i></i><span>首页</span></a>
         <i class="arrow"></i>
-        <a href="List.aspx"><span>文章列表</span></a>
+        <a href="<%=url %>"><span>文章列表</span></a>
         <i class="arrow"></i>
         <span>发布文章</span>
     </div>
@@ -115,6 +115,14 @@
                 </dd>
             </dl>
             <dl>
+                <dt>所属专题</dt>
+                <dd>
+                    <div class="rule-single-select">
+                        <asp:DropDownList ID="ddlZtId" runat="server"></asp:DropDownList>
+                    </div>
+                </dd>
+            </dl>
+            <dl>
                 <dt>发布人</dt>
                 <dd>
                     <asp:TextBox ID="txtAuthor" runat="server" Text="致公党" CssClass="input normal" datatype="*2-10" nullmsg="请输入文章发布人" errormsg="发布人长度在2-10个字符间" sucmsg=" "></asp:TextBox>
@@ -133,7 +141,7 @@
                 <dd>
                     <asp:TextBox ID="txtImgUrl" runat="server" datatype="*0-250" nullmsg="请输入文章缩略图" CssClass="input normal upload-path" />
                     <div class="upload-box upload-img"></div>
-                    （图片尺寸400*280px）
+                    <span>（图片尺寸400*280px）</span>
                 </dd>
             </dl>
             <dl>

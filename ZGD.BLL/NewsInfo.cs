@@ -50,6 +50,14 @@ namespace ZGD.BLL
         }
 
         /// <summary>
+        /// 返回数据总数(分页用到)
+        /// </summary>
+        public int GetZtCount(string strWhere)
+        {
+            return dal.GetZtCount(strWhere);
+        }
+
+        /// <summary>
         /// 返回总浏览量
         /// </summary>
         public int GetSumClick(string strWhere)
@@ -168,7 +176,15 @@ namespace ZGD.BLL
         {
             return dal.GetList(strWhere);
         }
-        
+
+        /// <summary>
+        /// 获得数据列表
+        /// </summary>
+        public DataSet GetZtList(string strWhere)
+        {
+            return dal.GetZtList(strWhere);
+        }
+
         /// <summary>
         /// 获得前几行数据
         /// </summary>

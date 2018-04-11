@@ -20,7 +20,7 @@ namespace ZGD.Web.Admin.News
                 //数据绑定
                 RptBind();
                 //绑定类别
-                ChannelTreeBind(1, "所有类别", 0, this.ddlClassId);
+                ChannelTreeBind(8, "请选择版块", 1, this.ddlClassId);
             }
         }
 
@@ -43,9 +43,9 @@ namespace ZGD.Web.Admin.News
             pds.AllowPaging = true;
             pds.CurrentPageIndex = AspNetPager1.CurrentPageIndex - 1;
             pds.PageSize = AspNetPager1.PageSize;
+
             //获得总条数
-            pcount = bll.GetCount(strWhere);
-            if (this.pcount > 0)
+            if (dv.Count > 0)
             {
                 this.lbtnDel.Enabled = true;
             }
@@ -122,11 +122,11 @@ namespace ZGD.Web.Admin.News
             string strsql = "";
             if (SupplierName != "")
             {
-                strsql = " and ClassId='" + SupplierName + "'";
+                strsql = " and nc.ClassId='" + SupplierName + "'";
             }
             if (strsql != "")
             {
-                Session["strWhereProduct_News"] = " (1=1) " + strsql;
+                Session["strWhereProduct_News"] = strsql;
             }
             else
             {
@@ -147,11 +147,11 @@ namespace ZGD.Web.Admin.News
                 case "IsTop":
                     if (SupplierName != "")
                     {
-                        strsql += (" and IsTop=1");
+                        strsql += (" and n.IsTop=1");
                     }
                     if (strsql != "")
                     {
-                        Session["strWhereProduct_News"] = " (1=1) " + strsql;
+                        Session["strWhereProduct_News"] = strsql;
                     }
                     else
                     {
@@ -161,11 +161,11 @@ namespace ZGD.Web.Admin.News
                 case "IsLock":
                     if (SupplierName != "")
                     {
-                        strsql += (" and IsLock=1");
+                        strsql += (" and n.IsLock=1");
                     }
                     if (strsql != "")
                     {
-                        Session["strWhereProduct_News"] = " (1=1) " + strsql;
+                        Session["strWhereProduct_News"] = strsql;
                     }
                     else
                     {
@@ -175,7 +175,7 @@ namespace ZGD.Web.Admin.News
                 default:
                     if (strsql != "")
                     {
-                        Session["strWhereProduct_News"] = " (1=1) " + strsql;
+                        Session["strWhereProduct_News"] = strsql;
                     }
                     else
                     {
@@ -195,11 +195,11 @@ namespace ZGD.Web.Admin.News
             string strsql = "";
             if (SupplierName != "")
             {
-                strsql += "and Title like '%" + SupplierName + "%'";
+                strsql += " and n.Title like '%" + SupplierName + "%'";
             }
             if (strsql != "")
             {
-                Session["strWhereProduct_News"] = " (1=1) " + strsql;
+                Session["strWhereProduct_News"] = strsql;
             }
             else
             {

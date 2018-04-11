@@ -113,12 +113,10 @@
     <Content Include="Admin\Contents\content.aspx" />
     <Content Include="Admin\Js\mUpload\update.swf" />
     <Content Include="Admin\Js\mUpload\upload.htm" />
+    <Content Include="Admin\Zt\List.aspx" />
     <Content Include="Admin\skin\default\loading.gif" />
     <Content Include="Admin\skin\default\upfilebg.gif" />
     <Content Include="Admin\skin\default\upfilebg2.gif" />
-    <Content Include="Admin\ST\Add.aspx" />
-    <Content Include="Admin\ST\Edit.aspx" />
-    <Content Include="Admin\ST\List.aspx" />
     <Content Include="Admin\Photos\Add.aspx" />
     <Content Include="Admin\Photos\Edit.aspx" />
     <Content Include="Admin\Photos\List.aspx" />
@@ -745,25 +743,11 @@
     <Compile Include="Admin\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ST\Add.aspx.cs">
-      <DependentUpon>Add.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ST\Add.aspx.designer.cs">
-      <DependentUpon>Add.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ST\Edit.aspx.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ST\Edit.aspx.designer.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ST\List.aspx.cs">
+    <Compile Include="Admin\Zt\List.aspx.cs">
       <DependentUpon>List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\ST\List.aspx.designer.cs">
+    <Compile Include="Admin\Zt\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Links\Add.aspx.cs">

@@ -314,6 +314,34 @@ namespace ZGD.BasePage
         }
 
         /// <summary>
+        /// 绑定专题
+        /// </summary>
+        /// <param name="ddl">CheckBoxList</param>
+        /// <param name="value"></param>
+        /// <param name="separator">分割符号</param>
+        /// <returns></returns>
+        protected void BindZt(DropDownList ddl, string value, char separator = ',')
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return;
+            }
+
+            string[] selval = value.Split(separator);
+            foreach (ListItem check in ddl.Items)
+            {
+                foreach (string item in selval)
+                {
+                    if (check.Value == item)
+                    {
+                        check.Selected = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
