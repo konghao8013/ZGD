@@ -5,21 +5,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>公司简介</title>
-    <link href="../skin/default/style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="/js/kindeditor-4.1.7/themes/default/default.css" />
-    <link rel="stylesheet" href="/js/kindeditor-4.1.7/plugins/code/prettify.css" />
+    <link rel="stylesheet" href="../skin/default/style.css" type="text/css" />
+    <link rel="stylesheet" href="../js/kindeditor-4.1.7/themes/default/default.css" />
+    <link rel="stylesheet" href="../js/kindeditor-4.1.7/plugins/code/prettify.css" />
+
     <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../js/jquery/Validform_v5.3.2_min.js"></script>
     <script type="text/javascript" src="../js/lhgdialog/lhgdialog.js?skin=idialog"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
-    <script type="text/javascript" src="/js/kindeditor-4.1.7/kindeditor-min.js"></script>
-    <script type="text/javascript" src="/js/kindeditor-4.1.7/lang/zh_CN.js"></script>
-    <script type="text/javascript" src="/js/kindeditor-4.1.7/plugins/code/prettify.js"></script>
+    <script type="text/javascript" src="../js/kindeditor-4.1.7/kindeditor-min.js"></script>
+    <script type="text/javascript" src="../js/kindeditor-4.1.7/lang/zh_CN.js"></script>
+    <script type="text/javascript" src="../js/kindeditor-4.1.7/plugins/code/prettify.js"></script>
 
     <script type="text/javascript">
         KindEditor.ready(function (K) {
             var editor1 = K.create('#kEditor', {
-                cssPath: '/js/kindeditor-4.1.7/plugins/code/prettify.css',
                 uploadJson: '/Tools/editer_upfiles.ashx',
                 fileManagerJson: '/Tools/file_manager.ashx',
                 allowFileManager: true,
@@ -87,7 +87,7 @@
             <dl>
                 <dt>内容类型</dt>
                 <dd>
-                    <textarea id="kEditor" cols="100" rows="8" style="width: 700px; height: 350px; visibility: hidden;" runat="server"></textarea>
+                    <textarea id="kEditor" cols="100" rows="8" style="width: 90%; height: 400px; visibility: hidden;" runat="server"></textarea>
                 </dd>
             </dl>
         </div>

@@ -203,6 +203,35 @@ namespace ZGD.BasePage
             }
         }
 
+        /// <summary>
+        /// 绑定类别CheckBoxList控制
+        /// </summary>
+        /// <param name="parentId">父类ID</param>
+        /// <param name="kindId">大类ID</param>
+        /// <param name="ddl">要绑定的DropDownList控件</param>
+        protected void ChannelTreeBind_Check(int parentId, int kindId, CheckBoxList ddl)
+        {
+            ZGD.BLL.Channel cbll = new ZGD.BLL.Channel();
+            DataTable dt = cbll.BindList(parentId, kindId);
+
+            ddl.Items.Clear();
+            foreach (DataRow dr in dt.Rows)
+            {
+                string Id = dr["Id"].ToString();
+                int ClassLayer = int.Parse(dr["ClassLayer"].ToString());
+                string Title = dr["Title"].ToString().Trim();
+
+                if (ClassLayer == 1)
+                {
+                    ddl.Items.Add(new ListItem(Title, Id));
+                }
+                else
+                {
+                    ddl.Items.Add(new ListItem(Title, Id));
+                }
+            }
+        }
+
 
         /// <summary>
         /// 绑定类别DropDownList控制 (value为标题)
@@ -233,6 +262,53 @@ namespace ZGD.BasePage
                     Title = "├ " + Title;
                     Title = Utils.StringOfChar(ClassLayer - 1, "　") + Title;
                     ddl.Items.Add(new ListItem(Title, Title));
+                }
+            }
+        }
+
+        /// <summary>
+        /// 得到CheckBoxList中选中了的值
+        /// </summary>
+        /// <param name="checkList">CheckBoxList</param>
+        /// <param name="separator">分割符号</param>
+        /// <returns></returns>
+        protected string GetChecked(CheckBoxList checkList, char separator = ',')
+        {
+            string selval = "";
+            for (int i = 0; i < checkList.Items.Count; i++)
+            {
+                if (checkList.Items[i].Selected)
+                {
+                    selval += checkList.Items[i].Value + separator;
+                }
+            }
+            return string.IsNullOrWhiteSpace(selval) ? "" : selval.TrimEnd(separator);
+        }
+
+        /// <summary>
+        /// 绑定CheckBoxList中选中了的值
+        /// </summary>
+        /// <param name="checkList">CheckBoxList</param>
+        /// <param name="value"></param>
+        /// <param name="separator">分割符号</param>
+        /// <returns></returns>
+        protected void BindChecked(CheckBoxList checkList, string value, char separator = ',')
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return;
+            }
+
+            string[] selval = value.Split(separator);
+            foreach (ListItem check in checkList.Items)
+            {
+                foreach (string item in selval)
+                {
+                    if (check.Value == item)
+                    {
+                        check.Selected = true;
+                        break;
+                    }
                 }
             }
         }

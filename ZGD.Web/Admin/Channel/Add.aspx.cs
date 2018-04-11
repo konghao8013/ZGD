@@ -21,9 +21,9 @@ namespace ZGD.Web.Admin.Channel
             //取得栏目传参
             if (int.TryParse(Request.Params["kindId"], out kindId))
             {
-                if (int.TryParse(Request.Params["pId"], out pId))
+                if (!string.IsNullOrWhiteSpace(Request.Params["pId"]))
                 {
-                    pTitle = bll.GetChannelTitle(pId);
+                    pTitle = bll.GetChannelTitle(Request.Params["pId"]);
                 }
                 else
                 {

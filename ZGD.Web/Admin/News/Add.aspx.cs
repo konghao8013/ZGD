@@ -16,7 +16,7 @@ namespace ZGD.Web.Admin.News
             if (!Page.IsPostBack)
             {
                 //绑定类别
-                ChannelTreeBind(8, "新闻版块", 1, this.ddlClassId);
+                ChannelTreeBind_Check(8, 1, this.ddlClassId);
             }
         }
 
@@ -28,15 +28,7 @@ namespace ZGD.Web.Admin.News
             {
                 strErr += "标题不能为空！\\n";
             }
-            if (this.txtKeyword.Text.Trim().Length == 0)
-            {
-                strErr += "关键词不能为空！\\n";
-            }
-            if (this.txtTags.Text.Trim().Length == 0)
-            {
-                strErr += "标签不能为空！\\n";
-            }
-            if (this.ddlClassId.SelectedIndex == 0)
+            if (this.ddlClassId.SelectedIndex == -1)
             {
                 strErr += "请选择所属版块！\\n";
             }
@@ -60,11 +52,14 @@ namespace ZGD.Web.Admin.News
 
             ZGD.Model.NewsInfo model = new ZGD.Model.NewsInfo();
             model.Title = this.txtTitle.Text;
+            model.SubTitle = this.txtSubTitle.Text;
             model.Keyword = this.txtKeyword.Text;
             model.Tags = this.txtTags.Text;
             model.Description = txtDesc.Value;
             model.Author = this.txtAuthor.Text;
-            model.ClassId = ClassId.Value;
+            model.ClassId = GetChecked(ddlClassId);
+            model.UserId = Convert.ToInt32(Session["AdminNo"]);
+
             model.IsImage = 0;
 
             if (cbIsImage.Checked == true)
@@ -106,14 +101,14 @@ namespace ZGD.Web.Admin.News
         {
             txtClick.Text = "0";
             this.txtTitle.Text = "";
+            this.txtSubTitle.Text = "";
             this.txtKeyword.Text = "";
             this.txtAuthor.Text = "";
             this.txtImgUrl.Text = "";
             this.txtDesc.Value = "";
-            ddlClassId.SelectedIndex = 0;
-            this.ClassId.Value = "";
             this.txtTags.Text = "";
-            //ddlZxType.SelectedIndex = 0;
+            ddlClassId.SelectedIndex = -1;
         }
+
     }
 }

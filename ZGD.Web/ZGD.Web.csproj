@@ -104,7 +104,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\Banner\WapList.aspx" />
     <Content Include="Admin\Banner\AdList.aspx" />
     <Content Include="Admin\Banner\List.aspx" />
     <Content Include="Admin\center.aspx" />
@@ -670,13 +669,6 @@
     <None Include="Web References\SmsLinkWs\Service.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\Banner\WapList.aspx.cs">
-      <DependentUpon>WapList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Banner\WapList.aspx.designer.cs">
-      <DependentUpon>WapList.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\Banner\AdList.aspx.cs">
       <DependentUpon>AdList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

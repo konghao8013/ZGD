@@ -40,7 +40,7 @@ namespace ZGD.Web.Admin.Channel
             this.lblPid.Text = model.ParentId.ToString();
             if (model.ParentId > 0)
             {
-                this.lblPname.Text = bll.GetChannelTitle(model.ParentId);
+                this.lblPname.Text = bll.GetChannelTitle(model.ParentId.ToString());
             }
             else
             {

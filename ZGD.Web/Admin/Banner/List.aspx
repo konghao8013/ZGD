@@ -179,7 +179,7 @@
                         <th align="left">标题</th>
                         <th width="15%">发布时间</th>
                         <th>排序号</th>
-                        <th>禁用</th>
+                        <th>状态</th>
                         <th width="10%">操作</th>
                     </tr>
             </HeaderTemplate>

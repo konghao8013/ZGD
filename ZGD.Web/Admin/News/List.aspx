@@ -65,7 +65,8 @@
                         <th align="left">标题</th>
                         <th width="13%">所属版块</th>
                         <th width="16%">发布时间</th>
-                        <th width="6%">属性</th>
+                        <th width="6%">状态</th>
+                        <th width="6%">置顶</th>
                         <th width="10%">操作</th>
                     </tr>
             </HeaderTemplate>
@@ -76,10 +77,12 @@
                     <td align="center">
                         <asp:Label ID="lb_id" runat="server" Text='<%#Eval("Id")%>'></asp:Label></td>
                     <td align="left"><a href="/News/<%#Eval("Id")%>" target="_blank"><%#Eval("Title")%></a></td>
-                    <td align="center"><%# new ZGD.BLL.Channel().GetChannelTitle(Convert.ToInt32(Eval("ClassId")))%></td>
+                    <td align="center"><%# new ZGD.BLL.Channel().GetChannelTitle(Eval("ClassId").ToString())%></td>
                     <td align="center"><%#string.Format("{0:g}", Eval("PubTime"))%></td>
                     <td align="center">
-                        <asp:ImageButton ID="ibtnLock" CommandName="ibtnLock" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsLock")) == 1 ? "../Images/correct.gif" : "../Images/disable.gif"%>' ToolTip='<%# Convert.ToInt32(Eval("IsLock")) == 1 ? "取消锁定" : "设置锁定"%>' />
+                        <asp:ImageButton ID="ibtnLock" CommandName="ibtnLock" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsLock")) == 0 ? "../Images/correct.gif" : "../Images/disable.gif"%>' ToolTip='<%# Convert.ToInt32(Eval("IsLock")) == 1 ? "取消锁定" : "设置锁定"%>' />
+                    </td>
+                    <td align="center">
                         <asp:ImageButton ID="ibtnTop" CommandName="ibtnTop" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "../Images/ico-1.png" : "../Images/ico-1_.png"%>' ToolTip='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "取消置顶" : "设置置顶"%>' />
                     </td>
 
@@ -98,10 +101,10 @@
                     CustomInfoHTML="第&lt;font color='red'&gt;&lt;b&gt;%CurrentPageIndex%&lt;/b&gt;&lt;/font&gt;页 共%PageCount%&nbsp;页 %StartRecordIndex%-%EndRecordIndex%"
                     CustomInfoTextAlign="Center" FirstPageText="首页" HorizontalAlign="Center"
                     InputBoxStyle="width:19px" LastPageText="尾页" meta:resourceKey="AspNetPager1"
-                    NextPageText="下一页" PageSize="10"
+                    NextPageText="下一页" PageSize="20"
                     PrevPageText="前一页" ShowCustomInfoSection="Left" ShowInputBox="Always"
                     ShowNavigationToolTip="True" Style="font-size: 12px"
-                    SubmitButtonClass="formfield" SubmitButtonText="GO" Width="700px"
+                    SubmitButtonClass="formfield" SubmitButtonText="GO" Width="820px"
                     OnPageChanging="AspNetPager1_PageChanging" PageIndexBoxType="TextBox"
                     ShowPageIndexBox="Never" AlwaysShow="True">
                 </webdiyer:AspNetPager>

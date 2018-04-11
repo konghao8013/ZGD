@@ -34,7 +34,7 @@ namespace ZGD.BLL
         /// <summary>
         /// 返回栏目名称
         /// </summary>
-        public string GetChannelTitle(int classId)
+        public string GetChannelTitle(string classId)
         {
             return dal.GetChannelTitle(classId);
         }

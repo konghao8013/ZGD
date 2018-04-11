@@ -40,6 +40,15 @@ namespace ZGD.Web.Admin.News {
         protected global::System.Web.UI.WebControls.TextBox txtTitle;
         
         /// <summary>
+        /// txtSubTitle 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSubTitle;
+        
+        /// <summary>
         /// txtKeyword 控件。
         /// </summary>
         /// <remarks>
@@ -64,16 +73,7 @@ namespace ZGD.Web.Admin.News {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlClassId;
-        
-        /// <summary>
-        /// ClassId 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden ClassId;
+        protected global::System.Web.UI.WebControls.CheckBoxList ddlClassId;
         
         /// <summary>
         /// txtAuthor 控件。
