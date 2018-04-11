@@ -14,7 +14,7 @@ namespace ZGD.Web.Admin.Channel
         private ZGD.Model.Channel model = new ZGD.Model.Channel();
         public int kindId; //栏目种类
         public int pId;    //栏目父ID
-        public string pTitle = "顶级类别";
+        public string pTitle = "顶级版块";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,15 +31,10 @@ namespace ZGD.Web.Admin.Channel
                 }
                 lblPid.Text = pId.ToString();
                 lblPname.Text = pTitle;
-                if (kindId == 3)
-                {
-                    cacl_panel.Style["display"] = "block";
-                    cacl_panel2.Style["display"] = "block";
-                }
             }
             else
             {
-                JscriptMsg("出现错误！您要增加类别的种类不明确或参数不正确。");
+                JscriptMsg("出现错误！您要增加版块的种类不明确或参数不正确。");
             }
         }
 
@@ -56,8 +51,7 @@ namespace ZGD.Web.Admin.Channel
             model.SortId = int.Parse(this.txtSortId.Text.Trim());
             model.KindId = this.kindId;
             model.IsDelete = cbIsDelete.Checked ? 1 : 0;
-            model.CaclNum = string.IsNullOrWhiteSpace(txtCaclNum.Text) ? 0 : Convert.ToDecimal(txtCaclNum.Text);
-            model.CaclNum2 = string.IsNullOrWhiteSpace(txtCaclNum2.Text) ? 0 : Convert.ToDecimal(txtCaclNum2.Text);
+
             //添加栏目
             classId = bll.Add(model);
             //修改栏目的下属栏目ID列表
@@ -82,7 +76,7 @@ namespace ZGD.Web.Admin.Channel
             model.ClassLayer = classLayer;
             bll.Update(model);
             //保存日志
-            SaveLogs("[栏目类别]添加类别：" + model.Title);
+            SaveLogs("[栏目版块]添加版块：" + model.Title);
             JscriptMsg("保存成功", "List.aspx?kindId=" + this.kindId + "&pId=" + pId);
         }
     }

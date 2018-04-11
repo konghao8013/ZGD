@@ -16,7 +16,7 @@ namespace ZGD.Web.Admin.News
             if (!Page.IsPostBack)
             {
                 //绑定类别
-                ChannelTreeBind(1, "新闻类型", 0, this.ddlClassId);
+                ChannelTreeBind(8, "新闻版块", 1, this.ddlClassId);
             }
         }
 
@@ -35,6 +35,10 @@ namespace ZGD.Web.Admin.News
             if (this.txtTags.Text.Trim().Length == 0)
             {
                 strErr += "标签不能为空！\\n";
+            }
+            if (this.ddlClassId.SelectedIndex == 0)
+            {
+                strErr += "请选择所属版块！\\n";
             }
             if (this.txtAuthor.Text.Trim().Length == 0)
             {
@@ -60,10 +64,9 @@ namespace ZGD.Web.Admin.News
             model.Tags = this.txtTags.Text;
             model.Description = txtDesc.Value;
             model.Author = this.txtAuthor.Text;
-            model.ZxType = 1;
-            model.ClassId = ddlClassId.SelectedIndex > 0 ? int.Parse(ddlClassId.SelectedValue) : 0;
+            model.ClassId = ClassId.Value;
             model.IsImage = 0;
-            model.AssId = 0;
+
             if (cbIsImage.Checked == true)
             {
                 model.IsImage = 1;
@@ -108,6 +111,7 @@ namespace ZGD.Web.Admin.News
             this.txtImgUrl.Text = "";
             this.txtDesc.Value = "";
             ddlClassId.SelectedIndex = 0;
+            this.ClassId.Value = "";
             this.txtTags.Text = "";
             //ddlZxType.SelectedIndex = 0;
         }

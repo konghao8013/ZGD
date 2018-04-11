@@ -6,7 +6,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>类型管理</title>
+    <title>版块管理</title>
     <link href="../skin/default/style.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
@@ -18,7 +18,7 @@
         <a href="List.aspx" class="back"><i></i><span>返回列表</span></a>
         <a href="../center.aspx" class="home"><i></i><span>首页</span></a>
         <i class="arrow"></i>
-        <a href="List.aspx"><span>类型列表</span></a>
+        <a href="List.aspx"><span>版块列表</span></a>
     </div>
     <!--/导航栏-->
     <form id="form1" runat="server">
@@ -39,9 +39,9 @@
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ltable">
                     <tr>
                         <th width="7%">编号</th>
-                        <th align="left">类型名称</th>
+                        <th align="left">版块名称</th>
                         <th width="90">优先级别</th>
-                        <th width="90">是否禁用</th>
+                        <th width="90">版块状态</th>
                         <th width="150">管理操作</th>
                     </tr>
             </HeaderTemplate>
@@ -62,7 +62,7 @@
                     <td align="center">
                         <%--<span><a href="Add.aspx?kindId=<%=kindId %>&classId=<%# Eval("Id") %>">添加子类</a></span>--%>
                         <span><a href="Edit.aspx?kindId=<%=kindId %>&pId=<%# Eval("ParentId") %>&classId=<%# Eval("Id") %>" style='<%#Eval("Id").ToString() != "38" || Eval("ParentId").ToString() != "0" ? "" : "display:none;" %>'>修改</a></span>
-                        <%--  <span><asp:LinkButton ID="lbDel" CommandName="btndel" runat="server" OnClientClick="return confirm( '该操作会删除本类型和下属类型，确定要删除吗？ ');">删除</asp:LinkButton></span>--%>
+                        <%--  <span><asp:LinkButton ID="lbDel" CommandName="btndel" runat="server" OnClientClick="return confirm( '该操作会删除本版块和下属版块，确定要删除吗？ ');">删除</asp:LinkButton></span>--%>
                     </td>
                 </tr>
             </ItemTemplate>

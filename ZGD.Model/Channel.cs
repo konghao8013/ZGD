@@ -19,8 +19,6 @@ namespace ZGD.Model
         private string _pageurl;
         private int _kindid;
         private int _isdelete;
-        private decimal _CaclNum;
-        private decimal _CaclNum2;
         /// <summary>
         /// 
         /// </summary>
@@ -36,22 +34,6 @@ namespace ZGD.Model
         {
             set { _title = value; }
             get { return _title; }
-        }
-        /// <summary>
-        /// 计算器 参数（按平方算）
-        /// </summary>
-        public decimal CaclNum
-        {
-            set { _CaclNum = value; }
-            get { return _CaclNum; }
-        }
-        /// <summary>
-        /// 计算器 参数2（按平方算）
-        /// </summary>
-        public decimal CaclNum2
-        {
-            set { _CaclNum2 = value; }
-            get { return _CaclNum2; }
         }
         /// <summary>
         /// 父栏目ID
@@ -109,7 +91,6 @@ namespace ZGD.Model
             set { _isdelete = value; }
             get { return _isdelete; }
         }
-        public int MySql_ID { get; set; }
         #endregion Model
 
     }

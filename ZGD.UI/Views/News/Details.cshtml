@@ -1,0 +1,147 @@
+﻿@model ZGD.Model.NewsInfo
+@using System.Data
+@using ZGD.Common
+
+@{
+    ViewBag.Title = (Model != null ? Model.Title : "文章详细") + "-致公党";
+    ViewBag.Keywords = Model.Keyword;
+    ViewBag.Description = Model.Description;
+}
+
+@section Head
+{
+    <style type="text/css">
+        #main_con { background-color: transparent; padding: 0; }
+    </style>
+}
+
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 7 });}
+<div id="content" style="padding-top:0;">
+    <div class="main">
+        <div class="nav_title">当前位置：<a href="/">首页</a>&gt;<a href="/news?t=@Model.ClassId">@(Model.ClassName)</a>&gt; @(Model.Title)</div>
+    </div>
+    <div class="space10"></div>
+    <div class="main">
+        <div id="main_con">
+            <div class="con_left">
+                @RenderPage("../Ctrl/_ZxCalc.cshtml")
+                <div class="space20"></div>
+                @RenderPage("../Ctrl/_HotGd.cshtml")
+                <div class="space20"></div>
+                @RenderPage("../Ctrl/_HotQa.cshtml")
+                @*<div class="space20"></div>
+                    @RenderPage("../Ctrl/_HotCase.cshtml")*@
+            </div>
+            <div id="con_right" style="width:880px;padding:20px;padding-top:0;">
+                <div class="news_con" style="padding-top:10px;">
+                    <div class="news_top">
+                        <h1 class="title">@Model.Title</h1>
+                        <div class="info">
+                            作者：@(Model.Author)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;浏览数：<strong>@(Model.Click)</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布时间：@(Model.PubTime.ToString("yyyy-MM-dd HH:mm"))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em class="bdsharebuttonbox" style="display:inline;font-style:normal;font-size:14px;"><a href="javascript:;" class="bds_more" data-cmd="more" style="background:url(/Content/Images/sj_share.png) right center no-repeat;padding-right: 13px; padding-left:0;float:none; color: #9F9F9F; display:inline;font-size:14px;">我要分享</a></em>
+                            <script>
+                                window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": { "bdSize": 16 } }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+                            </script>
+                            @if (!string.IsNullOrWhiteSpace(Model.Tags))
+                            {
+                                <span class="a_tags">相关标签：@Html.Raw(Model.Tags.ToTags())</span>
+                            }
+                        </div>
+                        <p class="desc">
+                            <strong>摘要：</strong>
+                            @(Model.Description)
+                        </p>
+                    </div>
+                    <div class="con">
+                        @Html.Raw(Server.HtmlDecode(Model.Content))
+                    </div>
+                    <div class="next_news">
+                        @if (ViewBag.NextNews == null)
+                        {
+                            <a href="#" class="right"><i>下一篇：</i>已经是最后一篇了！</a>
+                        }
+                        else
+                        {
+                            <a href="/news/@(ViewBag.NextNews.Id)" class="right"><i>下一篇：</i>@(ViewBag.NextNews.Title)</a>
+                        }
+                        @if (ViewBag.PrevNews == null)
+                        {
+                            <a href="#"><i>上一篇：</i>已经是第一篇了！</a>
+                        }
+                        else
+                        {
+                            <a href="/news/@(ViewBag.PrevNews.Id)"><i>上一篇：</i>@(ViewBag.PrevNews.Title)</a>
+                        }
+                    </div>
+                </div>
+                <div class="tl_ad">
+                    @foreach (DataRow item in ViewBag.AdList.Rows)
+                    {
+                        if (item["ID"].ToString() == "4")
+                        {
+                            <a href="@(item["Url"].ToString())"><img src="@(item["ImgUrl"].ToString())" /></a>
+                            break;
+                        }
+                    }
+                </div>
+                <div class="space10"></div>
+                <div class="news_panel_a tab_panel2">
+                    <div class="panel_top"><span class="hover" idx="1">更多人阅读了以下文章</span></div>
+                    <div class="panel_con" style="display:block;">
+                        <ul class="newslist">
+                            @if (ViewBag.AboutNews != null)
+                            {
+                                int idx_a = 1;
+                                foreach (DataRow item in ViewBag.AboutNews.Rows)
+                                {
+                                    <li @if (idx_a % 2 == 0) { @Html.Raw("style=\"margin-right:0;\"")               ; }>
+                                        <a href="/news/@(item["Id"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(30))</a>
+                                    </li>
+                                    idx_a++;
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="space10"></div>
+                <div class="news_panel_a tab_panel2" style="width:100%">
+                    <div class="panel_top"><span class="hover" idx="1">最近完工装修案例</span></div>
+                    <div class="panel_con" style="display:block;">
+                        <ul class="imglist" id="news_about_pro">
+                            @if (ViewBag.HotCase != null)
+                            {
+                                int idx_pro = 1;
+                                foreach (DataRow item in ViewBag.HotCase.Rows)
+                                {
+                                    <li @if (idx_pro % 3 == 0) { @Html.Raw("style=\"margin-right:0;\"")              ; }>
+                                        <a href="/case/@(item["Id"].ToString())">
+                                            <img src="@(item["ImageSmall"].ToString())" />
+                                        </a>
+                                        <div class="des">
+                                            <p>@(item["Title"].ToString().ToSubString(20))</p>
+                                            <div>
+                                                <span>户型：@(item["hx"].ToString())</span>
+                                                <span>风格：@(item["fg"].ToString())</span>
+                                                <span>面积：@(item["Area"].ToString())㎡</span>
+                                                <span>设计师：@(item["DesignerName"].ToString())</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    idx_pro++;
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $("#news_about_pro li").hover(function () {
+                        $(this).children(".des").children("div").slideDown(200);
+                    },
+                        function () {
+                            $(this).children(".des").children("div").slideUp(200);
+                        });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="space10"></div>

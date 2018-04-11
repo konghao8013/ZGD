@@ -134,7 +134,6 @@
     <Content Include="Admin\skin\pagination\pagination.css" />
     <Content Include="Admin\skin\pagination\validate.css" />
     <Content Include="Admin\skin\pagination\valid_icons.png" />
-    <Content Include="Admin\EnCode.aspx" />
     <Content Include="Admin\Feedback\Edit.aspx" />
     <Content Include="Admin\Feedback\List.aspx" />
     <Content Include="Admin\ie6update.html" />
@@ -726,13 +725,6 @@
     </Compile>
     <Compile Include="Admin\Contents\content.aspx.designer.cs">
       <DependentUpon>content.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\EnCode.aspx.cs">
-      <DependentUpon>EnCode.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\EnCode.aspx.designer.cs">
-      <DependentUpon>EnCode.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Feedback\Edit.aspx.cs">
       <DependentUpon>Edit.aspx</DependentUpon>

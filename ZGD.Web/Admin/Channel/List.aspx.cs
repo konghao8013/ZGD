@@ -10,12 +10,12 @@ namespace ZGD.Web.Admin.Channel
 {
     public partial class List : ZGD.BasePage.ManagePage
     {
-        public int kindId; //栏目种类
+        public int kindId; //版块种类
         public int pId; //父类种类
         ZGD.BLL.Channel bll = new ZGD.BLL.Channel();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //取得栏目传参
+            //取得版块传参
             if (int.TryParse(Request.Params["kindId"], out kindId) && int.TryParse(Request.Params["pId"], out pId))
             {
                 if (!Page.IsPostBack)
@@ -46,7 +46,7 @@ namespace ZGD.Web.Admin.Channel
             {
                 case "btndel":
                     //保存日志
-                    SaveLogs("[栏目类别]删除类别：" + bll.GetModelById(Convert.ToInt32(txtClassId.Value)));
+                    SaveLogs("[版块类别]删除类别：" + bll.GetModelById(Convert.ToInt32(txtClassId.Value)));
                     //删除记录
                     bll.Delete(Convert.ToInt32(txtClassId.Value));
                     //重新绑定数据

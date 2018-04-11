@@ -6,9 +6,9 @@
 <head>
     <title>后台管理中心</title>
     <link href="skin/default/style.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../scripts/jquery/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="../scripts/jquery/jquery.nicescroll.js"></script>
-    <script type="text/javascript" src="../scripts/lhgdialog/lhgdialog.js?skin=idialog"></script>
+    <script type="text/javascript" src="js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.nicescroll.js"></script>
+    <script type="text/javascript" src="js/lhgdialog/lhgdialog.js?skin=idialog"></script>
     <script type="text/javascript" src="js/layout.js"></script>
     <script type="text/javascript">
         //页面加载完成时

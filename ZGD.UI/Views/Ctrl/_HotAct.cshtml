@@ -1,0 +1,20 @@
+﻿@{Layout = null;}
+@using System.Data
+
+@{
+    
+    //广告
+    ZGD.Model.Banner model = new ZGD.BLL.Banner().GetModel(5);
+}
+
+@if (model != null)
+{
+    <div class="r_panel">
+        <div class="r_panel_top"><strong>热门活动</strong></div>
+        <div class="r_panel_con">
+            <p class="r_panel_con_ad">
+                <a href="@(model.Url)" title="@(model.Title)"><img src="@(model.ImgUrl)" /></a>
+            </p>
+        </div>
+    </div>
+}

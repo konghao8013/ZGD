@@ -16,7 +16,7 @@ namespace ZGD.Web.Controllers
         /// <returns></returns>
         public ActionResult Index(int page = 1, string key = "", string t = "")
         {
-            string pager = string.Empty, where = "1=1 and ZxType=1", url = string.Empty;
+            string pager = string.Empty, where = "1=1", url = string.Empty;
             if (!string.IsNullOrWhiteSpace(key))
             {
                 url += "&key=" + key;
@@ -51,77 +51,25 @@ namespace ZGD.Web.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, int cid)
         {
             ZGD.BLL.NewsInfo bll = new BLL.NewsInfo();
             ZGD.Model.NewsInfo news = bll.GetModel(id);
             //点击率
             bll.UpdateField(id, " Click=Click+1");
-            Model.Channel cType = new BLL.Channel().GetModelById(news.ClassId);
+            Model.Channel cType = new BLL.Channel().GetModelById(cid);
             news.ClassName = cType == null ? "家装攻略" : cType.Title;
-
-            //
-            int maxId = bll.GetMaxId(" ZxType=1 ");
-            int minId = bll.GetMinId(" ZxType=1 ");
-            //上一篇
-            Model.NewsInfo prev = new Model.NewsInfo();
-            if (minId == id)
-            {
-                ViewBag.PrevNews = null;
-            }
-            else
-            {
-                GetPrevNext(news.Id, false, maxId, minId, ref prev);
-                ViewBag.PrevNews = prev;
-            }
-            //下一篇
-            Model.NewsInfo next = new Model.NewsInfo();
-            if (maxId == id)
-            {
-                ViewBag.NextNews = null;
-            }
-            else
-            {
-                GetPrevNext(news.Id, true, maxId, minId, ref next);
-                ViewBag.NextNews = next;
-            }
+            
             //相关
             string aboutKey = string.IsNullOrEmpty(news.Keyword) ? "" : news.Keyword.TrimStart(',').TrimEnd(',').Split(',')[0];
             DataTable dt_about = string.IsNullOrWhiteSpace(aboutKey) ? null : bll.GetList(10, " IsLock=0 and (Tags like '%" + aboutKey + "%') ", " PubTime desc");
             ViewBag.AboutNews = dt_about;
-            
+
             //广告
             DataSet ds_ad = new ZGD.BLL.Banner().GetList(0, " aType=2 and IsLock=0", " Sort asc");
             ViewBag.AdList = ds_ad != null ? ds_ad.Tables[0] : null;
 
             return View(news);
-        }
-
-        /// <summary>
-        /// 递归上一篇 下一篇
-        /// </summary>
-        /// <returns></returns>
-        public void GetPrevNext(int id, bool isNext, int maxId, int minId, ref Model.NewsInfo model)
-        {
-            if (isNext)
-            {
-                if (maxId > id)
-                {
-                    id = id + 1;
-                }
-            }
-            else
-            {
-                if (minId < id)
-                {
-                    id = id - 1;
-                }
-            }
-            model = new BLL.NewsInfo().GetModel(id);
-            if (model == null || model.ZxType != 1)
-            {
-                GetPrevNext(id, isNext, maxId, minId, ref model);
-            }
         }
     }
 }

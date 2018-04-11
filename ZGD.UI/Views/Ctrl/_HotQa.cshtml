@@ -1,0 +1,23 @@
+﻿@{Layout = null;}
+@using System.Data
+
+@{
+    DataTable dt = new ZGD.BLL.Question().GetList(8, " IsLock=0 ", " Click desc");
+}
+
+@if (dt != null)
+{
+    <div class="r_panel">
+        <div class="r_panel_top"><strong>热门问答</strong></div>
+        <div class="r_panel_con">
+            <ul class="nl_list_news">
+                @foreach (DataRow item in dt.Rows)
+                {
+                    <li>
+                        <a href="/wd/@(item["ID"].ToString())" title="@(item["Title"].ToString())">@ZGD.Common.ExtensionMethods.ToSubString(item["Title"].ToString(), 15)</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}

@@ -68,7 +68,7 @@ namespace ZGD.MySqlToMsSql
             {
                 using (var conn = CreateMySql())
                 {
-                    int msg = conn.Execute(sql);
+                    int msg = conn.Execute(sql, param);
                     conn.Close();
                     return msg;
                 }
@@ -77,7 +77,7 @@ namespace ZGD.MySqlToMsSql
             {
                 using (var conn = Create())
                 {
-                    int msg = conn.Execute(sql);
+                    int msg = conn.Execute(sql, param);
                     conn.Close();
                     return msg;
                 }

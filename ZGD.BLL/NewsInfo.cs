@@ -168,15 +168,7 @@ namespace ZGD.BLL
         {
             return dal.GetList(strWhere);
         }
-
-        /// <summary>
-        /// 获得数据列表
-        /// </summary>
-        public DataSet GetGongDiList(int top = 0, string strWhere = "", string order = "")
-        {
-            return dal.GetGongDiList(top, strWhere, order);
-        }
-
+        
         /// <summary>
         /// 获得前几行数据
         /// </summary>
@@ -228,7 +220,7 @@ namespace ZGD.BLL
                     }
                     if (dt.Rows[n]["ClassId"] != null && dt.Rows[n]["ClassId"].ToString() != "")
                     {
-                        model.ClassId = int.Parse(dt.Rows[n]["ClassId"].ToString());
+                        model.ClassId = dt.Rows[n]["ClassId"].ToString();
                     }
                     if (dt.Rows[n]["Content"] != null && dt.Rows[n]["Content"].ToString() != "")
                     {
@@ -257,14 +249,6 @@ namespace ZGD.BLL
                     if (dt.Rows[n]["PubTime"] != null && dt.Rows[n]["PubTime"].ToString() != "")
                     {
                         model.PubTime = DateTime.Parse(dt.Rows[n]["PubTime"].ToString());
-                    }
-                    if (dt.Rows[n]["AssId"] != null && dt.Rows[n]["AssId"].ToString() != "")
-                    {
-                        model.AssId = int.Parse(dt.Rows[n]["AssId"].ToString());
-                    }
-                    if (dt.Rows[n]["ZxType"] != null && dt.Rows[n]["ZxType"].ToString() != "")
-                    {
-                        model.ZxType = int.Parse(dt.Rows[n]["ZxType"].ToString());
                     }
                     modelList.Add(model);
                 }
@@ -316,30 +300,6 @@ namespace ZGD.BLL
             pager = string.Empty;
             int pageCount = 0, rowCount = 0;
             DataSet ds = dal.GetList(pIdx, pageSize, strWhere, sortName, out rowCount, out pageCount);
-            pager = DAL.Pager.InitPageFooter(pIdx, pageCount, rowCount, page, urlParam, isWeb);
-            return ds == null ? null : ds.Tables[0];
-        }
-
-        /// <summary>
-        /// 分页获取数据列表
-        /// </summary>
-        public DataTable GetList_GD(int pIdx, int pageSize, string strWhere, string sortName, string urlParam, string page, out string pager, bool isWeb = true)
-        {
-            pager = string.Empty;
-            int pageCount = 0, rowCount = 0;
-            DataSet ds = dal.GetList_GD(pIdx, pageSize, strWhere, sortName, out rowCount, out pageCount);
-            pager = DAL.Pager.InitPageFooter(pIdx, pageCount, rowCount, page, urlParam, isWeb);
-            return ds == null ? null : ds.Tables[0];
-        }
-
-        /// <summary>
-        /// 分页获取数据列表
-        /// </summary>
-        public DataTable GetList_M(int pIdx, int pageSize, string strWhere, string sortName, string urlParam, string page, out string pager, bool isWeb = true)
-        {
-            pager = string.Empty;
-            int pageCount = 0, rowCount = 0;
-            DataSet ds = dal.GetList_M(pIdx, pageSize, strWhere, sortName, out rowCount, out pageCount);
             pager = DAL.Pager.InitPageFooter(pIdx, pageCount, rowCount, page, urlParam, isWeb);
             return ds == null ? null : ds.Tables[0];
         }

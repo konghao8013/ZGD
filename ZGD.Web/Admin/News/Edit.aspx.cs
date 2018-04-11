@@ -24,7 +24,7 @@ namespace ZGD.Web.Admin.News
             if (!Page.IsPostBack)
             {
                 //绑定类别
-                ChannelTreeBind(1, "新闻类型", 0, this.ddlClassId);
+                ChannelTreeBind(8, "新闻版块", 1, this.ddlClassId);
                 //赋值
                 ShowInfo(this.Id);
             }
@@ -44,6 +44,7 @@ namespace ZGD.Web.Admin.News
             txtDesc.Value = model.Description;
             txtAuthor.Text = model.Author;
             ddlClassId.SelectedValue = model.ClassId.ToString();
+            ClassId.Value = model.ClassId;
             txtImgUrl.Text = model.ImgUrl;
             if (!string.IsNullOrWhiteSpace(model.ImgUrl)&&model.IsImage==1)
             {
@@ -78,8 +79,7 @@ namespace ZGD.Web.Admin.News
             model.Tags = txtTags.Text.Trim();
             model.Description = txtDesc.Value;
             model.Author = txtAuthor.Text.Trim();
-            model.ClassId = ddlClassId.SelectedIndex > 0 ? int.Parse(ddlClassId.SelectedValue) : 0;
-            model.ZxType = 1;
+            model.ClassId = ClassId.Value;
             model.ImgUrl = txtImgUrl.Text.Trim();
             model.Content = ZGD.Common.StringHandler.EnCode(Request["kEditor"].ToString());
             model.Click = int.Parse(txtClick.Text.Trim());

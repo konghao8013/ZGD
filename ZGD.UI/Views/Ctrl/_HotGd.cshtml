@@ -1,0 +1,26 @@
+﻿@{Layout = null;}
+@using System.Data
+
+@{
+    ZGD.BLL.NewsInfo nBll = new ZGD.BLL.NewsInfo();
+    DataSet ds = nBll.GetGongDiList(5, " n.IsLock=0 and n.ZxType=2 ");
+    DataTable dt = ds != null && ds.Tables[0].Rows.Count > 0 ? ds.Tables[0] : null;
+}
+
+@if (dt != null)
+{
+    <div class="r_panel">
+        <div class="r_panel_top"><a href="/project" class="more">查看更多</a><strong>在建工地</strong></div>
+        <div class="r_panel_con">
+            <ul class="h_list_r">
+                @foreach (DataRow item in dt.Rows)
+                {
+                    <li>
+                        <div><a href="/project/@(item["ID"].ToString())"><img src="@(item["ImgUrl"].ToString())" /></a></div>
+                        <h3 title="@(item["Title"].ToString())" style="text-align:center;"><span><a href="/project/@(item["ID"].ToString())">@ZGD.Common.ExtensionMethods.ToSubString(item["Title"].ToString(), 16)</a></span></h3>                        
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}

@@ -63,7 +63,7 @@
                         <th width="6%">选择</th>
                         <th width="6%">编号</th>
                         <th align="left">标题</th>
-                        <th width="13%">所属类别</th>
+                        <th width="13%">所属版块</th>
                         <th width="16%">发布时间</th>
                         <th width="6%">属性</th>
                         <th width="10%">操作</th>

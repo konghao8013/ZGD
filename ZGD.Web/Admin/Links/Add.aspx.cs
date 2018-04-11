@@ -15,7 +15,7 @@ namespace ZGD.Web.Admin.Links
             if (!Page.IsPostBack)
             {
                 //绑定类别
-                ChannelTreeBind(37, "请选择链接类型", 7, this.ddlClassId);
+                ChannelTreeBind(49, "请选择链接类型", 4, this.ddlClassId);
             }
         }
 

@@ -32,14 +32,6 @@ namespace ZGD.Web.Admin.News
             {
                 strWhere = Session["strWhereProduct_News"].ToString();
             }
-            if (!string.IsNullOrWhiteSpace(strWhere))
-            {
-                strWhere += " and ZxType=1";
-            }
-            else
-            {
-                strWhere = " ZxType=1";
-            }
 
             ZGD.BLL.NewsInfo bll = new ZGD.BLL.NewsInfo();
             DataSet ds = bll.GetList(strWhere);

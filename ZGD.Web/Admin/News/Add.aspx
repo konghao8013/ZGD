@@ -5,18 +5,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>发布文章</title>
+    <link rel="stylesheet" href="../skin/default/style.css" type="text/css" />
+    <link rel="stylesheet" href="../js/kindeditor-4.1.7/themes/default/default.css" />
+    <link rel="stylesheet" href="../js/kindeditor-4.1.7/plugins/code/prettify.css" />
+
     <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../js/jquery/Validform_v5.3.2_min.js"></script>
     <script type="text/javascript" src="../js/swfupload/swfupload.js"></script>
     <script type="text/javascript" src="../js/swfupload/swfupload.handlers.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
-    <link href="../skin/default/style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="/js/kindeditor-4.1.7/themes/default/default.css" />
-    <link rel="stylesheet" href="/js/kindeditor-4.1.7/plugins/code/prettify.css" />
 
-    <script type="text/javascript" src="/js/kindeditor-4.1.7/kindeditor-min.js"></script>
-    <script type="text/javascript" src="/js/kindeditor-4.1.7/lang/zh_CN.js"></script>
-    <script type="text/javascript" src="/js/kindeditor-4.1.7/plugins/code/prettify.js"></script>
+    <script type="text/javascript" src="../js/kindeditor-4.1.7/kindeditor-min.js"></script>
+    <script type="text/javascript" src="../js/kindeditor-4.1.7/lang/zh_CN.js"></script>
+    <script type="text/javascript" src="../js/kindeditor-4.1.7/plugins/code/prettify.js"></script>
     <script type="text/javascript">
         $(function () {
             //初始化表单验证
@@ -35,7 +36,6 @@
         });
         KindEditor.ready(function (K) {
             var editor1 = K.create('#kEditor', {
-                cssPath: '/js/kindeditor-4.1.7/plugins/code/prettify.css',
                 uploadJson: '/Tools/editer_upfiles.ashx',
                 fileManagerJson: '/Tools/file_manager.ashx',
                 allowFileManager: true,
@@ -114,10 +114,11 @@
                 </dd>
             </dl>--%>
             <dl>
-                <dt>文章类型</dt>
+                <dt>所属版块</dt>
                 <dd>
                     <div class="rule-single-select">
-                        <asp:DropDownList ID="ddlClassId" runat="server" datatype="*" nullmsg="请选择文章类型" sucmsg=" "></asp:DropDownList>
+                        <asp:DropDownList ID="ddlClassId" runat="server" datatype="*" nullmsg="请选择所属版块" sucmsg=" "></asp:DropDownList>
+                        <input type="hidden" id="ClassId" name="ClassId" runat="server" />
                     </div>
                 </dd>
             </dl>

@@ -48,14 +48,7 @@ namespace ZGD.Web.Admin.Channel
             }
             this.txtTitle.Text = model.Title;
             this.txtSortId.Text = model.SortId.ToString();
-            this.txtCaclNum.Text = model.CaclNum.ToString();
-            this.txtCaclNum2.Text = model.CaclNum2.ToString();
             cbIsDelete.Checked = model.IsDelete == 1 ? true : false;
-            if (model.KindId == 3)
-            {
-                cacl_panel.Style["display"] = "block";
-                cacl_panel2.Style["display"] = "block";
-            }
         }
 
         //保存修改
@@ -64,8 +57,6 @@ namespace ZGD.Web.Admin.Channel
             model.Title = txtTitle.Text.Trim();
             model.SortId = int.Parse(txtSortId.Text.Trim());
             model.IsDelete = cbIsDelete.Checked ? 1 : 0;
-            model.CaclNum = string.IsNullOrWhiteSpace(txtCaclNum.Text) ? 0 : Convert.ToDecimal(txtCaclNum.Text);
-            model.CaclNum2 = string.IsNullOrWhiteSpace(txtCaclNum2.Text) ? 0 : Convert.ToDecimal(txtCaclNum2.Text);
             //修改栏目
             bll.Update(model);
             //保存日志

@@ -1,0 +1,837 @@
+﻿@{
+    ViewBag.Title = "重庆家装公司 一站式家装公司 重庆装修公司-致公党";
+    ViewBag.Keywords = "重庆装修公司,重庆家装公司,一站式家装,港宏装饰,重庆装饰公司";
+    ViewBag.Description = "重庆找装修就来港宏装饰，港宏装饰专注家装15年，是重庆家装公司十强。港宏装饰创立以来始终坚持品质优先原则，提供免费上门量房、装修报价。电话：023-68411900";
+}
+
+@model ZGD.Web.Controllers.IndexDTO
+
+@section Head
+{
+    <link href="/Content/Scripts/jquery.flexslider/flexslider.css" rel="stylesheet" />
+    <script src="/Content/Scripts/jquery.flexslider/jquery.flexslider-min.js"></script>
+    <script src="/Content/Scripts/bxCarousel.js"></script>
+    <script src="/Content/Scripts/jquery.form.js"></script>
+}
+
+@using ZGD.Common
+@using System.Data
+
+@{Html.RenderAction("Top", "Ctrl", new { menuID = 1 });}
+<!--content begin-->
+<div class="slider_panel flexslider" id="slider_panel">
+    <ul class="slides">
+        @foreach (DataRow item in Model.AdList.Rows)
+        {
+            <li><a href="@(item["Url"].ToString())" target="_blank" style="background-image:url(@(item["ImgUrl"].ToString()));"></a></li>
+        }
+    </ul>
+    @*<div class="slider_a">
+                @{
+                    int idx_ad = 1;
+                }
+                @foreach (var item in Model.AdList.Rows)
+                {
+                    <a href="javascript:;" @if (idx_ad == 1) { @Html.Raw("class=\"hover\"")                                                                                ; }></a>
+        idx_ad++;
+                }
+            </div>*@
+</div>
+
+<script type="text/javascript">
+    $("#slider_panel").flexslider({
+        animation: "slide",
+        slideshowSpeed: 4000
+    });
+    //$("#slider_panel").xslider({
+    //    unitdisplayed:1,
+    //    movelength:1
+    //});
+</script>
+
+<div class="index_search">
+    <div class="main">
+        @{
+            int idx_tag = 1;
+        }
+        <p>
+            热点搜索：
+            @foreach (DataRow item in ViewBag.Tags.Rows)
+            {
+                <a href="@(item["WebUrl"].ToString())">@(item["Title"].ToString())</a>
+                if (idx_tag < ViewBag.Tags.Rows.Count)
+                {
+                    @Html.Raw("|");
+                }
+                idx_tag++;
+            }
+        </p>
+        <div class="search">
+            <div class="panel">
+                <div class="s_down" id="s_down">
+                    <em id="s_down_word" data="2">案例</em>
+                    <ul id="s_down_list" style="display:none;">
+                        <li><a href="javascript:;" data="1">文章</a></li>
+                        <li><a href="javascript:;" data="2">案例</a></li>
+                        <li><a href="javascript:;" data="3">小区</a></li>
+                    </ul>
+                </div>
+                <input class="txt_s" name="key" value="" type="text" id="s_i_search">
+                <a href="javascript:;" onclick="searchKey()" class="btn_s">搜索</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var s_down = false;
+        $("#s_down").click(function () {
+            var s_w = $("#s_down_word").html();
+            var s_d = $("#s_down_word").attr("data");
+            if (!s_down) {
+                $("#s_down_list").show();
+                jQuery.each($("#s_down_list li"), function (i, n) {
+                    if ($(n).attr("data") == s_d) {
+                        $("#s_down_list li").removeClass("hover");
+                        $(n).addClass("hover");
+                        return;
+                    }
+                });
+                s_down = true;
+            }
+            else {
+                $("#s_down_list").hide();
+                s_down = false;
+            }
+        });
+        $("#s_down_list li a").click(function () {
+            var s_w = $(this).html();
+            var s_d = $(this).attr("data");
+            $("#s_down_word").html(s_w);
+            $("#s_down_word").attr("data", s_d);
+        })
+        function searchKey() {
+            var s_d = $("#s_down_word").attr("data");
+            var key = $("#s_i_search").val();
+            switch (s_d) {
+                case "1":
+                    window.location.href = "/news?key=" + encodeURI(key);
+                    break;
+                case "2":
+                    window.location.href = "/case?key=" + encodeURI(key);
+                    break;
+                case "3":
+                    window.location.href = "/house?key=" + encodeURI(key);
+                    break;
+            }
+        }
+    </script>
+</div>
+<div id="content" class="main">
+    <div id="cacl_panel">
+        <div class="cacl_top">
+            <form method="post" id="cacl_form">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tr>
+                        <td width="350">
+                            <div class="cacl_title">
+                                <p>已有<strong>@(ViewBag.BjCount + 2000)</strong>位业主成功获取人工精准报价</p>
+                            </div>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>
+                                    房屋户型&nbsp;&nbsp;
+                                    <select id="cacl_hx" name="ClassId">
+                                        <option value="0" data="0">选择装修户型</option>
+                                        @foreach (DataRow item in ViewBag.DataHX.Rows)
+                                        {
+                                            <option value="@(item["Id"].ToString())">@(item["Title"].ToString())</option>
+                                        }
+                                    </select>
+                                    房屋面积&nbsp;&nbsp;
+                                    <input type="text" class="txt mj" placeholder="房屋面积" id="cacl_Area" name="Area" />
+                                    房屋类型&nbsp;&nbsp;
+                                    <select id="sel_hType" name="hType"><option value="1">新房</option><option value="2">旧房</option></select>
+                                </li>
+                                <li>
+                                    装修区域&nbsp;&nbsp;
+                                    <select name="AreaAddr" id="cacl_AreaAddr"><option value="">装修区域</option><option>渝中</option><option>南岸</option><option>沙坪坝</option><option>九龙坡</option><option>江北</option><option>渝北</option><option>大渡口</option><option>北碚</option><option>巴南</option></select>
+                                    楼盘名称&nbsp;&nbsp;
+                                    <input type="text" class="txt" style="width:300px;" placeholder="楼盘名称" id="cacl_House" name="House" />
+                                </li>
+                                <li style="line-height: 24px;padding-right: 10px;">
+                                    <span style="float:left;height:48px;">装修风格&nbsp;&nbsp;</span>
+				    <div style="float:left;height:48px;width:520px;">
+                                    @{
+                                        int idx_fg = 1;
+                                    }
+                                    @foreach (DataRow item in ViewBag.DataFG.Rows)
+                                    {<input type="radio" name="ClassId2" @if (idx_fg == 1) { @Html.Raw("checked=\"checked\"")            } value="@(item["Id"].ToString())" /> @Html.Raw(item["Title"].ToString() + "&nbsp;&nbsp;"); idx_fg++;
+                                    }
+				    </div>
+                                </li>
+                                <li>
+                                    装修套餐&nbsp;&nbsp;
+                                    <input type="radio" name="caclType" checked="checked" value="1" /> 现代系列&nbsp;&nbsp;<input type="radio" name="caclType" value="2" /> 世家系列
+                                </li>
+                                <li>
+                                    您的称呼&nbsp;&nbsp;
+                                    <input type="text" class="txt" placeholder="您的称呼" id="cacl_UserName" name="UserName" />
+                                    手机号码&nbsp;&nbsp;
+                                    <input type="text" class="txt" placeholder="手机号" style="width:150px;" id="cacl_UserTel" name="UserTel" />
+                                </li>
+                                <li>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;验证码&nbsp;
+                                    <input type="text" class="txt" placeholder="图片验证码" name="vCode" id="cacl_vCode" /><img src="/Tools/verify_code.ashx" id="nl_cacl_code" style="height:28px;margin-left:2px;" /> <a href="javascript:;" onclick="ChangeCode('nl_cacl_code');" style="margin-left:5px;text-decoration:underline">看不清楚</a>
+                                    <input type="hidden" value="1" id="f_type" name="fType" />
+                                    <input type="hidden" value="" id="cacl_Remark" name="Remark" />
+                                </li>
+                            </ul>
+                        </td>
+                        <td width="150">
+                            <div class="cacl_result">
+                                <h3>您的家装预算为</h3>
+                                <input type="text" value="0" id="cacl_result" />
+                                <p>以上价格仅供参考，实际价格以公司最终报价为准</p>
+                                <a href="javascript:;" onclick="SubmitCacl()" class="red">智能系统报价</a>
+                                <a href="http://p.qiao.baidu.com//im/index?siteid=8316243&ucid=19605673" target="_blank" class="yellow">人工精确报价</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <script type="text/javascript">
+                function SubmitCacl() {
+                    var name = $("#cacl_UserName").val();
+                    var phone = $("#cacl_UserTel").val();
+                    var house = $("#cacl_House").val();
+                    var area = $("#cacl_Area").val();
+                    var code = $("#cacl_vCode").val();
+                    if ($.trim(code) == "") {
+                        layer.alert("请输入验证码！");
+                        return false;
+                    }
+                    if ($.trim(name) == "" || $.trim(area) == "" || $.trim(phone) == "" || $.trim(house) == "") {
+                        layer.alert("请仔细填写，您还有未填的必填项！");
+                        return false;
+                    }
+                    if (phone.length != 11) {
+                        layer.alert("请输入正确的手机号码！");
+                        return false;
+                    }
+                    var remark = "装修区域：" + $("#cacl_AreaAddr").val();
+                    $("#cacl_Remark").val(remark);
+                    $("#cacl_form").ajaxSubmit({
+                        url: "/home/cacl",
+                        type: "post",
+                        dataType: "json",
+                        beforeSubmit: function () {
+                            layer.load(1, { shade: [0.1, '#000'] });
+                        },
+                        error: function () {
+                            layer.closeAll('loading');
+                            layer.alert("请求失败");
+                        },
+                        success: function (data) {
+                            layer.closeAll('loading');
+                            if (data != null) {
+                                if (data.Success) {
+                                    $("#cacl_hx").val("0");
+                                    $("#cacl_form input[type='text']").val("");
+                                    $("#cacl_result").val(data.Source);
+                                }
+                                else
+                                    layer.alert(data.Msg);
+                            }
+                            else
+                                layer.alert("提交失败");
+                        }
+                    });
+                    return false;
+                }
+            </script>
+
+        </div>
+        <div class="cacl_bom">
+            <a href="/join" class="btn">立即预约免费量房</a>
+        </div>
+    </div>
+    <div class="space20"></div>
+    <div class="ty_panel" id="tc_panel">
+        <div class="panel_top">
+            <span class="more">
+                多种风格案例，上千套实景案例。随处可见的灵感！
+                <a href="#">更多&gt;&gt;</a>
+            </span>
+            <span class="title">全屋定制</span>
+        </div>
+        <div class="panel_con">
+            @foreach (DataRow item in Model.AdList2.Rows)
+            {
+                if (item["ID"].ToString() == "1")
+                {
+                    <p><a href="@(item["Url"].ToString())"><img src="@(item["ImgUrl"].ToString())" src="重庆家装公司" /></a></p>
+                    break;
+                }
+            }
+            @foreach (DataRow item in Model.AdList2.Rows)
+            {
+                if (item["ID"].ToString() == "2")
+                {
+                    <p><a href="@(item["Url"].ToString())"><img src="@(item["ImgUrl"].ToString())" src="重庆装饰公司" /></a></p>
+                    break;
+                }
+            }
+            @foreach (DataRow item in Model.AdList2.Rows)
+            {
+                if (item["ID"].ToString() == "3")
+                {
+                    <p><a href="@(item["Url"].ToString())"><img src="@(item["ImgUrl"].ToString())" src="重庆装修公司" /></a></p>
+                    break;
+                }
+            }
+        </div>
+    </div>
+    <div class="space20"></div>
+    <div class="ty_panel" id="lp_panel">
+        <div class="panel_top">
+            <span class="more">
+                更多重庆装修楼盘户型即将发布！
+                <a href="/house">更多&gt;&gt;</a>
+            </span>
+            <span class="title">重点装修楼盘</span>
+        </div>
+        <div class="panel_con">
+            <div class="lp_top">
+                <div class="lp_top_l">
+                    @{
+                        int idx_house = 1;
+                    }
+                    @foreach (DataRow item in Model.House.Rows)
+                    {
+                        if (idx_house < 3)
+                        {
+                            <div class="lp_info">
+                                <div>
+                                    <h3>@(item["Title"].ToString())</h3>
+                                    <p>楼盘案例@(item["cCount"].ToString())户</p>
+                                    <a href="/house/@(item["ID"].ToString())">查看更多 &gt;&gt;</a>
+                                </div>
+                                <a href="/house/@(item["ID"].ToString())"><img src="@(item["ImgUrl"].ToString())" /></a>
+                            </div>
+                        }
+                        idx_house++;
+                    }
+                </div>
+                <div class="lp_top_m">
+                    @{
+                        idx_house = 1;
+                    }
+                    @foreach (DataRow item in Model.House.Rows)
+                    {
+                        if (idx_house == 3)
+                        {
+                            <div class="lp_info_m">
+                                <img src="@(item["ImgUrl"].ToString())">
+                                <div>
+                                    <a href="/house/@(item["ID"].ToString())" class="right">楼盘案例@(item["cCount"].ToString())户</a>
+                                    <a href="/house/@(item["ID"].ToString())">@(item["Title"].ToString())</a>
+                                </div>
+                            </div>
+                        }
+                        idx_house++;
+                    }
+                </div>
+                <div class="lp_top_r">
+                    @{
+                        idx_house = 1;
+                    }
+                    @foreach (DataRow item in Model.House.Rows)
+                    {
+                        if (idx_house > 3 && idx_house < 6)
+                        {
+                            <div class="lp_info">
+                                <div>
+                                    <h3>@(item["Title"].ToString())</h3>
+                                    <p>楼盘案例@(item["cCount"].ToString())户</p>
+                                    <a href="/house/@(item["ID"].ToString())">查看更多 &gt;&gt;</a>
+                                </div>
+                                <a href="/house/@(item["ID"].ToString())"><img src="@(item["ImgUrl"].ToString())" /></a>
+                            </div>
+                        }
+                        idx_house++;
+                    }
+                </div>
+            </div>
+            <div class="lp_bom">
+                <ul id="lp_list">
+                    @{
+                        idx_house = 1;
+                    }
+                    @foreach (DataRow item in Model.House.Rows)
+                    {
+                        if (idx_house > 5)
+                        {
+                            <li><a href="/house/@(item["ID"].ToString())"><img src="@(item["ImgUrl"].ToString())" /></a></li>
+                        }
+                        idx_house++;
+                    }
+                </ul>
+            </div>
+            <script type="text/javascript">
+                $('#lp_list').bxCarousel({
+                    display_num: 6,
+                    move: 1,
+                    auto: true,
+                    controls: true,
+                    auto_interval: 3000,
+                    margin: 10,
+                    auto_hover: false,
+                    next_text: "",
+                    prev_text: ""
+                });
+            </script>
+        </div>
+    </div>
+    <div class="space20"></div>
+    <div class="ty_panel" id="des_panel">
+        <div class="panel_top">
+            <span class="more">
+                汇集行业顶尖设计力量，私人定制百种风格！家，就要与众不同！
+                <a href="/designer">更多&gt;&gt;</a>
+            </span>
+            <span class="title">金牌设计</span>
+        </div>
+        <div class="panel_con">
+            <div class="des_top">
+                <div class="des_panel" id="desPanel">
+                    @{
+                        int idx_des = 1, idx_des_case = 1;
+                    }
+                    @foreach (DataRow item in Model.Des.Rows)
+                    {
+                        if (idx_des == 1)
+                        {
+                            <div class="des_photo">
+                                <a href="/designer/@(item["ID"].ToString())"><img src="@(item["Photo"].ToString())" /></a>
+                            </div>
+                            <div class="des_info">
+                                <div class="des_info_top">
+                                    <div class="des_info_top_l">
+                                        <h3>@(item["Name"].ToString())</h3>
+                                        <p class="good">@(item["cName"].ToString())</p>
+                                        <p class="star star@(item["Star"].ToString())"></p>
+                                        <a href="/designer/@(item["ID"].ToString())">预约设计师</a>
+                                    </div>
+                                    <div class="des_info_top_r">
+                                        <p><span>工作年限：</span>@(item["cyDate"].ToString())年</p>
+                                        <p><span>现任职务：</span>@(item["cName"].ToString())</p>
+                                        <p><span>设计理念：</span>@(item["Title"].ToString())</p>
+                                        <p><span>设计风格：</span>@(item["GoodAt"].ToString())</p>
+                                    </div>
+                                </div>
+                                <div class="des_info_bom">
+                                    @foreach (DataRow item2 in ViewBag.DataDesCase.Rows)
+                                    {
+                                        if (item["ID"].ToString() == item2["DesignerId"].ToString() && idx_des_case < 6)
+                                        {
+                                            <a href="/case/@(item2["Id"].ToString())"><img src="@(item2["ImageSmall"].ToString())" /></a>
+                                            idx_des_case++;
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                        idx_des++;
+                    }
+                </div>
+            </div>
+            <div class="des_bom">
+                <ul id="des_list">
+                    @foreach (DataRow item in Model.Des.Rows)
+                    {
+                        int cyDate = Convert.ToInt32(item["cyDate"]);
+                        int pCount = Convert.ToInt32(item["pCount"]);
+                        int cCount = pCount;
+                        if (cyDate <= 5)
+                        {
+                            cCount = cyDate * 42;
+                        }
+                        else if (5 < cyDate && cyDate <= 10)
+                        {
+                            cCount = cyDate * 60;
+                        }
+                        else if (cyDate > 10)
+                        {
+                            cCount = cyDate * 65;
+                        }
+                        cCount = cCount + pCount;
+                        <li data="@(item["ID"].ToString())">
+                            <a href="/designer/@(item["ID"].ToString())" onmouseover="showDesInfo(@(item["ID"].ToString()));" class="des_click"><img src="@(item["Photo"].ToString())" /></a>
+                            <div>
+                                <h3><span><strong>@(item["Name"].ToString())</strong>@(item["cName"].ToString())</span></h3>
+                                <p>从业年限：@(item["cyDate"].ToString())年<br />为@(cCount)户家庭设计过房子</p>
+                                <p class="a_btn">
+                                    <a href="/case/?d=@(item["ID"].ToString())" class="black">查看案例</a>
+                                    <a href="/designer/@(item["ID"].ToString())" class="red">预约设计师</a>
+                                </p>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <script type="text/html" id="temp_des">
+                <div class="des_photo">
+                    <a href="/designer/{id}"><img src="{photo}" /></a>
+                </div>
+                <div class="des_info">
+                    <div class="des_info_top">
+                        <div class="des_info_top_l">
+                            <h3>{name}</h3>
+                            <p class="good">{cname}</p>
+                            <p class="star"></p>
+                            <a href="/designer/{id}">预约设计师</a>
+                        </div>
+                        <div class="des_info_top_r">
+                            <p><span>工作年限：</span>{cydate}年</p>
+                            <p><span>现任职务：</span>{cname}</p>
+                            <p><span>设计理念：</span>{title}</p>
+                            <p><span>设计风格：</span>{goodat}</p>
+                        </div>
+                    </div>
+                    <div class="des_info_bom">
+                        {cases}
+                    </div>
+                </div>
+            </script>
+            <script type="text/javascript">
+                $('#des_list').bxCarousel({
+                    display_num: 5,
+                    move: 1,
+                    auto: true,
+                    controls: true,
+                    auto_interval: 4000,
+                    margin: 7,
+                    auto_hover: false,
+                    next_text: "",
+                    prev_text: ""
+                });
+                var showDesInfo = function (id) {
+                    $.ajax({
+                        url: '/home/GetDesInfo',
+                        type: "post",
+                        dataType: "json",
+                        data: { id: id, status: status },
+                        //beforeSend: function () {
+                        //    layer.load(1, { shade: [0.1, '#000'] });
+                        //},
+                        error: function () {
+                            layer.closeAll('loading');
+                            layer.alert("请求失败");
+                        },
+                        success: function (data) {
+                            layer.closeAll('loading');
+                            if (data != null) {
+                                if (data.Success) {
+                                    var temp = $("#temp_des").html();
+                                    temp = temp.replace(/{id}/g, data.Source.ID);
+                                    temp = temp.replace(/{photo}/g, data.Source.Photo);
+                                    temp = temp.replace(/{name}/g, data.Source.Name);
+                                    temp = temp.replace(/{cname}/g, data.Source.cName);
+                                    temp = temp.replace(/{cydate}/g, data.Source.cyDate);
+                                    temp = temp.replace(/{title}/g, data.Source.Title);
+                                    temp = temp.replace(/{goodat}/g, data.Source.GoodAt);
+                                    var case_html = [];
+                                    if (data.Source.DesCase != null && data.Source.DesCase.length > 0) {
+                                        $.each(data.Source.DesCase, function (i, n) {
+                                            if (i < 5) {
+                                                case_html.push("<a href=\"/case/" + n.Id + "\"><img src=\"" + n.ImageSmall + "\" /></a>");
+                                            }
+                                        });
+                                    }
+                                    temp = temp.replace(/{cases}/g, case_html.join(""));
+                                    $("#desPanel").html(temp);
+                                }
+                                else {
+                                    layer.alert(data.Msg);
+                                }
+                            }
+                            else {
+                                layer.alert("请求失败");
+                            }
+                        }
+                    });
+                };
+            </script>
+        </div>
+    </div>
+    <div class="space20"></div>
+    <div class="ty_panel" id="gy_panel">
+        <div class="panel_top">
+            <span class="more">
+	    重庆家装公司-致公党施工实行超国标标准工艺
+                @*<a href="#">更多&gt;&gt;</a>*@
+            </span>
+            <span class="title">超国标标准工艺</span>
+        </div>
+        <div class="panel_con">
+            @{
+                string xmlPath = "~/XmlConfig/About.xml";
+            }
+            <div class="tab_panel" id="index-tab-panel">
+                <div class="tab_panel_top" id="index-tab"><span class="hover" idx="1">超国标</span><span idx="2" class="">工程工艺</span><span idx="3" class="">验收体系</span><span idx="4" class="">在建工地</span></div>
+                <div id="tab_panel_con_1" class="tab_panel_con" style="display: inline-block;">
+                    <div class="con">
+                        @Html.Raw(Server.HtmlDecode(ZGD.Common.XMLDom.ReadXml(xmlPath, "SiteCon/GuoBiao")))
+                    </div>
+                </div>
+                <div id="tab_panel_con_2" class="tab_panel_con" style="display: none;">
+                    <div class="con">
+                        @Html.Raw(Server.HtmlDecode(ZGD.Common.XMLDom.ReadXml(xmlPath, "SiteCon/GongYi")))
+                    </div>
+                </div>
+                <div id="tab_panel_con_3" class="tab_panel_con" style="display: none;">
+                    <div class="con">
+                        @Html.Raw(Server.HtmlDecode(ZGD.Common.XMLDom.ReadXml(xmlPath, "SiteCon/TiXi")))
+                    </div>
+                </div>
+                <div id="tab_panel_con_4" class="tab_panel_con" style="display: none;">
+                    <div class="con">
+                        @if (Model.GongDi != null && Model.GongDi.Rows.Count > 0)
+                        {
+                            <ul class="gd_list">
+                                @foreach (DataRow item in Model.GongDi.Rows)
+                                {
+                                    <li>
+                                        <a href="/project/@(item["ID"].ToString())" target="_blank"><img src="@(item["ImgUrl"].ToString())" /></a>
+                                        <h3><a href="/project/@(item["ID"].ToString())" target="_blank">@(item["Title"].ToString())<span>（@(item["gdStatus"].ToString() == "1" ? "在建" : "完工")）</span></a></h3>
+                                        <p><span>业主：@(item["UserName"].ToString())</span><span>户型：@(item["hx"].ToString())</span></p>
+                                        <p><span>建筑面积：@(item["Area"].ToString())㎡</span><span>设计师：@(item["DesignerName"].ToString())</span></p>
+                                        <p><span>设计风格：@(item["fg"].ToString())</span><span>装修方式：@(item["ZxKind"].ToString() == "1" ? "基装" : "整装")</span></p>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            @Html.Raw(Server.HtmlDecode(ZGD.Common.XMLDom.ReadXml(xmlPath, "SiteCon/GongDi")))
+                        }
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $("#index-tab span").hover(function () {
+                    var idx = $(this).attr("idx");
+                    $("#index-tab span").removeClass("hover");
+                    $(this).addClass("hover");
+                    $("#index-tab-panel .tab_panel_con").hide();
+                    $("#tab_panel_con_" + idx).show();
+                });
+            </script>
+
+        </div>
+    </div>
+    <div class="space20"></div>
+    <div class="ty_panel" id="hz_panel">
+        <div class="panel_top">
+            <span class="more">
+		重庆装修选择一站式家装公司，装修更省事、省心、省钱
+                <!--<a href="#">更多&gt;&gt;</a>-->
+            </span>
+            <span class="title">合作商家</span>
+        </div>
+        <div class="panel_con">
+            <img src="/Files/Ad/gg.jpg" src="重庆家装公司" />
+            <div class="space30"></div>
+            <div id="hz_news_panel">
+                <div class="hz_news_panel_l" id="hz_news_panel_l">
+                    <div class="hz_news_panel">
+                        <div class="news_panel_top">
+                            <a href="/news" class="more">更多 &gt;&gt;</a>
+                            <span data="1" class="hover">家装攻略</span><span data="2">装修材料</span><span data="3">家装设计</span><span data="4">家居风水</span>
+                        </div>
+                        <div class="news_panel_con" id="hz_news_panel_1">
+                            <div class="news_panel_con_l">
+                                @{
+                                    int idx_news = 1;
+                                }
+                                @foreach (DataRow item in Model.News1.Rows)
+                                {
+                                    if (idx_news == 1)
+                                    {
+                                        <a href="/news/@(item["Id"].ToString())"><img src="@(item["ImgUrl"].ToString())" /></a>
+                                        <h3><a href="/news/@(item["Id"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(16, ""))</a></h3>
+                                        <p>@(item["Description"].ToString().ToSubString(65))<a href="/news/@(item["Id"].ToString())">【详细】</a></p>
+                                    }
+                                    idx_news++;
+                                }
+                            </div>
+                            <div class="news_panel_con_r">
+                                <ul class="news_list">
+                                    @{
+                                        idx_news = 1;
+                                    }
+                                    @foreach (DataRow item in Model.News1.Rows)
+                                    {
+                                        if (idx_news > 1)
+                                        {
+                                            <li><span>@(Convert.ToDateTime(item["PubTime"]).ToString("yyyy-MM-dd"))</span><a href="/news/@(item["Id"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(17))</a></li>
+                                        }
+                                        idx_news++;
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="news_panel_con" id="hz_news_panel_2" style="display:none;">
+                            <div class="news_panel_con_l">
+                                @{
+                                    idx_news = 1;
+                                }
+                                @foreach (DataRow item in Model.News2.Rows)
+                                {
+                                    if (idx_news == 1)
+                                    {
+                                        <a href="/news/@(item["Id"].ToString())"><img src="@(item["ImgUrl"].ToString())" /></a>
+                                        <h3><a href="/news/@(item["Id"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(16, ""))</a></h3>
+                                        <p>@(item["Description"].ToString().ToSubString(65))<a href="/news/@(item["Id"].ToString())">【详细】</a></p>
+                                    }
+                                    idx_news++;
+                                }
+                            </div>
+                            <div class="news_panel_con_r">
+                                <ul class="news_list">
+                                    @{
+                                        idx_news = 1;
+                                    }
+                                    @foreach (DataRow item in Model.News2.Rows)
+                                    {
+                                        if (idx_news > 1)
+                                        {
+                                            <li><span>@(Convert.ToDateTime(item["PubTime"]).ToString("yyyy-MM-dd"))</span><a href="/news/@(item["Id"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(17))</a></li>
+                                        }
+                                        idx_news++;
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="news_panel_con" id="hz_news_panel_3" style="display:none;">
+                            <div class="news_panel_con_l">
+                                @{
+                                    idx_news = 1;
+                                }
+                                @foreach (DataRow item in Model.News3.Rows)
+                                {
+                                    if (idx_news == 1)
+                                    {
+                                        <a href="/news/@(item["Id"].ToString())"><img src="@(item["ImgUrl"].ToString())" /></a>
+                                        <h3><a href="/news/@(item["Id"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(16, ""))</a></h3>
+                                        <p>@(item["Description"].ToString().ToSubString(65))<a href="/news/@(item["Id"].ToString())">【详细】</a></p>
+                                    }
+                                    idx_news++;
+                                }
+                            </div>
+                            <div class="news_panel_con_r">
+                                <ul class="news_list">
+                                    @{
+                                        idx_news = 1;
+                                    }
+                                    @foreach (DataRow item in Model.News3.Rows)
+                                    {
+                                        if (idx_news > 1)
+                                        {
+                                            <li><span>@(Convert.ToDateTime(item["PubTime"]).ToString("yyyy-MM-dd"))</span><a href="/news/@(item["Id"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(17))</a></li>
+                                        }
+                                        idx_news++;
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="news_panel_con" id="hz_news_panel_4" style="display:none;">
+                            <div class="news_panel_con_l">
+                                @{
+                                    idx_news = 1;
+                                }
+                                @foreach (DataRow item in Model.News4.Rows)
+                                {
+                                    if (idx_news == 1)
+                                    {
+                                        <a href="/news/@(item["Id"].ToString())"><img src="@(item["ImgUrl"].ToString())" /></a>
+                                        <h3><a href="/news/@(item["Id"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(16, ""))</a></h3>
+                                        <p>@(item["Description"].ToString().ToSubString(65))<a href="/news/@(item["Id"].ToString())">【详细】</a></p>
+                                    }
+                                    idx_news++;
+                                }
+                            </div>
+                            <div class="news_panel_con_r">
+                                <ul class="news_list">
+                                    @{
+                                        idx_news = 1;
+                                    }
+                                    @foreach (DataRow item in Model.News4.Rows)
+                                    {
+                                        if (idx_news > 1)
+                                        {
+                                            <li><span>@(Convert.ToDateTime(item["PubTime"]).ToString("yyyy-MM-dd"))</span><a href="/news/@(item["Id"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(17))</a></li>
+                                        }
+                                        idx_news++;
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hz_news_panel_r">
+                    <div class="hz_news_panel">
+                        <div class="news_panel_top">
+                            <a href="/news?t=71" class="more">更多 &gt;&gt;</a>
+                            <span class="hover">港宏动态</span>
+                        </div>
+                        <div class="news_panel_con">
+                            <div class="news_panel_con_t">
+                                @{
+                                    idx_news = 1;
+                                }
+                                @foreach (DataRow item in Model.News5.Rows)
+                                {
+                                    if (idx_news == 1)
+                                    {
+                                        <a href="/news/@(item["Id"].ToString())"><img src="@(item["ImgUrl"].ToString())" /></a>
+                                        <h3><a href="/news/@(item["Id"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(16, ""))</a></h3>
+                                        <p>@(item["Description"].ToString().ToSubString(65))<a href="/news/@(item["Id"].ToString())">【详细】</a></p>
+                                    }
+                                    idx_news++;
+                                }
+                            </div>
+                            <div class="news_panel_con_b">
+                                <ul class="news_list">
+                                    @{
+                                        idx_news = 1;
+                                    }
+                                    @foreach (DataRow item in Model.News5.Rows)
+                                    {
+                                        if (idx_news > 1)
+                                        {
+                                            <li><span>@(Convert.ToDateTime(item["PubTime"]).ToString("yyyy-MM-dd"))</span><a href="/news/@(item["Id"].ToString())" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(22))</a></li>
+                                        }
+                                        idx_news++;
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $("#hz_news_panel_l .news_panel_top span").hover(function () {
+                        var data = $(this).attr("data");
+                        $("#hz_news_panel_l .news_panel_top span").removeClass("hover");
+                        $(this).addClass("hover");
+                        $("#hz_news_panel_l .news_panel_con").hide();
+                        $("#hz_news_panel_" + data).show();
+                    })
+                </script>
+            </div>
+            <div class="space10"></div>
+        </div>
+    </div>
+</div>
