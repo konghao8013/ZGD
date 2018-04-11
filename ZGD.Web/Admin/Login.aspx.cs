@@ -21,26 +21,16 @@ namespace ZGD.Web.Admin
         {
             if (Session[DTKeys.SESSION_CODE] != null && Session[DTKeys.SESSION_CODE].ToString() != "")
             {
-                #region 记录登录次数
-                //if (Session["AdminLoginSun"] == null)
-                //{
-                //    Session["AdminLoginSun"] = 1;
-                //}
-                //else
-                //{
-                //    Session["AdminLoginSun"] = Convert.ToInt32(Session["AdminLoginSun"]) + 1;
-                //}
-                ////判断登录
-                //if (Session["AdminLoginSun"] != null && Convert.ToInt32(Session["AdminLoginSun"]) > 5)
-                //{
-                //    this.btnSubmit.Enabled = false;
-                //    this.txtCode.Text = "";
-                //    this.txtUserName.Enabled = false;
-                //    this.txtPassword.Enabled = false;
-                //    this.msgtip.InnerText = "对不起，你错误登录了5次，系统登录锁定!";
-                //    return;
-                //}
-                #endregion
+                //判断登录
+                if (Session["AdminLoginSun"] != null && Convert.ToInt32(Session["AdminLoginSun"]) > 5)
+                {
+                    this.btnSubmit.Enabled = false;
+                    this.txtCode.Text = "";
+                    this.txtUserName.Enabled = false;
+                    this.txtPassword.Enabled = false;
+                    this.msgtip.InnerText = "对不起，你错误登录超过5次，系统登录锁定!";
+                    return;
+                }
 
                 string userName = txtUserName.Text.Trim();
                 userName = StringHandler.InputText(userName, userName.Length);
@@ -75,6 +65,14 @@ namespace ZGD.Web.Admin
                     Model.manager model = bll.GetModel(userName, userPwd, true);
                     if (model == null)
                     {
+                        if (Session["AdminLoginSun"] == null)
+                        {
+                            Session["AdminLoginSun"] = 1;
+                        }
+                        else
+                        {
+                            Session["AdminLoginSun"] = Convert.ToInt32(Session["AdminLoginSun"]) + 1;
+                        }
                         msgtip.InnerText = "您输入的用户名或密码不正确";
                         return;
                     }
