@@ -63,10 +63,10 @@
                     <tr>
                         <th width="6%">选择</th>
                         <th width="6%">编号</th>
-                        <th align="left">网站标题</th>
+                        <th align="left">链接名称</th>
                         <th align="left">类型</th>
-                        <th width="16%">是否图片</th>
-                        <th width="90">优先级别</th>
+                        <%--<th width="16%">是否图片</th>--%>
+                        <th width="90">排序号</th>
                         <th width="16%">添加时间</th>
                         <th width="90">属性</th>
                         <th width="8%">操作</th>
@@ -80,7 +80,7 @@
                         <asp:Label ID="lb_id" runat="server" Text='<%#Eval("Id")%>'></asp:Label></td>
                     <td><%# Convert.ToInt32(Eval("IsLock")) == 1 ? "<img src=\"../Images/wsh01.gif\" title=\"未审核\" />" : ""%> <%#Eval("Title")%></td>
                     <td><%#Eval("fl")%></td>
-                    <td align="center"><%# Convert.ToInt32(Eval("IsImage")) == 0 ? "文字链接" : "<img src=\"" + Eval("ImgUrl") + "\" width=\"50\" height=\"20\" />"%></td>
+                    <%--<td align="center"><%# Convert.ToInt32(Eval("IsImage")) == 0 ? "文字链接" : "<img src=\"" + Eval("ImgUrl") + "\" width=\"50\" height=\"20\" />"%></td>--%>
                     <td align="center"><%#Eval("SortId") %></td>
                     <td align="center"><%#string.Format("{0:g}",Eval("AddTime"))%></td>
                     <td align="center">
