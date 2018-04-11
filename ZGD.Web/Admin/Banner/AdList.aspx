@@ -218,7 +218,7 @@
                     CustomInfoHTML="第&lt;font color='red'&gt;&lt;b&gt;%CurrentPageIndex%&lt;/b&gt;&lt;/font&gt;页 共%PageCount%&nbsp;页 %StartRecordIndex%-%EndRecordIndex%"
                     CustomInfoTextAlign="Center" FirstPageText="首页" HorizontalAlign="Center"
                     InputBoxStyle="width:19px" LastPageText="尾页" meta:resourceKey="AspNetPager1"
-                    NextPageText="下一页" PageSize="9"
+                    NextPageText="下一页" PageSize="20"
                     PrevPageText="前一页" ShowCustomInfoSection="Left" ShowInputBox="Always"
                     ShowNavigationToolTip="True" Style="font-size: 12px"
                     SubmitButtonClass="formfield" SubmitButtonText="GO" Width="700px"

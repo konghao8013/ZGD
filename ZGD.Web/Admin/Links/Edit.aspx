@@ -73,7 +73,7 @@
                     <asp:TextBox ID="txtWebUrl" runat="server" CssClass="input normal" Text="#" datatype="*1-250" nullmsg="请输入链接地址" errormsg="链接地址在1-250个字符间" sucmsg=" "></asp:TextBox>
                 </dd>
             </dl>
-            <dl>
+            <dl style="display:none">
                 <dt>设置图片</dt>
                 <dd>
                     <div class="rule-single-checkbox">
@@ -119,7 +119,7 @@
                 </dd>
             </dl>
             <dl>
-                <dt>联系邮箱</dt>
+                <dt>排序号</dt>
                 <dd>
                     <asp:TextBox ID="txtSortId" runat="server" CssClass="input normal" Text="0"></asp:TextBox>
                 </dd>

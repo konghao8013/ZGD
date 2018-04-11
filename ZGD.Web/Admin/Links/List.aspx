@@ -29,7 +29,7 @@
                     <ul class="icon-list">
                         <li><a class="add" href="Add.aspx"><i></i><span>新增</span></a></li>
                         <li><a class="all" href="javascript:;" onclick="checkAll(this);"><i></i><span>全选</span></a></li>
-                        <li>
+                        <li style="display:none">
                             <asp:LinkButton ID="lbtnAudit" runat="server" OnClientClick="return confirm( '确定要审核这些记录吗？ ');" CssClass="list" OnClick="lbtnAudit_Click"><i></i><span>审核</span></asp:LinkButton></li>
                         <li>
                             <asp:LinkButton ID="lbtnDel" runat="server" OnClientClick="return confirm( '确定要删除这些记录吗？ ');" CssClass="del" OnClick="lbtnDel_Click"><i></i><span>删除</span></asp:LinkButton></li>
@@ -78,7 +78,7 @@
                         <asp:CheckBox ID="cb_id" CssClass="checkall" runat="server" /></td>
                     <td align="center">
                         <asp:Label ID="lb_id" runat="server" Text='<%#Eval("Id")%>'></asp:Label></td>
-                    <td><%# Convert.ToInt32(Eval("IsLock")) == 1 ? "<img src=\"../Images/wsh01.gif\" title=\"未审核\" />" : ""%> <%#Eval("Title")%></td>
+                    <td><%# Convert.ToInt32(Eval("IsLock")) == 1 ? "<img src=\"../Images/wsh01.gif\" title=\"未审核\" />" : ""%> <a href="<%#Eval("WebUrl")%>" target="_blank"><%#Eval("Title")%></a></td>
                     <td><%#Eval("fl")%></td>
                     <%--<td align="center"><%# Convert.ToInt32(Eval("IsImage")) == 0 ? "文字链接" : "<img src=\"" + Eval("ImgUrl") + "\" width=\"50\" height=\"20\" />"%></td>--%>
                     <td align="center"><%#Eval("SortId") %></td>
@@ -102,7 +102,7 @@
                     CustomInfoHTML="第&lt;font color='red'&gt;&lt;b&gt;%CurrentPageIndex%&lt;/b&gt;&lt;/font&gt;页 共%PageCount%&nbsp;页 %StartRecordIndex%-%EndRecordIndex%"
                     CustomInfoTextAlign="Center" FirstPageText="首页" HorizontalAlign="Center"
                     InputBoxStyle="width:19px" LastPageText="尾页" meta:resourceKey="AspNetPager1"
-                    NextPageText="下一页" PageSize="9"
+                    NextPageText="下一页" PageSize="20"
                     PrevPageText="前一页" ShowCustomInfoSection="Left" ShowInputBox="Always"
                     ShowNavigationToolTip="True" Style="font-size: 12px"
                     SubmitButtonClass="formfield" SubmitButtonText="GO" Width="700px"
