@@ -117,7 +117,7 @@ namespace ZGD.DAL
                     new SqlParameter("@Title", SqlDbType.NVarChar,200),
                     new SqlParameter("@Author", SqlDbType.NVarChar,50),
                     new SqlParameter("@ClassId", SqlDbType.VarChar,200),
-                    new SqlParameter("@Content", SqlDbType.NText),
+                    new SqlParameter("@Content", SqlDbType.NVarChar),
                     new SqlParameter("@ImgUrl", SqlDbType.NVarChar,250),
                     new SqlParameter("@IsImage", SqlDbType.Int,4),
                     new SqlParameter("@Click", SqlDbType.Int,4),
@@ -197,7 +197,7 @@ namespace ZGD.DAL
                     new SqlParameter("@Title", SqlDbType.NVarChar,100),
                     new SqlParameter("@Author", SqlDbType.NVarChar,50),
                     new SqlParameter("@ClassId", SqlDbType.VarChar,200),
-                    new SqlParameter("@Content", SqlDbType.NText),
+                    new SqlParameter("@Content", SqlDbType.NVarChar),
                     new SqlParameter("@ImgUrl", SqlDbType.NVarChar,250),
                     new SqlParameter("@IsImage", SqlDbType.Int,4),
                     new SqlParameter("@Click", SqlDbType.Int,4),
@@ -418,19 +418,24 @@ namespace ZGD.DAL
         /// <summary>
         /// 获得前几行数据
         /// </summary>
-        public DataSet GetList(int Top, string strWhere, string filedOrder)
+        /// <param name="Top"></param>
+        /// <param name="strWhere"></param>
+        /// <param name="filedOrder"></param>
+        /// <param name="pId">8文章 21专题文章</param>
+        /// <returns></returns>
+        public DataSet GetList(int Top, string strWhere, string filedOrder, int pId = 8)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select ");
+            strSql.Append("select distinct ");
             if (Top > 0)
             {
                 strSql.Append(" top " + Top.ToString());
             }
-            strSql.Append(" * ");
-            strSql.Append(" FROM NewsInfo ");
+            strSql.Append(" n.id,n.Title,n.ClassId,n.Click,n.IsLock,n.PubTime,n.Author,n.ImgUrl,n.Click,n.IsTop,n.SubTitle ");
+            strSql.Append(" FROM NewsInfo n inner join NewsColumns nc on n.Id= nc.NewsId where nc.ClassId in (select id from Channel where ClassList like ',"+ pId + ",%')");
             if (strWhere.Trim() != "")
             {
-                strSql.Append(" where " + strWhere);
+                strSql.Append(" and " + strWhere);
             }
             strSql.Append(" order by " + filedOrder);
             return DbHelperSQL.Query(strSql.ToString());

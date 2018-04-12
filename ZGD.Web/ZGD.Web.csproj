@@ -258,8 +258,41 @@
     <Content Include="Admin\SystemLog\List.aspx" />
     <Content Include="Content\Css\base.css" />
     <Content Include="Content\Css\style.css" />
+    <Content Include="Content\Images\ad1.jpg" />
+    <Content Include="Content\Images\banner.jpg" />
+    <Content Include="Content\Images\bg.jpg" />
+    <Content Include="Content\Images\bg2.jpg" />
+    <Content Include="Content\Images\li.png" />
+    <Content Include="Content\Images\nav_bg.png" />
+    <Content Include="Content\Images\nav_hover.png" />
+    <Content Include="Content\Images\nav_s.png" />
+    <Content Include="Content\Images\title_bg1.png" />
+    <Content Include="Content\Images\title_bg2.png" />
+    <Content Include="Content\Images\title_bg3.png" />
+    <Content Include="Content\Images\title_bg4.png" />
+    <Content Include="Content\Images\top_bg.jpg" />
+    <Content Include="Content\Images\top_bg.png" />
+    <Content Include="Content\Images\zgd.jpg" />
+    <Content Include="Content\Images\zt1.jpg" />
+    <Content Include="Content\Images\zt2.jpg" />
+    <Content Include="Content\Images\zt3.jpg" />
     <Content Include="Content\Scripts\jquery.flexslider\arr.png" />
     <Content Include="Content\Scripts\jquery.flexslider\flexslider.css" />
+    <Content Include="Content\Scripts\jquery.hiSlider\css\default.css" />
+    <Content Include="Content\Scripts\jquery.hiSlider\css\jquery.hiSlider.css" />
+    <Content Include="Content\Scripts\jquery.hiSlider\css\jquery.hiSlider.min.css" />
+    <Content Include="Content\Scripts\jquery.hiSlider\css\normalize.css" />
+    <Content Include="Content\Scripts\jquery.hiSlider\fonts\icomoon.svg" />
+    <Content Include="Content\Scripts\jquery.hiSlider\images\1.jpg" />
+    <Content Include="Content\Scripts\jquery.hiSlider\images\2.jpg" />
+    <Content Include="Content\Scripts\jquery.hiSlider\images\3.jpg" />
+    <Content Include="Content\Scripts\jquery.hiSlider\images\4.jpg" />
+    <Content Include="Content\Scripts\jquery.hiSlider\images\5.jpg" />
+    <Content Include="Content\Scripts\jquery.hiSlider\images\hislider-arrow.png" />
+    <Content Include="Content\Images\sj.png" />
+    <Content Include="Content\Scripts\jquery.hiSlider\images\slider_bg.png" />
+    <Content Include="Content\Scripts\jquery.hiSlider\js\jquery.hiSlider.js" />
+    <Content Include="Content\Scripts\jquery.hiSlider\js\jquery.hiSlider.min.js" />
     <Content Include="Content\Scripts\Pager.js" />
     <Content Include="Content\Scripts\webuploader\img\bg.png" />
     <Content Include="Content\Scripts\webuploader\img\icons.png" />
@@ -635,20 +668,17 @@
     <Content Include="Admin\Js\swfupload\swfupload.js" />
     <Content Include="Admin\Js\swfupload\swfupload.swf" />
     <Content Include="Tools\FilesUpload.aspx" />
+    <Content Include="Content\Scripts\jquery.hiSlider\fonts\icomoon.eot" />
+    <Content Include="Content\Scripts\jquery.hiSlider\fonts\icomoon.ttf" />
+    <Content Include="Content\Scripts\jquery.hiSlider\fonts\icomoon.woff" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\sjs.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Views\Ctrl\_HotCase.cshtml" />
-    <Content Include="Views\Ctrl\_HotDes.cshtml" />
-    <Content Include="Views\Ctrl\_ZxPanel.cshtml" />
     <Content Include="Views\Home\Index - 复制.cshtml" />
-    <Content Include="Views\News\Home.cshtml" />
-    <Content Include="Views\Ctrl\_HotQa.cshtml" />
-    <Content Include="Views\Ctrl\_SmsCodeJs.cshtml" />
-    <Content Include="Views\Ctrl\_HotGd.cshtml" />
+    <Content Include="Views\Article\Home.cshtml" />
     <None Include="Web References\SmsLinkWs\Service.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -901,12 +931,13 @@
     <Compile Include="App_Start\GlobalActionFilter.cs" />
     <Compile Include="App_Start\ImageRouteHandler.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ZTController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\CtrlController.cs" />
     <Compile Include="Controllers\DTO\AjaxMsgResult.cs" />
     <Compile Include="Controllers\DTO\IndexDTO.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\SMSHelper.cs" />
     <Compile Include="Global.asax.cs">
@@ -952,15 +983,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\Js\kindeditor-4.1.7\attached\" />
-    <Folder Include="Content\Images\" />
     <Folder Include="Files\act\" />
     <Folder Include="Files\Ad\" />
     <Folder Include="Log\App_LocalResources\" />
     <Folder Include="Log\Errorlog\" />
     <Folder Include="UpLoadFiles\attached\image\" />
-    <Folder Include="UpLoadFiles\flash\" />
-    <Folder Include="UpLoadFiles\image\" />
+    <Folder Include="UpLoadFiles\attached\old\" />
+    <Folder Include="UpLoadFiles\images\" />
     <Folder Include="UpLoadFiles\thum\" />
+    <Folder Include="Views\Ctrl\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Handler\Ad.ashx" />
@@ -971,12 +1002,12 @@
     <Content Include="Tools\editer_upfiles.ashx" />
     <Content Include="Tools\file_manager.ashx" />
     <Content Include="Tools\SingleUpload.ashx" />
-    <Content Include="Views\Ctrl\_Footer.cshtml" />
-    <Content Include="Views\Ctrl\_Top.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Top.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Page404.cshtml" />
-    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -984,12 +1015,7 @@
     <Content Include="Tools\verify_code.ashx" />
     <Content Include="XmlConfig\site.config" />
     <Content Include="Tools\upload_ajax.ashx" />
-    <Content Include="Views\News\Details.cshtml" />
-    <Content Include="Views\Ctrl\_ZxCalc.cshtml" />
-    <Content Include="Views\Ctrl\_HotAct.cshtml" />
-    <Content Include="Views\Ctrl\_HotHouse.cshtml" />
-    <Content Include="Views\Ctrl\_Slider.cshtml" />
-    <Content Include="Views\Ctrl\_Join.cshtml" />
+    <Content Include="Views\Article\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ZGD.BasePage\ZGD.BasePage.csproj">

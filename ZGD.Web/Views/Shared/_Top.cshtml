@@ -1,0 +1,29 @@
+﻿@{Layout = null;}
+@using System.Data
+
+<!--top begin-->
+<div class="top">
+    <div class="main">
+        @*<div class="right">
+            <p>
+                24小时咨询热线：023-68409998
+            </p>
+        </div>
+        致公党全国行业质量诚信示范企业、全国用户质量满意企业*@
+    </div>
+</div>
+<div class="banner">
+    <div class="banner_bg main"></div>
+    <div class="nav main">
+        <ul>
+            <li><a href="/" @if (ViewBag.menuID == "0") { @Html.Raw("class=\"hover\"") ; }>网站首页</a></li>
+            @foreach (DataRow item in ViewBag.NavList.Rows)
+            {
+                <li>
+                    <a href="/articlepage/1-@(item["Id"].ToString())" @if (ViewBag.menuID == item["Id"].ToString()) { @Html.Raw("class=\"hover\"") ; }>@(item["Title"].ToString())</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+<!--top end-->

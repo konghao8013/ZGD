@@ -13,52 +13,54 @@ namespace ZGD.Web.Controllers
         public ActionResult Index()
         {
             ZGD.BLL.NewsInfo nBll = new ZGD.BLL.NewsInfo();
-            //家装攻略
-            DataTable dt_news1 = nBll.GetList(10, " IsLock=0 and ClassId=2 ", " IsTop desc,PubTime desc");
-            //装修材料
-            DataTable dt_news2 = nBll.GetList(10, " IsLock=0 and ClassId=3 ", " IsTop desc,PubTime desc");
-            //家装设计
-            DataTable dt_news3 = nBll.GetList(10, " IsLock=0 and ClassId=5 ", " IsTop desc,PubTime desc");
-            //家居风水
-            DataTable dt_news4 = nBll.GetList(10, " IsLock=0 and ClassId=6 ", " IsTop desc,PubTime desc");
-            //港宏动态
-            DataTable dt_news5 = nBll.GetList(6, " IsLock=0 and ClassId=71 ", " IsTop desc,PubTime desc");
-            
-            //首页轮播图
-            DataSet ds_slider = new ZGD.BLL.Banner().GetList(0, " aType=1 and IsLock=0", " Sort asc");
-            DataTable adList = ds_slider != null ? ds_slider.Tables[0] : null;
+            //党内要闻
+            DataTable dt_news1 = nBll.GetList(8, " n.IsLock=0 and nc.ClassId=9 ", " n.IsTop desc,n.Id desc");
+            DataTable dt_news1_img = nBll.GetList(4, " n.IsLock=0 and nc.ClassId=9 and ImgUrl is not null and ImgUrl<>''", " n.IsTop desc,n.Id desc");
+            //工作简讯
+            DataTable dt_news2 = nBll.GetList(6, " n.IsLock=0 and nc.ClassId=10 ", " n.IsTop desc,n.Id desc");
+            DataTable dt_news2_img = nBll.GetList(4, " n.IsLock=0 and nc.ClassId=10 and ImgUrl is not null and ImgUrl<>''", " n.IsTop desc,n.Id desc");
+            //关于致公
+            DataTable dt_news3 = nBll.GetList(6, " n.IsLock=0 and nc.ClassId=19 ", " n.IsTop desc,n.Id desc");
+            //自身建设
+            DataTable dt_news4 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=11 ", " n.IsTop desc,n.Id desc");
+            //宣传思想
+            DataTable dt_news5 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=13 ", " n.IsTop desc,n.Id desc");
+            //参政议政
+            DataTable dt_news6 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=12 ", " n.IsTop desc,n.Id desc");
+            //社会服务
+            DataTable dt_news7 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=15 ", " n.IsTop desc,n.Id desc");
+            //海外联谊
+            DataTable dt_news8 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=14 ", " n.IsTop desc,n.Id desc");
+            //致公风采
+            DataTable dt_news9 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=16 ", " n.IsTop desc,n.Id desc");
+            //通知公告
+            DataTable dt_news10 = nBll.GetList(4, " n.IsLock=0 and nc.ClassId=20 ", " n.IsTop desc,n.Id desc");
+
+            ZGD.BLL.Channel cBll = new ZGD.BLL.Channel();
+            //专题
+            DataSet ds_zt = cBll.GetList(3, " IsDelete=0 and KindId=2 and ParentId=21", " Id desc");
+            DataTable dt_zt = ds_zt != null ? ds_zt.Tables[0] : null;
 
             //首页广告
             DataSet ds_ad = new ZGD.BLL.Banner().GetList(0, " aType=2 and IsLock=0", " Sort asc");
-            DataTable adIndex = ds_ad != null ? ds_ad.Tables[0] : null;
+            DataTable adIndex = ds_ad != null ? ds_ad.Tables[0] : null;            
             
-            //风格 户型
-            BLL.Channel cBll = new BLL.Channel();
-            ViewBag.DataFG = cBll.GetList(" kindId=3 and IsDelete=0 and ParentId>0").Tables[0];
-            ViewBag.DataHX = cBll.GetList(" kindId=4 and IsDelete=0 and ParentId>0").Tables[0];
-            ViewBag.DataJG = cBll.GetList(" kindId=5 and IsDelete=0 and ParentId>0").Tables[0];
-            ViewBag.DataMJ = cBll.GetList(" kindId=8 and IsDelete=0 and ParentId>0").Tables[0];
-            ViewBag.DataQY = cBll.GetList(" kindId=9 and IsDelete=0 and ParentId>0").Tables[0];
-            ViewBag.DataGN = cBll.GetList(" kindId=10 and IsDelete=0 and ParentId>0").Tables[0];
-            ViewBag.DataJD = cBll.GetList(" kindId=11 and IsDelete=0 and ParentId>0").Tables[0];
-
-            //热门标签
-            DataTable dt_tag = new ZGD.BLL.Links().GetList(0, " IsLock=0 and ClassId=70 ", " SortId asc");
-            ViewBag.Tags = dt_tag;
-            
-            //报价数量
-            int bj_count = new ZGD.BLL.Feedback().GetCount("");
-            ViewBag.BjCount = bj_count;
-
             return View(new IndexDTO
             {
-                AdList = adList,
-                AdList2 = adIndex,
+                AdList = adIndex,
                 News1 = dt_news1,
+                News1_Img = dt_news1_img,
                 News2 = dt_news2,
+                News2_Img = dt_news2_img,
                 News3 = dt_news3,
                 News4 = dt_news4,
-                News5 = dt_news5
+                News5 = dt_news5,
+                News6 = dt_news6,
+                News7 = dt_news7,
+                News8 = dt_news8,
+                News9 = dt_news9,
+                News10 = dt_news10,
+                ZT = dt_zt
             });
         }
 

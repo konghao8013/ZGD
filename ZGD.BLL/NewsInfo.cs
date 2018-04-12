@@ -188,9 +188,14 @@ namespace ZGD.BLL
         /// <summary>
         /// 获得前几行数据
         /// </summary>
-        public DataTable GetList(int Top, string strWhere, string filedOrder)
+        /// <param name="Top"></param>
+        /// <param name="strWhere"></param>
+        /// <param name="filedOrder"></param>
+        /// <param name="pId">8文章 21专题文章</param>
+        /// <returns></returns>
+        public DataTable GetList(int Top, string strWhere, string filedOrder, int pId = 8)
         {
-            DataSet ds = dal.GetList(Top, strWhere, filedOrder);
+            DataSet ds = dal.GetList(Top, strWhere, filedOrder, pId);
             return ds != null ? ds.Tables[0] : null;
         }
         /// <summary>

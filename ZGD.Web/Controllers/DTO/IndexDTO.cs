@@ -14,17 +14,15 @@ namespace ZGD.Web.Controllers
         /// </summary>
         public DataTable AdList { get; set; }
         /// <summary>
-        /// 首页广告
-        /// </summary>
-        public DataTable AdList2 { get; set; }
-        /// <summary>
         /// 
         /// </summary>
         public DataTable News1 { get; set; }
+        public DataTable News1_Img { get; set; }
         /// <summary>
         /// 
         /// </summary>
         public DataTable News2 { get; set; }
+        public DataTable News2_Img { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -37,5 +35,29 @@ namespace ZGD.Web.Controllers
         /// 
         /// </summary>
         public DataTable News5 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataTable News6 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataTable News7 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataTable News8 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataTable News9 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataTable News10 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataTable ZT { get; set; }
     }
 }

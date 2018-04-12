@@ -15,9 +15,21 @@ namespace ZGD.Web
             routes.IgnoreRoute("{resource}.aspx/{*pathInfo}");
 
             routes.MapRoute("ShortRoute",
-                "{controller}/{id}",
+                "{controller}/{id}.html",
                 new { action = "details" },
                 new { id = @"\d+" },
+                new string[] { "ZGD.Web.Controllers" }
+            );
+
+            routes.MapRoute("ArticleList",
+                "articlepage/{page}-{t}",
+                new { controller = "article", action = "Index", page = 1, t = 0 },
+                new string[] { "ZGD.Web.Controllers" }
+            );
+
+            routes.MapRoute("Article",
+                "article/{cid}-{id}.html",
+                new { controller = "article", action = "details", cid = 0, id = 0 },
                 new string[] { "ZGD.Web.Controllers" }
             );
 
