@@ -100,7 +100,8 @@ namespace ZGD.Web.Tools
 
             Hashtable hash = new Hashtable();
             hash["error"] = 0;
-            hash["url"] = "http://" + ZGD.Common.DTKeys.Web + fileUrl;
+            //hash["url"] = "http://" + ZGD.Common.DTKeys.Web + fileUrl;
+            hash["url"] = fileUrl;
             context.Response.AddHeader("Content-Type", "text/html; charset=UTF-8");
             context.Response.Write(hash.ToJson());
             context.Response.End();

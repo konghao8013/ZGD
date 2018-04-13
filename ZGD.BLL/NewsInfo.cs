@@ -18,6 +18,22 @@ namespace ZGD.BLL
         #region  Method
 
         /// <summary>
+        /// 增加一条数据
+        /// </summary>
+        public int AddNewsColumns(ZGD.Model.NewsColumns model)
+        {
+            return dal.AddNewsColumns(model);
+        }
+
+        /// <summary>
+        /// 删除一条数据
+        /// </summary>
+        public bool DeleteNewsColumns(int nId)
+        {
+            return dal.DeleteNewsColumns(nId);
+        }
+
+        /// <summary>
         /// 得到最大ID
         /// </summary>
         public int GetMaxId(string where = "")

@@ -5,6 +5,18 @@ namespace ZGD.Model
     /// NewsInfo:实体类(属性说明自动提取数据库字段的描述信息)
     /// </summary>
     [Serializable]
+    public  class NewsColumns
+    {
+        public int Id { get; set; }
+        public int NewsId { get; set; }
+        public int ClassId { get; set; }
+        public DateTime PubTime { get; set; }
+    }
+
+    /// <summary>
+    /// NewsInfo:实体类(属性说明自动提取数据库字段的描述信息)
+    /// </summary>
+    [Serializable]
     public partial class NewsInfo
     {
         public NewsInfo()
@@ -147,7 +159,7 @@ namespace ZGD.Model
         }
         public string SubTitle { get; set; }
         public string PubUnit { get; set; }
-        
+
         public int UserId { get; set; }
         #endregion Model
 

@@ -143,7 +143,23 @@ namespace ZGD.Web.Admin.News
             {
                 model.IsTop = 1;
             }
-            bll.Update(model);
+            if (bll.Update(model))
+            {
+                //保存版块
+                if (bll.DeleteNewsColumns(model.Id))
+                {
+                    string[] cid = model.ClassId.Split(',');
+                    foreach (string item in cid)
+                    {
+                        bll.AddNewsColumns(new Model.NewsColumns
+                        {
+                            NewsId = model.Id,
+                            ClassId = Convert.ToInt32(item),
+                            PubTime = DateTime.Now
+                        });
+                    }
+                }
+            }
 
             //保存日志
             SaveLogs("[文章模块]编辑文章：" + model.Title);

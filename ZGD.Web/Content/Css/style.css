@@ -5,8 +5,8 @@
 .tl_ad img { width: 100%; height: 80px; }
 .con_bg { background: #fff; }
 
-.title .more { float: right; color: #727272; font-size: 12px; }
-.title .more:hover { color: #FF5500; }
+.more { float: right; color: #727272; font-size: 12px; }
+.more:hover { color: #FF5500; }
 .news_list { }
 .news_list li { font-size: 14px; line-height: 31px; }
 .news_list li a { background: url(../Images/li.png) no-repeat left center; padding-left: 15px; }
@@ -36,7 +36,9 @@
 .panel3 { }
 .panel3 .title { height: 35px; line-height: 35px; background: url(../Images/title_bg2.png) repeat-x; color: #0165BF; font-size: 14px; padding-right: 8px; }
 .panel3 .title span { font-weight: bold; width: 100px; height: 26px; line-height: 26px; display: inline-block; background: url(../Images/title_bg3.png) no-repeat; margin-left: 16px; margin-top: 8px; text-align: center; color: #fff; }
-.panel3 .con { height: 155px; padding: 10px 10px; }
+.panel3 .title2 { height: 40px; line-height: 40px; background: url(../Images/title_bg2.png) repeat-x; color: #0165BF; font-size: 14px; padding: 0 12px; }
+.panel3 .title2 span { font-weight: bold; background: url(../Images/sj.png) no-repeat left center; padding-left: 14px; }
+.panel3 .con { height: 155px; padding: 10px 0 0 16px; }
 
 .index_mid { padding: 0 2px; }
 .index_mid .index_mid_left { width: 733px; float: left; }
@@ -49,7 +51,7 @@
 .mid_left_bom .left { width: 360px; }
 .mid_left_bom .right { width: 360px; }
 
-.index_bom { padding: 0 10px; }
+.index_bom { padding: 0 15px; }
 
 .news_page { padding: 20px 50px; }
 .news_page li { font-size: 14px; line-height: 42px; border-bottom: dotted 1px #7C8E5B; }
@@ -66,6 +68,16 @@
 .zt_item h3 span { background: #0165BF; color: #fff; font-size: 20px; display: inline-block; padding: 5px 15px; border-radius: 5px; }
 .zt_item .zt_page { }
 .zt_item .zt_page li { float: left; width: 250px; margin: 15px 13px 10px 13px; }
+
+.zgyy { }
+.zgyy img { width: 100%; height: 100%; }
+.zgyy .left { width: 440px; height: 275px; }
+.zgyy .right { width: 500px; height: 275px; }
+.zgyy .right img { float: left; }
+.zgyy .right .right_top { }
+.zgyy .right .right_top img { width: 245px; height: 160px; margin-right: 10px; margin-bottom: 10px; }
+.zgyy .right .right_bom { }
+.zgyy .right .right_bom img { width: 160px; height: 105px; margin-right: 10px; }
 
 .link_list { color: #fff; background: #0267BF; border: solid 1px #125284; border-radius: 1px; }
 .link_list p { border: solid 1px #089EE1; padding: 6px 50px; }

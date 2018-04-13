@@ -100,6 +100,18 @@ namespace ZGD.Web.Admin.News
             int ReId = bll.Add(model);
             if (ReId > 0)
             {
+                //保存版块
+                string[] cid = model.ClassId.Split(',');
+                foreach (string item in cid)
+                {
+                    bll.AddNewsColumns(new Model.NewsColumns
+                    {
+                        NewsId = ReId,
+                        ClassId = Convert.ToInt32(item),
+                        PubTime = DateTime.Now
+                    });
+                }
+
                 //保存日志
                 SaveLogs("[文章模块]添加文章：" + model.Title);
                 JscriptMsg("内容设置成功", "List.aspx");

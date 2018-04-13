@@ -3,6 +3,8 @@
 @import url("../layout.css");
 @import url("../base.css");
 
+
+.layui-layer-content .input.normal{width:300px;}
 /* =========================登录页样式.开始======================= */
 .login-screen { position: absolute; top: 45%; left: 50%; margin-top: -160px; margin-left: -245px; width: 490px; text-align: left; }
 .login-icon { float: left; width: 96px; height: 96px; text-indent: -9999px; background: url(login_logo.png) no-repeat; border-radius: 5px; }

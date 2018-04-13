@@ -159,6 +159,59 @@ namespace ZGD.DAL
         }
 
         /// <summary>
+        /// 增加一条数据
+        /// </summary>
+        public int AddNewsColumns(ZGD.Model.NewsColumns model)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("insert into NewsColumns(");
+            strSql.Append("NewsId,ClassId,PubTime)");
+            strSql.Append(" values (");
+            strSql.Append("@NewsId,@ClassId,@PubTime)");
+            strSql.Append(";select @@IDENTITY");
+            SqlParameter[] parameters = {
+                    new SqlParameter("@NewsId", SqlDbType.Int,4),
+                    new SqlParameter("@ClassId", SqlDbType.Int,4),
+                    new SqlParameter("@PubTime", SqlDbType.DateTime)};
+            parameters[0].Value = model.NewsId;
+            parameters[1].Value = model.ClassId;
+            parameters[2].Value = model.PubTime;
+
+            object obj = DbHelperSQL.GetSingle(strSql.ToString(), parameters);
+            if (obj == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return Convert.ToInt32(obj);
+            }
+        }
+
+        /// <summary>
+        /// 删除一条数据
+        /// </summary>
+        public bool DeleteNewsColumns(int nId)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete from NewsColumns ");
+            strSql.Append(" where NewsId=@Id");
+            SqlParameter[] parameters = {
+                    new SqlParameter("@Id", SqlDbType.Int,4)};
+            parameters[0].Value = nId;
+
+            int rows = DbHelperSQL.ExecuteSql(strSql.ToString(), parameters);
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// 修改一列数据
         /// </summary>
         public void UpdateField(int Id, string strValue)

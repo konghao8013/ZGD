@@ -43,15 +43,16 @@
                         success: function (layero, index) {
                             layer.close(load);
                             if (msg != null && msg != "") {
-                                $("#hidId").val(msg._id);
-                                $("#ddlType").val(msg._atype);
-                                $("#txtUrl").val(msg._url);
-                                $("#txtTitle").val(msg._title);
-                                $("#txtSort").val(msg._sort);
-                                $("#txtSize").val(msg._size);
-                                $("#txtImgUrl").val(msg._imgurl);
+                                $("#hidId").val(msg.ID);
+                                $("#ddlType").val(msg.aType);
+                                $("#txtUrl").val(msg.Url);
+                                $("#txtTitle").val(msg.Title);
+                                $("#txtDesc").val(msg.Description);
+                                $("#txtSort").val(msg.Sort);
+                                $("#txtSize").val(msg.Size);
+                                $("#txtImgUrl").val(msg.ImgUrl);
                                 if (msg._islock == "1") $("#cbIsLock").attr("checked", true); else $("#cbIsLock").removeAttr("checked");
-                                $("#imgurl").html("<a href=\"" + msg._url + "\" target=\"_blank\"><img src=\"" + msg._imgurl + "\" height=\"80\" /></a>").show();
+                                $("#imgurl").html("<a href=\"" + msg.Url + "\" target=\"_blank\"><img src=\"" + msg.ImgUrl + "\" height=\"80\" /></a>").show();
                             }
 
                             //初始化上传控件
@@ -191,7 +192,7 @@
                         <asp:Label ID="lb_id" runat="server" Text='<%#Eval("Id")%>'></asp:Label></td>
                     <td align="center"><%# ZGD.Common.StringHandler.GetBannerType(Eval("aType").ToString())%></td>
                     <td align="center"><a href="<%#Eval("Url")%>" target="_blank">
-                        <img src="<%#Eval("ImgUrl")%>" height="75" /></a></td>
+                        <img src="<%#Eval("ImgUrl")%>" height="50" /></a></td>
                     <td align="center"><%#Eval("Size")%></td>
                     <td><%#Eval("Title")%></td>
                     <td align="center"><%#string.Format("{0:g}", Eval("PubTime"))%></td>
