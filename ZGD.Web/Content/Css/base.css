@@ -29,6 +29,9 @@ a:hover { color: #FF5500; }
 .main { width: 980px; height: auto; margin: 0 auto; }
 .page_hr { border-top: solid 1px #D0E1F6; margin: 0 50px; }
 
+.gotop { width: 36px; height: 36px; border-radius: 100%; display: inline-block; position: fixed; bottom: 20px; right: 20px; background: url(../Images/gotop.png) no-repeat 0 0; }
+.gotop:hover { background-position: -37px 0; }
+
 .hide { display: none; }
 .show { display: block; }
 .inblock { display: inline-block; }
@@ -77,7 +80,7 @@ a:hover { color: #FF5500; }
 .fz34 { font-size: 34px; }
 
 .pager { height: 40px; padding: 15px 0 20px 0; text-align: center; font-size: 14px; }
-.pager a { padding: 8px 13px; border: solid 1px #ccc; color: #333;margin-right:-1px; }
+.pager a { padding: 8px 13px; border: solid 1px #ccc; color: #333; margin-right: -1px; }
 .pager span { padding: 8px 13px; background-color: #FF5500; color: #fff; font-weight: 600; border: solid 1px #FF5500; }
 .pager a:hover { background-color: #FF5500; color: #fff; text-decoration: none; border: solid 1px #FF5500; }
 

@@ -262,6 +262,8 @@
     <Content Include="Content\Images\banner.jpg" />
     <Content Include="Content\Images\bg.jpg" />
     <Content Include="Content\Images\bg2.jpg" />
+    <Content Include="Content\Images\gongan.png" />
+    <Content Include="Content\Images\gotop.png" />
     <Content Include="Content\Images\li.png" />
     <Content Include="Content\Images\nav_bg.png" />
     <Content Include="Content\Images\nav_hover.png" />
@@ -270,6 +272,7 @@
     <Content Include="Content\Images\title_bg2.png" />
     <Content Include="Content\Images\title_bg3.png" />
     <Content Include="Content\Images\title_bg4.png" />
+    <Content Include="Content\Images\top.png" />
     <Content Include="Content\Images\top_bg.jpg" />
     <Content Include="Content\Images\top_bg.png" />
     <Content Include="Content\Images\zgd.jpg" />
