@@ -10,7 +10,14 @@
 
 <div class="con_bg main">
     <div class="index_top" style="height:auto;">
-        <div class="title"><span>您的位置：首页 &gt; @(ViewBag.Type)</span></div>
+        @if (ZGD.Web.Controllers.ArticleController.IsZT(ViewBag.TypeID))
+        {
+            <div class="title"><span>您的位置：首页 &gt; 专题报道 &gt; @(ViewBag.Type)</span></div>
+        }
+        else
+        {
+            <div class="title"><span>您的位置：首页 &gt; @(ViewBag.Type)</span></div>
+        }
         <div class="index_top_con">
             <ul class="news_page">
                 @foreach (DataRow item in Model.Rows)

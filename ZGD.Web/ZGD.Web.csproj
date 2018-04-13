@@ -678,7 +678,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Views\Home\Index - 复制.cshtml" />
-    <Content Include="Views\Article\Home.cshtml" />
+    <Content Include="Views\ZT\Index.cshtml" />
     <None Include="Web References\SmsLinkWs\Service.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

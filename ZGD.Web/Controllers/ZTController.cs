@@ -14,27 +14,15 @@ namespace ZGD.Web.Controllers
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
-        public ActionResult Index(int page = 1, string t = "")
+        public ActionResult Index(int page = 1)
         {
-            string pager = string.Empty, where = "1=1", url = string.Empty;
+            ZGD.BLL.Channel cBll = new ZGD.BLL.Channel();
+            DataSet ds = cBll.GetList(0, " ParentId=21 and KindId=2 and IsDelete=0", " Id desc");
+            DataSet ys = cBll.GetZtYear();
 
-            int type = 0;
-            if (!string.IsNullOrWhiteSpace(t) && t != "0")
-            {
-                where += " and nc.ClassId=" + t;
-                url += "&t=" + t;
-                type = Convert.ToInt32(t);
-            }
-            var result = new ZGD.BLL.NewsInfo().GetList(page, 10, where, " n.IsTop desc,n.PubTime desc", url, "/news", out pager);
-            DataSet ds = new ZGD.BLL.Channel().GetList(0, " ParentId=1 and IsDelete=0", " Id asc");
-            ViewBag.ClassType = ds != null && ds.Tables[0].Rows.Count > 0 ? ds.Tables[0] : null;
-            var cModel = new ZGD.BLL.Channel().GetModelById(type);
-            ViewBag.Pager = pager;
-            ViewBag.Page = page;
-            //广告
-            DataSet ds_ad = new ZGD.BLL.Banner().GetList(0, " aType=2 and IsLock=0", " Sort asc");
-            ViewBag.AdList = ds_ad != null ? ds_ad.Tables[0] : null;
-            return View(result);
+            ViewBag.ZtList = ds != null && ds.Tables[0].Rows.Count > 0 ? ds.Tables[0] : null;
+            ViewBag.Year = ys != null && ys.Tables[0].Rows.Count > 0 ? ys.Tables[0] : null;
+            return View();
         }
     }
 }

@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = ViewBag.Type;
+    ViewBag.Keywords = "中国致公党重庆市委员会";
+    ViewBag.Description = "中国致公党重庆市委员会";
+}
+
+@using ZGD.Common
+@using System.Data
+@{Html.RenderAction("Top", "Ctrl", new { menuID = ViewBag.TypeID });}
+
+<div class="con_bg main">
+    <div class="index_top" style="height:auto;">
+        <div class="title"><span>您的位置：首页 &gt; 专题报道</span></div>
+        <div class="index_top_con">
+            @foreach (DataRow year in ViewBag.Year.Rows)
+            {
+                <div class="zt_item">
+                    <h3><span>@(year["y"].ToString())年专题</span></h3>
+                    <ul class="zt_page">
+                        @foreach (DataRow item in ViewBag.ZtList.Rows)
+                        {
+                            <li><a href="/articlepage/21-@(ViewBag.TypeID)-@(item["Id"].ToString())" title="@(item["Title"].ToString())"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" /></a></li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="space30"></div>
+    <hr class="page_hr" />
+</div>

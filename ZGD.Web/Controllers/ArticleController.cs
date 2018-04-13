@@ -21,17 +21,17 @@ namespace ZGD.Web.Controllers
             if (!string.IsNullOrWhiteSpace(key))
             {
                 key = key.FunStr();
-                url += "&key=" + key;
+                url += "-" + key;
                 key = HttpUtility.UrlDecode(key);
                 where += " and (n.Title like '%" + key + "%' or n.Keyword like '%" + key + "%' or n.Tags like '%" + key + "%')";
             }
-            
+
             if (t > 0)
             {
                 where += " and nc.ClassId=" + t;
-                url += "&t=" + t;
+                url += "-" + t;
             }
-            var result = new ZGD.BLL.NewsInfo().GetList(page, 15, where, " n.IsTop desc,n.PubTime desc", url, "/news", out pager);
+            var result = new ZGD.BLL.NewsInfo().GetList(page, 15, where, " n.IsTop desc,n.PubTime desc", url, "/articlepage/", out pager);
             DataSet ds = new ZGD.BLL.Channel().GetList(0, " ParentId=1 and IsDelete=0", " Id asc");
             ViewBag.ClassType = ds != null && ds.Tables[0].Rows.Count > 0 ? ds.Tables[0] : null;
             var cModel = new ZGD.BLL.Channel().GetModelById(t);
@@ -63,6 +63,28 @@ namespace ZGD.Web.Controllers
             ViewBag.TypeID = cid.ToString();
 
             return View(news);
+        }
+
+        /// <summary>
+        /// 判断是否为专题
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static bool IsZT(int id)
+        {
+            if (id <= 0)
+            {
+                return false;
+            }
+            Model.Channel cType = new BLL.Channel().GetModelById(id);
+            if (cType != null)
+            {
+                if (cType.ParentId == 21)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

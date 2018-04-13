@@ -288,6 +288,16 @@ namespace ZGD.DAL
         /// <summary>
         /// 获得数据列表
         /// </summary>
+        public DataSet GetZtYear()
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select distinct convert(varchar(4), PubTime,111) y from Channel where ParentId=21 and KindId=2 order by y desc");
+            return DbHelperSQL.Query(strSql.ToString());
+        }
+
+        /// <summary>
+        /// 获得数据列表
+        /// </summary>
         public DataSet GetList(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();

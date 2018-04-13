@@ -85,8 +85,10 @@ namespace ZGD.DAL
         /// <param name="countShow">允许显示的页码</param>
         /// <param name="pageCount">总页数</param>
         /// <param name="url">处理页面</param>
+        /// <param name="urlParam">参数</param>
+        /// <param name="isRoute">是否有重写路由</param>
         /// <returns></returns>
-        public static string InitPageFooter(int page, int pageCount, int rowCount, string url, string urlParam, bool isWeb = false)
+        public static string InitPageFooter(int page, int pageCount, int rowCount, string url, string urlParam, bool isRoute = true)
         {
             //当前索引前后 可见页码数
             //如: 1 2 3 4 5 “6” 7 8 9 10
@@ -103,55 +105,66 @@ namespace ZGD.DAL
             //首页、上一页
             if (page != 1 && page > 0)
             {
-                sb.Append("<a href=\"" + url + "?page=" + (page - 1).ToString() + urlParam + "\">&lt; 上一页</a>");
+                if (isRoute)
+                {
+                    sb.Append("<a href=\"" + url + (page - 1).ToString() + urlParam + "\">&lt; 上一页</a>");
+                }
+                else
+                {
+                    sb.Append("<a href=\"" + url + "?page=" + (page - 1).ToString() + urlParam + "\">&lt; 上一页</a>");
+                }
             }
             else
             {
                 sb.Append("<a href=\"javascript:;\">&lt; 上一页</a>");
             }
-            if (isWeb)
+            //页码处理
+            if (pageCount > _pageCountShow)
             {
-                //页码处理
-                if (pageCount > _pageCountShow)
+                if (page >= _pageCountShow)
                 {
-                    if (page >= _pageCountShow)
+                    if (page > idxShowPager)
                     {
-                        if (page > idxShowPager)
-                        {
-                            //始终显示前面
-                            pagerStarIdx = page - idxShowPager;
-                        }
-                        else
-                        {
-                            pagerStarIdx = page;
-                        }
-
-                        //判断当前页码索引 是否超出总页数
-                        if (page + idxShowPager > pageCount)
-                        {
-                            pagerEndIdx = pageCount;
-                        }
-                        else
-                        {
-                            pagerEndIdx = page + idxShowPager;
-                        }
+                        //始终显示前面
+                        pagerStarIdx = page - idxShowPager;
                     }
                     else
                     {
-                        pagerEndIdx = _pageCountShow;
+                        pagerStarIdx = page;
+                    }
+
+                    //判断当前页码索引 是否超出总页数
+                    if (page + idxShowPager > pageCount)
+                    {
+                        pagerEndIdx = pageCount;
+                    }
+                    else
+                    {
+                        pagerEndIdx = page + idxShowPager;
                     }
                 }
                 else
                 {
-                    pagerEndIdx = pageCount;
+                    pagerEndIdx = _pageCountShow;
                 }
+            }
+            else
+            {
+                pagerEndIdx = pageCount;
+            }
 
-                //拼接页码
-                for (int i = pagerStarIdx; i <= pagerEndIdx; i++)
+            //拼接页码
+            for (int i = pagerStarIdx; i <= pagerEndIdx; i++)
+            {
+                if (page == i)
                 {
-                    if (page == i)
+                    sb.Append("<span>" + i.ToString() + "</span>");
+                }
+                else
+                {
+                    if (isRoute)
                     {
-                        sb.Append("<span>" + i.ToString() + "</span>");
+                        sb.Append("<a href=\"" + url + i.ToString() + urlParam + "\">" + i.ToString() + "</a>");
                     }
                     else
                     {
@@ -159,21 +172,17 @@ namespace ZGD.DAL
                     }
                 }
             }
-            else
-            {
-                for (int i = pagerStarIdx; i <= pagerEndIdx; i++)
-                {
-                    if (page == i)
-                    {
-                        sb.Append("<span>" + i.ToString() + "</span>");
-                        break;
-                    }
-                }
-            }
             //尾页、下一页
             if (page != pageCount && page < pageCount)
             {
-                sb.Append("<a href=\"" + url + "?page=" + (page + 1).ToString() + urlParam + "\">下一页 &gt;</a>");
+                if (isRoute)
+                {
+                    sb.Append("<a href=\"" + url + (page + 1).ToString() + urlParam + "\">下一页 &gt;</a>");
+                }
+                else
+                {
+                    sb.Append("<a href=\"" + url + "?page=" + (page + 1).ToString() + urlParam + "\">下一页 &gt;</a>");
+                }
             }
             else
             {
@@ -237,14 +246,14 @@ namespace ZGD.DAL
             pageCount = 1;
             rowCount = 0;
             SqlParameter[] parameters = {
-					new SqlParameter("@TableName", SqlDbType.NVarChar,3000),
-					new SqlParameter("@Fields", SqlDbType.NVarChar,3000),
-					new SqlParameter("@OrderField", SqlDbType.NVarChar,1000),
-					new SqlParameter("@pageSize", SqlDbType.Int,4),			
+                    new SqlParameter("@TableName", SqlDbType.NVarChar,3000),
+                    new SqlParameter("@Fields", SqlDbType.NVarChar,3000),
+                    new SqlParameter("@OrderField", SqlDbType.NVarChar,1000),
+                    new SqlParameter("@pageSize", SqlDbType.Int,4),
                     new SqlParameter("@pageIndex", SqlDbType.Int,4),
-					new SqlParameter("@sqlWhere", SqlDbType.NVarChar,3000),
-					new SqlParameter("@distinct", SqlDbType.NVarChar,50),
-					new SqlParameter("@rowCount", SqlDbType.Int,4)};
+                    new SqlParameter("@sqlWhere", SqlDbType.NVarChar,3000),
+                    new SqlParameter("@distinct", SqlDbType.NVarChar,50),
+                    new SqlParameter("@rowCount", SqlDbType.Int,4)};
             parameters[0].Value = tableName;
             parameters[1].Value = fieldsName;
             parameters[2].Value = orderField;

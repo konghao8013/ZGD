@@ -316,12 +316,12 @@ namespace ZGD.BLL
         /// <summary>
         /// 分页获取数据列表
         /// </summary>
-        public DataTable GetList(int pIdx, int pageSize, string strWhere, string sortName, string urlParam, string page, out string pager, bool isWeb = true)
+        public DataTable GetList(int pIdx, int pageSize, string strWhere, string sortName, string urlParam, string page, out string pager)
         {
             pager = string.Empty;
             int pageCount = 0, rowCount = 0;
             DataSet ds = dal.GetList(pIdx, pageSize, strWhere, sortName, out rowCount, out pageCount);
-            pager = DAL.Pager.InitPageFooter(pIdx, pageCount, rowCount, page, urlParam, isWeb);
+            pager = DAL.Pager.InitPageFooter(pIdx, pageCount, rowCount, page, urlParam);
             return ds == null ? null : ds.Tables[0];
         }
 

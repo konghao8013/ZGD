@@ -24,9 +24,17 @@ namespace ZGD.BLL
         }
 
         /// <summary>
-        /// 是否存在该记录
+        /// 获得数据列表
         /// </summary>
-        public bool Exists(int Id)
+        public DataSet GetZtYear()
+        {
+            return dal.GetZtYear();
+        }
+
+            /// <summary>
+            /// 是否存在该记录
+            /// </summary>
+            public bool Exists(int Id)
         {
             return dal.Exists(Id);
         }
