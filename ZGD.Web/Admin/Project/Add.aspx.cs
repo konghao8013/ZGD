@@ -93,6 +93,7 @@ namespace ZGD.Web.Admin.Project
                     {
                         pModel = new ZGD.Model.ProjectImg();
                         pModel.Title = title_list[idx];
+                        pModel.Description = title_list[idx];
                         pModel.ImgUrl = item;
                         //缩略图生产
                         if (!string.IsNullOrWhiteSpace(item))
@@ -100,7 +101,6 @@ namespace ZGD.Web.Admin.Project
                             pModel.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(item, 600, 410, "H");
                         }
                         pModel.pID = ReId;
-                        pModel.Description = "";
                         pModel.PubTime = DateTime.Now;
                         pBll.Add(pModel);
                         idx++;

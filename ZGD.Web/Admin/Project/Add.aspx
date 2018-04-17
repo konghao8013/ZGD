@@ -93,7 +93,7 @@
             var hidtemp2 = "";
             var temphtml = "";
             for (var i = 0; i < hidimg.length - 1; i++) {
-                temphtml += '<div class="uploadImg"><div><img src="' + hidimg[i] + '" /></div><textarea type="text" class="input">' + hidtitle[i] + '</textarea><a href="javascript:void(0)" onclick="deleteImg(' + i + ',' + _img_type + ')">X</a></div>';
+                temphtml += '<div class="uploadImg"><div><img src="' + hidimg[i] + '" /></div><textarea type="text" class="input" placeholder="输入图片描述">' + hidtitle[i] + '</textarea><a href="javascript:void(0)" onclick="deleteImg(' + i + ',' + _img_type + ')">X</a></div>';
                 hidtemp1 += hidimg[i] + ",";
                 hidtemp2 += hidtitle[i] + ",";
             }
