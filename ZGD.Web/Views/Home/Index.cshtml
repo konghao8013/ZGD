@@ -221,9 +221,8 @@
                         if (p_idx == 0)
                         {
                             <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" /></a>
+                            break;
                         }
-                        p_idx++;
-                        break;
                     }
                 </div>
                 <div class="right">
@@ -233,16 +232,16 @@
                         }
                         @foreach (DataRow item in Model.Pics.Rows)
                         {
-                            if (p_idx == 1)
+                            if (p_idx > 0)
                             {
                                 <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" /></a>
                             }
                             else if (p_idx == 2)
                             {
                                 <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" style="margin-right:0" /></a>
+                                break;
                             }
                             p_idx++;
-                            break;
                         }
                     </div>
                     <div class="right_bom">
@@ -251,7 +250,7 @@
                         }
                         @foreach (DataRow item in Model.Pics.Rows)
                         {
-                            if (p_idx == 1)
+                            if (p_idx > 2)
                             {
                                 <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" /></a>
                             }
@@ -260,7 +259,6 @@
                                 <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" style="margin-right:0" /></a>
                             }
                             p_idx++;
-                            break;
                         }
                     </div>
                 </div>
