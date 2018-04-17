@@ -682,6 +682,8 @@
     </None>
     <Content Include="Views\Home\Index - 复制.cshtml" />
     <Content Include="Views\ZT\Index.cshtml" />
+    <Content Include="Views\Gallery\Details.cshtml" />
+    <Content Include="Views\Gallery\Index.cshtml" />
     <None Include="Web References\SmsLinkWs\Service.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
