@@ -15,11 +15,11 @@
     <script type="text/javascript" src="../js/lhgdialog/lhgdialog.js?skin=idialog"></script>
     <style type="text/css">
         #divHImg { display: inline-block; height: auto; }
-        .uploadImg { width: 135px; height: 130px; float: left; margin: 10px 10px 0 0; position:relative; }
-        .uploadImg a{width: 15px; height: 15px;line-height: 15px;position:absolute;text-align:center;display:inline-block;top:4px;right:4px;background-color:#fff;color:#ff0000;font-weight:bold;font-size:14px;}
-        .uploadImg div { width: 120px; text-align: center; border: solid 1px #ccc; padding: 5px; margin-bottom: 3px; }
-        .uploadImg img { width: 120px; height: 90px; }
-        .uploadImg .input { width: 125px; height:16px;min-height:16px;line-height:16px; padding-left:1px; }
+        .uploadImg { width: 350px; float: left; margin: 5px 10px 5px 0; position: relative; }
+        .uploadImg a { width: 15px; height: 15px; line-height: 15px; position: absolute; text-align: center; display: inline-block; top: 4px; right: 4px; background-color: #fff; color: #ff0000; font-weight: bold; font-size: 14px; }
+        .uploadImg div { width: 340px; height: 240px; text-align: center; border: solid 1px #ccc; padding: 5px; margin-bottom: 3px; }
+        .uploadImg img { height: 100%; }
+        .uploadImg .input { width: 345px; height: 40px; line-height: 16px; padding-left: 1px; }
         #imgPanel{margin-bottom:5px;}
         #imgPanel img { width: 120px; }
     </style>
@@ -56,7 +56,7 @@
             var hidtitle = $("#" + _hidTitle).val().split(",");
             var hidtemp1 = "";
             var hidtemp2 = "";
-            $.each($("#" + _divHImg + " input"), function (i, n) {
+            $.each($("#" + _divHImg + " textarea"), function (i, n) {
                 if (i != index) {
                     hidtemp1 += hidimg[i] + ',';
                     hidtemp2 += $(n).val() + ',';
@@ -72,13 +72,13 @@
             $.each($("#divHImg img"), function (i, n) {
                 hidimg += $(n).attr("src") + ',';
             });
-            $.each($("#divHImg input"), function (i, n) {
+            $.each($("#divHImg textarea"), function (i, n) {
                 hidtitle += $(n).val() + ',';
             });
             $.each($("#divHImg_pro img"), function (i, n) {
                 hidimg_pro += $(n).attr("src") + ',';
             });
-            $.each($("#divHImg_pro input"), function (i, n) {
+            $.each($("#divHImg_pro textarea"), function (i, n) {
                 hidtitle_pro += $(n).val() + ',';
             });
             $("#hidImg").val(hidimg);
@@ -93,7 +93,7 @@
             var hidtemp2 = "";
             var temphtml = "";
             for (var i = 0; i < hidimg.length - 1; i++) {
-                temphtml += '<div class="uploadImg"><div><img src="' + hidimg[i] + '" /></div><input type="text" class="input" value="' + hidtitle[i] + '" /><a href="javascript:void(0)" onclick="deleteImg(' + i + ',' + _img_type + ')">X</a></div>';
+                temphtml += '<div class="uploadImg"><div><img src="' + hidimg[i] + '" /></div><textarea type="text" class="input">' + hidtitle[i] + '</textarea><a href="javascript:void(0)" onclick="deleteImg(' + i + ',' + _img_type + ')">X</a></div>';
                 hidtemp1 += hidimg[i] + ",";
                 hidtemp2 += hidtitle[i] + ",";
             }
@@ -107,7 +107,7 @@
             $("#form1").initValidform();
             //初始化上传控件
             $(".upload-img").each(function () {
-                $(this).InitSWFUpload({ sendurl: "../../tools/upload_ajax.ashx", flashurl: "../../scripts/swfupload/swfupload.swf" });
+                $(this).InitSWFUpload({ sendurl: "../../tools/upload_ajax.ashx", flashurl: "../js/swfupload/swfupload.swf" });
             });
         });
     </script>
@@ -173,15 +173,15 @@
                 <dt>图册LOGO</dt>
                 <dd>
                     <p id="imgPanel" runat="server"></p>
-                    <asp:TextBox ID="txtImgUrl" runat="server" datatype="*1-250" CssClass="input normal upload-path" />
+                    <asp:TextBox ID="txtImgUrl" runat="server" datatype="*1-250" CssClass="input normal upload-path" nullmsg="请上传图册Logo" errormsg="图册Logo 1-250个字符间" sucmsg=" " />
                     <div class="upload-box upload-img"></div>
-                    <span class="Validform_checktip">尺寸300*192px</span>
+                    <span class="Validform_checktip">尺寸440*300px</span>
                 </dd>
             </dl>
             <dl>
                 <dt>图片集合</dt>
                 <dd>
-                    <a href="javascript:;" onclick="showUpImg(1);" style="font-weight: 600; color: Red; text-decoration: underline">点击上传图片</a><span>（尺寸440*300px）</span><br />
+                    <button onclick="showUpImg(1);" type="button" class="btn">点击上传图片</button><span>（尺寸600*410px）</span><br />
                     <div id="divHImg"></div>
                     <input type="hidden" id="hidImg" name="hidImg" value="" runat="server" />
                     <input type="hidden" id="hidTitle" name="hidImg" value="" runat="server" />
@@ -190,11 +190,12 @@
             <dl>
                 <dt>图册属性</dt>
                 <dd>
-                    <asp:CheckBoxList ID="cblItem" runat="server"
-                        RepeatDirection="Horizontal" RepeatLayout="Flow">
-                        <asp:ListItem Value="1">置顶</asp:ListItem>
-                        <asp:ListItem Value="1">锁定</asp:ListItem>
-                    </asp:CheckBoxList>
+                    <div class="rule-multi-porp">
+                        <asp:CheckBoxList ID="cblItem" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                            <asp:ListItem Value="1">置顶</asp:ListItem>
+                            <asp:ListItem Value="1">锁定</asp:ListItem>
+                        </asp:CheckBoxList>
+                    </div>
                 </dd>
             </dl>
             <dl>

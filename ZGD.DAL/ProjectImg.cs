@@ -142,17 +142,15 @@ namespace ZGD.DAL
         /// <summary>
         /// 删除一条数据
         /// </summary>
-        public bool Delete(int pID, int pType)
+        public bool Delete(int pID)
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("delete from ProjectImg ");
-            strSql.Append(" where pID=@pID and Type=@Type");
+            strSql.Append(" where pID=@pID");
             SqlParameter[] parameters = {
-                    new SqlParameter("@pID", SqlDbType.Int,4),
-                    new SqlParameter("@Type", SqlDbType.Int,4)
+                    new SqlParameter("@pID", SqlDbType.Int,4)
             };
             parameters[0].Value = pID;
-            parameters[1].Value = pType;
 
             int rows = DbHelperSQL.ExecuteSql(strSql.ToString(), parameters);
             if (rows > 0)
@@ -165,29 +163,6 @@ namespace ZGD.DAL
             }
         }
 
-        /// <summary>
-        /// 删除一条数据
-        /// </summary>
-        public bool DeleteByDesignerId(int DesignerId)
-        {
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("delete from ProjectImg ");
-            strSql.Append(" where DesignerId=@DesignerId and Type=2");
-            SqlParameter[] parameters = {
-                    new SqlParameter("@DesignerId", SqlDbType.Int,4)
-            };
-            parameters[0].Value = DesignerId;
-
-            int rows = DbHelperSQL.ExecuteSql(strSql.ToString(), parameters);
-            if (rows > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
         /// <summary>
         /// 删除一条数据
         /// </summary>

@@ -159,9 +159,10 @@ namespace ZGD.DAL
 					new SqlParameter("@IsTop", SqlDbType.Int,4),
 					new SqlParameter("@IsLock", SqlDbType.Int,4),
 					new SqlParameter("@PubTime", SqlDbType.DateTime),
-					new SqlParameter("@pContent", SqlDbType.Int,4),
-					new SqlParameter("@Author", SqlDbType.Decimal),
-					new SqlParameter("@UserId", SqlDbType.Decimal)};
+					new SqlParameter("@pContent", SqlDbType.NVarChar),
+					new SqlParameter("@Author", SqlDbType.NVarChar),
+                    new SqlParameter("@UserId", SqlDbType.Int),
+                    new SqlParameter("@Id", SqlDbType.Int)};
             parameters[0].Value = model.Title;
             parameters[1].Value = model.Keyword;
             parameters[2].Value = model.Description;
@@ -173,10 +174,10 @@ namespace ZGD.DAL
             parameters[8].Value = model.IsTop;
             parameters[9].Value = model.IsLock;
             parameters[10].Value = model.PubTime;
-            parameters[11].Value = model.Id;
-            parameters[12].Value = model.pContent;
-            parameters[13].Value = model.Author;
-            parameters[14].Value = model.UserId;
+            parameters[11].Value = model.pContent;
+            parameters[12].Value = model.Author;
+            parameters[13].Value = model.UserId;
+            parameters[14].Value = model.Id;
 
             int rows = DbHelperSQL.ExecuteSql(strSql.ToString(), parameters);
             if (rows > 0)

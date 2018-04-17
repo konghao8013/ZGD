@@ -56,7 +56,7 @@ namespace ZGD.Web.Admin.Project
             ZGD.BLL.ProjectImg pBll = new ZGD.BLL.ProjectImg();
 
             //绑定户型图
-            DataSet ds = pBll.GetList(" pID=" + model.Id + " and Type=1");
+            DataSet ds = pBll.GetList(" pID=" + model.Id);
             string imgList = string.Empty, titleList = string.Empty;
             if (ds != null && ds.Tables[0].Rows.Count > 0)
             {
@@ -115,7 +115,7 @@ namespace ZGD.Web.Admin.Project
             //缩略图生产
             if (!string.IsNullOrWhiteSpace(txtImgUrl.Text) && model.ImgUrl != txtImgUrl.Text.Trim())
             {
-                model.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(model.ImgUrl, 300, 300, "H");
+                model.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(model.ImgUrl, 440, 300, "H");
             }
             model.Click = string.IsNullOrEmpty(txtClick.Text) ? 0 : int.Parse(this.txtClick.Text);
             model.PubTime = DateTime.Now;
@@ -134,7 +134,7 @@ namespace ZGD.Web.Admin.Project
             {
                 //保存户型图、项目图
                 ZGD.BLL.ProjectImg pBll = new ZGD.BLL.ProjectImg();
-                pBll.Delete(model.Id, 1);
+                pBll.Delete(model.Id);
                 ZGD.Model.ProjectImg pModel = null;
 
                 //户型图
@@ -151,7 +151,7 @@ namespace ZGD.Web.Admin.Project
                         //缩略图生产
                         if (!string.IsNullOrWhiteSpace(item))
                         {
-                            pModel.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(item, 300, 300, "H");
+                            pModel.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(item, 600, 410, "H");
                         }
                         pModel.pID = this.Id;
                         pModel.Description = "";

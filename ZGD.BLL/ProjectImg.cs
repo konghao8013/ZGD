@@ -49,19 +49,12 @@ namespace ZGD.BLL
         /// <summary>
         /// 删除一条数据
         /// </summary>
-        public bool Delete(int pID, int pType)
+        public bool Delete(int pID)
         {
 
-            return dal.Delete(pID, pType);
+            return dal.Delete(pID);
         }
 
-        /// <summary>
-        /// 删除一条数据
-        /// </summary>
-        public bool DeleteByDesignerId(int DesignerId)
-        {
-            return dal.DeleteByDesignerId(DesignerId);
-        }
         /// <summary>
         /// 删除一条数据
         /// </summary>

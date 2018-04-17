@@ -55,11 +55,12 @@ namespace ZGD.Web.Admin.Project
             model.Author = this.txtAuthor.Text;
             model.ClassId = Convert.ToInt32(ddlClassId.SelectedValue);
             model.ImgUrl = txtImgUrl.Text.Trim();
+            model.UserId = Convert.ToInt32(Session["AdminNo"]);
 
             //缩略图生产
             if (!string.IsNullOrWhiteSpace(model.ImgUrl))
             {
-                model.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(model.ImgUrl, 300, 300, "H");
+                model.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(model.ImgUrl, 440, 300, "H");
             }
             model.Click = string.IsNullOrEmpty(txtClick.Text) ? 0 : int.Parse(this.txtClick.Text);
             model.PubTime = DateTime.Now;
@@ -96,7 +97,7 @@ namespace ZGD.Web.Admin.Project
                         //缩略图生产
                         if (!string.IsNullOrWhiteSpace(item))
                         {
-                            pModel.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(item, 300, 300, "H");
+                            pModel.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(item, 600, 410, "H");
                         }
                         pModel.pID = ReId;
                         pModel.Description = "";

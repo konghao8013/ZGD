@@ -102,7 +102,7 @@ namespace ZGD.Web.Admin.Project
                     SaveLogs("[图册模块]删除图册：" + model.Title);
                     //删除记录
                     bll.Delete(id);
-                    imgBll.Delete(id, 1);
+                    imgBll.Delete(id);
                 }
             }
             JscriptMsg("删除成功");
