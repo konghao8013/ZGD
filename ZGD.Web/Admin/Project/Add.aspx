@@ -5,13 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>发布图册</title>
-    <script type="text/javascript" src="../../scripts/jquery/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="../../scripts/jquery/Validform_v5.3.2_min.js"></script>
-    <script type="text/javascript" src="../../scripts/swfupload/swfupload.js"></script>
-    <script type="text/javascript" src="../../scripts/swfupload/swfupload.handlers.js"></script>
-    <script type="text/javascript" src="../js/layout.js"></script>
-    <script type="text/javascript" src="/scripts/lhgdialog/lhgdialog.js?skin=idialog"></script>
     <link href="../skin/default/style.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/Validform_v5.3.2_min.js"></script>
+    <script type="text/javascript" src="../js/swfupload/swfupload.js"></script>
+    <script type="text/javascript" src="../js/swfupload/swfupload.handlers.js"></script>
+    <script type="text/javascript" src="../js/layout.js"></script>
+    <script type="text/javascript" src="../js/lhgdialog/lhgdialog.js?skin=idialog"></script>
     <style type="text/css">
         #divHImg { display: inline-block; height: auto; }
         .uploadImg { width: 135px; height: 130px; float: left; margin: 10px 10px 0 0; position: relative; }

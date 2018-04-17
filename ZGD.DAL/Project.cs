@@ -240,7 +240,7 @@ namespace ZGD.DAL
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select  top 1 Id,Title,Keyword,Description,Price,ImgUrl,ImageSmall,ClassId,Remark,Click,IsTop,IsLock,PubTime,pContent,Author,UserId from Project ");
+            strSql.Append("select  top 1 Id,Title,Keyword,Description,ImgUrl,ImageSmall,ClassId,Remark,Click,IsTop,IsLock,PubTime,pContent,Author,UserId from Project ");
             strSql.Append(" where Id=@Id");
             SqlParameter[] parameters = {
 					new SqlParameter("@Id", SqlDbType.Int,4)
@@ -338,7 +338,7 @@ namespace ZGD.DAL
         public DataSet GetList(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select Id,Title,Keyword,Description,Price,ImgUrl,ImageSmall,ClassId,Remark,Click,IsTop,IsLock,PubTime,pContent,Author,UserId ");
+            strSql.Append("select Id,Title,Keyword,Description,ImgUrl,ImageSmall,ClassId,Remark,Click,IsTop,IsLock,PubTime,pContent,Author,UserId ");
             strSql.Append(" FROM Project ");
             if (strWhere.Trim() != "")
             {

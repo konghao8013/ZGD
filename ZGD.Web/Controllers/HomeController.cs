@@ -43,8 +43,12 @@ namespace ZGD.Web.Controllers
 
             //首页广告
             DataSet ds_ad = new ZGD.BLL.Banner().GetList(0, " aType=2 and IsLock=0", " Sort asc");
-            DataTable adIndex = ds_ad != null ? ds_ad.Tables[0] : null;            
-            
+            DataTable adIndex = ds_ad != null ? ds_ad.Tables[0] : null;
+
+            //图册
+            DataSet ds_pic = new BLL.Project().GetList(6, " p.IsLock=0 and p.IsTop=1 ", " p.Id desc");
+            DataTable dt_pic = ds_pic != null ? ds_pic.Tables[0] : null;
+
             return View(new IndexDTO
             {
                 AdList = adIndex,
@@ -60,7 +64,8 @@ namespace ZGD.Web.Controllers
                 News8 = dt_news8,
                 News9 = dt_news9,
                 News10 = dt_news10,
-                ZT = dt_zt
+                ZT = dt_zt,
+                Pics = dt_pic
             });
         }
 

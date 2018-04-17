@@ -934,6 +934,7 @@
     <Compile Include="App_Start\GlobalActionFilter.cs" />
     <Compile Include="App_Start\ImageRouteHandler.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\ZTController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\CtrlController.cs" />

@@ -59,5 +59,9 @@ namespace ZGD.Web.Controllers
         /// 
         /// </summary>
         public DataTable ZT { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataTable Pics { get; set; }
     }
 }

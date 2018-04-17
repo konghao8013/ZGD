@@ -213,17 +213,55 @@
             <div class="title2"><a href="/articlepage/1-11" class="more">更多&gt;&gt;</a><span>致公艺苑</span></div>
             <div class="con zgyy" style="height:300px;padding:0;padding-top:2px;">
                 <div class="left">
-                    <a href=""><img src="" /></a>
+                    @{
+                        int p_idx = 0;
+                    }
+                    @foreach (DataRow item in Model.Pics.Rows)
+                    {
+                        if (p_idx == 0)
+                        {
+                            <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" /></a>
+                        }
+                        p_idx++;
+                        break;
+                    }
                 </div>
                 <div class="right">
                     <div class="right_top">
-                        <a href=""><img src="" /></a>
-                        <a href=""><img src="" style="margin-right:0;" /></a>
+                        @{
+                            p_idx = 0;
+                        }
+                        @foreach (DataRow item in Model.Pics.Rows)
+                        {
+                            if (p_idx == 1)
+                            {
+                                <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" /></a>
+                            }
+                            else if (p_idx == 2)
+                            {
+                                <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" style="margin-right:0" /></a>
+                            }
+                            p_idx++;
+                            break;
+                        }
                     </div>
                     <div class="right_bom">
-                        <a href=""><img src="" /></a>
-                        <a href=""><img src="" /></a>
-                        <a href=""><img src="" style="margin-right:0;" /></a>
+                        @{
+                            p_idx = 0;
+                        }
+                        @foreach (DataRow item in Model.Pics.Rows)
+                        {
+                            if (p_idx == 1)
+                            {
+                                <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" /></a>
+                            }
+                            else if (p_idx == 5)
+                            {
+                                <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" style="margin-right:0" /></a>
+                            }
+                            p_idx++;
+                            break;
+                        }
                     </div>
                 </div>
             </div>

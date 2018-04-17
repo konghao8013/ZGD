@@ -21,6 +21,12 @@ namespace ZGD.Web
                 new string[] { "ZGD.Web.Controllers" }
             );
 
+            routes.MapRoute("PicList",
+                "gallerypage/{page}-{t}",
+                new { controller = "Gallery", action = "Index", page = 1, t = 0 },
+                new string[] { "ZGD.Web.Controllers" }
+            );
+
             routes.MapRoute("ArticleList",
                 "articlepage/{page}-{t}",
                 new { controller = "article", action = "Index", page = 1, t = 0 },
