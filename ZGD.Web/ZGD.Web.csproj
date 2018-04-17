@@ -117,9 +117,6 @@
     <Content Include="Admin\skin\default\loading.gif" />
     <Content Include="Admin\skin\default\upfilebg.gif" />
     <Content Include="Admin\skin\default\upfilebg2.gif" />
-    <Content Include="Admin\Photos\Add.aspx" />
-    <Content Include="Admin\Photos\Edit.aspx" />
-    <Content Include="Admin\Photos\List.aspx" />
     <Content Include="Admin\settings\nav_edit.aspx" />
     <Content Include="Admin\settings\nav_list.aspx" />
     <Content Include="Admin\settings\sys_config.aspx" />
@@ -879,27 +876,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\News\List.aspx.designer.cs">
-      <DependentUpon>List.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Photos\Add.aspx.cs">
-      <DependentUpon>Add.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Photos\Add.aspx.designer.cs">
-      <DependentUpon>Add.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Photos\Edit.aspx.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Photos\Edit.aspx.designer.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Photos\List.aspx.cs">
-      <DependentUpon>List.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Photos\List.aspx.designer.cs">
       <DependentUpon>List.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\settings\nav_edit.aspx.cs">

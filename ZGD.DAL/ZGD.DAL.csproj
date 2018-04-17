@@ -58,7 +58,6 @@
     <Compile Include="manager\navigation.cs" />
     <Compile Include="NewsInfo.cs" />
     <Compile Include="Pager.cs" />
-    <Compile Include="Photos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceTools.cs" />
     <Compile Include="SystemLog.cs" />
