@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = ViewBag.Type;
+    ViewBag.Title = Model.Title;
     ViewBag.Keywords = "中国致公党重庆市委员会";
     ViewBag.Description = "中国致公党重庆市委员会";
 }
@@ -12,7 +12,7 @@
 
 <div class="con_bg main">
     <div class="index_top" style="height:auto;">
-        <div class="title"><span>您的位置：首页 &gt; @(Model.ClassName) &gt; @(Model.Title)</span></div>
+        <div class="title"><span>您的位置：首页 &gt; 致公艺苑 &gt;@*@(Model.ClassName) &gt;*@ @(Model.Title)</span></div>
         <div class="index_top_con">
             <div class="article">
                 <div class="article_title">
@@ -20,7 +20,13 @@
                     <p><span>作者：@(Model.Author)</span><span>作者：@(Model.PubTime.ToString("yyyy年MM月dd日"))</span></p>
                 </div>
                 <div class="article_con">
-                    @Html.Raw(Server.HtmlDecode(Model.Content))
+                    @foreach (DataRow item in ViewBag.Pics.Rows)
+                    {
+                        <div class="pic_item">
+                            <img src="@(item["ImgUrl"].ToString())" alt="@(item["Description"].ToString())" />
+                            <p>@(item["Description"].ToString())</p>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

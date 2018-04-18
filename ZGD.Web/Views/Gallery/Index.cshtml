@@ -10,19 +10,12 @@
 
 <div class="con_bg main">
     <div class="index_top" style="height:auto;">
-        @if (ZGD.Web.Controllers.ArticleController.IsZT(ViewBag.TypeID))
-        {
-            <div class="title"><span>您的位置：首页 &gt; 专题报道 &gt; @(ViewBag.Type)</span></div>
-        }
-        else
-        {
-            <div class="title"><span>您的位置：首页 &gt; @(ViewBag.Type)</span></div>
-        }
+        <div class="title"><span>您的位置：首页 &gt; 致公艺苑 @*&gt; @(ViewBag.Type)*@</span></div>
         <div class="index_top_con">
-            <ul class="news_page">
+            <ul class="pic_page">
                 @foreach (DataRow item in Model.Rows)
                 {
-                    <li><a href="/article/@(ViewBag.TypeID)-@(item["Id"].ToString()).html" title="@(item["Title"].ToString())">@(item["Title"].ToString())</a></li>
+                    <li><a href="/gallery/@(item["Id"].ToString()).html" title="@(item["Title"].ToString())"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" /></a><p>@(item["Title"].ToString())</p></li>
                 }
             </ul>
             <div class="pager">
