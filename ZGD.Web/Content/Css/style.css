@@ -79,6 +79,17 @@
 .zgyy .right .right_bom { }
 .zgyy .right .right_bom img { width: 160px; height: 105px; margin-right: 10px; }
 
+.pic_page { width: 930px; padding: 30px 0 20px 18px; display: inline-block; }
+.pic_page li { width: 202px; height: 210px; float: left; margin: 10px 10px 20px 10px; overflow: hidden; text-align: center; border: solid 1px #e1e1e1; padding: 5px; }
+.pic_page li:hover { border: solid 1px #FF5500; }
+.pic_page li:hover a { color: #FF5500; }
+.pic_page li img { width: 100%; height: 150px; }
+.pic_page li p { font-size: 14px; padding-top: 5px; }
+.pic_page li p.date { font-size: 12px; padding-top: 3px; }
+.pic_page li p span { color: #26689b }
+.pic_item { text-align: center; font-size: 14px; margin-bottom: 20px; }
+.pic_item img { margin-bottom: 5px; }
+
 .link_list { color: #fff; background: #0267BF; border: solid 1px #125284; border-radius: 1px; }
 .link_list p { border: solid 1px #089EE1; padding: 6px 50px; }
 .link_list p span { font-size: 14px; font-weight: bold; }

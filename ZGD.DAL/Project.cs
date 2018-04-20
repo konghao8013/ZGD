@@ -453,8 +453,8 @@ namespace ZGD.DAL
             pageCount = 0;
             rowCount = 0;
             Pager pager = new Pager();
-            pager.tableName = " FROM Project p left join Channel c on p.ClassId=c.Id  ";
-            pager.fieldsName = " p.Id,p.Title,p.Keyword,p.ClassId,p.Description,p.ImgUrl,p.ImageSmall,p.Remark,p.Click,p.IsTop,p.IsLock,p.PubTime,c.Title as typename ";
+            pager.tableName = " Project p left join Channel c on p.ClassId=c.Id  ";
+            pager.fieldsName = " p.Id,p.Title,p.Keyword,p.ClassId,p.Description,p.Author,p.ImgUrl,p.ImageSmall,p.Remark,p.Click,p.IsTop,p.IsLock,p.PubTime,c.Title as typename ";
             if (!string.IsNullOrEmpty(sortName))
                 pager.orderField = sortName;
             else

@@ -13,9 +13,17 @@
         <div class="title"><span>您的位置：首页 &gt; 致公艺苑 @*&gt; @(ViewBag.Type)*@</span></div>
         <div class="index_top_con">
             <ul class="pic_page">
+                @{
+                    int idx = 0;
+                }
                 @foreach (DataRow item in Model.Rows)
                 {
-                    <li><a href="/gallery/@(item["Id"].ToString()).html" title="@(item["Title"].ToString())"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" /></a><p>@(item["Title"].ToString())</p></li>
+                    <li style="@if (idx >0 &&idx % 3 == 0) { @Html.Raw("margin-right:0;") } ">
+                        <a href="/gallery/@(item["Id"].ToString()).html" title="@(item["Title"].ToString())"><img src="@(item["ImageSmall"].ToString())" alt="@(item["Title"].ToString())" /></a>
+                        <p><a href="/gallery/@(item["Id"].ToString()).html" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(10))</a></p>
+                        <p class="date">作者：<span>@(item["Author"].ToString())</span>&nbsp;<span>@(Convert.ToDateTime(item["PubTime"]).ToString("yyyy年MM月dd日"))</span></p>
+                    </li>
+                    idx++;
                 }
             </ul>
             <div class="pager">

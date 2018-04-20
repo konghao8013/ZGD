@@ -31,7 +31,7 @@ namespace ZGD.Web.Controllers
                 where += " and p.ClassId=" + t;
                 url += "-" + t;
             }
-            var result = new ZGD.BLL.Project().GetList(page, 15, where, " p.IsTop desc,p.PubTime desc", url, "/gallerypage/", out pager);
+            var result = new ZGD.BLL.Project().GetList(page, 12, where, " p.IsTop desc,p.PubTime desc", url, "/gallerypage/", out pager);
             DataSet ds = new ZGD.BLL.Channel().GetList(0, " ParentId=1 and IsDelete=0", " Id asc");
             ViewBag.ClassType = ds != null && ds.Tables[0].Rows.Count > 0 ? ds.Tables[0] : null;
             var cModel = new ZGD.BLL.Channel().GetModelById(t);
