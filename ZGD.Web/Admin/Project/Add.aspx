@@ -17,8 +17,8 @@
         #divHImg { display: inline-block; height: auto; }
         .uploadImg { width: 350px; float: left; margin: 5px 10px 5px 0; position: relative; }
         .uploadImg a { width: 15px; height: 15px; line-height: 15px; position: absolute; text-align: center; display: inline-block; top: 4px; right: 4px; background-color: #fff; color: #ff0000; font-weight: bold; font-size: 14px; }
-        .uploadImg div { width: 340px; height: 240px; text-align: center; border: solid 1px #ccc; padding: 5px; margin-bottom: 3px; }
-        .uploadImg img { height: 100%; }
+        .uploadImg div { width: 340px; height: 240px; text-align: center; border: solid 1px #ccc; padding: 5px; margin-bottom: 3px; overflow:hidden; }
+        .uploadImg img { width: 100%; }
         .uploadImg .input { width: 345px; height: 40px; line-height: 16px; padding-left: 1px; }
         #imgPanel { margin-bottom: 5px; }
         #imgPanel img { width: 120px; }

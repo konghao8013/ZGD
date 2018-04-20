@@ -111,12 +111,13 @@ namespace ZGD.Web.Admin.Project
             model.Description = this.txtDescription.Text;
             model.Author = this.txtAuthor.Text;
             model.ClassId = Convert.ToInt32(ddlClassId.SelectedValue);
-            model.ImgUrl = txtImgUrl.Text.Trim();
             //缩略图生产
             if (!string.IsNullOrWhiteSpace(txtImgUrl.Text) && model.ImgUrl != txtImgUrl.Text.Trim())
             {
-                model.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(model.ImgUrl, 440, 300, "H");
+                model.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(txtImgUrl.Text, 440, 300, "H");
+                model.ImgUrl = txtImgUrl.Text.Trim();
             }
+
             model.Click = string.IsNullOrEmpty(txtClick.Text) ? 0 : int.Parse(this.txtClick.Text);
             model.PubTime = DateTime.Now;
             model.IsTop = 0;

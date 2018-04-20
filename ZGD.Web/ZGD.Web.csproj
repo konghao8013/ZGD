@@ -675,6 +675,7 @@
     <Content Include="Content\Scripts\jquery.hiSlider\fonts\icomoon.ttf" />
     <Content Include="Content\Scripts\jquery.hiSlider\fonts\icomoon.woff" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\cqzgd.pubxml" />
     <None Include="Properties\PublishProfiles\sjs.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
