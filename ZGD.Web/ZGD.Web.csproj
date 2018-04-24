@@ -305,7 +305,6 @@
     <Content Include="Content\Scripts\webuploader\webuploader.css" />
     <Content Include="Error\404.jpg" />
     <Content Include="Error\Error.html" />
-    <Content Include="favicon.ico" />
     <Content Include="Content\Scripts\bxCarousel.js" />
     <Content Include="Content\Scripts\DD_belatedPNG.js" />
     <Content Include="Content\Scripts\jquery-1.11.0.min.js" />
