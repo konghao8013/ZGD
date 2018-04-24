@@ -16,8 +16,11 @@
 .img_list li a img { width: 100%; height: 100%; box-shadow: #ccc 0 0 1rem; }
 
 .index_top { height: 320px; padding: 0 2px; }
-.index_top .title { height: 40px; line-height: 40px; background: url(../Images/title_bg1.png) repeat-x; color: #0165BF; font-size: 14px; padding: 0 12px; }
-.index_top .title span { font-weight: bold; background: url(../Images/sj.png) no-repeat left center; padding-left: 14px; }
+.index_top .title { height: 40px; line-height: 40px; background: url(../Images/title_bg1.png) repeat-x; font-size: 14px; padding: 0 12px; font-weight: bold; }
+.index_top .title span { background: url(../Images/sj.png) no-repeat left center; padding-left: 14px; color: #0165BF; }
+.index_top .title span em { font-style: normal; color: #333; }
+.index_top .title a { color: #0165BF; font-weight: bold; }
+.index_top .title a:hover { color: #FF5500; }
 .index_top .title .more { }
 .index_top .index_top_con { }
 .index_top .index_top_con .left { width: 480px; height: 280px; }
