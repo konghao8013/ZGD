@@ -16,7 +16,7 @@ namespace ZGD.Web
 
         void Application_Start(object sender, EventArgs e)
         {
-            GlobalFilters.Filters.Add(new GlobalActionFilter());
+            //GlobalFilters.Filters.Add(new GlobalActionFilter());
             // 在应用程序启动时运行的代码
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
