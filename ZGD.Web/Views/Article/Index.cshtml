@@ -12,7 +12,7 @@
     <div class="index_top" style="height:auto;">
         @if (ZGD.Web.Controllers.ArticleController.IsZT(ViewBag.TypeID))
         {
-            <div class="title"><span>您的位置：<a href="/">首页</a> <em>&gt;</em> @*<a href="/zt">专题报道</a> <em>&gt;</em>*@</span> @(ViewBag.Type)</div>
+            <div class="title"><span>您的位置：<a href="/">首页</a> <em>&gt;</em> <a href="/zt">专题报道</a> <em>&gt;</em></span> @(ViewBag.Type)</div>
         }
         else
         {
