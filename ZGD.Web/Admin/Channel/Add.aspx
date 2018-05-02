@@ -77,7 +77,7 @@
                 <dt>缩略图上传</dt>
                 <dd>
                     <p id="imgPanel" runat="server"></p>
-                    <asp:TextBox ID="txtImgUrl" runat="server" datatype="*1-250" nullmsg="请上传专题logo" CssClass="input normal upload-path" />
+                    <asp:TextBox ID="txtImgUrl" runat="server" datatype="*0-250" nullmsg="请上传专题logo" CssClass="input normal upload-path" />
                     <div class="upload-box upload-img"></div>
                     （图片尺寸400*160px）
                 </dd>

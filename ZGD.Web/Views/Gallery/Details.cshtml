@@ -17,7 +17,7 @@
             <div class="article">
                 <div class="article_title">
                     <h3>@(Model.Title)</h3>
-                    <p><span>作者：@(Model.Author)</span><span>时间：@(Model.PubTime.ToString("yyyy年MM月dd日"))</span></p>
+                    <p><span>提交者：@(Model.Author)</span><span>时间：@(Model.PubTime.ToString("yyyy年MM月dd日"))</span></p>
                 </div>
                 <div class="article_con" style="padding-top:40px;">
                     @foreach (DataRow item in ViewBag.Pics.Rows)

@@ -20,7 +20,7 @@ namespace ZGD.Web.Admin.Channel
         protected void Page_Load(object sender, EventArgs e)
         {
             //取得栏目传参
-            if (int.TryParse(Request.Params["kindId"], out kindId))
+            if (int.TryParse(Request.Params["kindId"], out kindId) && int.TryParse(Request.Params["pId"], out pId))
             {
                 if (!string.IsNullOrWhiteSpace(Request.Params["pId"]))
                 {
@@ -58,7 +58,7 @@ namespace ZGD.Web.Admin.Channel
             string classList = "";
 
             model.Title = this.txtTitle.Text.Trim();
-            model.ParentId = parentId;
+            model.ParentId = pId;
             model.SortId = int.Parse(this.txtSortId.Text.Trim());
             model.KindId = this.kindId;
             model.IsDelete = cbIsDelete.Checked ? 1 : 0;
