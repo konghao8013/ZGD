@@ -61,7 +61,7 @@ namespace ZGD.Web.Admin.Project
             if (!string.IsNullOrWhiteSpace(model.ImgUrl))
             {
                 model.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(model.ImgUrl, 440, 300, "H");
-                model.ImgUrl = txtImgUrl.Text.Trim();
+                model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(txtImgUrl.Text, 600, 420, "H");
             }
             model.Click = string.IsNullOrEmpty(txtClick.Text) ? 0 : int.Parse(this.txtClick.Text);
             model.PubTime = DateTime.Now;
@@ -95,11 +95,11 @@ namespace ZGD.Web.Admin.Project
                         pModel = new ZGD.Model.ProjectImg();
                         pModel.Title = title_list[idx];
                         pModel.Description = title_list[idx];
-                        pModel.ImgUrl = item;
                         //缩略图生产
                         if (!string.IsNullOrWhiteSpace(item))
                         {
-                            pModel.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(item, 600, 410, "H");
+                            pModel.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(item, 800, 600, "W");
+                            pModel.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(item, 600, 410, "W");
                         }
                         pModel.pID = ReId;
                         pModel.PubTime = DateTime.Now;
@@ -124,7 +124,7 @@ namespace ZGD.Web.Admin.Project
         {
             hidImg.Value = "";
             hidTitle.Value = "";
-            txtClick.Text = "";
+            txtClick.Text = "0";
             txtDescription.Text = "";
             txtImgUrl.Text = "";
             txtKeyword.Text = "";

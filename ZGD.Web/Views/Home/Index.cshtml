@@ -166,7 +166,7 @@
                     <ul class="news_list">
                         @foreach (DataRow item in Model.News3.Rows)
                         {
-                            <li><a href="/article/19-@(item["Id"].ToString()).html" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(12))</a></li>
+                            <li><a href="/article/19-@(item["Id"].ToString()).html" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(11))</a></li>
                         }
                     </ul>
                 </div>
@@ -199,7 +199,7 @@
                     <ul class="news_list">
                         @foreach (DataRow item in Model.News10.Rows)
                         {
-                            <li><a href="/article/20-@(item["Id"].ToString()).html" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(12))</a></li>
+                            <li><a href="/article/20-@(item["Id"].ToString()).html" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(11))</a></li>
                         }
                     </ul>
                 </div>
@@ -234,11 +234,11 @@
                         {
                             if (p_idx == 1)
                             {
-                                <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" /></a>
+                                <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImageSmall"].ToString())" alt="@(item["Title"].ToString())" /></a>
                             }
                             else if (p_idx == 2)
                             {
-                                <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" style="margin-right:0" /></a>
+                                <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImageSmall"].ToString())" alt="@(item["Title"].ToString())" style="margin-right:0" /></a>
                                 break;
                             }
                             p_idx++;
@@ -252,11 +252,11 @@
                         {
                             if (p_idx > 2 && p_idx < 5)
                             {
-                                <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" /></a>
+                                <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImageSmall"].ToString())" alt="@(item["Title"].ToString())" /></a>
                             }
                             else if (p_idx == 5)
                             {
-                                <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImgUrl"].ToString())" alt="@(item["Title"].ToString())" style="margin-right:0" /></a>
+                                <a href="/gallery/@(item["Id"].ToString()).html"><img src="@(item["ImageSmall"].ToString())" alt="@(item["Title"].ToString())" style="margin-right:0" /></a>
                             }
                             p_idx++;
                         }

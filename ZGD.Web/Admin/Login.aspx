@@ -37,11 +37,13 @@
                 </div>
                 <div class="control-group" style="text-align: left; padding-left: 6px;">
                     <asp:TextBox ID="txtCode" runat="server" CssClass="login-field" Width="100" placeholder="验证码" title="验证码"></asp:TextBox>
-                    <asp:Image ID="ImageCheck" runat="server" onclick="ChangeCode();" style="cursor:pointer;margin-top:-8px;border-radius:5px;" Height="40" ImageUrl="../Tools/verify_code.ashx" ImageAlign="AbsMiddle" ToolTip="看不清，换一个"></asp:Image>
+                    <asp:Image ID="ImageCheck" runat="server" onclick="ChangeCode();" Style="cursor: pointer; margin-top: -8px; border-radius: 5px;" Height="40" ImageUrl="../Tools/verify_code.ashx" ImageAlign="AbsMiddle" ToolTip="看不清，换一个"></asp:Image>
                 </div>
                 <div>
-                    <asp:Button ID="btnSubmit" runat="server" Text="登 录" CssClass="btn-login" OnClick="btnSubmit_Click" /></div>
-                <span class="login-tips"><i></i><b id="msgtip" runat="server">请输入用户名和密码</b></span>
+                    <asp:Button ID="btnSubmit" runat="server" Text="登 录" CssClass="btn-login" OnClick="btnSubmit_Click" />
+                </div>
+                <span class="login-tips" style="margin-top:10px;"><i></i><b id="msgtip" runat="server">请输入用户名和密码</b></span>
+                <p style="text-align: center; padding-top: 5px;font-size:12px; color:#333;">中国致公党重庆委员会</p>
             </div>
         </div>
     </form>
