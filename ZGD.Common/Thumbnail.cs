@@ -588,10 +588,20 @@ namespace ZGD.Common
                 case "W"://指定宽，高按比例
                     if (width < ow)
                         toheight = originalImage.Height * width / originalImage.Width;
+                    else
+                    {
+                        towidth = ow;
+                        toheight = oh;
+                    }
                     break;
                 case "H"://指定高，宽按比例
                     if (height < oh)
                         towidth = originalImage.Width * height / originalImage.Height;
+                    else
+                    {
+                        towidth = ow;
+                        toheight = oh;
+                    }
                     break;
                 case "Cut"://指定高宽裁减（不变形）                
                     if ((double)originalImage.Width / (double)originalImage.Height > (double)towidth / (double)toheight)
