@@ -76,7 +76,7 @@
                         <asp:CheckBox ID="cb_id" CssClass="checkall" runat="server" /></td>
                     <td align="center">
                         <asp:Label ID="lb_id" runat="server" Text='<%#Eval("Id")%>'></asp:Label></td>
-                    <td align="left"><a href="/News/<%#Eval("Id")%>" target="_blank"><%#Eval("Title")%></a></td>
+                    <td align="left"><a href="/article/<%#Eval("Id")%>.html" target="_blank"><%#Eval("Title")%></a></td>
                     <td align="center"><%# new ZGD.BLL.Channel().GetChannelTitle(Eval("ClassId").ToString())%></td>
                     <td align="center"><%#string.Format("{0:g}", Eval("PubTime"))%></td>
                     <td align="center">
@@ -86,7 +86,7 @@
                         <asp:ImageButton ID="ibtnTop" CommandName="ibtnTop" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "../Images/ico-1.png" : "../Images/ico-1_.png"%>' ToolTip='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "取消置顶" : "设置置顶"%>' />
                     </td>
 
-                    <td align="center"><span><a href="Edit.aspx?id=<%#Eval("Id") %>">详细</a></span></td>
+                    <td align="center"><span><a href="Edit.aspx?id=<%#Eval("Id") %>">编辑</a></span></td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>

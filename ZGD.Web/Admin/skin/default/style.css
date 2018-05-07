@@ -74,14 +74,14 @@ a:active { color: #0065D9; text-decoration: none; }
 .sidebar-nav .list-box .list-group ul li .item:hover span { display: inherit; color: #2A72C5; }
 .sidebar-nav .list-box .list-group ul li .item.pack { background: #f3f3f3; text-decoration: none; }
 .sidebar-nav .list-box .list-group ul li .item.selected { background: #16a0d3; }
-.sidebar-nav .list-box .list-group ul li .item.selected .folder.open { background: url(skin_icons.png) -40px -236px no-repeat; }
+.sidebar-nav .list-box .list-group ul li .item.selected .folder.open { background: none; }
 .sidebar-nav .list-box .list-group ul li .item.selected .arrow { position: absolute; top: 9.5px; right: -1px; width: 7px; height: 21px; background: url(skin_icons.png) -40px -356px no-repeat; }
 .sidebar-nav .list-box .list-group ul li .item.selected span { color: #fff; }
 .sidebar-nav .list-box .list-group ul .expandable { display: block; float: left; width: 16px; height: 20px; cursor: pointer; }
 .sidebar-nav .list-box .list-group ul .expandable.open { background: url(skin_icons.png) -28px -164px no-repeat; }
 .sidebar-nav .list-box .list-group ul .expandable.close { background: url(skin_icons.png) 0 -164px no-repeat; }
 .sidebar-nav .list-box .list-group ul .folder { display: block; float: left; width: 25px; height: 20px; background: url(skin_icons.png) 0 -196px no-repeat; }
-.sidebar-nav .list-box .list-group ul .folder.open { background: url(skin_icons.png) -40px -196px no-repeat; }
+.sidebar-nav .list-box .list-group ul .folder.open { background: none; }
 .sidebar-nav .list-box .list-group ul .item span { display: inherit; color: #333; }
 /*右边框架*/
 .main-container { background: #fff; }

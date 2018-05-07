@@ -68,9 +68,9 @@
                 </dd>
             </dl>
             <dl>
-                <dt>优先级别</dt>
+                <dt>序号</dt>
                 <dd>
-                    <asp:TextBox ID="txtSortId" CssClass="input normal" Text="1" runat="server" datatype="*1-50" nullmsg="请输入优先级别" errormsg="优先级别长度在1-50" sucmsg=" "></asp:TextBox>
+                    <asp:TextBox ID="txtSortId" CssClass="input normal" Text="1" runat="server" datatype="*1-50" nullmsg="请输入序号" errormsg="序号长度在1-50" sucmsg=" "></asp:TextBox>
                 </dd>
             </dl>
             <dl class="upordown" id="tr_img_panel" runat="server">

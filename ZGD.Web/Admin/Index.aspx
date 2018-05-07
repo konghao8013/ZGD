@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>后台管理中心</title>
-    <link href="skin/default/style.css" rel="stylesheet" type="text/css" />
+    <link href="skin/default/style.css?v=20180501" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="js/jquery/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.nicescroll.js"></script>
     <script type="text/javascript" src="js/lhgdialog/lhgdialog.js?skin=idialog"></script>

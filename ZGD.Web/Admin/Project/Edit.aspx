@@ -143,13 +143,13 @@
                     <asp:TextBox ID="txtTitle" runat="server" CssClass="input normal" datatype="*1-100" nullmsg="请输入图册标题" errormsg="图册标题在1-100个字符间" sucmsg=" "></asp:TextBox>
                 </dd>
             </dl>
-            <dl>
+            <dl style="display:none;">
                 <dt>关键词</dt>
                 <dd>
                     <asp:TextBox ID="txtKeyword" runat="server" CssClass="input normal" datatype="*0-50" nullmsg="请输入关键词" errormsg="关键词在0-50个字符间" sucmsg=" "></asp:TextBox>
                 </dd>
             </dl>
-            <dl>
+            <dl style="display:none;">
                 <dt>图册描述</dt>
                 <dd>
                     <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" CssClass="input normal" datatype="*0-200" errormsg="图册简述在0-200个字符间" sucmsg=" "></asp:TextBox>
@@ -198,7 +198,7 @@
                     </div>
                 </dd>
             </dl>
-            <dl>
+            <dl style="display:none;">
                 <dt>浏览次数</dt>
                 <dd>
                     <asp:TextBox ID="txtClick" Text="0" runat="server" CssClass="input normal" datatype="/^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/" errormsg="请输入正确的浏览次数" sucmsg=" "></asp:TextBox>

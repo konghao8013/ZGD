@@ -75,7 +75,7 @@
                         <asp:CheckBox ID="cb_id" CssClass="checkall" runat="server" /></td>
                     <td align="center">
                         <asp:Label ID="lb_id" runat="server" Text='<%#Eval("Id")%>'></asp:Label></td>
-                    <td align="center"><a href="/case/<%#Eval("Id") %>" target="_blank">
+                    <td align="center"><a href="/gallery/<%#Eval("Id") %>.html" target="_blank">
                         <img src="<%#Eval("ImageSmall")%>" width="100" /></a></td>
                     <td><%# Convert.ToInt32(Eval("IsLock")) == 1 ? "<img src=\"../Images/wsh01.gif\" title=\"不显示\" />" : ""%> <a href="/case/<%#Eval("Id") %>" target="_blank"><%#Eval("Title")%></a></td>
                     <td align="center"><%#string.Format("{0:g}", Eval("PubTime"))%></td>

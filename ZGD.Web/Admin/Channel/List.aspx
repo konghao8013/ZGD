@@ -40,7 +40,7 @@
                     <tr>
                         <th width="7%">编号</th>
                         <th align="left"><%=typeName %>名称</th>
-                        <th width="90">优先级别</th>
+                        <th width="90">序号</th>
                         <th width="90">状态</th>
                         <th width="150">操作</th>
                     </tr>

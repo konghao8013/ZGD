@@ -86,20 +86,20 @@
                     <asp:TextBox ID="txtTitle" runat="server" CssClass="input normal" datatype="*3-120" nullmsg="请输入文章标题" errormsg="标题长度在3-100个字符间" sucmsg=" "></asp:TextBox>
                 </dd>
             </dl>
-            <dl>
+            <dl style="display:none;">
                 <dt>文章副标题</dt>
                 <dd>
                     <asp:TextBox ID="txtSubTitle" runat="server" CssClass="input normal" datatype="*0-120" nullmsg="请输入文章副标题" errormsg="副标题长度在3-100个字符间" sucmsg=" "></asp:TextBox>
                 </dd>
             </dl>
-            <dl>
+            <dl style="display:none;">
                 <dt>文章关键词</dt>
                 <dd>
                     <asp:TextBox ID="txtKeyword" runat="server" CssClass="input normal" datatype="*0-120" nullmsg="请输入文章关键词" errormsg="标签长度在2-100个字符间" sucmsg=" "></asp:TextBox>
                     <span>多个关键词，请用英文输入法中的逗号“,”分隔。</span>
                 </dd>
             </dl>
-            <dl>
+            <dl style="display:none;">
                 <dt>文章标签</dt>
                 <dd>
                     <asp:TextBox ID="txtTags" runat="server" CssClass="input normal" datatype="*0-120" nullmsg="请输入文章标签" errormsg="标签长度在2-100个字符间" sucmsg=" "></asp:TextBox>
@@ -179,7 +179,7 @@
                     </div>
                 </dd>
             </dl>
-            <dl>
+            <dl style="display:none;">
                 <dt>浏览次数</dt>
                 <dd>
                     <asp:TextBox ID="txtClick" runat="server" CssClass="input normal" datatype="*">0</asp:TextBox>
