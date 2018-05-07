@@ -5,6 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>管理员登录</title>
     <link href="skin/default/style.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .loginbody { background: #6AC0AC url(/Content/Images/bg.png) top repeat-x; }
+    </style>
     <script type="text/javascript" src="js/jquery/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
         $(function () {
@@ -42,8 +45,8 @@
                 <div>
                     <asp:Button ID="btnSubmit" runat="server" Text="登 录" CssClass="btn-login" OnClick="btnSubmit_Click" />
                 </div>
-                <span class="login-tips" style="margin-top:10px;"><i></i><b id="msgtip" runat="server">请输入用户名和密码</b></span>
-                <p style="text-align: center; padding-top: 5px;font-size:12px; color:#333;">中国致公党重庆委员会</p>
+                <span class="login-tips" style="margin-top: 10px;"><i></i><b id="msgtip" runat="server">请输入用户名和密码</b></span>
+                <p style="text-align: center; padding-top: 5px; font-size: 12px; color: #333;">中国致公党重庆委员会</p>
             </div>
         </div>
     </form>
