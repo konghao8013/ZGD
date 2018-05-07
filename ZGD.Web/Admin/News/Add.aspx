@@ -173,8 +173,8 @@
                 <dd>
                     <div class="rule-multi-porp">
                         <asp:CheckBoxList ID="cblItem" runat="server" RepeatLayout="Flow">
-                            <asp:ListItem Value="1">锁定</asp:ListItem>
-                            <asp:ListItem Value="1">置顶</asp:ListItem>
+                            <asp:ListItem Value="1">禁用</asp:ListItem>
+                            <asp:ListItem Value="1">首页显示</asp:ListItem>
                         </asp:CheckBoxList>
                     </div>
                 </dd>

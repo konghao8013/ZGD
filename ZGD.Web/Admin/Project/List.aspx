@@ -77,13 +77,13 @@
                         <asp:Label ID="lb_id" runat="server" Text='<%#Eval("Id")%>'></asp:Label></td>
                     <td align="center"><a href="/gallery/<%#Eval("Id") %>.html" target="_blank">
                         <img src="<%#Eval("ImageSmall")%>" width="100" /></a></td>
-                    <td><%# Convert.ToInt32(Eval("IsLock")) == 1 ? "<img src=\"../Images/wsh01.gif\" title=\"不显示\" />" : ""%> <a href="/case/<%#Eval("Id") %>" target="_blank"><%#Eval("Title")%></a></td>
+                    <td><%# Convert.ToInt32(Eval("IsLock")) == 1 ? "<img src=\"../Images/wsh01.gif\" title=\"不显示\" />" : ""%> <a href="/gallery/<%#Eval("Id") %>.html" target="_blank"><%#Eval("Title")%></a></td>
                     <td align="center"><%#string.Format("{0:g}", Eval("PubTime"))%></td>
                     <td align="center">
-                        <asp:ImageButton ID="ibtnLock" CommandName="ibtnLock" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsLock")) == 1 ? "../Images/correct.gif" : "../Images/disable.gif"%>' ToolTip='<%# Convert.ToInt32(Eval("IsLock")) == 1 ? "取消锁定" : "设置锁定"%>' />
-                        <asp:ImageButton ID="ibtnTop" CommandName="ibtnTop" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "../Images/ico-1.png" : "../Images/ico-1_.png"%>' ToolTip='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "取消置顶" : "设置置顶"%>' />
+                        <asp:ImageButton ID="ibtnLock" CommandName="ibtnLock" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsLock")) == 1 ? "../Images/correct.gif" : "../Images/disable.gif"%>' ToolTip='<%# Convert.ToInt32(Eval("IsLock")) == 1 ? "取消禁用" : "设置禁用"%>' />
+                        <asp:ImageButton ID="ibtnTop" CommandName="ibtnTop" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "../Images/ico-1.png" : "../Images/ico-1_.png"%>' ToolTip='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "首页不显示" : "首页显示"%>' />
                     </td>
-                    <td align="center"><span><a href="Edit.aspx?id=<%#Eval("Id") %>">详细</a></span></td>
+                    <td align="center"><span><a href="Edit.aspx?id=<%#Eval("Id") %>">编辑</a></span></td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>

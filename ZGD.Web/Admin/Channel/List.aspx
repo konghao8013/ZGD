@@ -58,7 +58,7 @@
                     <td align="center"><%# Eval("SortId") %></td>
                     <td align="center">
                         <asp:ImageButton ID="ibtnLock" CommandName="ibtnDelete" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsDelete")) == 0 ? "../Images/correct.gif" : "../Images/disable.gif"%>' ToolTip='<%# Convert.ToInt32(Eval("IsDelete")) == 1 ? "取消禁用" : "设置禁用"%>' style='<%#Eval("Id").ToString() != "38" ? "" : "display:none;" %>' />
-                        <asp:ImageButton ID="ibtnTop" CommandName="ibtnTop" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "../Images/ico-1.png" : "../Images/ico-1_.png"%>' ToolTip='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "取消置顶" : "设置置顶"%>' />
+                        <asp:ImageButton ID="ibtnTop" CommandName="ibtnTop" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "../Images/ico-1.png" : "../Images/ico-1_.png"%>' ToolTip='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "首页不显示" : "首页显示"%>' />
                     </td>
                     <td align="center">
                         <%--<span><a href="Add.aspx?kindId=<%=kindId %>&classId=<%# Eval("Id") %>">添加子类</a></span>--%>

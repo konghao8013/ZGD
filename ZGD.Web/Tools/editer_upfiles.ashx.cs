@@ -93,10 +93,12 @@ namespace ZGD.Web.Tools
 
             String newFileName = DateTime.Now.ToString("yyyyMMddHHmmss_ffff", DateTimeFormatInfo.InvariantInfo) + fileExt;
             String filePath = dirPath + newFileName;
-
             imgFile.SaveAs(filePath);
 
             String fileUrl = saveUrl + newFileName;
+            //压缩图片
+            fileUrl = ZGD.Common.Thumbnail.CreateThumbImg(fileUrl, 800, 600, "W");
+
 
             Hashtable hash = new Hashtable();
             hash["error"] = 0;
