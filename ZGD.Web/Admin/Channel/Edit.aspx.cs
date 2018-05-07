@@ -55,6 +55,7 @@ namespace ZGD.Web.Admin.Channel
             cbIsDelete.Checked = model.IsDelete == 1 ? true : false;
             if (Request.Params["pId"] == "21")
             {
+                this.txtImgUrl.Text = model.ImgUrl;
                 tr_img_panel.Style["display"] = "block";
                 imgPanel.InnerHtml = "<img src=\"" + model.ImgUrl + "\" />";
             }

@@ -44,24 +44,31 @@ namespace ZGD.Web.Admin.Channel
         protected void rptClassList_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             HiddenField txtClassId = (HiddenField)e.Item.FindControl("txtClassId");
+            int id = Convert.ToInt32(txtClassId.Value);
+            ZGD.Model.Channel model = bll.GetModelById(id);
+
             switch (e.CommandName.ToLower())
             {
                 case "btndel":
                     //保存日志
-                    SaveLogs("[版块类别]删除类别：" + bll.GetModelById(Convert.ToInt32(txtClassId.Value)));
+                    SaveLogs("[版块类别]删除类别：" + model.Title);
                     //删除记录
-                    bll.Delete(Convert.ToInt32(txtClassId.Value));
+                    bll.Delete(id);
                     //重新绑定数据
                     BindData();
                     JscriptMsg("批量删除成功。");
                     break;
                 case "ibtndelete":
-                    int id = Convert.ToInt32(((Label)e.Item.FindControl("lb_id")).Text);
-                    ZGD.Model.Channel model = bll.GetModelById(id);
                     if (model.IsDelete == 1)
                         bll.UpdateField(id, "IsDelete=0");
                     else
                         bll.UpdateField(id, "IsDelete=1");
+                    break;
+                case "ibtntop":
+                    if (model.IsTop == 1)
+                        bll.UpdateField(id, "IsTop=0");
+                    else
+                        bll.UpdateField(id, "IsTop=1");
                     break;
             }
             BindData();
@@ -72,10 +79,19 @@ namespace ZGD.Web.Admin.Channel
             if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
             {
                 Literal LitFirst = (Literal)e.Item.FindControl("LitFirst");
+                HiddenField txtClassId = (HiddenField)e.Item.FindControl("txtClassId");
                 HiddenField txtClassLayer = (HiddenField)e.Item.FindControl("txtClassLayer");
                 string LitStyle = "{1}{2}";
                 string LitImg1 = "<span class=\"folder-open\"></span>";
                 string LitImg2 = "<span class=\"folder-line\"></span>";
+
+                int id = Convert.ToInt32(txtClassId.Value);
+                ZGD.Model.Channel model = bll.GetModelById(id);
+                ImageButton isTop = (ImageButton)e.Item.FindControl("ibtnTop");
+                if (model.ParentId != 21)
+                {
+                    isTop.Visible = false;
+                }
 
                 int classLayer = Convert.ToInt32(txtClassLayer.Value);
                 if (classLayer == 1)

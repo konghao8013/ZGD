@@ -50,7 +50,6 @@
                     <td align="center">
                         <asp:HiddenField ID="txtClassId" runat="server" Value='<%#Eval("Id") %>' />
                         <asp:HiddenField ID="txtClassLayer" runat="server" Value='<%#Eval("ClassLayer") %>' />
-                        <asp:Label ID="lb_id" runat="server" Text='<%#Eval("ID")%>'></asp:Label>
                     </td>
                     <td>
                         <asp:Literal ID="LitFirst" runat="server"></asp:Literal>
@@ -58,7 +57,9 @@
                     </td>
                     <td align="center"><%# Eval("SortId") %></td>
                     <td align="center">
-                        <asp:ImageButton ID="ibtnLock" CommandName="ibtnDelete" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsDelete")) == 0 ? "../Images/correct.gif" : "../Images/disable.gif"%>' ToolTip='<%# Convert.ToInt32(Eval("IsDelete")) == 1 ? "取消禁用" : "设置禁用"%>' style='<%#Eval("Id").ToString() != "38" ? "" : "display:none;" %>' /></td>
+                        <asp:ImageButton ID="ibtnLock" CommandName="ibtnDelete" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsDelete")) == 0 ? "../Images/correct.gif" : "../Images/disable.gif"%>' ToolTip='<%# Convert.ToInt32(Eval("IsDelete")) == 1 ? "取消禁用" : "设置禁用"%>' style='<%#Eval("Id").ToString() != "38" ? "" : "display:none;" %>' />
+                        <asp:ImageButton ID="ibtnTop" CommandName="ibtnTop" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "../Images/ico-1.png" : "../Images/ico-1_.png"%>' ToolTip='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "取消置顶" : "设置置顶"%>' />
+                    </td>
                     <td align="center">
                         <%--<span><a href="Add.aspx?kindId=<%=kindId %>&classId=<%# Eval("Id") %>">添加子类</a></span>--%>
                         <span><a href="Edit.aspx?kindId=<%=kindId %>&pId=<%# Eval("ParentId") %>&classId=<%# Eval("Id") %>" style='<%#Eval("Id").ToString() != "38" || Eval("ParentId").ToString() != "0" ? "" : "display:none;" %>'>修改</a></span>

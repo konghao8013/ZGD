@@ -38,7 +38,7 @@ namespace ZGD.Web.Controllers
 
             ZGD.BLL.Channel cBll = new ZGD.BLL.Channel();
             //专题
-            DataSet ds_zt = cBll.GetList(3, " IsDelete=0 and KindId=2 and ParentId=21", " Id desc");
+            DataSet ds_zt = cBll.GetList(3, " IsDelete=0 and KindId=2 and ParentId=21 and IsTop=1", " Id desc");
             DataTable dt_zt = ds_zt != null ? ds_zt.Tables[0] : null;
 
             //首页广告
