@@ -80,7 +80,19 @@ namespace ZGD.Web.Admin.News
             {
                 model.IsImage = 1;
             }
-            model.ImgUrl = txtImgUrl.Text.Trim();
+            //缩略图生产
+            if (!string.IsNullOrWhiteSpace(txtImgUrl.Text))
+            {
+                if (Convert.ToInt32(Request.Params["zt"]) > 0)
+                {
+                    model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(txtImgUrl.Text, 400, 100, "H");
+                }
+                else
+                {
+                    model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(txtImgUrl.Text, 440, 300, "H");
+                }
+            }
+
             model.Content = ZGD.Common.StringHandler.EnCode(Request.Form["kEditor"]);
             model.Click = int.Parse(this.txtClick.Text);
             model.IsTop = 0;

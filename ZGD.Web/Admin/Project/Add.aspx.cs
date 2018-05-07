@@ -61,6 +61,7 @@ namespace ZGD.Web.Admin.Project
             if (!string.IsNullOrWhiteSpace(model.ImgUrl))
             {
                 model.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(model.ImgUrl, 440, 300, "H");
+                model.ImgUrl = txtImgUrl.Text.Trim();
             }
             model.Click = string.IsNullOrEmpty(txtClick.Text) ? 0 : int.Parse(this.txtClick.Text);
             model.PubTime = DateTime.Now;

@@ -24,7 +24,7 @@
 .index_top .title .more { }
 .index_top .index_top_con { }
 .index_top .index_top_con .left { width: 480px; height: 280px; }
-.index_top .index_top_con .left img { width: 100%; height: 100%; }
+.index_top .index_top_con .left img {  width: 480px; height: 280px; }
 .index_top .index_top_con .right { width: 470px; padding-left: 20px; padding-top: 20px; }
 
 .panel { }
@@ -48,7 +48,7 @@
 .index_mid .index_mid_right { width: 230px; float: right; }
 .mid_left_top { }
 .mid_left_top .left { width: 354px; height: 200px; }
-.mid_left_top .left img { width: 100%; height: 100%; }
+.mid_left_top .left img { width: 354px; height: 200px; }
 .mid_left_top .right { width: 357px; overflow: hidden; padding-top: 10px; padding-left: 18px; }
 .mid_left_bom { }
 .mid_left_bom .left { width: 360px; }

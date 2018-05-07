@@ -70,6 +70,7 @@ namespace ZGD.Web.Admin.Channel
             model.Title = txtTitle.Text.Trim();
             model.SortId = int.Parse(txtSortId.Text.Trim());
             model.IsDelete = cbIsDelete.Checked ? 1 : 0;
+            model.ImgUrl = txtImgUrl.Text.Trim();
             //修改栏目
             bll.Update(model);
             //保存日志

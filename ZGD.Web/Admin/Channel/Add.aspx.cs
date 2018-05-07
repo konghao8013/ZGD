@@ -85,6 +85,7 @@ namespace ZGD.Web.Admin.Channel
             model.Id = classId;
             model.ClassList = classList;
             model.ClassLayer = classLayer;
+            model.ImgUrl = txtImgUrl.Text.Trim();
             bll.Update(model);
             //保存日志
             SaveLogs("[栏目版块]添加版块：" + model.Title);

@@ -128,7 +128,19 @@ namespace ZGD.Web.Admin.News
                 model.ClassId = string.IsNullOrWhiteSpace(model.ClassId) ? ddlZtId.SelectedValue : model.ClassId + "," + ddlZtId.SelectedValue;
             }
 
-            model.ImgUrl = txtImgUrl.Text.Trim();
+            //缩略图生产
+            if (!string.IsNullOrWhiteSpace(txtImgUrl.Text) && model.ImgUrl != txtImgUrl.Text.Trim())
+            {
+                if (Convert.ToInt32(Request.Params["zt"]) > 0)
+                {
+                    model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(txtImgUrl.Text, 400, 100, "H");
+                }
+                else
+                {
+                    model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(txtImgUrl.Text, 440, 300, "H");
+                }
+            }
+
             model.Content = ZGD.Common.StringHandler.EnCode(Request["kEditor"].ToString());
             model.Click = int.Parse(txtClick.Text.Trim());
             model.IsImage = cbIsImage.Checked ? 1 : 0;
