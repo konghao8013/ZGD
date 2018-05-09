@@ -98,7 +98,7 @@ namespace ZGD.Web.Admin.News
                 {
                     model = bll.GetModel(id);
                     //保存日志
-                    SaveLogs("[新闻模块]删除新闻：" + model.Title);
+                    SaveLogs("[文章模块]删除文章：" + model.Title);
                     //删除记录
                     bll.Delete(id);
                 }

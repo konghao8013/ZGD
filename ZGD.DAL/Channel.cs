@@ -29,7 +29,7 @@ namespace ZGD.DAL
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("select count(1) from Channel");
-            strSql.Append(" where Id=@Id");
+            strSql.Append(" where Id=@Id and IsDelete=0");
             SqlParameter[] parameters = {
                     new SqlParameter("@Id", SqlDbType.Int,4)};
             parameters[0].Value = Id;
@@ -48,7 +48,7 @@ namespace ZGD.DAL
             }
             StringBuilder strSql = new StringBuilder();
             strSql.Append("select Title from Channel");
-            strSql.Append(" where Id in (" + classId + ")");
+            strSql.Append(" where Id in (" + classId + ") and IsDelete=0");
             DataSet ds = DbHelperSQL.Query(strSql.ToString());
             if (ds != null && ds.Tables[0] != null && ds.Tables[0].Rows.Count > 0)
             {
@@ -207,7 +207,7 @@ namespace ZGD.DAL
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("select  top 1 Id,Title,ParentId,ClassList,ClassLayer,SortId,PageUrl,KindId,IsDelete,ImgUrl,IsTop from Channel ");
-            strSql.Append(" where Id=@Id");
+            strSql.Append(" where Id=@Id and IsDelete=0");
             SqlParameter[] parameters = {
                     new SqlParameter("@Id", SqlDbType.Int, 4)
             };
@@ -224,7 +224,7 @@ namespace ZGD.DAL
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("select  top 1 Id,Title,ParentId,ClassList,ClassLayer,SortId,PageUrl,KindId,IsDelete,ImgUrl,IsTop from Channel ");
-            strSql.Append(" where Title=@Title");
+            strSql.Append(" where Title=@Title and IsDelete=0");
             SqlParameter[] parameters = {
                     new SqlParameter("@Title", SqlDbType.NVarChar, 50)
             };
@@ -300,7 +300,7 @@ namespace ZGD.DAL
         public DataSet GetZtYear()
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select distinct convert(varchar(4), PubTime,111) y from Channel where ParentId=21 and KindId=2 order by y desc");
+            strSql.Append("select distinct convert(varchar(4), PubTime,111) y from Channel where ParentId=21 and KindId=2 and IsDelete=0 order by y desc");
             return DbHelperSQL.Query(strSql.ToString());
         }
 
@@ -314,7 +314,11 @@ namespace ZGD.DAL
             strSql.Append(" FROM Channel ");
             if (strWhere.Trim() != "")
             {
-                strSql.Append(" where " + strWhere);
+                strSql.Append(" where " + strWhere + " and IsDelete=0 ");
+            }
+            else
+            {
+                strSql.Append(" where IsDelete=0 ");
             }
             return DbHelperSQL.Query(strSql.ToString());
         }
@@ -343,7 +347,11 @@ namespace ZGD.DAL
             strSql.Append(" FROM Channel ");
             if (strWhere.Trim() != "")
             {
-                strSql.Append(" where " + strWhere);
+                strSql.Append(" where " + strWhere + " and IsDelete=0 ");
+            }
+            else
+            {
+                strSql.Append(" where IsDelete=0 ");
             }
             if (!string.IsNullOrWhiteSpace(filedOrder))
                 strSql.Append(" order by " + filedOrder);
@@ -360,7 +368,7 @@ namespace ZGD.DAL
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("select Id,Title,ParentId,ClassList,ClassLayer,SortId,KindId,IsDelete,ImgUrl,IsTop from Channel");
-            strSql.Append(" where KindId=" + KId + " order by SortId asc,Id desc");
+            strSql.Append(" where KindId=" + KId + " and IsDelete=0 order by SortId asc,Id desc");
             DataSet ds = DbHelperSQL.Query(strSql.ToString());
             DataTable oldData = ds.Tables[0] as DataTable;
             if (oldData == null)
@@ -435,7 +443,7 @@ namespace ZGD.DAL
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("select top 1 ClassList,ClassLayer from Channel");
-            strSql.Append(" where Id=" + classId + " ");
+            strSql.Append(" where Id=" + classId + " and IsDelete=0 ");
             return DbHelperSQL.Query(strSql.ToString());
         }
 

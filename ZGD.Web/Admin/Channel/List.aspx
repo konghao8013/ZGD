@@ -8,6 +8,9 @@
 <head id="Head1" runat="server">
     <title>版块管理</title>
     <link href="../skin/default/style.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .del{color:red !important;}
+    </style>
     <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
 </head>
@@ -63,7 +66,7 @@
                     <td align="center">
                         <%--<span><a href="Add.aspx?kindId=<%=kindId %>&classId=<%# Eval("Id") %>">添加子类</a></span>--%>
                         <span><a href="Edit.aspx?kindId=<%=kindId %>&pId=<%# Eval("ParentId") %>&classId=<%# Eval("Id") %>" style='<%#Eval("Id").ToString() != "38" || Eval("ParentId").ToString() != "0" ? "" : "display:none;" %>'>修改</a></span>
-                        <%--  <span><asp:LinkButton ID="lbDel" CommandName="btndel" runat="server" OnClientClick="return confirm( '该操作会删除本版块和下属版块，确定要删除吗？ ');">删除</asp:LinkButton></span>--%>
+                        <span><asp:LinkButton ID="lbDel" CssClass="del" CommandName="btndel" runat="server" OnClientClick="return confirm( '该操作会删除该专题，确定要删除吗？ ');">删除</asp:LinkButton></span>
                     </td>
                 </tr>
             </ItemTemplate>

@@ -56,7 +56,7 @@ namespace ZGD.Web.Admin.Channel
                     bll.Delete(id);
                     //重新绑定数据
                     BindData();
-                    JscriptMsg("批量删除成功。");
+                    JscriptMsg("批量成功。");
                     break;
                 case "ibtndelete":
                     if (model.IsDelete == 1)
@@ -88,9 +88,11 @@ namespace ZGD.Web.Admin.Channel
                 int id = Convert.ToInt32(txtClassId.Value);
                 ZGD.Model.Channel model = bll.GetModelById(id);
                 ImageButton isTop = (ImageButton)e.Item.FindControl("ibtnTop");
+                LinkButton lBtnDel = (LinkButton)e.Item.FindControl("lbDel");
                 if (model.ParentId != 21)
                 {
                     isTop.Visible = false;
+                    lBtnDel.Visible = false;
                 }
 
                 int classLayer = Convert.ToInt32(txtClassLayer.Value);
