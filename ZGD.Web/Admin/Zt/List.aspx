@@ -76,7 +76,7 @@
                         <asp:CheckBox ID="cb_id" CssClass="checkall" runat="server" /></td>
                     <td align="center">
                         <asp:Label ID="lb_id" runat="server" Text='<%#Eval("Id")%>'></asp:Label></td>
-                    <td align="left"><a href="/article/<%#Eval("Id")%>.html" target="_blank"><%#Eval("Title")%></a></td>
+                    <td align="left"><a href="/article/<%#Eval("ClassId").ToString().Split(',')[0]%>-<%#Eval("Id")%>.html" target="_blank"><%#Eval("Title")%></a></td>
                     <td align="center"><%# new ZGD.BLL.Channel().GetChannelTitle(Eval("ClassId").ToString())%></td>
                     <td align="center"><%#string.Format("{0:g}", Eval("PubTime"))%></td>
                     <td align="center">

@@ -125,7 +125,7 @@
             <dl>
                 <dt>发布人</dt>
                 <dd>
-                    <asp:TextBox ID="txtAuthor" runat="server" Text="致公党" CssClass="input normal" datatype="*2-10" nullmsg="请输入文章发布人" errormsg="发布人长度在2-10个字符间" sucmsg=" "></asp:TextBox>
+                    <asp:TextBox ID="txtAuthor" runat="server" Text="渝致宣" CssClass="input normal" datatype="*2-10" nullmsg="请输入文章发布人" errormsg="发布人长度在2-10个字符间" sucmsg=" "></asp:TextBox>
                 </dd>
             </dl>
             <dl style="display:none">
@@ -156,7 +156,7 @@
                     </script>
                 </dd>
             </dl>
-            <dl>
+            <dl style="display:none;">
                 <dt>简要描述</dt>
                 <dd>
                     <textarea id="txtDesc" runat="server" class="input normal" style="width: 400px; height: 80px"></textarea>

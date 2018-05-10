@@ -158,7 +158,7 @@
             <dl>
                 <dt>作者</dt>
                 <dd>
-                    <asp:TextBox ID="txtAuthor" runat="server" CssClass="input normal" datatype="*0-50" nullmsg="请输入作者" errormsg="作者在0-50个字符间" sucmsg=" "></asp:TextBox>
+                    <asp:TextBox ID="txtAuthor" runat="server" CssClass="input normal" Text="渝致宣" datatype="*0-50" nullmsg="请输入作者" errormsg="作者在0-50个字符间" sucmsg=" "></asp:TextBox>
                 </dd>
             </dl>
             <dl>

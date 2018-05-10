@@ -160,7 +160,7 @@
                     </script>
                 </dd>
             </dl>
-            <dl>
+            <dl style="display:none;">
                 <dt>简要描述</dt>
                 <dd>
                     <textarea id="txtDesc" runat="server" class="input normal" style="width: 400px; height: 80px"></textarea>
