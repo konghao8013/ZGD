@@ -95,7 +95,7 @@ namespace ZGD.Web.Admin.News
 
             model.Content = ZGD.Common.StringHandler.EnCode(Request.Form["kEditor"]);
             model.Click = int.Parse(this.txtClick.Text);
-            model.IsTop = 0;
+            model.IsTop = 1;
             model.IsLock = 0;
             if (cblItem.Items[0].Selected == true)
             {

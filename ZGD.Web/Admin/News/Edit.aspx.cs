@@ -146,15 +146,15 @@ namespace ZGD.Web.Admin.News
             model.IsImage = cbIsImage.Checked ? 1 : 0;
 
             model.IsLock = 0;
-            model.IsTop = 0;
+            model.IsTop = 1;
             if (cblItem.Items[0].Selected == true)
             {
                 model.IsLock = 1;
             }
-            if (cblItem.Items[1].Selected == true)
-            {
-                model.IsTop = 1;
-            }
+            //if (cblItem.Items[1].Selected == true)
+            //{
+            //    model.IsTop = 1;
+            //}
             if (bll.Update(model))
             {
                 //保存版块

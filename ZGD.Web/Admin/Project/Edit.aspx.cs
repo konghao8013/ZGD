@@ -51,7 +51,7 @@ namespace ZGD.Web.Admin.Project
             }
             txtClick.Text = model.Click.ToString();
             cblItem.Items[0].Selected = model.IsTop == 1 ? true : false;
-            cblItem.Items[1].Selected = model.IsLock == 1 ? true : false;
+            //cblItem.Items[1].Selected = model.IsLock == 1 ? true : false;
 
             ZGD.BLL.ProjectImg pBll = new ZGD.BLL.ProjectImg();
 
@@ -124,11 +124,11 @@ namespace ZGD.Web.Admin.Project
             model.IsLock = 0;
             if (cblItem.Items[0].Selected == true)
             {
-                model.IsTop = 1;
-            }
-            if (cblItem.Items[1].Selected == true)
-            {
                 model.IsLock = 1;
+            }
+            if (cblItem.Items[0].Selected == true)
+            {
+                model.IsTop = 1;
             }
 
             if (bll.Update(model))

@@ -69,11 +69,11 @@ namespace ZGD.Web.Admin.Project
             model.IsLock = 0;
             if (cblItem.Items[0].Selected == true)
             {
-                model.IsTop = 1;
-            }
-            if (cblItem.Items[1].Selected == true)
-            {
                 model.IsLock = 1;
+            }
+            if (cblItem.Items[0].Selected == true)
+            {
+                model.IsTop = 1;
             }
 
             ZGD.BLL.Project bll = new ZGD.BLL.Project();
