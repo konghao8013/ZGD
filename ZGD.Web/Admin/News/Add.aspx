@@ -129,7 +129,7 @@
                 </dd>
             </dl>
             <dl style="display:none">
-                <dt>设置缩略图</dt>
+                <dt>设置Logo</dt>
                 <dd>
                     <div class="rule-single-checkbox">
                         <asp:CheckBox ID="cbIsImage" Checked="true" runat="server" Text="图片链接" />
