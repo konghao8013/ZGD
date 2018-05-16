@@ -18,6 +18,7 @@ namespace ZGD.Web.Admin.Project
             {
                 //绑定类别
                 ChannelTreeBind(52, "请选择图册分类", 5, this.ddlClassId);
+                txtPubTime.Text = DateTime.Now.ToString("yyyy-MM-dd");
             }
         }
 
@@ -55,22 +56,16 @@ namespace ZGD.Web.Admin.Project
             model.Author = this.txtAuthor.Text;
             model.ClassId = Convert.ToInt32(ddlClassId.SelectedValue);
             model.ImgUrl = txtImgUrl.Text.Trim();
+            model.PubTime = string.IsNullOrWhiteSpace(txtPubTime.Text) ? DateTime.Now : Convert.ToDateTime(txtPubTime.Text);
             model.UserId = Convert.ToInt32(Session["AdminNo"]);
-
-            //缩略图生产
-            if (!string.IsNullOrWhiteSpace(model.ImgUrl))
-            {
-                model.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(model.ImgUrl, 440, 300, "H");
-                model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(txtImgUrl.Text, 600, 420, "H");
-            }
             model.Click = string.IsNullOrEmpty(txtClick.Text) ? 0 : int.Parse(this.txtClick.Text);
             model.PubTime = DateTime.Now;
             model.IsTop = 0;
             model.IsLock = 0;
-            if (cblItem.Items[0].Selected == true)
-            {
-                model.IsLock = 1;
-            }
+            //if (cblItem.Items[0].Selected == true)
+            //{
+            //    model.IsLock = 1;
+            //}
             if (cblItem.Items[0].Selected == true)
             {
                 model.IsTop = 1;
@@ -92,6 +87,14 @@ namespace ZGD.Web.Admin.Project
                 {
                     if (!string.IsNullOrEmpty(item))
                     {
+                        //缩略图生产
+                        if (idx == 0)
+                        {
+                            model.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(item, 440, 300, "H");
+                            model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(item, 600, 420, "H");
+                            bll.UpdateField(model.Id, " ImgUrl='" + model.ImgUrl + "',ImageSmall='" + model.ImageSmall + "'");
+                        }
+
                         pModel = new ZGD.Model.ProjectImg();
                         pModel.Title = title_list[idx];
                         pModel.Description = title_list[idx];
@@ -129,7 +132,7 @@ namespace ZGD.Web.Admin.Project
             txtImgUrl.Text = "";
             txtKeyword.Text = "";
             txtTitle.Text = "";
-            txtAuthor.Text = ""; 
+            txtAuthor.Text = "";
             ddlClassId.SelectedIndex = 0;
         }
 

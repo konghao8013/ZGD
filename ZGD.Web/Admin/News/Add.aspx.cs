@@ -26,6 +26,7 @@ namespace ZGD.Web.Admin.News
                 //绑定类别
                 ChannelTreeBind_Check(8, 1, this.ddlClassId);
                 ChannelTreeBind(21, "请选择专题", 2, this.ddlZtId);
+                txtPubTime.Text = DateTime.Now.ToString("yyyy-MM-dd");
             }
         }
 
@@ -67,6 +68,11 @@ namespace ZGD.Web.Admin.News
             model.Description = txtDesc.Value;
             model.Author = this.txtAuthor.Text;
             model.ClassId = GetChecked(ddlClassId);
+            model.PubTime = string.IsNullOrWhiteSpace(txtPubTime.Text) ? DateTime.Now : Convert.ToDateTime(txtPubTime.Text);
+
+            string html = Request.Form["kEditor"];
+            model.Content = ZGD.Common.StringHandler.EnCode(html);
+
             if (ddlZtId.SelectedIndex > 0)
             {
                 model.ClassId = string.IsNullOrWhiteSpace(model.ClassId) ? ddlZtId.SelectedValue : model.ClassId + "," + ddlZtId.SelectedValue;
@@ -75,38 +81,39 @@ namespace ZGD.Web.Admin.News
             model.UserId = Convert.ToInt32(Session["AdminNo"]);
 
             model.IsImage = 0;
-
             if (cbIsImage.Checked == true)
             {
                 model.IsImage = 1;
             }
+
+            //获取文章内容图片集合
+            var imgs = RegexHandler.GetImgList(html);
+
             //缩略图生产
-            if (!string.IsNullOrWhiteSpace(txtImgUrl.Text))
+            if (imgs != null && imgs.Count > 0)
             {
                 if (Convert.ToInt32(Request.Params["zt"]) > 0)
                 {
-                    model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(txtImgUrl.Text, 400, 100, "H");
+                    model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(imgs[0], 400, 100, "H");
                 }
                 else
                 {
-                    model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(txtImgUrl.Text, 440, 300, "H");
+                    model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(imgs[0], 440, 300, "H");
                 }
             }
 
-            model.Content = ZGD.Common.StringHandler.EnCode(Request.Form["kEditor"]);
             model.Click = int.Parse(this.txtClick.Text);
-            model.IsTop = 1;
+            model.IsTop = 0;
             model.IsLock = 0;
+            //if (cblItem.Items[0].Selected == true)
+            //{
+            //    model.IsLock = 1;
+            //}
             if (cblItem.Items[0].Selected == true)
-            {
-                model.IsLock = 1;
-            }
-            if (cblItem.Items[1].Selected == true)
             {
                 model.IsTop = 1;
             }
 
-            model.PubTime = DateTime.Now;
 
             ZGD.BLL.NewsInfo bll = new ZGD.BLL.NewsInfo();
             int ReId = bll.Add(model);

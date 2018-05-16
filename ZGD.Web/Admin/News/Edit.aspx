@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../skin/default/style.css" type="text/css" />
     <link rel="stylesheet" href="../js/kindeditor-4.1.7/themes/default/default.css" />
     <link rel="stylesheet" href="../js/kindeditor-4.1.7/plugins/code/prettify.css" />
+    <link rel="stylesheet" href="../Js/datepicker/skin/WdatePicker.css" />
     <style type="text/css">
         #imgPanel img { width: 130px; margin-bottom: 5px; }
     </style>
@@ -17,6 +18,7 @@
     <script type="text/javascript" src="../js/swfupload/swfupload.js"></script>
     <script type="text/javascript" src="../js/swfupload/swfupload.handlers.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
+    <script type="text/javascript" src="../Js/datepicker/WdatePicker.js"></script>
 
     <script type="text/javascript" src="../js/kindeditor-4.1.7/kindeditor-min.js"></script>
     <script type="text/javascript" src="../js/kindeditor-4.1.7/lang/zh_CN.js"></script>
@@ -89,6 +91,12 @@
                     <asp:TextBox ID="txtTitle" runat="server" CssClass="input normal" datatype="*3-120" nullmsg="请输入文章标题" errormsg="标题长度在3-100个字符间" sucmsg=" "></asp:TextBox>
                 </dd>
             </dl>
+            <dl>
+                <dt>发布时间</dt>
+                <dd>
+                    <asp:TextBox ID="txtPubTime" runat="server" CssClass="input" datatype="*" onfocus="WdatePicker({dateFmt:&#39;yyyy-MM-dd&#39;})" nullmsg="请输入文章发布时间" errormsg="错误的时间格式" sucmsg=" "></asp:TextBox>
+                </dd>
+            </dl>
             <dl style="display:none;">
                 <dt>文章副标题</dt>
                 <dd>
@@ -139,7 +147,7 @@
                     </div>
                 </dd>
             </dl>
-            <dl class="upordown" id="tr_img_panel" runat="server">
+            <dl class="upordown" id="tr_img_panel" runat="server" style="display:none">
                 <dt>缩略图上传</dt>
                 <dd>
                     <p id="imgPanel" runat="server"></p>
@@ -178,7 +186,7 @@
                     <div class="rule-multi-porp">
                         <asp:CheckBoxList ID="cblItem" runat="server"
                             RepeatDirection="Horizontal" RepeatLayout="Flow">
-                            <asp:ListItem Value="1">禁用</asp:ListItem>
+                            <%--<asp:ListItem Value="1">禁用</asp:ListItem>--%>
                             <asp:ListItem Value="1">置顶</asp:ListItem>
                         </asp:CheckBoxList>
                     </div>

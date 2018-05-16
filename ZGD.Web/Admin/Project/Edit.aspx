@@ -6,12 +6,14 @@
 <head id="Head1" runat="server">
     <title>编辑图册</title>
     <link href="../skin/default/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../Js/datepicker/skin/WdatePicker.css" />
     
     <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../js/jquery/Validform_v5.3.2_min.js"></script>
     <script type="text/javascript" src="../js/swfupload/swfupload.js"></script>
     <script type="text/javascript" src="../js/swfupload/swfupload.handlers.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
+    <script type="text/javascript" src="../Js/datepicker/WdatePicker.js"></script>
     <script type="text/javascript" src="../js/lhgdialog/lhgdialog.js?skin=idialog"></script>
     <style type="text/css">
         #divHImg { display: inline-block; height: auto; }
@@ -143,6 +145,12 @@
                     <asp:TextBox ID="txtTitle" runat="server" CssClass="input normal" datatype="*1-100" nullmsg="请输入图册标题" errormsg="图册标题在1-100个字符间" sucmsg=" "></asp:TextBox>
                 </dd>
             </dl>
+            <dl>
+                <dt>发布时间</dt>
+                <dd>
+                    <asp:TextBox ID="txtPubTime" runat="server" CssClass="input normal" datatype="*" onfocus="WdatePicker({dateFmt:&#39;yyyy-MM-dd&#39;})" nullmsg="请输入发布时间" errormsg="错误的时间格式" sucmsg=" "></asp:TextBox>
+                </dd>
+            </dl>
             <dl style="display:none;">
                 <dt>关键词</dt>
                 <dd>
@@ -169,7 +177,7 @@
                     </div>
                 </dd>
             </dl>
-            <dl>
+            <dl style="display:none;">
                 <dt>图册LOGO</dt>
                 <dd>
                     <p id="imgPanel" runat="server"></p>
@@ -192,8 +200,8 @@
                 <dd>
                     <div class="rule-multi-porp">
                         <asp:CheckBoxList ID="cblItem" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
-                            <asp:ListItem Value="1">禁用</asp:ListItem>
-                            <asp:ListItem Value="1">首页显示</asp:ListItem>
+                            <%--<asp:ListItem Value="1">禁用</asp:ListItem>--%>
+                            <asp:ListItem Value="1">置顶</asp:ListItem>
                         </asp:CheckBoxList>
                     </div>
                 </dd>

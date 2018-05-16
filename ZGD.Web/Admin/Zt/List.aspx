@@ -43,7 +43,7 @@
                                 AutoPostBack="True" OnSelectedIndexChanged="ddlProperty_SelectedIndexChanged">
                                 <asp:ListItem Value="">所有属性</asp:ListItem>
                                 <asp:ListItem Value="IsTop">置顶</asp:ListItem>
-                                <asp:ListItem Value="IsLock">屏蔽</asp:ListItem>
+                                <%--<asp:ListItem Value="IsLock">屏蔽</asp:ListItem>--%>
                             </asp:DropDownList>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                         <th align="left">标题</th>
                         <th width="13%">所属版块</th>
                         <th width="16%">发布时间</th>
-                        <th width="6%">状态</th>
+                        <%--<th width="6%">状态</th>--%>
                         <th width="6%">置顶</th>
                         <th width="10%">操作</th>
                     </tr>
@@ -79,9 +79,9 @@
                     <td align="left"><a href="/article/<%#Eval("ClassId").ToString().Split(',')[0]%>-<%#Eval("Id")%>.html" target="_blank"><%#Eval("Title")%></a></td>
                     <td align="center"><%# new ZGD.BLL.Channel().GetChannelTitle(Eval("ClassId").ToString())%></td>
                     <td align="center"><%#string.Format("{0:g}", Eval("PubTime"))%></td>
-                    <td align="center">
+                    <%--<td align="center">
                         <asp:ImageButton ID="ibtnLock" CommandName="ibtnLock" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsLock")) == 0 ? "../Images/correct.gif" : "../Images/disable.gif"%>' ToolTip='<%# Convert.ToInt32(Eval("IsLock")) == 1 ? "取消锁定" : "设置锁定"%>' />
-                    </td>
+                    </td>--%>
                     <td align="center">
                         <asp:ImageButton ID="ibtnTop" CommandName="ibtnTop" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "../Images/ico-1.png" : "../Images/ico-1_.png"%>' ToolTip='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "取消置顶" : "设置置顶"%>' />
                     </td>

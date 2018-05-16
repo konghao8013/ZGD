@@ -51,6 +51,7 @@ namespace ZGD.Web.Admin.News
             txtDesc.Value = model.Description;
             txtAuthor.Text = model.Author;
             txtImgUrl.Text = model.ImgUrl;
+            txtPubTime.Text = model.PubTime.ToString("yyyy-MM-dd");
             BindChecked(ddlClassId, model.ClassId);
             BindZt(ddlZtId, model.ClassId);
 
@@ -59,26 +60,26 @@ namespace ZGD.Web.Admin.News
                 size = "图片尺寸400*100px";
             }
 
-            if (!string.IsNullOrWhiteSpace(model.ImgUrl) && model.IsImage == 1)
-            {
-                string[] img = model.ImgUrl.Split(',');
-                tr_img_panel.Style["display"] = "block";
-                imgPanel.InnerHtml = "<img src=\"" + img[0] + "\" />";
-            }
-            else
-            {
-                imgPanel.Style["display"] = "none";
-            }
+            //if (!string.IsNullOrWhiteSpace(model.ImgUrl) && model.IsImage == 1)
+            //{
+            //    string[] img = model.ImgUrl.Split(',');
+            //    tr_img_panel.Style["display"] = "block";
+            //    imgPanel.InnerHtml = "<img src=\"" + img[0] + "\" />";
+            //}
+            //else
+            //{
+            //    imgPanel.Style["display"] = "none";
+            //}
 
             kEditor.Value = ZGD.Common.StringHandler.DeCode(model.Content);
             txtClick.Text = model.Click.ToString();
-            if (model.IsLock == 1)
-            {
-                cblItem.Items[0].Selected = true;
-            }
+            //if (model.IsLock == 1)
+            //{
+            //    cblItem.Items[0].Selected = true;
+            //}
             if (model.IsTop == 1)
             {
-                cblItem.Items[1].Selected = true;
+                cblItem.Items[0].Selected = true;
             }
         }
         #endregion
@@ -123,38 +124,44 @@ namespace ZGD.Web.Admin.News
             model.Description = txtDesc.Value;
             model.Author = txtAuthor.Text.Trim();
             model.ClassId = GetChecked(ddlClassId);
+            model.PubTime = string.IsNullOrWhiteSpace(txtPubTime.Text) ? DateTime.Now : Convert.ToDateTime(txtPubTime.Text);
+
+            string html = Request.Form["kEditor"];
+            model.Content = ZGD.Common.StringHandler.EnCode(html);
+
             if (ddlZtId.SelectedIndex > 0)
             {
                 model.ClassId = string.IsNullOrWhiteSpace(model.ClassId) ? ddlZtId.SelectedValue : model.ClassId + "," + ddlZtId.SelectedValue;
             }
 
+            //获取文章内容图片集合
+            var imgs = RegexHandler.GetImgList(html);
             //缩略图生产
-            if (!string.IsNullOrWhiteSpace(txtImgUrl.Text) && model.ImgUrl != txtImgUrl.Text.Trim())
+            if (imgs != null && imgs.Count > 0 && model.ImgUrl != imgs[0].Trim())
             {
                 if (Convert.ToInt32(Request.Params["zt"]) > 0)
                 {
-                    model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(txtImgUrl.Text, 400, 100, "H");
+                    model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(imgs[0].Trim(), 400, 100, "H");
                 }
                 else
                 {
-                    model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(txtImgUrl.Text, 440, 300, "H");
+                    model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(imgs[0].Trim(), 440, 300, "H");
                 }
             }
 
-            model.Content = ZGD.Common.StringHandler.EnCode(Request["kEditor"].ToString());
             model.Click = int.Parse(txtClick.Text.Trim());
             model.IsImage = cbIsImage.Checked ? 1 : 0;
 
             model.IsLock = 0;
-            model.IsTop = 1;
+            model.IsTop = 0;
+            //if (cblItem.Items[0].Selected == true)
+            //{
+            //    model.IsLock = 1;
+            //}
             if (cblItem.Items[0].Selected == true)
             {
-                model.IsLock = 1;
+                model.IsTop = 1;
             }
-            //if (cblItem.Items[1].Selected == true)
-            //{
-            //    model.IsTop = 1;
-            //}
             if (bll.Update(model))
             {
                 //保存版块

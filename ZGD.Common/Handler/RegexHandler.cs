@@ -242,5 +242,23 @@ namespace ZGD.Common
                 return false;
             return true;
         }
+
+        /// <summary>  
+        /// 获取文章中图片地址
+        /// </summary>  
+        /// <param name="html">文章内容</param>  
+        /// <returns></returns>  
+        public static List<string> GetImgList(string html)
+        {
+            List<string> imgs = new List<string>();
+            Regex r = new Regex(@"<IMG[^>]+src=\s*(?:'(?<src>[^']+)'|""(?<src>[^""]+)""|(?<src>[^>\s]+))\s*[^>]*>", RegexOptions.IgnoreCase);
+            MatchCollection mc = r.Matches(html);
+
+            foreach (Match m in mc)
+            {
+                imgs.Add(m.Groups["src"].Value.ToLower());
+            }
+            return imgs;
+        }
     }
 }

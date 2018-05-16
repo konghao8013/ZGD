@@ -40,15 +40,17 @@ namespace ZGD.Web.Admin.Project
             txtDescription.Text = model.Description;
             txtAuthor.Text = model.Author;
             ddlClassId.SelectedValue = model.ClassId.ToString();
+            txtPubTime.Text = model.PubTime.ToString("yyyy-MM-dd");
+
             txtImgUrl.Text = model.ImgUrl;
-            if (!string.IsNullOrWhiteSpace(model.ImageSmall))
-            {
-                imgPanel.InnerHtml = "<img src=\"" + model.ImageSmall + "\" />";
-            }
-            else
-            {
-                imgPanel.Style["display"] = "none";
-            }
+            //if (!string.IsNullOrWhiteSpace(model.ImageSmall))
+            //{
+            //    imgPanel.InnerHtml = "<img src=\"" + model.ImageSmall + "\" />";
+            //}
+            //else
+            //{
+            //    imgPanel.Style["display"] = "none";
+            //}
             txtClick.Text = model.Click.ToString();
             cblItem.Items[0].Selected = model.IsTop == 1 ? true : false;
             //cblItem.Items[1].Selected = model.IsLock == 1 ? true : false;
@@ -111,21 +113,15 @@ namespace ZGD.Web.Admin.Project
             model.Description = this.txtDescription.Text;
             model.Author = this.txtAuthor.Text;
             model.ClassId = Convert.ToInt32(ddlClassId.SelectedValue);
-            //缩略图生产
-            if (!string.IsNullOrWhiteSpace(txtImgUrl.Text) && model.ImgUrl != txtImgUrl.Text.Trim())
-            {
-                model.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(txtImgUrl.Text, 440, 300, "H");
-                model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(txtImgUrl.Text, 600, 420, "H");
-            }
-
+            model.PubTime = string.IsNullOrWhiteSpace(txtPubTime.Text) ? DateTime.Now : Convert.ToDateTime(txtPubTime.Text);
             model.Click = string.IsNullOrEmpty(txtClick.Text) ? 0 : int.Parse(this.txtClick.Text);
             model.PubTime = DateTime.Now;
             model.IsTop = 0;
             model.IsLock = 0;
-            if (cblItem.Items[0].Selected == true)
-            {
-                model.IsLock = 1;
-            }
+            //if (cblItem.Items[0].Selected == true)
+            //{
+            //    model.IsLock = 1;
+            //}
             if (cblItem.Items[0].Selected == true)
             {
                 model.IsTop = 1;
@@ -146,6 +142,14 @@ namespace ZGD.Web.Admin.Project
                 {
                     if (!string.IsNullOrEmpty(item))
                     {
+                        //缩略图生产
+                        if (idx == 0 && item != model.ImgUrl)
+                        {
+                            model.ImageSmall = ZGD.Common.Thumbnail.CreateThumbImg(item, 440, 300, "H");
+                            model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(item, 600, 420, "H");
+                            bll.UpdateField(model.Id, " ImgUrl='" + model.ImgUrl + "',ImageSmall='" + model.ImageSmall + "'");
+                        }
+
                         pModel = new ZGD.Model.ProjectImg();
                         pModel.Title = title_list[idx];
                         pModel.Description = title_list[idx];

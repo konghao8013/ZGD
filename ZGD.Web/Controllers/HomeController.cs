@@ -14,27 +14,27 @@ namespace ZGD.Web.Controllers
         {
             ZGD.BLL.NewsInfo nBll = new ZGD.BLL.NewsInfo();
             //党内要闻
-            DataTable dt_news1 = nBll.GetList(8, " n.IsLock=0 and nc.ClassId=9 ", " n.IsTop desc,n.Id desc");
-            DataTable dt_news1_img = nBll.GetList(4, " n.IsLock=0 and nc.ClassId=9 and ImgUrl is not null and ImgUrl<>''", " n.IsTop desc,n.Id desc");
+            DataTable dt_news1 = nBll.GetList(8, " n.IsLock=0 and nc.ClassId=9 ", " n.IsTop desc,n.PubTime desc");
+            DataTable dt_news1_img = nBll.GetList(4, " n.IsLock=0 and nc.ClassId=9 and ImgUrl is not null and ImgUrl<>''", " n.IsTop desc,n.PubTime desc");
             //工作简讯
-            DataTable dt_news2 = nBll.GetList(6, " n.IsLock=0 and nc.ClassId=10 ", " n.IsTop desc,n.Id desc");
-            DataTable dt_news2_img = nBll.GetList(4, " n.IsLock=0 and nc.ClassId=10 and ImgUrl is not null and ImgUrl<>''", " n.IsTop desc,n.Id desc");
+            DataTable dt_news2 = nBll.GetList(6, " n.IsLock=0 and nc.ClassId=10 ", " n.IsTop desc,n.PubTime desc");
+            DataTable dt_news2_img = nBll.GetList(4, " n.IsLock=0 and nc.ClassId=10 and ImgUrl is not null and ImgUrl<>''", " n.IsTop desc,n.PubTime desc");
             //关于致公
-            DataTable dt_news3 = nBll.GetList(6, " n.IsLock=0 and nc.ClassId=19 ", " n.IsTop desc,n.Id desc");
+            DataTable dt_news3 = nBll.GetList(6, " n.IsLock=0 and nc.ClassId=19 ", " n.IsTop desc,n.PubTime desc");
             //自身建设
-            DataTable dt_news4 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=11 ", " n.IsTop desc,n.Id desc");
+            DataTable dt_news4 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=11 ", " n.IsTop desc,n.PubTime desc");
             //宣传思想
-            DataTable dt_news5 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=13 ", " n.IsTop desc,n.Id desc");
+            DataTable dt_news5 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=13 ", " n.IsTop desc,n.PubTime desc");
             //参政议政
-            DataTable dt_news6 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=12 ", " n.IsTop desc,n.Id desc");
+            DataTable dt_news6 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=12 ", " n.IsTop desc,n.PubTime desc");
             //社会服务
-            DataTable dt_news7 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=15 ", " n.IsTop desc,n.Id desc");
+            DataTable dt_news7 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=15 ", " n.IsTop desc,n.PubTime desc");
             //海外联谊
-            DataTable dt_news8 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=14 ", " n.IsTop desc,n.Id desc");
+            DataTable dt_news8 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=14 ", " n.IsTop desc,n.PubTime desc");
             //致公风采
-            DataTable dt_news9 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=16 ", " n.IsTop desc,n.Id desc");
+            DataTable dt_news9 = nBll.GetList(5, " n.IsLock=0 and nc.ClassId=16 ", " n.IsTop desc,n.PubTime desc");
             //通知公告
-            DataTable dt_news10 = nBll.GetList(4, " n.IsLock=0 and nc.ClassId=20 ", " n.IsTop desc,n.Id desc");
+            DataTable dt_news10 = nBll.GetList(4, " n.IsLock=0 and nc.ClassId=20 ", " n.IsTop desc,n.PubTime desc");
 
             ZGD.BLL.Channel cBll = new ZGD.BLL.Channel();
             //专题
