@@ -46,7 +46,7 @@ namespace ZGD.Web.Controllers
             DataTable adIndex = ds_ad != null ? ds_ad.Tables[0] : null;
 
             //图册
-            DataSet ds_pic = new BLL.Project().GetList(6, " p.IsLock=0 and p.IsTop=1 ", " p.Id desc");
+            DataSet ds_pic = new BLL.Project().GetList(6, " p.IsLock=0 and p.IsTop=1 ", " p.Id desc,p.PubTime desc");
             DataTable dt_pic = ds_pic != null ? ds_pic.Tables[0] : null;
 
             return View(new IndexDTO
