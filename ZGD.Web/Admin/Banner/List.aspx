@@ -52,7 +52,7 @@
                                 $("#txtSize").val(msg.Size);
                                 $("#txtImgUrl").val(msg.ImgUrl);
                                 if (msg._islock == "1") $("#cbIsLock").attr("checked", true); else $("#cbIsLock").removeAttr("checked");
-                                $("#imgurl").html("<a href=\"" + msg.Url + "\" target=\"_blank\"><img src=\"" + msg.ImgUrl + "\" height=\"80\" /></a>").show();
+                                $("#imgurl").html("<a href=\"" + msg.Url + "\" target=\"_blank\"><img src=\"" + msg.ImgUrl + "\" width=\"100\" /></a>").show();
                             }
 
                             //初始化上传控件

@@ -14,6 +14,10 @@ namespace ZGD.Web.Controllers
         /// </summary>
         public DataTable AdList { get; set; }
         /// <summary>
+        /// 首页广告
+        /// </summary>
+        public Model.Banner Tl_Ad { get; set; }
+        /// <summary>
         /// 
         /// </summary>
         public DataTable News1 { get; set; }
