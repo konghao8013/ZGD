@@ -46,7 +46,7 @@
                     <asp:Button ID="btnSubmit" runat="server" Text="登 录" CssClass="btn-login" OnClick="btnSubmit_Click" />
                 </div>
                 <span class="login-tips" style="margin-top: 10px;"><i></i><b id="msgtip" runat="server">请输入用户名和密码</b></span>
-                <p style="text-align: center; padding-top: 5px; font-size: 12px; color: #333;">中国致公党重庆委员会</p>
+                <p style="text-align: center; padding-top: 5px; font-size: 12px; color: #333;">中国致公党重庆市委员会</p>
             </div>
         </div>
     </form>
