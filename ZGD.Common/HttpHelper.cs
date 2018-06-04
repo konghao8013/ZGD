@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -126,6 +128,36 @@ namespace ZGD.Common
         }
 
         /// <summary>
+        /// 获取远程图片并保存本地
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static bool SaveHttpImg(string url, string path)
+        {
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                var bytes = GetResponseBody(response);
+
+                MemoryStream ms = new MemoryStream(bytes);
+                System.Drawing.Image img;
+                img = System.Drawing.Image.FromStream(ms);
+                img.Save(path, ImageFormat.Jpeg);   //保存     
+
+                img.Dispose();
+                ms.Close();
+                ms.Dispose();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// POST返回数据(默认UTF8编码格式)
         /// </summary>
         /// <param name="response">response对象</param>
@@ -165,6 +197,47 @@ namespace ZGD.Common
             }
             catch (Exception ex)
             { throw ex; }
+        }
+
+        private static byte[] GetResponseBody(HttpWebResponse response)
+        {
+            byte[] bytes = null;
+            if (response.ContentEncoding.ToLower().Contains("gzip"))
+            {
+                using (GZipStream stream = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress))
+                {
+                    bytes = GetBytes(stream);
+                }
+            }
+            else if (response.ContentEncoding.ToLower().Contains("deflate"))
+            {
+                using (DeflateStream stream = new DeflateStream(response.GetResponseStream(), CompressionMode.Decompress))
+                {
+                    bytes = GetBytes(stream);
+                }
+            }
+            else
+            {
+                using (Stream stream = response.GetResponseStream())
+                {
+                    bytes = GetBytes(stream);
+                }
+            }
+            return bytes;
+        }
+
+        private static byte[] GetBytes(Stream stream)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                byte[] bytes = new byte[40960];
+                int n;
+                while ((n = stream.Read(bytes, 0, bytes.Length)) > 0)
+                {
+                    ms.Write(bytes, 0, n);
+                }
+                return ms.ToArray();
+            }
         }
     }
 }

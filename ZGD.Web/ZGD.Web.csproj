@@ -997,6 +997,7 @@
     <Folder Include="Log\Errorlog\" />
     <Folder Include="UpLoadFiles\attached\image\" />
     <Folder Include="UpLoadFiles\attached\old\" />
+    <Folder Include="UpLoadFiles\HttpTmp\" />
     <Folder Include="UpLoadFiles\images\" />
     <Folder Include="UpLoadFiles\thum\" />
     <Folder Include="Views\Ctrl\" />

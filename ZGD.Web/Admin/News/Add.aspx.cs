@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using ZGD.Common;
+using System.Globalization;
 
 namespace ZGD.Web.Admin.News
 {
@@ -92,13 +93,24 @@ namespace ZGD.Web.Admin.News
             //缩略图生产
             if (imgs != null && imgs.Count > 0)
             {
+                //存储网络图片
+                string f_img = imgs[0];
+
+                if (f_img.IndexOf("http://", StringComparison.CurrentCultureIgnoreCase) > -1 || f_img.IndexOf("https://", StringComparison.CurrentCultureIgnoreCase) > -1)
+                {
+                    string newFileName = DateTime.Now.ToString("yyyyMMddHHmmss_ffff", DateTimeFormatInfo.InvariantInfo) + ".jpg";
+                    string path = "/UpLoadFiles/HttpTmp/" + newFileName;
+                    HttpHelper.SaveHttpImg(f_img, Server.MapPath(path));
+                    f_img = path;
+                }
+
                 if (Convert.ToInt32(Request.Params["zt"]) > 0)
                 {
-                    model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(imgs[0], 400, 100, "H");
+                    model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(f_img, 400, 100, "H");
                 }
                 else
                 {
-                    model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(imgs[0], 440, 300, "H");
+                    model.ImgUrl = ZGD.Common.Thumbnail.CreateThumbImg(f_img, 440, 300, "H");
                 }
             }
 

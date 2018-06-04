@@ -256,7 +256,7 @@ namespace ZGD.Common
 
             foreach (Match m in mc)
             {
-                imgs.Add(m.Groups["src"].Value.ToLower());
+                imgs.Add(m.Groups["src"].Value);
             }
             return imgs;
         }

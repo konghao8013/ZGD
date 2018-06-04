@@ -15,7 +15,8 @@
     <script type="text/javascript" src="../js/swfupload/swfupload.js"></script>
     <script type="text/javascript" src="../js/swfupload/swfupload.handlers.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
-    <script type="text/javascript" src="../Js/datepicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../Js/datepicker/WdatePicker.js"></script>
+
 
     <script type="text/javascript" src="../js/kindeditor-4.1.7/kindeditor-min.js"></script>
     <script type="text/javascript" src="../js/kindeditor-4.1.7/lang/zh_CN.js"></script>
