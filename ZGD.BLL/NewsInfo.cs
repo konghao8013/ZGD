@@ -209,9 +209,9 @@ namespace ZGD.BLL
         /// <param name="filedOrder"></param>
         /// <param name="pId">8文章 21专题文章</param>
         /// <returns></returns>
-        public DataTable GetList(int Top, string strWhere, string filedOrder, int pId = 8)
+        public DataTable GetList(int Top, string strWhere, string filedOrder)
         {
-            DataSet ds = dal.GetList(Top, strWhere, filedOrder, pId);
+            DataSet ds = dal.GetList(Top, strWhere, filedOrder);
             return ds != null ? ds.Tables[0] : null;
         }
         /// <summary>

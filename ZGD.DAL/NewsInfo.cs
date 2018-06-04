@@ -485,10 +485,10 @@ namespace ZGD.DAL
                 strSql.Append(" top " + Top.ToString());
             }
             strSql.Append(" n.id,n.Title,n.ClassId,n.Click,n.IsLock,n.PubTime,n.Author,n.ImgUrl,n.Click,n.IsTop,n.SubTitle ");
-            strSql.Append(" FROM NewsInfo n inner join NewsColumns nc on n.Id= nc.NewsId where nc.ClassId in (select id from Channel where ClassList like ',"+ pId + ",%')");
+            strSql.Append(" FROM NewsInfo n inner join NewsColumns nc on n.Id= nc.NewsId "); //where nc.ClassId in (select id from Channel where ClassList like ',"+ pId + ",%')
             if (strWhere.Trim() != "")
             {
-                strSql.Append(" and " + strWhere);
+                strSql.Append(" where " + strWhere);
             }
             strSql.Append(" order by " + filedOrder);
             return DbHelperSQL.Query(strSql.ToString());
