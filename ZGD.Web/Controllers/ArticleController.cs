@@ -17,7 +17,7 @@ namespace ZGD.Web.Controllers
         /// <returns></returns>
         public ActionResult Index(int page = 1, int t = 0, string key = "")
         {
-            string pager = string.Empty, where = "1=1", url = string.Empty;
+            string pager = string.Empty, where = "n.IsPub=1", url = string.Empty;
             if (!string.IsNullOrWhiteSpace(key))
             {
                 key = key.FunStr();
@@ -55,8 +55,12 @@ namespace ZGD.Web.Controllers
         {
             ZGD.BLL.NewsInfo bll = new BLL.NewsInfo();
             ZGD.Model.NewsInfo news = bll.GetModel(id);
+
             //点击率
-            bll.UpdateField(id, " Click=Click+1");
+            if (news.IsPub == 1)
+            {
+                bll.UpdateField(id, " Click=Click+1");
+            }
 
             Model.Channel cType = new BLL.Channel().GetModelById(cid);
             news.ClassName = cType == null ? "" : cType.Title;

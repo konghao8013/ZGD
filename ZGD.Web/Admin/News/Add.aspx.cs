@@ -34,6 +34,11 @@ namespace ZGD.Web.Admin.News
         #region 添加
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            SaveData(1);
+        }
+
+        void SaveData(int isPub)
+        {
             string strErr = "";
             if (this.txtTitle.Text.Trim().Length == 0)
             {
@@ -115,6 +120,7 @@ namespace ZGD.Web.Admin.News
             }
 
             model.Click = int.Parse(this.txtClick.Text);
+            model.IsPub = isPub;
             model.IsTop = 0;
             model.IsLock = 0;
             //if (cblItem.Items[0].Selected == true)
@@ -156,16 +162,7 @@ namespace ZGD.Web.Admin.News
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            txtClick.Text = "0";
-            this.txtTitle.Text = "";
-            this.txtSubTitle.Text = "";
-            this.txtKeyword.Text = "";
-            this.txtAuthor.Text = "";
-            this.txtImgUrl.Text = "";
-            this.txtDesc.Value = "";
-            this.txtTags.Text = "";
-            ddlClassId.SelectedIndex = -1;
-            ddlZtId.SelectedIndex = 0;
+            SaveData(0);
         }
 
     }

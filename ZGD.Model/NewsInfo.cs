@@ -161,6 +161,8 @@ namespace ZGD.Model
         public string PubUnit { get; set; }
 
         public int UserId { get; set; }
+        public int IsPub { get; set; }
+        
         #endregion Model
 
     }

@@ -88,6 +88,11 @@ namespace ZGD.Web.Admin.News
         #region 修改操作
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            SaveData(1);
+        }
+
+        void SaveData(int isPub)
+        {
             string strErr = "";
             if (this.txtTitle.Text.Trim().Length == 0)
             {
@@ -164,6 +169,7 @@ namespace ZGD.Web.Admin.News
             model.Click = int.Parse(txtClick.Text.Trim());
             model.IsImage = cbIsImage.Checked ? 1 : 0;
 
+            model.IsPub = isPub;
             model.IsLock = 0;
             model.IsTop = 0;
             //if (cblItem.Items[0].Selected == true)
@@ -200,7 +206,7 @@ namespace ZGD.Web.Admin.News
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            Response.Redirect(url);
+            SaveData(0);
         }
 
     }

@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = Model.Title;
+    ViewBag.Keywords = "中国致公党重庆市委员会";
+    ViewBag.Description = "中国致公党重庆市委员会";
+}
+
+@model ZGD.Model.NewsInfo
+
+@using ZGD.Common
+@using System.Data
+@{Html.RenderAction("Top", "Ctrl", new { menuID = ViewBag.TypeID });}
+
+<div class="con_bg main">
+    <div class="index_top" style="height:auto;">
+        <div class="title"><span>您的位置：<a href="/">首页</a> <em>&gt;</em> <a href="/articlepage/1-@(ViewBag.TypeID)">@(Model.ClassName)</a> <em>&gt;</em></span> @(Model.Title)</div>
+        <div class="index_top_con">
+            <div class="article">
+                <div class="article_title">
+                    <h3>@(Model.Title)</h3>
+                    <p><span>提交者：@(Model.Author)</span><span>时间：@(Model.PubTime.ToString("yyyy年MM月dd日"))</span></p>
+                </div>
+                <div class="article_con">
+                    @Html.Raw(Server.HtmlDecode(Model.Content))
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space30"></div>
+    <hr class="page_hr" />
+</div>

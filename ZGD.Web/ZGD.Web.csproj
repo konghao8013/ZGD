@@ -686,6 +686,7 @@
     <Content Include="Views\ZT\Index.cshtml" />
     <Content Include="Views\Gallery\Details.cshtml" />
     <Content Include="Views\Gallery\Index.cshtml" />
+    <Content Include="Views\Article\Details_Tmp.cshtml" />
     <None Include="Web References\SmsLinkWs\Service.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

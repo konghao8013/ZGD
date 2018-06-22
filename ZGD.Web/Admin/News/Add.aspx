@@ -199,8 +199,8 @@
         <!--工具栏-->
         <div class="page-footer">
             <div class="btn-list">
-                <asp:Button ID="btnSave" runat="server" Text="保存" CssClass="btn" OnClick="btnSave_Click" />
-                <asp:Button ID="btnReset" runat="server" Text="重置" CssClass="btn yellow" OnClick="btnReset_Click" />
+                <asp:Button ID="btnSave" runat="server" Text="保存（发布）" CssClass="btn" OnClick="btnSave_Click" />
+                <asp:Button ID="btnReset" runat="server" Text="保存（临时）" CssClass="btn yellow" OnClick="btnReset_Click" />
             </div>
             <div class="clear"></div>
         </div>

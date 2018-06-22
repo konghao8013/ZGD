@@ -67,11 +67,11 @@ namespace ZGD.Web.Admin.News
             ZGD.Model.NewsInfo model = bll.GetModel(id);
             switch (e.CommandName.ToLower())
             {
-                case "ibtnlock":
-                    if (model.IsLock == 1)
-                        bll.UpdateField(id, "IsLock=0");
+                case "ibtnpub":
+                    if (model.IsPub == 1)
+                        bll.UpdateField(id, "IsPub=0");
                     else
-                        bll.UpdateField(id, "IsLock=1");
+                        bll.UpdateField(id, "IsPub=1");
                     break;
                 case "ibtntop":
                     if (model.IsTop == 1)
@@ -158,10 +158,24 @@ namespace ZGD.Web.Admin.News
                         Session["strWhereProduct_News"] = "";
                     }
                     break;
-                case "IsLock":
+                case "IsPub":
                     if (SupplierName != "")
                     {
-                        strsql += (" and n.IsLock=1");
+                        strsql += (" and n.IsPub=1");
+                    }
+                    if (strsql != "")
+                    {
+                        Session["strWhereProduct_News"] = strsql;
+                    }
+                    else
+                    {
+                        Session["strWhereProduct_News"] = "";
+                    }
+                    break;
+                case "IsPub2":
+                    if (SupplierName != "")
+                    {
+                        strsql += (" and n.IsPub=0");
                     }
                     if (strsql != "")
                     {
