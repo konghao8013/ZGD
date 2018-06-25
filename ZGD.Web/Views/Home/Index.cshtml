@@ -27,7 +27,7 @@
                     {
                         img1 = item["ImgUrl"].ToString().Split(',')[0];
                         <li data-title="@(item["Title"].ToString())" class="hiSlider-item">
-                            <a href="/article/9-@(item["Id"].ToString()).html"><img src="@(img1)" width="480" height="280" alt="@(item["Title"].ToString())" /></a>
+                            <a href="/article/9-@(item["Id"].ToString()).html" target="_blank"><img src="@(img1)" width="480" height="280" alt="@(item["Title"].ToString())" /></a>
                         </li>
                     }
                 </ul>
@@ -39,14 +39,14 @@
                 <ul class="news_list">
                     @foreach (DataRow item in Model.News1.Rows)
                     {
-                        <li><a href="/article/9-@(item["Id"].ToString()).html" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(30))</a></li>
+                        <li><a href="/article/9-@(item["Id"].ToString()).html" title="@(item["Title"].ToString())" target="_blank">@(item["Title"].ToString().ToSubString(30))</a></li>
                     }
                 </ul>
             </div>
         </div>
     </div>
     <div class="space10"></div>
-    <div class="tl_ad"><a href="@(Model.Tl_Ad.Url)"><img src="@(Model.Tl_Ad.ImgUrl)" /></a></div>
+    <div class="tl_ad"><a href="@(Model.Tl_Ad.Url)" target="_blank"><img src="@(Model.Tl_Ad.ImgUrl)" /></a></div>
     <div class="space10"></div>
 
     <div class="index_mid">
@@ -63,7 +63,7 @@
                             {
                                 img2 = item["ImgUrl"].ToString().Split(',')[0];
                                 <li data-title="@(item["Title"].ToString())" class="hiSlider-item">
-                                    <a href="/article/10-@(item["Id"].ToString()).html"><img src="@(img2)" width="354" height="200" alt="@(item["Title"].ToString())" /></a>
+                                    <a href="/article/10-@(item["Id"].ToString()).html" target="_blank"><img src="@(img2)" width="354" height="200" alt="@(item["Title"].ToString())" /></a>
                                 </li>
                             }
                         </ul>
