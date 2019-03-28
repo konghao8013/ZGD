@@ -35,7 +35,7 @@ namespace ZGD.Web.Tools
             extTable.Add("image", webset.fileextension.ToLower());
             extTable.Add("flash", "swf,flv");
             extTable.Add("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
-            extTable.Add("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
+            extTable.Add("file", "doc,docx,xls,xlsx,ppt,txt,zip,rar,gz,bz2");
 
             //最大文件大小
             int maxSize = webset.attachsize;

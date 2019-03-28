@@ -6,8 +6,8 @@
 <head runat="server">
     <title>发布文章</title>
     <link rel="stylesheet" href="../skin/default/style.css" type="text/css" />
-    <link rel="stylesheet" href="../js/kindeditor-4.1.7/themes/default/default.css" />
-    <link rel="stylesheet" href="../js/kindeditor-4.1.7/plugins/code/prettify.css" />
+    <link rel="stylesheet" href="../js/kindeditor/themes/default/default.css" />
+    <link rel="stylesheet" href="../js/kindeditor/plugins/code/prettify.css" />
     <link rel="stylesheet" href="../Js/datepicker/skin/WdatePicker.css" />
 
     <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
@@ -18,9 +18,9 @@
     <script type="text/javascript" src="../Js/datepicker/WdatePicker.js"></script>
 
 
-    <script type="text/javascript" src="../js/kindeditor-4.1.7/kindeditor-min.js"></script>
-    <script type="text/javascript" src="../js/kindeditor-4.1.7/lang/zh_CN.js"></script>
-    <script type="text/javascript" src="../js/kindeditor-4.1.7/plugins/code/prettify.js"></script>
+    <script type="text/javascript" src="../js/kindeditor/kindeditor-min.js"></script>
+    <script type="text/javascript" src="../js/kindeditor/lang/zh_CN.js"></script>
+    <script type="text/javascript" src="../js/kindeditor/plugins/code/prettify.js"></script>
     <script type="text/javascript">
         $(function () {
             //初始化表单验证

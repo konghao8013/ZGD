@@ -6,16 +6,16 @@
 <head runat="server">
     <title>公司简介</title>
     <link rel="stylesheet" href="../skin/default/style.css" type="text/css" />
-    <link rel="stylesheet" href="../js/kindeditor-4.1.7/themes/default/default.css" />
-    <link rel="stylesheet" href="../js/kindeditor-4.1.7/plugins/code/prettify.css" />
+    <link rel="stylesheet" href="../js/kindeditor/themes/default/default.css" />
+    <link rel="stylesheet" href="../js/kindeditor/plugins/code/prettify.css" />
 
     <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../js/jquery/Validform_v5.3.2_min.js"></script>
     <script type="text/javascript" src="../js/lhgdialog/lhgdialog.js?skin=idialog"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
-    <script type="text/javascript" src="../js/kindeditor-4.1.7/kindeditor-min.js"></script>
-    <script type="text/javascript" src="../js/kindeditor-4.1.7/lang/zh_CN.js"></script>
-    <script type="text/javascript" src="../js/kindeditor-4.1.7/plugins/code/prettify.js"></script>
+    <script type="text/javascript" src="../js/kindeditor/kindeditor-min.js"></script>
+    <script type="text/javascript" src="../js/kindeditor/lang/zh_CN.js"></script>
+    <script type="text/javascript" src="../js/kindeditor/plugins/code/prettify.js"></script>
 
     <script type="text/javascript">
         KindEditor.ready(function (K) {
