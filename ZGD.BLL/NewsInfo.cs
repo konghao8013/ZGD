@@ -287,6 +287,10 @@ namespace ZGD.BLL
                     {
                         model.PubTime = DateTime.Parse(dt.Rows[n]["PubTime"].ToString());
                     }
+                    if (dt.Rows[0]["Files"] != null && dt.Rows[0]["Files"].ToString() != "")
+                    {
+                        model.Files = dt.Rows[0]["Files"].ToString();
+                    }
                     modelList.Add(model);
                 }
             }

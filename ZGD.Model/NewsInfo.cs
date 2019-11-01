@@ -5,7 +5,7 @@ namespace ZGD.Model
     /// NewsInfo:实体类(属性说明自动提取数据库字段的描述信息)
     /// </summary>
     [Serializable]
-    public  class NewsColumns
+    public class NewsColumns
     {
         public int Id { get; set; }
         public int NewsId { get; set; }
@@ -45,6 +45,10 @@ namespace ZGD.Model
             set { _id = value; }
             get { return _id; }
         }
+        /// <summary>
+        /// 附件
+        /// </summary>
+        public string Files { get; set; }
         /// <summary>
         /// 新闻标题
         /// </summary>
@@ -162,7 +166,7 @@ namespace ZGD.Model
 
         public int UserId { get; set; }
         public int IsPub { get; set; }
-        
+
         #endregion Model
 
     }

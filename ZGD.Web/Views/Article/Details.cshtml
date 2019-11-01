@@ -10,6 +10,12 @@
 @using System.Data
 @{Html.RenderAction("Top", "Ctrl", new { menuID = ViewBag.TypeID });}
 
+
+<style type="text/css">
+    .article_files { font-size: 20px; font-weight: bold; }
+    .article_files a { color: #ff0000; }
+</style>
+
 <div class="con_bg main">
     <div class="index_top" style="height:auto;">
         <div class="title"><span>您的位置：<a href="/">首页</a> <em>&gt;</em> <a href="/articlepage/1-@(ViewBag.TypeID)">@(Model.ClassName)</a> <em>&gt;</em></span> @(Model.Title)</div>
@@ -22,6 +28,12 @@
                 <div class="article_con">
                     @Html.Raw(Server.HtmlDecode(Model.Content))
                 </div>
+                @if (!string.IsNullOrWhiteSpace(Model.Files))
+                {
+                    <div class="article_files">
+                        附件下载：<a href="@(Model.Files)" target="_blank">点击下载附件</a>
+                    </div>
+                }
             </div>
         </div>
     </div>

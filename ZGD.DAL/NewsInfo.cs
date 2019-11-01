@@ -109,9 +109,9 @@ namespace ZGD.DAL
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into NewsInfo(");
-            strSql.Append("Title,Author,ClassId,Content,ImgUrl,IsImage,Click,IsTop,IsLock,PubTime,Keyword,Description,Tags,PubUnit,UserId,SubTitle,IsPub)");
+            strSql.Append("Title,Author,ClassId,Content,ImgUrl,IsImage,Click,IsTop,IsLock,PubTime,Keyword,Description,Tags,PubUnit,UserId,SubTitle,IsPub,Files)");
             strSql.Append(" values (");
-            strSql.Append("@Title,@Author,@ClassId,@Content,@ImgUrl,@IsImage,@Click,@IsTop,@IsLock,@PubTime,@Keyword,@Description,@Tags,@PubUnit,@UserId,@SubTitle,@IsPub)");
+            strSql.Append("@Title,@Author,@ClassId,@Content,@ImgUrl,@IsImage,@Click,@IsTop,@IsLock,@PubTime,@Keyword,@Description,@Tags,@PubUnit,@UserId,@SubTitle,@IsPub,@Files)");
             strSql.Append(";select @@IDENTITY");
             SqlParameter[] parameters = {
                     new SqlParameter("@Title", SqlDbType.NVarChar,200),
@@ -130,7 +130,8 @@ namespace ZGD.DAL
                     new SqlParameter("@PubUnit", SqlDbType.NVarChar,200),
                     new SqlParameter("@UserId", SqlDbType.Int,4),
                     new SqlParameter("@SubTitle", SqlDbType.NVarChar,200),
-                    new SqlParameter("@IsPub", SqlDbType.Int,4)};
+                    new SqlParameter("@IsPub", SqlDbType.Int,4),
+                    new SqlParameter("@Files", SqlDbType.NVarChar,200)};
             parameters[0].Value = model.Title;
             parameters[1].Value = model.Author;
             parameters[2].Value = model.ClassId;
@@ -148,6 +149,7 @@ namespace ZGD.DAL
             parameters[14].Value = model.UserId;
             parameters[15].Value = model.SubTitle;
             parameters[16].Value = model.IsPub;
+            parameters[17].Value = model.Files;
 
             object obj = DbHelperSQL.GetSingle(strSql.ToString(), parameters);
             if (obj == null)
@@ -247,7 +249,8 @@ namespace ZGD.DAL
             strSql.Append("PubUnit=@PubUnit,");
             strSql.Append("UserId=@UserId,");
             strSql.Append("SubTitle=@SubTitle,");
-            strSql.Append("IsPub=@IsPub");
+            strSql.Append("IsPub=@IsPub,");
+            strSql.Append("Files=@Files");
             strSql.Append(" where Id=@Id");
             SqlParameter[] parameters = {
                     new SqlParameter("@Title", SqlDbType.NVarChar,100),
@@ -267,7 +270,8 @@ namespace ZGD.DAL
                     new SqlParameter("@PubUnit", SqlDbType.NVarChar,200),
                     new SqlParameter("@UserId", SqlDbType.Int,4),
                     new SqlParameter("@SubTitle", SqlDbType.NVarChar,200),
-                    new SqlParameter("@IsPub", SqlDbType.Int,4)};
+                    new SqlParameter("@IsPub", SqlDbType.Int,4),
+                    new SqlParameter("@Files", SqlDbType.NVarChar,200)};
             parameters[0].Value = model.Title;
             parameters[1].Value = model.Author;
             parameters[2].Value = model.ClassId;
@@ -286,6 +290,7 @@ namespace ZGD.DAL
             parameters[15].Value = model.UserId;
             parameters[16].Value = model.SubTitle;
             parameters[17].Value = model.IsPub;
+            parameters[18].Value = model.Files;
 
             int rows = DbHelperSQL.ExecuteSql(strSql.ToString(), parameters);
             if (rows > 0)
@@ -429,6 +434,10 @@ namespace ZGD.DAL
                 {
                     model.IsPub = int.Parse(ds.Tables[0].Rows[0]["IsPub"].ToString());
                 }
+                if (ds.Tables[0].Rows[0]["Files"] != null && ds.Tables[0].Rows[0]["Files"].ToString() != "")
+                {
+                    model.Files = ds.Tables[0].Rows[0]["Files"].ToString();
+                }
                 return model;
             }
             else
@@ -452,7 +461,7 @@ namespace ZGD.DAL
         public DataSet GetList(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select distinct n.id,n.Title,n.ClassId,n.Click,n.IsLock,n.PubTime,n.Author,n.ImgUrl,n.Click,n.IsTop,n.SubTitle,n.IsPub from NewsInfo n inner join NewsColumns nc on n.Id= nc.NewsId where nc.ClassId in (select id from Channel where ClassList like ',8,%')");
+            strSql.Append("select distinct n.id,n.Title,n.ClassId,n.Click,n.IsLock,n.PubTime,n.Author,n.ImgUrl,n.Click,n.IsTop,n.SubTitle,n.IsPub,n.Files from NewsInfo n inner join NewsColumns nc on n.Id= nc.NewsId where nc.ClassId in (select id from Channel where ClassList like ',8,%')");
             if (strWhere.Trim() != "")
             {
                 strSql.Append(strWhere);
@@ -467,7 +476,7 @@ namespace ZGD.DAL
         public DataSet GetZtList(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select distinct n.id,n.Title,n.ClassId,n.Click,n.IsLock,n.PubTime,n.Author,n.ImgUrl,n.Click,n.IsTop,n.SubTitle,n.IsPub from NewsInfo n inner join NewsColumns nc on n.Id= nc.NewsId where nc.ClassId in (select id from Channel where ClassList like ',21,%')");
+            strSql.Append("select distinct n.id,n.Title,n.ClassId,n.Click,n.IsLock,n.PubTime,n.Author,n.ImgUrl,n.Click,n.IsTop,n.SubTitle,n.IsPub,n.Files from NewsInfo n inner join NewsColumns nc on n.Id= nc.NewsId where nc.ClassId in (select id from Channel where ClassList like ',21,%')");
             if (strWhere.Trim() != "")
             {
                 strSql.Append(strWhere);
@@ -493,7 +502,7 @@ namespace ZGD.DAL
             {
                 strSql.Append(" top " + Top.ToString());
             }
-            strSql.Append(" n.id,n.Title,n.ClassId,n.Click,n.IsLock,n.PubTime,n.Author,n.ImgUrl,n.Click,n.IsTop,n.SubTitle,n.IsPub ");
+            strSql.Append(" n.id,n.Title,n.ClassId,n.Click,n.IsLock,n.PubTime,n.Author,n.ImgUrl,n.Click,n.IsTop,n.SubTitle,n.IsPub,n.Files ");
             strSql.Append(" FROM NewsInfo n inner join NewsColumns nc on n.Id= nc.NewsId "); //where nc.ClassId in (select id from Channel where ClassList like ',"+ pId + ",%')
             if (strWhere.Trim() != "")
             {

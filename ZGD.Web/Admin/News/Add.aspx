@@ -165,6 +165,12 @@
                     </script>
                 </dd>
             </dl>
+            <dl class="upordown">
+                <dt>附件上传</dt>
+                <dd>
+                    <input type="file" runat="server" name="files" class="input normal" />
+                </dd>
+            </dl>
             <dl style="display:none;">
                 <dt>简要描述</dt>
                 <dd>

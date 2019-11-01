@@ -76,6 +76,22 @@ namespace ZGD.Web.Admin.News
             model.ClassId = GetChecked(ddlClassId);
             model.PubTime = string.IsNullOrWhiteSpace(txtPubTime.Text) ? DateTime.Now : Convert.ToDateTime(txtPubTime.Text);
 
+            if (Request.Files != null && Request.Files[0] != null)
+            {
+                var postFiles = Request.Files[0];
+                string strfile = postFiles.FileName;
+                int filepos = strfile.LastIndexOf(".");//获取后缀名
+                string strfileName = strfile.Substring(filepos);//截取后缀名
+
+                string folder = "/UpLoadFiles/" + DateTime.Now.ToString("yyyyMM");
+                FileDom.CreateFolder("~" + folder);
+                string fileName = DateTime.Now.ToString("yyyyMMddHHmmssffff");//获取时间
+                string fileSavePath = folder + "/" + fileName + strfileName;
+                postFiles.SaveAs(Server.MapPath("~" + fileSavePath));
+
+                model.Files = fileSavePath;
+            }
+
             string html = Request.Form["kEditor"];
             model.Content = ZGD.Common.StringHandler.EnCode(html);
 
