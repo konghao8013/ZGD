@@ -149,6 +149,13 @@ namespace ZGD.Web.Admin.News
                 int filepos = strfile.LastIndexOf(".");//获取后缀名
                 string strfileName = strfile.Substring(filepos);//截取后缀名
 
+                string[] hz = { ".doc", ".docx", ".ppt", ".pptx", ".xls", ".xlsx", ".jpg", ".png", ".gif", ".bmp", ".rar", ".jepg", ".zip" };
+                if (!hz.Contains(strfileName))
+                {
+                    JscriptMsg("不支持该文件格式的上传！");
+                    return;
+                }
+
                 string folder = "/UpLoadFiles/" + DateTime.Now.ToString("yyyyMM");
                 FileDom.CreateFolder("~" + folder);
                 string fileName = DateTime.Now.ToString("yyyyMMddHHmmssffff");//获取时间
