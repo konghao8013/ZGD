@@ -76,7 +76,7 @@ namespace ZGD.Web.Admin.News
             model.ClassId = GetChecked(ddlClassId);
             model.PubTime = string.IsNullOrWhiteSpace(txtPubTime.Text) ? DateTime.Now : Convert.ToDateTime(txtPubTime.Text);
 
-            if (Request.Files != null && Request.Files[0] != null)
+            if (Request.Files != null && Request.Files[0] != null && Request.Files[0].ContentLength > 0)
             {
                 var postFiles = Request.Files[0];
                 string strfile = postFiles.FileName;
