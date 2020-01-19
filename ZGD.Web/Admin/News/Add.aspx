@@ -18,7 +18,7 @@
     <script type="text/javascript" src="../Js/datepicker/WdatePicker.js"></script>
 
 
-    <script type="text/javascript" src="../js/kindeditor/kindeditor-min.js"></script>
+    <script type="text/javascript" src="../js/kindeditor/kindeditor-min.js?v=20200101"></script>
     <script type="text/javascript" src="../js/kindeditor/lang/zh_CN.js"></script>
     <script type="text/javascript" src="../js/kindeditor/plugins/code/prettify.js"></script>
     <script type="text/javascript">

@@ -955,7 +955,6 @@
         return _getAttrList(unescape(srcTag));
     }
     function _mediaEmbed(attrs) {
-        debugger;
         var html = '';
         if (attrs.type == "video/mp4") {
             html = '<video controls ';
