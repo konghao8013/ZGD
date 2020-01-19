@@ -11,6 +11,7 @@ using System.Web;
 using System.IO;
 using System.Globalization;
 using ZGD.Common;
+using System.Linq;
 
 namespace ZGD.Web.Tools
 {
@@ -34,7 +35,7 @@ namespace ZGD.Web.Tools
             Hashtable extTable = new Hashtable();
             extTable.Add("image", webset.fileextension.ToLower());
             extTable.Add("flash", "swf,flv");
-            extTable.Add("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
+            extTable.Add("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,mp4,asf,rm,rmvb");
             extTable.Add("file", "doc,docx,xls,xlsx,ppt,txt,zip,rar,gz,bz2");
 
             //最大文件大小
@@ -95,16 +96,19 @@ namespace ZGD.Web.Tools
             String filePath = dirPath + newFileName;
             imgFile.SaveAs(filePath);
 
-            String fileUrl = saveUrl + newFileName;
             //压缩图片
-            fileUrl = ZGD.Common.Thumbnail.CreateThumbImg(fileUrl, 800, 600, "W");
+            string fileUrl = saveUrl + newFileName;
+            if (extTable["image"].ToString().Split(',').Contains(fileExt))
+            {
+                fileUrl = ZGD.Common.Thumbnail.CreateThumbImg(fileUrl, 800, 600, "W");
+            }
 
 
             Hashtable hash = new Hashtable();
             hash["error"] = 0;
             //hash["url"] = "http://" + ZGD.Common.DTKeys.Web + fileUrl;
             hash["url"] = fileUrl;
-            context.Response.AddHeader("Content-Type", "text/html; charset=UTF-8");
+            context.Response.AddHeader("Content-Type", "application/json; charset=UTF-8");
             context.Response.Write(hash.ToJson());
             context.Response.End();
         }
@@ -114,7 +118,7 @@ namespace ZGD.Web.Tools
             Hashtable hash = new Hashtable();
             hash["error"] = 1;
             hash["message"] = message;
-            context.Response.AddHeader("Content-Type", "text/html; charset=UTF-8");
+            context.Response.AddHeader("Content-Type", "application/json; charset=UTF-8");
             context.Response.Write(hash.ToJson());
             context.Response.End();
         }
