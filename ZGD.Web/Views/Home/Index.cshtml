@@ -9,6 +9,7 @@
 {
     <link href="~/Content/Scripts/jquery.hiSlider/css/jquery.hiSlider.min.css" rel="stylesheet" />
     <script src="~/Content/Scripts/jquery.hiSlider/js/jquery.hiSlider.min.js"></script>
+    <script src="~/Content/Scripts/ad.js"></script>
 }
 @using ZGD.Common
 @using System.Data
@@ -39,7 +40,7 @@
                 <ul class="news_list">
                     @foreach (DataRow item in Model.News1.Rows)
                     {
-                        <li><a href="/article/9-@(item["Id"].ToString()).html" title="@(item["Title"].ToString())" target="_blank">@(item["Title"].ToString().ToSubString(30))</a></li>
+                        <li><a href="/article/9-@(item["Id"].ToString()).html" target="_blank" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(30))</a></li>
                     }
                 </ul>
             </div>
@@ -75,7 +76,7 @@
                         <ul class="news_list">
                             @foreach (DataRow item in Model.News2.Rows)
                             {
-                                <li><a href="/article/10-@(item["Id"].ToString()).html" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(22))</a></li>
+                                <li><a href="/article/10-@(item["Id"].ToString()).html" target="_blank" title="@(item["Title"].ToString())">@(item["Title"].ToString().ToSubString(22))</a></li>
                             }
                         </ul>
                     </div>
@@ -319,3 +320,11 @@
         })
     </script>
 </div>
+
+    <!--<div id="ad1" style="z-index:99999">
+    <div style="width:300px;height:534px;"><a href="#"><img src="/Content/Images/ad20200117.jpg" /></a></div>
+    </div>
+    <script type="text/javascript">
+        var ad1 = new AdMove('ad1');
+        ad1.Run();
+    </script>-->

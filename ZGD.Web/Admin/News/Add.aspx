@@ -12,8 +12,9 @@
 
     <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../js/jquery/Validform_v5.3.2_min.js"></script>
-    <script type="text/javascript" src="../js/swfupload/swfupload.js"></script>
-    <script type="text/javascript" src="../js/swfupload/swfupload.handlers.js"></script>
+    <link href="../Js/webuploader-0.1.5/webuploader.css" rel="stylesheet" />
+    <script type="text/javascript" src="../Js/webuploader-0.1.5/webuploader.min.js"></script>
+    <script type="text/javascript" src="../Js/uploadimg.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
     <script type="text/javascript" src="../Js/datepicker/WdatePicker.js"></script>
 
@@ -26,8 +27,10 @@
             //初始化表单验证
             $("#form1").initValidform();
             //初始化上传控件
-            $(".upload-img").each(function () {
-                $(this).InitSWFUpload({ sendurl: "../../tools/upload_ajax.ashx", flashurl: "../js/swfupload/swfupload.swf" });
+            imgMethod.init('uploader-list', 'filePicker', 'txtImgUrl', 'event', 1, "back_", '', function (file, resp) {
+                return $('<div class="file-box" id="file_back_f1"><div class="file">' +
+                    '<div id="f1" class="file-item thumbnail">' +
+                    '<img id="img_back_f1" src="' + resp.url + '" data-src="' + resp.url + '" class="img-responsive"><p class="progress img_up">上传排队中</p></div></div></div>');
             });
             $("#cbIsImage").bind("click", function () {
                 if ($(this).prop("checked")) {
@@ -148,21 +151,12 @@
             <dl class="upordown" style="display:none">
                 <dt>缩略图上传</dt>
                 <dd>
-                    <asp:TextBox ID="txtImgUrl" runat="server" datatype="*0-250" nullmsg="请输入文章缩略图" CssClass="input normal upload-path" />
-                    <div class="upload-box upload-img"></div>
-                    <span>（<%=size %>）</span>
-                    <script>
-                        $(function () {
-                            $(".select-items li").click(function () {
-                                if ($(this).html() != "请选择专题") {
-                                    $("#img_size").html("图片尺寸400*100px");
-                                }
-                                else {
-                                    $("#img_size").html("图片尺寸400*280px");
-                                }
-                            })
-                        })
-                    </script>
+                    <div id="uploader-demo">
+                        <div id="filePicker">选择图片</div>
+                        <p class="uploader-line">注：尺寸340*228px</p>
+                        <div id="uploader-list" class="uploader-list"></div>
+                    </div>
+                    <input id="txtImgUrl" type="hidden" name="txtImgUrl" runat="server" />
                 </dd>
             </dl>
             <dl class="upordown">

@@ -16,6 +16,7 @@ namespace ZGD.Web.Admin.Channel
         public int pId;    //pId
         public int classId;    //ID
         public string typeName = string.Empty;
+        public string imgUrl = string.Empty;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -53,16 +54,8 @@ namespace ZGD.Web.Admin.Channel
             this.txtTitle.Text = model.Title;
             this.txtSortId.Text = model.SortId.ToString();
             cbIsDelete.Checked = model.IsDelete == 1 ? true : false;
-            if (Request.Params["pId"] == "21")
-            {
-                this.txtImgUrl.Text = model.ImgUrl;
-                tr_img_panel.Style["display"] = "block";
-                imgPanel.InnerHtml = "<img src=\"" + model.ImgUrl + "\" />";
-            }
-            else
-            {
-                tr_img_panel.Style["display"] = "none";
-            }
+            txtImgUrl.Value = model.ImgUrl;
+            imgUrl = model.ImgUrl;
         }
 
         //保存修改
@@ -71,7 +64,7 @@ namespace ZGD.Web.Admin.Channel
             model.Title = txtTitle.Text.Trim();
             model.SortId = int.Parse(txtSortId.Text.Trim());
             model.IsDelete = cbIsDelete.Checked ? 1 : 0;
-            model.ImgUrl = txtImgUrl.Text.Trim();
+            model.ImgUrl = txtImgUrl.Value.Trim();
             //修改栏目
             bll.Update(model);
             //保存日志

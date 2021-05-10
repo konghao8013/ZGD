@@ -13,16 +13,19 @@
     <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../js/jquery/Validform_v5.3.2_min.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
-    <script type="text/javascript" src="../js/swfupload/swfupload.js"></script>
-    <script type="text/javascript" src="../js/swfupload/swfupload.handlers.js"></script>
+    <link href="../Js/webuploader-0.1.5/webuploader.css" rel="stylesheet" />
+    <script type="text/javascript" src="../Js/webuploader-0.1.5/webuploader.min.js"></script>
+    <script type="text/javascript" src="../Js/uploadimg.js"></script>
 
     <script type="text/javascript">
         $(function () {
             //初始化表单验证
             $("#form1").initValidform();
             //初始化上传控件
-            $(".upload-img").each(function () {
-                $(this).InitSWFUpload({ sendurl: "../../tools/upload_ajax.ashx", flashurl: "../js/swfupload/swfupload.swf" });
+            imgMethod.init('uploader-list', 'filePicker', 'txtImgUrl', 'event', 1, "back_", '', function (file, resp) {
+                return $('<div class="file-box" id="file_back_f1"><div class="file">' +
+                    '<div id="f1" class="file-item thumbnail">' +
+                    '<img id="img_back_f1" src="' + resp.url + '" data-src="' + resp.url + '" class="img-responsive"><p class="progress img_up">上传排队中</p></div></div></div>');
             });
         });
         function backUrl() {
@@ -76,10 +79,12 @@
             <dl class="upordown" id="tr_img_panel" runat="server">
                 <dt>缩略图上传</dt>
                 <dd>
-                    <p id="imgPanel" runat="server"></p>
-                    <asp:TextBox ID="txtImgUrl" runat="server" datatype="*0-250" nullmsg="请上传专题logo" CssClass="input normal upload-path" />
-                    <div class="upload-box upload-img"></div>
-                    （图片尺寸400*160px）
+                    <div id="uploader-demo">
+                        <div id="filePicker">选择图片</div>
+                        <p class="uploader-line">注：尺寸400*160px</p>
+                        <div id="uploader-list" class="uploader-list"></div>
+                    </div>
+                    <input id="txtImgUrl" type="hidden" name="txtImgUrl" runat="server" />
                 </dd>
             </dl>
             <dl>

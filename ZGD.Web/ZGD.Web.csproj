@@ -56,6 +56,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Ref\AspNetPager.dll</HintPath>
     </Reference>
+    <Reference Include="LitJSON, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Ref\LitJSON.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -74,7 +78,11 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+      <HintPath>Ref\MVC\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Ref\MVC\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -328,6 +336,24 @@
     <Content Include="Admin\Js\kindeditor\themes\simple\simple.css" />
     <Content Include="Admin\Js\mUpload\update.swf" />
     <Content Include="Admin\Js\mUpload\upload.htm" />
+    <Content Include="Admin\Js\uploadimg.js" />
+    <Content Include="Admin\Js\webuploader-0.1.5\Uploader.swf" />
+    <Content Include="Admin\Js\webuploader-0.1.5\webuploader.css" />
+    <Content Include="Admin\Js\webuploader-0.1.5\webuploader.custom.js" />
+    <Content Include="Admin\Js\webuploader-0.1.5\webuploader.custom.min.js" />
+    <Content Include="Admin\Js\webuploader-0.1.5\webuploader.fis.js" />
+    <Content Include="Admin\Js\webuploader-0.1.5\webuploader.flashonly.js" />
+    <Content Include="Admin\Js\webuploader-0.1.5\webuploader.flashonly.min.js" />
+    <Content Include="Admin\Js\webuploader-0.1.5\webuploader.html5only.js" />
+    <Content Include="Admin\Js\webuploader-0.1.5\webuploader.html5only.min.js" />
+    <Content Include="Admin\Js\webuploader-0.1.5\webuploader.js" />
+    <Content Include="Admin\Js\webuploader-0.1.5\webuploader.min.js" />
+    <Content Include="Admin\Js\webuploader-0.1.5\webuploader.noimage.js" />
+    <Content Include="Admin\Js\webuploader-0.1.5\webuploader.noimage.min.js" />
+    <Content Include="Admin\Js\webuploader-0.1.5\webuploader.nolog.js" />
+    <Content Include="Admin\Js\webuploader-0.1.5\webuploader.nolog.min.js" />
+    <Content Include="Admin\Js\webuploader-0.1.5\webuploader.withoutimage.js" />
+    <Content Include="Admin\Js\webuploader-0.1.5\webuploader.withoutimage.min.js" />
     <Content Include="Admin\Project\Add.aspx" />
     <Content Include="Admin\Project\Edit.aspx" />
     <Content Include="Admin\Project\List.aspx" />
@@ -690,6 +716,7 @@
     <Content Include="Content\Scripts\jquery.hiSlider\fonts\icomoon.ttf" />
     <Content Include="Content\Scripts\jquery.hiSlider\fonts\icomoon.woff" />
     <Content Include="Admin\Js\kindeditor\asp.net\file_manager_json.ashx" />
+    <Content Include="Admin\Js\webuploader-0.1.5\README.md" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\cqzgd.pubxml" />
     <None Include="Properties\PublishProfiles\sjs.pubxml" />
@@ -697,6 +724,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="Tools\upload_ajax.aspx" />
     <Content Include="Views\Home\Index - 复制.cshtml" />
     <Content Include="Views\ZT\Index.cshtml" />
     <Content Include="Views\Gallery\Details.cshtml" />
@@ -995,6 +1023,13 @@
     <Compile Include="Tools\UpLoad.cs" />
     <Compile Include="Tools\upload_ajax.ashx.cs">
       <DependentUpon>upload_ajax.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\upload_ajax.aspx.cs">
+      <DependentUpon>upload_ajax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tools\upload_ajax.aspx.designer.cs">
+      <DependentUpon>upload_ajax.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tools\verify_code.ashx.cs">
       <DependentUpon>verify_code.ashx</DependentUpon>

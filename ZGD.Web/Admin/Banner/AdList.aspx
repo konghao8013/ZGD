@@ -12,8 +12,9 @@
     <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
     <script type="text/javascript" src="/Content/Scripts/layer/layer.js"></script>
-    <script type="text/javascript" src="../js/swfupload/swfupload.js"></script>
-    <script type="text/javascript" src="../js/swfupload/swfupload.handlers.js"></script>
+    <link href="../Js/webuploader-0.1.5/webuploader.css" rel="stylesheet" />
+    <script type="text/javascript" src="../Js/webuploader-0.1.5/webuploader.min.js"></script>
+    <script type="text/javascript" src="../Js/uploadimg.js"></script>
     <style type="text/css">
         .red{color:red;}
     </style>
@@ -52,12 +53,14 @@
                                 $("#txtSize").val(msg.Size);
                                 $("#txtImgUrl").val(msg.ImgUrl);
                                 if (msg.IsLock == 1) $("#cbIsLock").attr("checked", true); else $("#cbIsLock").removeAttr("checked");
-                                $("#imgurl").html("<a href=\"" + msg.Url + "\" target=\"_blank\"><img src=\"" + msg.ImgUrl + "\" width=\"100\" /></a>").show();
+                                $("#uploader-list").html("<a href=\"" + msg._url + "\" target=\"_blank\"><img src=\"" + msg._imgurl + "\" height=\"80\" /></a>").show();
                             }
 
                             //初始化上传控件
-                            $(".upload-img").each(function () {
-                                $(this).InitSWFUpload({ sendurl: "../../tools/upload_ajax.ashx", flashurl: "../js/swfupload/swfupload.swf" });
+                            imgMethod.init('uploader-list', 'filePicker', 'txtImgUrl', 'event', 1, "back_", '', function (file, resp) {
+                                return $('<div class="file-box" id="file_back_f1"><div class="file">' +
+                                    '<div id="f1" class="file-item thumbnail">' +
+                                    '<img id="img_back_f1" src="' + resp.url + '" data-src="' + resp.url + '" class="img-responsive"><p class="progress img_up">上传排队中</p></div></div></div>');
                             });
 
                             $("#btnSave").click(function () {
@@ -107,8 +110,10 @@
                 success: function (layero, index) {
                     $(".msgtable input[type='text']").val("");
                     //初始化上传控件
-                    $(".upload-img").each(function () {
-                        $(this).InitSWFUpload({ sendurl: "../../tools/upload_ajax.ashx", flashurl: "../js/swfupload/swfupload.swf" });
+                    imgMethod.init('uploader-list', 'filePicker', 'txtImgUrl', 'event', 1, "back_", '', function (file, resp) {
+                        return $('<div class="file-box" id="file_back_f1"><div class="file">' +
+                            '<div id="f1" class="file-item thumbnail">' +
+                            '<img id="img_back_f1" src="' + resp.url + '" data-src="' + resp.url + '" class="img-responsive"><p class="progress img_up">上传排队中</p></div></div></div>');
                     });
 
                     $("#btnSave").click(function () {
@@ -236,9 +241,11 @@
                     <td align="right">上传图片
                     </td>
                     <td>
-                        <div id="imgurl" style="display: none; margin-bottom: 5px;"></div>
-                        <input id="txtImgUrl" type="text" class="input normal upload-path" />
-                        <div class="upload-box upload-img"></div>
+                        <div id="uploader-demo">
+                            <div id="uploader-list" class="uploader-list"></div>
+                            <div id="filePicker">选择图片</div>
+                        </div>
+                        <input id="txtImgUrl" type="hidden" />
                         <input type="hidden" id="hidId" runat="server" />
                     </td>
                 </tr>

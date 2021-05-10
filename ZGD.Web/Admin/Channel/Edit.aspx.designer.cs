@@ -7,11 +7,13 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace ZGD.Web.Admin.Channel {
-    
-    
-    public partial class Edit {
-        
+namespace ZGD.Web.Admin.Channel
+{
+
+
+    public partial class Edit
+    {
+
         /// <summary>
         /// Head1 控件。
         /// </summary>
@@ -20,7 +22,7 @@ namespace ZGD.Web.Admin.Channel {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
+
         /// <summary>
         /// form1 控件。
         /// </summary>
@@ -29,7 +31,7 @@ namespace ZGD.Web.Admin.Channel {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
+
         /// <summary>
         /// lblPid 控件。
         /// </summary>
@@ -38,7 +40,7 @@ namespace ZGD.Web.Admin.Channel {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPid;
-        
+
         /// <summary>
         /// lblPname 控件。
         /// </summary>
@@ -47,7 +49,7 @@ namespace ZGD.Web.Admin.Channel {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPname;
-        
+
         /// <summary>
         /// txtTitle 控件。
         /// </summary>
@@ -56,7 +58,7 @@ namespace ZGD.Web.Admin.Channel {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTitle;
-        
+
         /// <summary>
         /// txtSortId 控件。
         /// </summary>
@@ -65,7 +67,7 @@ namespace ZGD.Web.Admin.Channel {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSortId;
-        
+
         /// <summary>
         /// tr_img_panel 控件。
         /// </summary>
@@ -74,16 +76,7 @@ namespace ZGD.Web.Admin.Channel {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tr_img_panel;
-        
-        /// <summary>
-        /// imgPanel 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl imgPanel;
-        
+
         /// <summary>
         /// txtImgUrl 控件。
         /// </summary>
@@ -91,8 +84,8 @@ namespace ZGD.Web.Admin.Channel {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtImgUrl;
-        
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtImgUrl;
+
         /// <summary>
         /// cbIsDelete 控件。
         /// </summary>
@@ -101,7 +94,7 @@ namespace ZGD.Web.Admin.Channel {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbIsDelete;
-        
+
         /// <summary>
         /// btnSave 控件。
         /// </summary>
