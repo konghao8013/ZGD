@@ -162,13 +162,13 @@
       </div>
     </dd>
   </dl>
-  <dl>
+  <%--<dl>
     <dt>文件上传类型</dt>
     <dd>
       <asp:TextBox ID="fileextension" runat="server" CssClass="input normal" datatype="*1-255" sucmsg=" " />
       <span class="Validform_checktip">*以英文的逗号分隔开，如：“zip,rar”</span>
     </dd>
-  </dl>
+  </dl>--%>
   <dl>
     <dt>附件上传大小</dt>
     <dd>
