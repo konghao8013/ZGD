@@ -149,8 +149,11 @@ namespace ZGD.Web.Admin.News
                 int filepos = strfile.LastIndexOf(".");//获取后缀名
                 string strfileName = strfile.Substring(filepos);//截取后缀名
 
-                string[] hz = { ".doc", ".docx", ".ppt", ".pptx", ".xls", ".xlsx", ".jpg", ".png", ".gif", ".bmp", ".rar", ".jepg", ".zip" };
-                if (!hz.Contains(strfileName))
+                BLL.siteconfig siteBll = new BLL.siteconfig();
+                Model.SiteConfig siteModel = siteBll.loadConfig();
+
+                string[] hz = siteModel.fileextension.Split(',');
+                if (!hz.Contains(strfileName.TrimStart('.')))
                 {
                     JscriptMsg("不支持该文件格式的上传！");
                     return;
