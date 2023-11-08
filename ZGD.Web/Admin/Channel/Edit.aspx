@@ -10,7 +10,7 @@
         #imgPanel img { width: 130px; margin-bottom: 5px; }
     </style>
 
-    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-3.7.1.min.js"></script><script type="text/javascript" src="../js/jquery/jquery-migrate-1.4.1.js"></script>
     <script type="text/javascript" src="../js/jquery/Validform_v5.3.2_min.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
     <link href="../Js/webuploader-0.1.5/webuploader.css" rel="stylesheet" />

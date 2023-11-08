@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../js/kindeditor/themes/default/default.css" />
     <link rel="stylesheet" href="../js/kindeditor/plugins/code/prettify.css" />
 
-    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-3.7.1.min.js"></script><script type="text/javascript" src="../js/jquery/jquery-migrate-1.4.1.js"></script>
     <script type="text/javascript" src="../js/jquery/Validform_v5.3.2_min.js"></script>
     <script type="text/javascript" src="../js/lhgdialog/lhgdialog.js?skin=idialog"></script>
     <script type="text/javascript" src="../js/layout.js"></script>

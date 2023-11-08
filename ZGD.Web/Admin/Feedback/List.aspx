@@ -8,7 +8,7 @@
 <head runat="server">
     <title>装修报名</title>
     <link href="../skin/default/style.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-3.7.1.min.js"></script><script type="text/javascript" src="../js/jquery/jquery-migrate-1.4.1.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
     <link href="../skin/pagination/pagination.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">

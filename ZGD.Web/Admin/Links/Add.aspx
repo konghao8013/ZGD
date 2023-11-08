@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>增加链接</title>
-    <script type="text/javascript" src="../js/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-3.7.1.min.js"></script><script type="text/javascript" src="../js/jquery/jquery-migrate-1.4.1.js"></script>
     <script type="text/javascript" src="../js/jquery/Validform_v5.3.2_min.js"></script>
     <script type="text/javascript" src="../js/swfupload/swfupload.js"></script>
     <script type="text/javascript" src="../js/swfupload/swfupload.handlers.js"></script>
