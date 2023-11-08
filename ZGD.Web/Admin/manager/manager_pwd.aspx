@@ -53,7 +53,7 @@
   </dl>
   <dl>
     <dt>新登录密码</dt>
-    <dd><asp:TextBox ID="txtPassword" runat="server" CssClass="input normal" TextMode="Password" datatype="*6-20" nullmsg="请输入新密码" errormsg="密码范围在6-20位之间" sucmsg=" "></asp:TextBox> <span class="Validform_checktip">*</span></dd>
+    <dd><asp:TextBox ID="txtPassword" runat="server" CssClass="input normal" TextMode="Password" datatype="*8-20" nullmsg="请输入新密码" errormsg="密码范围在8-20位之间" sucmsg=" "></asp:TextBox> <span class="Validform_checktip">*</span></dd>
   </dl>
   <dl>
     <dt>新确认密码</dt>

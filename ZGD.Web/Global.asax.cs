@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -41,6 +43,49 @@ namespace ZGD.Web
         //        }
         //    }
         //}
+        protected void Application_AcquireRequestState(object send, EventArgs e)
+        {
+            if (Session == null)
+            {
+                return;
+            }
+            var url = Request.Url.AbsolutePath;
+            var ignorePage = new List<string> {
+            "/admin/login.aspx",
+            "/admin/index.aspx",
+            "/admin/center.aspx",
+            "/admin/manager/manager_pwd.aspx"
+            };
+            if (ignorePage.Any(a => url.StartsWith(a, StringComparison.OrdinalIgnoreCase))
+                || !Request.Url.AbsolutePath.StartsWith("/admin", StringComparison.CurrentCultureIgnoreCase)
+                )
+            {
+                //1.登录页面忽略验证
+                //2.非管理页面忽略验证
+                return;
+            }
+            if (!IsLogin() || !IsAuthorized())
+            {
+                // 如果用户未经过身份验证或未经授权，可以重定向到登录页或其他自定义页面
+                Response.Redirect("~/Errors/403.html");
+            }
+        }
+        /// <summary>
+        /// 接收请求
+        /// </summary>
+        protected void Application_BeginRequest()
+        {
+            var current = HttpContext.Current;
+            //拦截请求
+            string[] segments = Request.Url.Segments;
+            if (segments.Length > 1 && segments[1].ToLower() == "testone")
+            {
+                //需要自己指定输出内容和类型
+                Response.ContentType = "text/html;charset=utf-8";
+                Response.Write("请求拦截处理");
+                Response.End(); // 此处结束响应，就不会走路由系统
+            }
+        }
 
         void Application_End(object sender, EventArgs e)
         {
@@ -67,6 +112,42 @@ namespace ZGD.Web
             // InProc 时，才会引发 Session_End 事件。如果会话模式设置为 StateServer 
             // 或 SQLServer，则不会引发该事件。
 
+        }
+
+
+        private bool IsLogin()
+        {
+            return Session[DTKeys.SESSION_ADMIN_INFO] != null;
+        }
+
+        // 自定义授权逻辑
+        private bool IsAuthorized()
+        {
+            var user = Session[DTKeys.SESSION_ADMIN_INFO] as Model.manager;
+            if (user != null)
+            {
+                //锁定账户验证不通过
+                if (user.is_lock == 1)
+                {
+                    return false;
+                }
+                //超级管理员，直接验证通过
+                if (user.role_type <= 1)
+                {
+                    return true;
+                }
+                var bll = new BLL.manager_role();
+                var url = Request.Url.AbsolutePath;
+
+                string pattern = "/admin/";
+
+                Regex regex = new Regex(Regex.Escape(pattern));
+                string replaced = regex.Replace(url, "", 1);
+
+                var roles = bll.GetRoleValues(user.role_id, replaced);
+                return roles.Any(a => a.action_type == "Show");
+            }
+            return false;
         }
 
     }

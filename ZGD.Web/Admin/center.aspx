@@ -39,7 +39,7 @@
     <li>站点名称：<%=siteConfig.webname %></li>
     <li>公司名称：<%=siteConfig.webcompany %></li>
     <li>网站域名：<%=siteConfig.weburl %></li>
-    <li>安装目录：<%=siteConfig.webpath %></li>
+   <%-- <li>安装目录：<%=siteConfig.webpath %></li>
     <li>网站管理目录：<%=siteConfig.webmanagepath %></li>
     <li>附件上传目录：<%=siteConfig.filepath %></li>
     <li>服务器名称：<%=Server.MachineName%></li>
@@ -49,7 +49,7 @@
     <li>IIS环境：<%=Request.ServerVariables["SERVER_SOFTWARE"]%></li>
     <li>服务器端口：<%=Request.ServerVariables["SERVER_PORT"]%></li>
     <li>目录物理路径：<%=Request.ServerVariables["APPL_PHYSICAL_PATH"]%></li>
-    <li>系统版本：V<%=Utils.GetVersion()%></li>
+    <li>系统版本：V<%=Utils.GetVersion()%></li>--%>
   </ul>
 </div>
 <div class="line20"></div>

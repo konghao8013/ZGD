@@ -120,6 +120,7 @@
     <Content Include="Admin\Channel\List.aspx" />
     <Content Include="Admin\Contents\content.aspx" />
     <Content Include="Admin\Images\bg.png" />
+    <Content Include="Admin\Js\jquery\jquery-3.7.1.min.js" />
     <Content Include="Admin\Js\kindeditor\asp.net\bin\LitJSON.dll" />
     <Content Include="Admin\Js\kindeditor\asp.net\demo.aspx" />
     <Content Include="Admin\Js\kindeditor\asp.net\README.txt" />
@@ -545,6 +546,7 @@
     <Content Include="Content\Scripts\webuploader\img\success.png" />
     <Content Include="Content\Scripts\webuploader\img\webuploader.png" />
     <Content Include="Content\Scripts\webuploader\webuploader.css" />
+    <Content Include="Errors\403.html" />
     <Content Include="Error\404.jpg" />
     <Content Include="Error\Error.html" />
     <Content Include="Content\Scripts\bxCarousel.js" />
