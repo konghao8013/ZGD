@@ -119,6 +119,8 @@
     <Content Include="Admin\Channel\Edit.aspx" />
     <Content Include="Admin\Channel\List.aspx" />
     <Content Include="Admin\Contents\content.aspx" />
+    <Content Include="Content\Scripts\jquery-3.7.1.min.js" />
+    <Content Include="Content\Scripts\jquery-migrate-1.4.1.js" />
     <Content Include="Admin\Images\bg.png" />
     <Content Include="Admin\Js\jquery\jquery-3.7.1.min.js" />
     <Content Include="Admin\Js\kindeditor\asp.net\bin\LitJSON.dll" />
