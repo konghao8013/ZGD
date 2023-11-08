@@ -18,6 +18,10 @@ namespace ZGD.BLL
         }
 
         #region  Method
+        public List<Model.manager_role_value> GetRoleValues(int role_id, string link_url)
+        {
+            return dal.GetRoleValues(role_id, link_url);
+        }
         /// <summary>
         /// 是否存在该记录
         /// </summary>

@@ -21,6 +21,18 @@ namespace ZGD.DAL
         }
 
         #region  Method
+
+
+        public List<Model.manager_role_value> GetRoleValues(int role_id, string link_url)
+        {
+            var sql = @"select a.* from dt_manager_role_value a
+join dt_navigation b on a.nav_name=b.name
+where role_id=@role_id and link_url=@link_url";
+            return DbHelperSQL.ExecuteQuery<Model.manager_role_value>(sql,
+                new SqlParameter("role_id", role_id),
+                new SqlParameter("link_url", link_url)
+                );
+        }
         /// <summary>
         /// 是否存在该记录
         /// </summary>
@@ -30,7 +42,7 @@ namespace ZGD.DAL
             strSql.Append("select count(1) from " + databaseprefix + "manager_role");
             strSql.Append(" where id=@id ");
             SqlParameter[] parameters = {
-					new SqlParameter("@id", SqlDbType.Int,4)};
+                    new SqlParameter("@id", SqlDbType.Int,4)};
             parameters[0].Value = id;
 
             return DbHelperSQL.Exists(strSql.ToString(), parameters);
@@ -72,8 +84,8 @@ namespace ZGD.DAL
             strSql.Append(";select SCOPE_IDENTITY();");
 
             SqlParameter[] parameters = {
-					            new SqlParameter("@role_name", SqlDbType.VarChar,100),
-					            new SqlParameter("@role_type", SqlDbType.Int,4),
+                                new SqlParameter("@role_name", SqlDbType.VarChar,100),
+                                new SqlParameter("@role_type", SqlDbType.Int,4),
                                 new SqlParameter("@is_sys", SqlDbType.Int,4)};
             parameters[0].Value = model.role_name;
             parameters[1].Value = model.role_type;
@@ -95,9 +107,9 @@ namespace ZGD.DAL
                     strSql2.Append(" values (");
                     strSql2.Append("@role_id,@nav_name,@action_type)");
                     SqlParameter[] parameters2 = {
-						                new SqlParameter("@role_id", SqlDbType.Int,4),
-					                    new SqlParameter("@nav_name", SqlDbType.VarChar,100),
-					                    new SqlParameter("@action_type", SqlDbType.VarChar,50)};
+                                        new SqlParameter("@role_id", SqlDbType.Int,4),
+                                        new SqlParameter("@nav_name", SqlDbType.VarChar,100),
+                                        new SqlParameter("@action_type", SqlDbType.VarChar,50)};
                     parameters2[0].Value = newId;
                     parameters2[1].Value = modelt.nav_name;
                     parameters2[2].Value = modelt.action_type;
@@ -125,8 +137,8 @@ namespace ZGD.DAL
                         strSql.Append("is_sys=@is_sys");
                         strSql.Append(" where id=@id");
                         SqlParameter[] parameters = {
-					            new SqlParameter("@role_name", SqlDbType.VarChar,100),
-					            new SqlParameter("@role_type", SqlDbType.Int,4),
+                                new SqlParameter("@role_name", SqlDbType.VarChar,100),
+                                new SqlParameter("@role_type", SqlDbType.Int,4),
                                 new SqlParameter("@is_sys", SqlDbType.Int,4),
                                 new SqlParameter("@id", SqlDbType.Int,4)};
                         parameters[0].Value = model.role_name;
@@ -140,7 +152,7 @@ namespace ZGD.DAL
                         StringBuilder strSql2 = new StringBuilder();
                         strSql2.Append("delete from " + databaseprefix + "manager_role_value where role_id=@role_id ");
                         SqlParameter[] parameters2 = {
-					            new SqlParameter("@role_id", SqlDbType.Int,4)};
+                                new SqlParameter("@role_id", SqlDbType.Int,4)};
                         parameters2[0].Value = model.id;
                         DbHelperSQL.ExecuteSql(conn, trans, strSql2.ToString(), parameters2);
 
@@ -156,9 +168,9 @@ namespace ZGD.DAL
                                 strSql3.Append(" values (");
                                 strSql3.Append("@role_id,@nav_name,@action_type)");
                                 SqlParameter[] parameters3 = {
-						                new SqlParameter("@role_id", SqlDbType.Int,4),
-					                    new SqlParameter("@nav_name", SqlDbType.VarChar,100),
-					                    new SqlParameter("@action_type", SqlDbType.VarChar,50)};
+                                        new SqlParameter("@role_id", SqlDbType.Int,4),
+                                        new SqlParameter("@nav_name", SqlDbType.VarChar,100),
+                                        new SqlParameter("@action_type", SqlDbType.VarChar,50)};
                                 parameters3[0].Value = model.id;
                                 parameters3[1].Value = modelt.nav_name;
                                 parameters3[2].Value = modelt.action_type;
@@ -189,7 +201,7 @@ namespace ZGD.DAL
             strSql.Append("delete from " + databaseprefix + "manager_role_value ");
             strSql.Append(" where role_id=@role_id");
             SqlParameter[] parameters = {
-					new SqlParameter("@role_id", SqlDbType.Int,4)};
+                    new SqlParameter("@role_id", SqlDbType.Int,4)};
             parameters[0].Value = id;
             sqllist.Add(strSql.ToString(), parameters);
 
@@ -198,7 +210,7 @@ namespace ZGD.DAL
             strSql2.Append("delete from " + databaseprefix + "manager_role ");
             strSql2.Append(" where id=@id");
             SqlParameter[] parameters2 = {
-					new SqlParameter("@id", SqlDbType.Int,4)};
+                    new SqlParameter("@id", SqlDbType.Int,4)};
             parameters2[0].Value = id;
             sqllist.Add(strSql2.ToString(), parameters2);
 
@@ -223,7 +235,7 @@ namespace ZGD.DAL
             strSql.Append("select  top 1 id,role_name,role_type,is_sys from " + databaseprefix + "manager_role ");
             strSql.Append(" where id=@id");
             SqlParameter[] parameters = {
-					new SqlParameter("@id", SqlDbType.Int,4)};
+                    new SqlParameter("@id", SqlDbType.Int,4)};
             parameters[0].Value = id;
 
             Model.manager_role model = new Model.manager_role();
@@ -251,7 +263,7 @@ namespace ZGD.DAL
                 strSql2.Append("select id,role_id,nav_name,action_type from dt_manager_role_value ");
                 strSql2.Append(" where role_id=@role_id");
                 SqlParameter[] parameters2 = {
-					new SqlParameter("@role_id", SqlDbType.Int,4)};
+                    new SqlParameter("@role_id", SqlDbType.Int,4)};
                 parameters2[0].Value = id;
                 DataSet ds2 = DbHelperSQL.Query(strSql2.ToString(), parameters2);
                 if (ds2.Tables[0].Rows.Count > 0)

@@ -996,6 +996,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\HtmlEncodeBinder.cs" />
+    <Compile Include="Modules\GlobalAuthenticationModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1046,7 +1047,6 @@
     <Folder Include="Files\Ad\" />
     <Folder Include="Log\App_LocalResources\" />
     <Folder Include="Log\Errorlog\" />
-    <Folder Include="Modules\" />
     <Folder Include="UpLoadFiles\attached\image\" />
     <Folder Include="UpLoadFiles\attached\old\" />
     <Folder Include="UpLoadFiles\HttpTmp\" />

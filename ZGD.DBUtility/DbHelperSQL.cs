@@ -6,6 +6,8 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data.Common;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web.Script.Serialization;
 
 namespace ZGD.DBUtility
 {
@@ -22,6 +24,47 @@ namespace ZGD.DBUtility
         }
 
         #region 公用方法
+
+
+        public static List<T> ExecuteQuery<T>(string query, params SqlParameter[] paramList)
+        {
+            List<T> result = new List<T>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    if (paramList.Length > 0)
+                    {
+                        command.Parameters.AddRange(paramList);
+                    }
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            T item = Deserialize<T>(row);
+                            result.Add(item);
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private  static T Deserialize<T>(DataRow row)
+        {
+            var serializer = new JavaScriptSerializer();
+            string json = serializer.Serialize(row.Table.Columns.Cast<DataColumn>()
+                .ToDictionary(col => col.ColumnName, col => row[col]));
+            return serializer.Deserialize<T>(json);
+        }
+
         /// <summary>
         /// 判断是否存在某表的某个字段
         /// </summary>

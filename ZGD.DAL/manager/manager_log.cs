@@ -36,7 +36,7 @@ namespace ZGD.DAL
             strSql.Append("select count(1) from " + databaseprefix + "manager_log");
             strSql.Append(" where id=@id ");
             SqlParameter[] parameters = {
-					new SqlParameter("@id", SqlDbType.Int,4)};
+                    new SqlParameter("@id", SqlDbType.Int,4)};
             parameters[0].Value = id;
             return DbHelperSQL.Exists(strSql.ToString(), parameters);
         }
@@ -68,12 +68,12 @@ namespace ZGD.DAL
             strSql.Append(";select SCOPE_IDENTITY();");
 
             SqlParameter[] parameters = {
-					            new SqlParameter("@user_id", SqlDbType.Int,4),
-					            new SqlParameter("@user_name", SqlDbType.VarChar,100),
-					            new SqlParameter("@action_type", SqlDbType.VarChar,100),
-					            new SqlParameter("@remark", SqlDbType.VarChar,255),
-					            new SqlParameter("@user_ip", SqlDbType.VarChar,30)
-					            };
+                                new SqlParameter("@user_id", SqlDbType.Int,4),
+                                new SqlParameter("@user_name", SqlDbType.VarChar,100),
+                                new SqlParameter("@action_type", SqlDbType.VarChar,100),
+                                new SqlParameter("@remark", SqlDbType.VarChar,255),
+                                new SqlParameter("@user_ip", SqlDbType.VarChar,30)
+                                };
             parameters[0].Value = model.user_id;
             parameters[1].Value = model.user_name;
             parameters[2].Value = model.action_type;
@@ -99,7 +99,7 @@ namespace ZGD.DAL
             strSql.Append("select  top 1 id,user_id,user_name,action_type,remark,user_ip,add_time from " + databaseprefix + "manager_log ");
             strSql.Append(" where id=@id");
             SqlParameter[] parameters = {
-					new SqlParameter("@id", SqlDbType.Int,4)};
+                    new SqlParameter("@id", SqlDbType.Int,4)};
             parameters[0].Value = id;
 
             Model.manager_log model = new Model.manager_log();
@@ -146,7 +146,7 @@ namespace ZGD.DAL
                 strSql.Append("select top 1 id from (select top " + top_num + " id from " + databaseprefix + "manager_log where user_name=@user_name and action_type=@action_type order by id desc) as T ");
                 strSql.Append(" order by id asc");
                 SqlParameter[] parameters = {
-					new SqlParameter("@user_name", SqlDbType.VarChar,100),
+                    new SqlParameter("@user_name", SqlDbType.VarChar,100),
                     new SqlParameter("@action_type", SqlDbType.VarChar,100)};
                 parameters[0].Value = user_name;
                 parameters[1].Value = action_type;
