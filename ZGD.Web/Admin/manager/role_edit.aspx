@@ -95,11 +95,11 @@
           <ItemTemplate>
           <tr>
             <td style="white-space:nowrap;word-break:break-all;overflow:hidden;">
-              <asp:HiddenField ID="hidName" Value='<%#Eval("name") %>' runat="server" />
-              <asp:HiddenField ID="hidActionType" Value='<%#Eval("action_type") %>' runat="server" />
-              <asp:HiddenField ID="hidLayer" Value='<%#Eval("class_layer") %>' runat="server" />
+              <asp:HiddenField ID="hidName" Value='<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"name") %>' runat="server" />
+              <asp:HiddenField ID="hidActionType" Value='<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"action_type") %>' runat="server" />
+              <asp:HiddenField ID="hidLayer" Value='<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"class_layer") %>' runat="server" />
               <asp:Literal ID="LitFirst" runat="server"></asp:Literal>
-              <%#Eval("title")%>
+              <%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"title")%>
             </td>
             <td>
               <asp:CheckBoxList ID="cblActionType" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CssClass="cbllist"></asp:CheckBoxList>

@@ -77,16 +77,16 @@
                     <td align="center">
                         <asp:CheckBox ID="cb_id" CssClass="checkall" runat="server" /></td>
                     <td align="center">
-                        <asp:Label ID="lb_id" runat="server" Text='<%#Eval("Id")%>'></asp:Label></td>
-                    <td><%# Convert.ToInt32(Eval("IsLock")) == 1 ? "<img src=\"../Images/wsh01.gif\" title=\"未审核\" />" : ""%> <a href="<%#Eval("WebUrl")%>" target="_blank"><%#Eval("Title")%></a></td>
-                    <td><%#Eval("fl")%></td>
-                    <%--<td align="center"><%# Convert.ToInt32(Eval("IsImage")) == 0 ? "文字链接" : "<img src=\"" + Eval("ImgUrl") + "\" width=\"50\" height=\"20\" />"%></td>--%>
-                    <td align="center"><%#Eval("SortId") %></td>
-                    <td align="center"><%#string.Format("{0:g}",Eval("AddTime"))%></td>
+                        <asp:Label ID="lb_id" runat="server" Text='<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Id")%>'></asp:Label></td>
+                    <td><%# Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"IsLock")) == 1 ? "<img src=\"../Images/wsh01.gif\" title=\"未审核\" />" : ""%> <a href="<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"WebUrl")%>" target="_blank"><%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Title")%></a></td>
+                    <td><%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"fl")%></td>
+                    <%--<td align="center"><%# Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"IsImage")) == 0 ? "文字链接" : "<img src=\"" + HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"ImgUrl") + "\" width=\"50\" height=\"20\" />"%></td>--%>
+                    <td align="center"><%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"SortId") %></td>
+                    <td align="center"><%#string.Format("{0:g}",HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"AddTime"))%></td>
                     <td align="center">
-                        <%# Convert.ToInt32(Eval("IsRed")) == 1 ? "<img src=\"../Images/ico-2.png\" title=\"推荐\" />" : ""%> 
+                        <%# Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"IsRed")) == 1 ? "<img src=\"../Images/ico-2.png\" title=\"推荐\" />" : ""%> 
                     </td>
-                    <td align="center"><span><a href="Edit.aspx?id=<%#Eval("Id") %>">修改</a></span></td>
+                    <td align="center"><span><a href="Edit.aspx?id=<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Id") %>">修改</a></span></td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>

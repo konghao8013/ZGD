@@ -81,15 +81,15 @@
                     <td align="center">
                         <asp:CheckBox ID="cb_id" CssClass="checkall" runat="server" /></td>
                     <td align="center">
-                        <asp:Label ID="lb_id" runat="server" Text='<%#Eval("Id")%>'></asp:Label></td>
-                    <td align="left"><%# GetFType(Convert.ToInt32(Eval("fType")))%></td>
-                    <td align="left">姓名：<%#Eval("UserName").ToString()%><br />电话：<%#Eval("UserTel").ToString()%></td><%--（<%#Eval("Sex").ToString()%>）--%>
-                    <td align="left"><%# new ZGD.BLL.Channel().GetChannelTitle(Convert.ToInt32(Eval("ClassId")))%></td>
-                    <td align="left"><%# new ZGD.BLL.Channel().GetChannelTitle(Convert.ToInt32(Eval("ClassId2")))%></td>
-                    <td align="left"><%#Eval("House").ToString()%></td>
-                    <td align="center"><%#string.Format("{0:g}",Eval("AddTime"))%></td>
+                        <asp:Label ID="lb_id" runat="server" Text='<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Id")%>'></asp:Label></td>
+                    <td align="left"><%# GetFType(Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"fType")))%></td>
+                    <td align="left">姓名：<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"UserName").ToString()%><br />电话：<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"UserTel").ToString()%></td><%--（<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Sex").ToString()%>）--%>
+                    <td align="left"><%# new ZGD.BLL.Channel().GetChannelTitle(Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"ClassId")))%></td>
+                    <td align="left"><%# new ZGD.BLL.Channel().GetChannelTitle(Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"ClassId2")))%></td>
+                    <td align="left"><%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"House").ToString()%></td>
+                    <td align="center"><%#string.Format("{0:g}",HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"AddTime"))%></td>
                     <td align="center">
-                        <a href="Edit.aspx?id=<%#Eval("Id") %>">详情</a></td>
+                        <a href="Edit.aspx?id=<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Id") %>">详情</a></td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>

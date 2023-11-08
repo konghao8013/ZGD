@@ -74,16 +74,16 @@
                     <td align="center">
                         <asp:CheckBox ID="cb_id" CssClass="checkall" runat="server" /></td>
                     <td align="center">
-                        <asp:Label ID="lb_id" runat="server" Text='<%#Eval("Id")%>'></asp:Label></td>
-                    <td align="center"><a href="/gallery/<%#Eval("Id") %>.html" target="_blank">
-                        <img src="<%#Eval("ImageSmall")%>" width="100" /></a></td>
-                    <td><%# Convert.ToInt32(Eval("IsLock")) == 1 ? "<img src=\"../Images/wsh01.gif\" title=\"不显示\" />" : ""%> <a href="/gallery/<%#Eval("Id") %>.html" target="_blank"><%#Eval("Title")%></a></td>
-                    <td align="center"><%#Convert.ToDateTime(Eval("PubTime")).ToString("yyyy-MM-dd")%></td>
+                        <asp:Label ID="lb_id" runat="server" Text='<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Id")%>'></asp:Label></td>
+                    <td align="center"><a href="/gallery/<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Id") %>.html" target="_blank">
+                        <img src="<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"ImageSmall")%>" width="100" /></a></td>
+                    <td><%# Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"IsLock")) == 1 ? "<img src=\"../Images/wsh01.gif\" title=\"不显示\" />" : ""%> <a href="/gallery/<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Id") %>.html" target="_blank"><%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Title")%></a></td>
+                    <td align="center"><%#Convert.ToDateTime(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"PubTime")).ToString("yyyy-MM-dd")%></td>
                     <td align="center">
-                        <%--<asp:ImageButton ID="ibtnLock" CommandName="ibtnLock" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsLock")) == 1 ? "../Images/correct.gif" : "../Images/disable.gif"%>' ToolTip='<%# Convert.ToInt32(Eval("IsLock")) == 1 ? "取消禁用" : "设置禁用"%>' />--%>
-                        <asp:ImageButton ID="ibtnTop" CommandName="ibtnTop" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "../Images/ico-1.png" : "../Images/ico-1_.png"%>' ToolTip='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "首页不置顶" : "置顶"%>' />
+                        <%--<asp:ImageButton ID="ibtnLock" CommandName="ibtnLock" runat="server" ImageUrl='<%# Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"IsLock")) == 1 ? "../Images/correct.gif" : "../Images/disable.gif"%>' ToolTip='<%# Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"IsLock")) == 1 ? "取消禁用" : "设置禁用"%>' />--%>
+                        <asp:ImageButton ID="ibtnTop" CommandName="ibtnTop" runat="server" ImageUrl='<%# Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"IsTop")) == 1 ? "../Images/ico-1.png" : "../Images/ico-1_.png"%>' ToolTip='<%# Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"IsTop")) == 1 ? "首页不置顶" : "置顶"%>' />
                     </td>
-                    <td align="center"><span><a href="Edit.aspx?id=<%#Eval("Id") %>">编辑</a></span></td>
+                    <td align="center"><span><a href="Edit.aspx?id=<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Id") %>">编辑</a></span></td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>

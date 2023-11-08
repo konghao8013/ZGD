@@ -61,21 +61,21 @@
             <ItemTemplate>
                 <tr>
                     <td align="center">
-                        <a href="manager_log.aspx?keywords=<%# Eval("user_name") %>">
-                            <%# Eval("user_name")%></a>
+                        <a href="manager_log.aspx?keywords=<%# HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"user_name") %>">
+                            <%# HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"user_name")%></a>
                     </td>
                     <td align="center">
-                        <a href="manager_log.aspx?keywords=<%# Eval("action_type") %>">
-                            <%# Eval("action_type") %></a>
+                        <a href="manager_log.aspx?keywords=<%# HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"action_type") %>">
+                            <%# HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"action_type") %></a>
                     </td>
                     <td>
-                        <%# Eval("remark") %>
+                        <%# HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"remark") %>
                     </td>
                     <td>
-                        <%# Eval("user_ip") %>
+                        <%# HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"user_ip") %>
                     </td>
                     <td>
-                        <%# Eval("add_time") %>
+                        <%# HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"add_time") %>
                     </td>
                 </tr>
             </ItemTemplate>

@@ -63,15 +63,15 @@
                 <tr>
                     <td align="center">
                         <asp:CheckBox ID="chkId" CssClass="checkall" runat="server" Style="vertical-align: middle;" />
-                        <asp:HiddenField ID="hidId" Value='<%#Eval("id")%>' runat="server" />
+                        <asp:HiddenField ID="hidId" Value='<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"id")%>' runat="server" />
                     </td>
-                    <td><a href="manager_edit.aspx?action=<%#DTEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>"><%# Eval("user_name") %></a></td>
-                    <td><%# Eval("real_name") %></td>
-                    <td><%#new ZGD.BLL.manager_role().GetTitle(Convert.ToInt32(Eval("role_id")))%></td>
-                    <td><%# Eval("telephone") %></td>
-                    <td><%#string.Format("{0:g}",Eval("add_time"))%></td>
-                    <td align="center"><%#Eval("is_lock").ToString().Trim() == "0" ? "正常" : "禁用"%></td>
-                    <td align="center"><a href="manager_edit.aspx?action=<%#DTEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>">修改</a></td>
+                    <td><a href="manager_edit.aspx?action=<%#DTEnums.ActionEnum.Edit %>&id=<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"id")%>"><%# HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"user_name") %></a></td>
+                    <td><%# HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"real_name") %></td>
+                    <td><%#new ZGD.BLL.manager_role().GetTitle(Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"role_id")))%></td>
+                    <td><%# HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"telephone") %></td>
+                    <td><%#string.Format("{0:g}",HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"add_time"))%></td>
+                    <td align="center"><%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"is_lock").ToString().Trim() == "0" ? "正常" : "禁用"%></td>
+                    <td align="center"><a href="manager_edit.aspx?action=<%#DTEnums.ActionEnum.Edit %>&id=<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"id")%>">修改</a></td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>

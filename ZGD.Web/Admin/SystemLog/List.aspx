@@ -47,11 +47,11 @@
                     <td align="center">
                         <asp:CheckBox ID="cb_id" CssClass="checkall" runat="server" /></td>
                     <td align="center">
-                        <asp:Label ID="lb_id" runat="server" Text='<%#Eval("Id")%>'></asp:Label></td>
-                    <td><%#Eval("Title")%></td>
-                    <td align="center"><%#Eval("UserName").ToString()%></td>
-                    <td align="center"><%#Eval("IPAddress")%></td>
-                    <td><%#string.Format("{0:g}",Eval("AddTime"))%></td>
+                        <asp:Label ID="lb_id" runat="server" Text='<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Id")%>'></asp:Label></td>
+                    <td><%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Title")%></td>
+                    <td align="center"><%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"UserName").ToString()%></td>
+                    <td align="center"><%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"IPAddress")%></td>
+                    <td><%#string.Format("{0:g}",HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"AddTime"))%></td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>

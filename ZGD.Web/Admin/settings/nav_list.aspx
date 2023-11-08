@@ -52,26 +52,26 @@
     <th width="12%">操作</th>
   </tr>
 </HeaderTemplate>
-    <%--Enabled='<%#bool.Parse((Convert.ToInt32(Eval("is_sys"))==0 ).ToString())%>' --%> 
+    <%--Enabled='<%#bool.Parse((Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"is_sys"))==0 ).ToString())%>' --%> 
 <ItemTemplate>
   <tr>
     <td align="center">
       <asp:CheckBox ID="chkId" CssClass="checkall" runat="server" style="vertical-align:middle;" />
-      <asp:HiddenField ID="hidId" Value='<%#Eval("id")%>' runat="server" />
-      <asp:HiddenField ID="hidLayer" Value='<%#Eval("class_layer") %>' runat="server" />
+      <asp:HiddenField ID="hidId" Value='<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"id")%>' runat="server" />
+      <asp:HiddenField ID="hidLayer" Value='<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"class_layer") %>' runat="server" />
     </td>
-    <td style="white-space:nowrap;word-break:break-all;overflow:hidden;"><%#Eval("name")%></td>
+    <td style="white-space:nowrap;word-break:break-all;overflow:hidden;"><%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"name")%></td>
     <td style="white-space:nowrap;word-break:break-all;overflow:hidden;">
       <asp:Literal ID="LitFirst" runat="server"></asp:Literal>
-      <a href="nav_edit.aspx?action=<%#DTEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>"><%#Eval("title")%></a>
-      <%#Eval("link_url").ToString() == "" ? "" : "(链接：" + Eval("link_url") + ")"%>
+      <a href="nav_edit.aspx?action=<%#DTEnums.ActionEnum.Edit %>&id=<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"id")%>"><%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"title")%></a>
+      <%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"link_url").ToString() == "" ? "" : "(链接：" + HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"link_url") + ")"%>
     </td>
-    <td align="center"><%#Convert.ToInt32(Eval("is_lock")) == 0 ? "是" : "否"%></td>
-    <td align="center"><%#Convert.ToInt32(Eval("is_sys")) == 1 ? "是" : "否"%></td>
-    <td><asp:TextBox ID="txtSortId" runat="server" Text='<%#Eval("sort_id")%>' CssClass="sort" onkeydown="return checkNumber(event);" /></td>
+    <td align="center"><%#Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"is_lock")) == 0 ? "是" : "否"%></td>
+    <td align="center"><%#Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"is_sys")) == 1 ? "是" : "否"%></td>
+    <td><asp:TextBox ID="txtSortId" runat="server" Text='<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"sort_id")%>' CssClass="sort" onkeydown="return checkNumber(event);" /></td>
     <td align="center" style="white-space:nowrap;word-break:break-all;overflow:hidden;">
-      <a href="nav_edit.aspx?action=<%#DTEnums.ActionEnum.Add %>&id=<%#Eval("id")%>">添加子级</a>
-      <a href="nav_edit.aspx?action=<%#DTEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>">修改</a>
+      <a href="nav_edit.aspx?action=<%#DTEnums.ActionEnum.Add %>&id=<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"id")%>">添加子级</a>
+      <a href="nav_edit.aspx?action=<%#DTEnums.ActionEnum.Edit %>&id=<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"id")%>">修改</a>
     </td>
   </tr>
 </ItemTemplate>

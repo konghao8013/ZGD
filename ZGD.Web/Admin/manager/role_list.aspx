@@ -58,12 +58,12 @@
 <ItemTemplate>
   <tr>
     <td align="center">
-      <asp:CheckBox ID="chkId" CssClass="checkall" runat="server" Enabled='<%#bool.Parse((Convert.ToInt32(Eval("is_sys"))==0 ).ToString())%>' style="vertical-align:middle;" />
-      <asp:HiddenField ID="hidId" Value='<%#Eval("id")%>' runat="server" />
+      <asp:CheckBox ID="chkId" CssClass="checkall" runat="server" Enabled='<%#bool.Parse((Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"is_sys"))==0 ).ToString())%>' style="vertical-align:middle;" />
+      <asp:HiddenField ID="hidId" Value='<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"id")%>' runat="server" />
     </td>
-    <td><a href="role_edit.aspx?action=<%#DTEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>"><%#Eval("role_name")%></a></td>
-    <td><%#GetTypeName( Convert.ToInt32(Eval("role_type")))%></td>
-    <td align="center"><a href="role_edit.aspx?action=<%#DTEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>">修改</a></td>
+    <td><a href="role_edit.aspx?action=<%#DTEnums.ActionEnum.Edit %>&id=<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"id")%>"><%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"role_name")%></a></td>
+    <td><%#GetTypeName( Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"role_type")))%></td>
+    <td align="center"><a href="role_edit.aspx?action=<%#DTEnums.ActionEnum.Edit %>&id=<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"id")%>">修改</a></td>
   </tr>
 </ItemTemplate>
 <FooterTemplate>

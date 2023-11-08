@@ -51,21 +51,21 @@
             <ItemTemplate>
                 <tr>
                     <td align="center">
-                        <asp:HiddenField ID="txtClassId" runat="server" Value='<%#Eval("Id") %>' />
-                        <asp:HiddenField ID="txtClassLayer" runat="server" Value='<%#Eval("ClassLayer") %>' />
+                        <asp:HiddenField ID="txtClassId" runat="server" Value='<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Id") %>' />
+                        <asp:HiddenField ID="txtClassLayer" runat="server" Value='<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"ClassLayer") %>' />
                     </td>
                     <td>
                         <asp:Literal ID="LitFirst" runat="server"></asp:Literal>
-                        <%# Eval("Title") %>
+                        <%# HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Title") %>
                     </td>
-                    <td align="center"><%# Eval("SortId") %></td>
+                    <td align="center"><%# HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"SortId") %></td>
                     <td align="center">
-                        <asp:ImageButton ID="ibtnLock" CommandName="ibtnDelete" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsDelete")) == 0 ? "../Images/correct.gif" : "../Images/disable.gif"%>' ToolTip='<%# Convert.ToInt32(Eval("IsDelete")) == 1 ? "取消禁用" : "设置禁用"%>' style='<%#Eval("Id").ToString() != "38" ? "" : "display:none;" %>' />
-                        <asp:ImageButton ID="ibtnTop" CommandName="ibtnTop" runat="server" ImageUrl='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "../Images/ico-1.png" : "../Images/ico-1_.png"%>' ToolTip='<%# Convert.ToInt32(Eval("IsTop")) == 1 ? "首页不显示" : "首页显示"%>' />
+                        <asp:ImageButton ID="ibtnLock" CommandName="ibtnDelete" runat="server" ImageUrl='<%# Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"IsDelete")) == 0 ? "../Images/correct.gif" : "../Images/disable.gif"%>' ToolTip='<%# Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"IsDelete")) == 1 ? "取消禁用" : "设置禁用"%>' style='<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Id").ToString() != "38" ? "" : "display:none;" %>' />
+                        <asp:ImageButton ID="ibtnTop" CommandName="ibtnTop" runat="server" ImageUrl='<%# Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"IsTop")) == 1 ? "../Images/ico-1.png" : "../Images/ico-1_.png"%>' ToolTip='<%# Convert.ToInt32(HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"IsTop")) == 1 ? "首页不显示" : "首页显示"%>' />
                     </td>
                     <td align="center">
-                        <%--<span><a href="Add.aspx?kindId=<%=kindId %>&classId=<%# Eval("Id") %>">添加子类</a></span>--%>
-                        <span><a href="Edit.aspx?kindId=<%=kindId %>&pId=<%# Eval("ParentId") %>&classId=<%# Eval("Id") %>" style='<%#Eval("Id").ToString() != "38" || Eval("ParentId").ToString() != "0" ? "" : "display:none;" %>'>修改</a></span>
+                        <%--<span><a href="Add.aspx?kindId=<%=kindId %>&classId=<%# HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Id") %>">添加子类</a></span>--%>
+                        <span><a href="Edit.aspx?kindId=<%=kindId %>&pId=<%# HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"ParentId") %>&classId=<%# HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Id") %>" style='<%#HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"Id").ToString() != "38" || HtmlEncodeBinder.HtmlEncodeEval(Container.DataItem,"ParentId").ToString() != "0" ? "" : "display:none;" %>'>修改</a></span>
                         <span><asp:LinkButton ID="lbDel" CssClass="del" CommandName="btndel" runat="server" OnClientClick="return confirm( '该操作会删除该专题，确定要删除吗？ ');">删除</asp:LinkButton></span>
                     </td>
                 </tr>
