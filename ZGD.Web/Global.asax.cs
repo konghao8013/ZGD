@@ -45,15 +45,25 @@ namespace ZGD.Web
         //}
         protected void Application_AcquireRequestState(object send, EventArgs e)
         {
-            if (Session == null)
+            try
             {
+                if (Session == null)
+                {
+                    return;
+                }
+            }
+            catch (Exception ee)
+            {
+                //会话不可用直接返回
                 return;
             }
+        
             var url = Request.Url.AbsolutePath;
             var ignorePage = new List<string> {
             "/admin/login.aspx",
             "/admin/index.aspx",
             "/admin/center.aspx",
+            "/admin/js",
             "/admin/manager/manager_pwd.aspx"
             };
             if (ignorePage.Any(a => url.StartsWith(a, StringComparison.OrdinalIgnoreCase))
