@@ -53,7 +53,7 @@
   </dl>
   <dl>
     <dt>新登录密码</dt>
-    <dd><asp:TextBox ID="txtPassword" runat="server" CssClass="input normal" TextMode="Password" datatype="checkPwd" nullmsg="请输入新密码" errormsg="密码至少需要8个字符，同时包含大小写字母、数字和符号，密码中不能包含连续的字符或数字。" sucmsg=" "></asp:TextBox> <span class="Validform_checktip">*</span></dd>
+    <dd><asp:TextBox ID="txtPassword" runat="server" CssClass="input normal" TextMode="Password" datatype="checkPwd" nullmsg="请输入新密码" errormsg="密码至少需要8个字符，同时包含大小写字母、数字和符号，密码不应包含123、qwe、qaz等连续字符" sucmsg=" "></asp:TextBox> <span class="Validform_checktip">*</span></dd>
   </dl>
   <dl>
     <dt>新确认密码</dt>
