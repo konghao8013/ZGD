@@ -6,7 +6,7 @@
 <head>
     <title>后台管理中心</title>
     <link href="skin/default/style.css?v=20180501" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../js/jquery/jquery-3.7.1.min.js"></script><script type="text/javascript" src="../js/jquery/jquery-migrate-1.4.1.js"></script>
+    <script type="text/javascript" src="/content/scripts/jquery-3.7.1.min.js"></script><script type="text/javascript" src="/content/scripts/jquery-migrate-1.4.1.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.nicescroll.js"></script>
     <script type="text/javascript" src="js/lhgdialog/lhgdialog.js?skin=idialog"></script>
     <script type="text/javascript" src="js/layout.js"></script>

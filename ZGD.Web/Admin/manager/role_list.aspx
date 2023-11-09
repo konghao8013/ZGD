@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>管理角色列表</title>
-<script type="text/javascript" src="../js/jquery/jquery-3.7.1.min.js"></script><script type="text/javascript" src="../js/jquery/jquery-migrate-1.4.1.js"></script>
+<script type="text/javascript" src="/content/scripts/jquery-3.7.1.min.js"></script><script type="text/javascript" src="/content/scripts/jquery-migrate-1.4.1.js"></script>
 <script type="text/javascript" src="../js/lhgdialog/lhgdialog.js?skin=idialog"></script>
 <script type="text/javascript" src="../js/layout.js"></script>
 <link href="../skin/default/style.css" rel="stylesheet" type="text/css" />

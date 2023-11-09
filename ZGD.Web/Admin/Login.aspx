@@ -8,7 +8,7 @@
     <style type="text/css">
         .loginbody { background: #6AC0AC url(/Content/Images/bg.png) top repeat-x; }
     </style>
-    <script type="text/javascript" src="../js/jquery/jquery-3.7.1.min.js"></script><script type="text/javascript" src="../js/jquery/jquery-migrate-1.4.1.js"></script>
+    <script type="text/javascript" src="/content/scripts/jquery-3.7.1.min.js"></script><script type="text/javascript" src="/content/scripts/jquery-migrate-1.4.1.js"></script>
     <script type="text/javascript">
         $(function () {
             //检测IE

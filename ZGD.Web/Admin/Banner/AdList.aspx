@@ -9,7 +9,7 @@
     <title></title>
     <link href="../skin/default/style.css" rel="stylesheet" type="text/css" />
     <link href="../skin/pagination/pagination.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../js/jquery/jquery-3.7.1.min.js"></script><script type="text/javascript" src="../js/jquery/jquery-migrate-1.4.1.js"></script>
+    <script type="text/javascript" src="/content/scripts/jquery-3.7.1.min.js"></script><script type="text/javascript" src="/content/scripts/jquery-migrate-1.4.1.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
     <script type="text/javascript" src="/Content/Scripts/layer/layer.js"></script>
     <link href="../Js/webuploader-0.1.5/webuploader.css" rel="stylesheet" />

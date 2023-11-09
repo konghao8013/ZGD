@@ -6,7 +6,7 @@
 <head runat="server">
     <title>回复留言</title>
     <link href="../skin/default/style.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../js/jquery/jquery-3.7.1.min.js"></script><script type="text/javascript" src="../js/jquery/jquery-migrate-1.4.1.js"></script>
+    <script type="text/javascript" src="/content/scripts/jquery-3.7.1.min.js"></script><script type="text/javascript" src="/content/scripts/jquery-migrate-1.4.1.js"></script>
     <script type="text/javascript" src="../js/jquery/Validform_v5.3.2_min.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
     <script type="text/javascript">

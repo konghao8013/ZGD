@@ -11,7 +11,7 @@
     <style type="text/css">
         .del{color:red !important;}
     </style>
-    <script type="text/javascript" src="../js/jquery/jquery-3.7.1.min.js"></script><script type="text/javascript" src="../js/jquery/jquery-migrate-1.4.1.js"></script>
+    <script type="text/javascript" src="/content/scripts/jquery-3.7.1.min.js"></script><script type="text/javascript" src="/content/scripts/jquery-migrate-1.4.1.js"></script>
     <script type="text/javascript" src="../js/layout.js"></script>
 </head>
 

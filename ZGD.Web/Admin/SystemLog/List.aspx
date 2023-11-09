@@ -8,7 +8,7 @@
 <head runat="server">
     <title>系统日志管理</title>
     <link rel="stylesheet" type="text/css" href="../Images/style.css" />
-    <script type="text/javascript" src="../js/jquery/jquery-3.7.1.min.js"></script><script type="text/javascript" src="../js/jquery/jquery-migrate-1.4.1.js"></script>
+    <script type="text/javascript" src="/content/scripts/jquery-3.7.1.min.js"></script><script type="text/javascript" src="/content/scripts/jquery-migrate-1.4.1.js"></script>
     <script type="text/javascript" src="../../Js/jquery.pagination.js"></script>
     <script type="text/javascript" src="../Js/function.js"></script>
     <script type="text/javascript">

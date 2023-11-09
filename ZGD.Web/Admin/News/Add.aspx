@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../js/kindeditor/plugins/code/prettify.css" />
     <link rel="stylesheet" href="../Js/datepicker/skin/WdatePicker.css" />
 
-    <script type="text/javascript" src="../js/jquery/jquery-3.7.1.min.js"></script><script type="text/javascript" src="../js/jquery/jquery-migrate-1.4.1.js"></script>
+    <script type="text/javascript" src="/content/scripts/jquery-3.7.1.min.js"></script><script type="text/javascript" src="/content/scripts/jquery-migrate-1.4.1.js"></script>
     <script type="text/javascript" src="../js/jquery/Validform_v5.3.2_min.js"></script>
     <link href="../Js/webuploader-0.1.5/webuploader.css" rel="stylesheet" />
     <script type="text/javascript" src="../Js/webuploader-0.1.5/webuploader.min.js"></script>
