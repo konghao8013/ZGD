@@ -202,6 +202,14 @@ function ExeNoCheckPostBack(objId, objmsg) {
 $.fn.initValidform = function () {
     var checkValidform = function (formObj) {
         $(formObj).Validform({
+                datatype: {
+                    "checkPwd": function (gets, obj, curform, regxp) {
+                        //var reg = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+                        var reg = new RegExp("^(?![0-9])(?!.{2}[0-9])(?![a-zA-Z])(?!.{2}[a-zA-Z])(?=.*[a-zA-Z0-9!@#$%^&*()_+])[A-Za-z0-9!@#$%^&*()_+]{8,}$", "g");
+                        return reg.test(gets);
+
+                    }
+                },
             tiptype: function (msg, o, cssctl) {
                 /*msg：提示信息;
                 o:{obj:*,type:*,curform:*}
