@@ -68,7 +68,7 @@
   </dl> 
   <dl>
     <dt>登录密码</dt>
-    <dd><asp:TextBox ID="txtPassword" runat="server" CssClass="input normal" TextMode="Password" datatype="*6-20" nullmsg="请设置密码" errormsg="密码范围在6-20位之间" sucmsg=" "></asp:TextBox> <span class="Validform_checktip">*</span></dd>
+    <dd><asp:TextBox ID="txtPassword" runat="server" CssClass="input normal" TextMode="Password" datatype="checkPwd" nullmsg="请设置密码" errormsg="密码至少需要(8-16)字符，同时包含大小写字母、数字和符号，密码不应包含123、qwe、qaz等连续字符" sucmsg=" "></asp:TextBox> <span class="Validform_checktip">*</span></dd>
   </dl>
   <dl>
     <dt>确认密码</dt>
