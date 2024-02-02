@@ -275,6 +275,10 @@
     string controller = ViewContext.RouteData.Values["controller"].ToString();
     string action = ViewContext.RouteData.Values["action"].ToString();
 }
+
+@if (1 == 2) { 
+
+
 <div class="link_list main" id="link_list">
     <p>
         <span>友情链接：</span>
@@ -320,7 +324,7 @@
         })
     </script>
 </div>
-
+}
     <!--<div id="ad1" style="z-index:99999">
     <div style="width:300px;height:534px;"><a href="#"><img src="/Content/Images/ad20200117.jpg" /></a></div>
     </div>
