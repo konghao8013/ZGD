@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using ZGD.Common;
 using System.Globalization;
-
+using System.Linq;
 namespace ZGD.Web.Admin.News
 {
     public partial class Add : ZGD.BasePage.ManagePage
@@ -76,14 +76,15 @@ namespace ZGD.Web.Admin.News
             model.ClassId = GetChecked(ddlClassId);
             model.PubTime = string.IsNullOrWhiteSpace(txtPubTime.Text) ? DateTime.Now : Convert.ToDateTime(txtPubTime.Text);
 
-            if (Request.Files != null && Request.Files[0] != null && Request.Files[0].ContentLength > 0)
+            var file = GetRequestFile();
+            if (file != null)
             {
-                var postFiles = Request.Files[0];
+                var postFiles = file;
                 string strfile = postFiles.FileName;
                 int filepos = strfile.LastIndexOf(".");//获取后缀名
                 string strfileName = strfile.Substring(filepos);//截取后缀名
 
-                string[] hz = { ".doc", ".docx", ".ppt", ".pptx", ".xls", ".xlsx", ".jpg", ".png", ".gif", ".bmp", ".rar", ".jepg", ".zip" };
+                string[] hz = { ".doc", ".docx", ".ppt", ".pptx", ".xls", ".xlsx", ".jpg", ".png", ".gif", ".bmp", ".rar", ".jepg", ".zip", ".pdf" };
                 if (!hz.Contains(strfileName))
                 {
                     JscriptMsg("不支持该文件格式的上传！");
@@ -182,7 +183,23 @@ namespace ZGD.Web.Admin.News
             }
         }
         #endregion
+        public HttpPostedFile GetRequestFile()
+        {
+            var files = Request.Files;
+            var count = files.Count;
+            if (files != null)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    if (files[i].ContentLength > 0)
+                    {
+                        return files[i];
+                    }
+                }
+            }
 
+            return null;
+        }
         protected void btnReset_Click(object sender, EventArgs e)
         {
             SaveData(0);
